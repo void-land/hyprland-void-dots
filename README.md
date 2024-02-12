@@ -19,8 +19,6 @@ This repository contains instructions and configurations for setting up Hyprland
 
 Ensure that your system meets the following requirements before proceeding:
 
-- [List any other general requirements]
-
 ### Package Dependencies
 
 The following packages are required for the proper functioning of Hyprland on Void Linux:
