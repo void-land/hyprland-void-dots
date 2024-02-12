@@ -54,6 +54,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
 
   - waybar
   - grim
+  - swaybg
   - slurp
   - dunst
   - swayidle
