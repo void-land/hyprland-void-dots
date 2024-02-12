@@ -15,7 +15,7 @@
 }
 {
     "label": "shutdown",
-    "action": "sleep 1; systemctl poweroff",
+    "action": "sleep 1; vshutdown",
     "keybind": "s"
 }
 {
@@ -25,6 +25,6 @@
 }
 {
     "label": "reboot",
-    "action": "sleep 1; systemctl reboot",
+    "action": "sleep 1; vreboot",
     "keybind": "r"
 }
