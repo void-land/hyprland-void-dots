@@ -227,6 +227,11 @@ window#waybar.hidden {
   color: red;
 }
 
+#memory {
+  min-width: 85px;
+
+}
+
 #wireplumber {
   min-width: 60px;
 }

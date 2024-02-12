@@ -23,6 +23,7 @@
     "wireplumber",
     "backlight",
     "battery",
+    "memory",
     "network",
     "network#network-2"
     // "pulseaudio"
@@ -31,7 +32,6 @@
     // "custom/wallpaper",
     // "pulseaudio/slider",
     // "cpu",
-    // "memory",
     // "keyboard-state",
   ],
   "wlr/taskbar": {
@@ -154,7 +154,8 @@
     "tooltip": true
   },
   "memory": {
-    "format": "{}% "
+    "format": "{used:0.1f} / {total:0.1f} GB",
+    "interval": 5
   },
   "backlight": {
     // "device": "acpi_video1",
