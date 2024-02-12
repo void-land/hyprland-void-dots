@@ -15,8 +15,8 @@
   "modules-left": [
     "custom/launcher",
     "custom/media",
-    "wlr/taskbar",
     "tray"
+    // "wlr/taskbar"
   ],
   "modules-center": [
     "clock",
