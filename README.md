@@ -13,9 +13,6 @@ This repository contains instructions and configurations for setting up Hyprland
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
     - [Package Dependencies](#package-dependencies)
-    - [Core Hyprland Components](#core-hyprland-components)
-    - [System Components](#system-components)
-    - [User Interface Components](#user-interface-components)
   - [Installation](#installation)
 
 ## Requirements
@@ -28,41 +25,46 @@ Ensure that your system meets the following requirements before proceeding:
 
 The following packages are required for the proper functioning of Hyprland on Void Linux:
 
-### Core Hyprland Components
-- hyprland
-- hyprland-protocols
-- xdg-desktop-portal-hyprland
-- xdg-desktop-portal
+<details>
+  <summary><strong>Core Hyprland Components</strong></summary>
 
-### System Components
-- dbus
-- seatd
-- polkit
-- polkit-kde-agent
-- elogind
-- mesa-dri
-- lightdm
-- sddm
-- pipewire
-- pipewire-pulse
-- pipewire-devel
-- stow
+  - hyprland
+  - hyprland-protocols
+  - xdg-desktop-portal-hyprland
+  - xdg-desktop-portal
+</details>
 
-### User Interface Components
-- waybar
-- grim
-- slurp
-- dunst
-- swayidle
-- swappy
-- cliphist
-- rofi
-- wlogout
-- font-awesome
+<details>
+  <summary><strong>System Components</strong></summary>
 
-Make sure to install these packages using your package manager before setting up Hyprland.
+  - dbus
+  - seatd
+  - polkit
+  - polkit-kde-agent
+  - elogind
+  - mesa-dri
+  - lightdm
+  - sddm
+  - pipewire
+  - pipewire-pulse
+  - pipewire-devel
+  - stow
+</details>
 
-[Note: Adjust the package names based on your Void Linux distribution and adapt the installation process accordingly.]
+<details>
+  <summary><strong>User Interface Components</strong></summary>
+
+  - waybar
+  - grim
+  - slurp
+  - dunst
+  - swayidle
+  - swappy
+  - cliphist
+  - rofi
+  - wlogout
+  - font-awesome
+</details>
 
 ## Installation
 
