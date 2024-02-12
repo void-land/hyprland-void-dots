@@ -26,6 +26,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
 <details>
   <summary><strong>Core Hyprland Components</strong></summary>
 
+  - [Void-Hyprland](https://github.com/Makrennel/hyprland-void)
   - hyprland
   - hyprland-protocols
   - xdg-desktop-portal-hyprland
@@ -41,8 +42,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - polkit-kde-agent
   - elogind
   - mesa-dri
-  - lightdm
-  - sddm
+  - [Ly](https://github.com/fairyglade/ly) : display manager
   - pipewire
   - pipewire-pulse
   - pipewire-devel
