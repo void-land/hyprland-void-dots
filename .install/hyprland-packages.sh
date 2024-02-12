@@ -21,6 +21,7 @@ packages_list=(
     "pipewire"
     "pipewire-pulse"
     "pipewire-devel"
+    "stow"
     # login display:
     "lightdm"
     "sddm"
