@@ -8,6 +8,7 @@ if [[ ! -d "$waybar_dir" ]]; then
 fi
 
 pkill waybar
+sleep 1
 
 while true; do
     logger -i "$0: Starting waybar in the background..."

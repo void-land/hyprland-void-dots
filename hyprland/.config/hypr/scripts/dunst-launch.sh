@@ -18,6 +18,9 @@ if [[ ! -d "$dunst_dir" ]]; then
     exit 1
 fi
 
+pkill dunst
+sleep 1
+
 while true; do
     logger -i "$0: Starting dunst in the background..."
     dunst &
