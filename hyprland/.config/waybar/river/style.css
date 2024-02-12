@@ -10,9 +10,6 @@
 
 window#waybar {
   background-color: transparent;
-
-  transition-property: background-color;
-  transition-duration: 1s;
 }
 
 window#waybar.hidden {
