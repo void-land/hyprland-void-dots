@@ -1,0 +1,243 @@
+@import "../../../.config/hypr-theme/global.css";
+
+* {
+  border: none;
+  border-radius: 5px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+window#waybar {
+  background-color: transparent;
+
+  transition-property: background-color;
+  transition-duration: 1s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces * {
+  font-size: 12px;
+}
+
+#workspaces {
+  padding: 0px 5px;
+}
+
+#workspaces button {
+  opacity: 0.2;
+  transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button.active {
+
+  opacity: 1;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button:hover {
+  opacity: 1;
+}
+
+#mode {
+  background-color: #64727d;
+  border-bottom: 3px solid #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#custom-launcher,
+#custom-power,
+#custom-layout,
+#custom-updater,
+#custom-snip,
+#custom-wallpaper,
+#tags,
+#taskbar,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#workspaces,
+#wireplumber {
+  background-color: @backgrounddark;
+  padding: 0px 10px;
+}
+
+#taskbar {
+  padding: 0px 4px;
+}
+
+#taskbar button {
+  opacity: 0.2;
+}
+
+#taskbar button.active {
+  opacity: 1;
+}
+
+#tray>.passive {
+  -gtk-icon-effect: dim;
+
+}
+
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+#battery.charging,
+#battery.plugged {
+  background-color: #26a65b;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#backlight {
+  background-color: #90b1b1;
+}
+
+#network {
+  min-width: 180px;
+
+}
+
+#network.network-2 {
+  min-width: 150px;
+
+}
+
+#network.disconnected {
+  color: red;
+}
+
+#custom-media {
+  color: white;
+}
+
+#custom-media.custom-spotify {
+  color: white;
+}
+
+#custom-media.custom-vlc {
+  color: white;
+}
+
+#custom-power {
+  font-size: 18px;
+  min-width: 20px;
+}
+
+#custom-launcher {
+  font-size: 18px;
+}
+
+#custom-layout {
+  color: white;
+  font-size: 20px;
+}
+
+#custom-updater {
+  color: white;
+}
+
+#custom-snip {
+  color: skyblue;
+  font-size: 20px;
+}
+
+#custom-wallpaper {
+  color: pink;
+  font-size: 20px;
+}
+
+#tags {
+  font-size: 20px;
+}
+
+#tags button.occupied {
+  color: skyblue;
+  margin: 5px;
+  background-color: #272727;
+}
+
+#tags button.focused {
+  color: black;
+  margin: 5px;
+  background-color: white;
+}
+
+#tags button.urgent {
+  color: red;
+  margin: 5px;
+  background-color: white;
+}
+
+#temperature.critical {
+  background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+  border-radius: 20px 0px 0px 20px;
+}
+
+#idle_inhibitor.activated {
+
+  border-radius: 20px 0px 0px 20px;
+}
+
+#language {
+
+  min-width: 100px;
+}
+
+#keyboard-state {
+  background: #97e1ad;
+  color: #000000;
+  min-width: 16px;
+}
+
+#keyboard-state>label {
+  padding: 0px 5px;
+}
+
+#keyboard-state>label.locked {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#pulseaudio {
+  min-width: 55px;
+}
+
+#pulseaudio.muted {
+  color: red;
+}
+
+#wireplumber {
+  min-width: 60px;
+}
+
+#clock {
+  min-width: 60px;
+}
+
+#wireplumber.muted {
+  color: red;
+}

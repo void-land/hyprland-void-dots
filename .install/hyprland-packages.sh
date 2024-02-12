@@ -1,0 +1,27 @@
+packages_list=(
+    # hyprland requirements:
+    "hyprland"
+    "xdg-desktop-portal-hyprland"
+    "xdg-desktop-portal"
+    "waybar"
+    "font-awesome"
+    "grim"
+    "slurp"
+    "dunst"
+    "swayidle"
+    "swappy"
+    "cliphist"
+    "rofi"
+    "wlogout"
+    "dumb_runtime_dir"
+    "gnome-keyring"
+    "inotify-tools"
+    "pulseaudio"
+    "pulseaudio-utils"
+    "pipewire"
+    "pipewire-pulse"
+    "pipewire-devel"
+    # login display:
+    "lightdm"
+    "sddm"
+)

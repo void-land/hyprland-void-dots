@@ -1,0 +1,240 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 5,
+  "margin-top": 10,
+  "margin-bottom": 5,
+  "margin-left": 5,
+  "margin-right": 5,
+  "modules-right": [
+    "hyprland/language",
+    "hyprland/workspaces",
+    "custom/power"
+  ],
+  "modules-left": [
+    "custom/launcher",
+    "custom/media",
+    "tray"
+    // "wlr/taskbar",
+  ],
+  "modules-center": [
+    "clock",
+    "wireplumber",
+    "backlight",
+    "battery",
+    "network",
+    "network#network-2"
+    // "pulseaudio"
+    // "custom/snip"
+    // "custom/updater",
+    // "custom/wallpaper",
+    // "pulseaudio/slider",
+    // "cpu",
+    // "memory",
+    // "keyboard-state",
+  ],
+  "wlr/taskbar": {
+    "all-outputs": false,
+    "active-first": false,
+    "format": "{icon}",
+    "icon-size": 20,
+    "spacing": 1,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10
+  },
+  "clock": {
+    "format": "{:%H:%M}  ",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d} "
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "wireplumber": {
+    "scroll-step": 5,
+    "format": "{volume}%  {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "helvum",
+    "max-volume": 150,
+    "tooltip": false
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": ""
+      // "1": "",
+      // "2": "",
+      // "3": "",
+      // "4": "",
+      // "5": "",
+      // "6": ""
+    },
+    "persistent-workspaces": {
+      "*": 6
+    }
+  },
+  "hyprland/language": {
+    "format": "{}"
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": " {name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": true
+  },
+  "memory": {
+    "format": "{}% "
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "",
+      ""
+    ]
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "",
+    // "format-full": "",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "network": {
+    "format-wifi": "  {essid}  {signalStrength}%  :  {ipaddr}",
+    "format-ethernet": "Connected  ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click-right": "alacritty -e nmtui",
+    "tooltip": false
+  },
+  "network#network-2": {
+    "format-wifi": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
+    "format-ethernet": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
+    "format-linked": "(No IP)",
+    "format-disconnected": "",
+    "on-click-right": "alacritty -e nmtui",
+    "tooltip": false,
+    "interval": 1
+  },
+  "custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 20,
+    "format-icons": {
+      "spotify": " ",
+      "default": " "
+    },
+    "escape": true,
+    "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+    "on-click": "playerctl play-pause"
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "$HOME/.config/hypr/scripts/rofi-launch.sh d",
+    "on-click-right": "pkill rofi"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout",
+    "on-click-right": "$HOME/.config/hypr/scripts/rofi-launch.sh p"
+  },
+  "custom/snip": {
+    "format": " ",
+    "on-click": "grimshot --notify save area $HOME/Pictures/$(zenity --entry --text 'Set filename:' --entry-text '.png')"
+  },
+  "custom/wallpaper": {
+    "format": " ",
+    "on-click": "bash ~/.config/system_scripts/pkill_bc"
+  }
+}

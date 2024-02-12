@@ -1,0 +1,59 @@
+@import "../../.config/hypr-theme/global.css";
+
+* {
+	font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+	background-image: none;
+	transition: 20ms;
+}
+
+window {
+	background-color: rgba(12, 12, 12, 0.1);
+}
+
+button {
+	margin: 8px;
+	border-radius: 20px;
+	color: #FFFFFF;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20%;
+	background-color: @backgrounddark;
+	transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682);
+}
+
+button:focus,
+button:active,
+button:hover {
+	background-size: 25%;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+/*
+----------------------------------------------------- 
+Buttons
+----------------------------------------------------- 
+*/
+
+#lock {
+	background-image: image(url("icons/lock.png"));
+}
+
+#logout {
+	background-image: image(url("icons/logout.png"));
+}
+
+#suspend {
+	background-image: image(url("icons/suspend.png"));
+}
+
+#hibernate {
+	background-image: image(url("icons/hibernate.png"));
+}
+
+#shutdown {
+	background-image: image(url("icons/shutdown.png"));
+}
+
+#reboot {
+	background-image: image(url("icons/reboot.png"));
+}
