@@ -36,13 +36,13 @@ The following packages are required for the proper functioning of Hyprland on Vo
 <details>
   <summary><strong>System Components</strong></summary>
 
-  - dbus
-  - seatd
-  - polkit
+  - dbus : service
+  - seatd : service
+  - elogind : service
+  - polkit : service
   - polkit-kde-agent
-  - elogind
+  - [ly](https://github.com/fairyglade/ly) : service
   - mesa-dri
-  - [ly](https://github.com/fairyglade/ly) : display manager
   - pipewire
   - pipewire-pulse
   - pipewire-devel
