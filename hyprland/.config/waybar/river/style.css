@@ -10,6 +10,7 @@
 
 window#waybar {
   background-color: transparent;
+  border-radius: 12px;
 }
 
 window#waybar.hidden {

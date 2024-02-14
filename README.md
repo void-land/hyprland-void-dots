@@ -54,6 +54,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
 
   - waybar
   - swaybg
+  - animated bg [swww](https://github.com/LGFae/swww)
   - swaylock or [swaylock-effects](https://github.com/mortie/swaylock-effects)
   - grim
   - slurp
