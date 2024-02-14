@@ -193,15 +193,15 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "  N/A  {signalStrength}%  :  0.0.0.0",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click-right": "$HOME/.config/hypr/scripts/nmtui-launch.sh",
+    "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false
   },
   "network#network-2": {
     "format-wifi": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
     "format-ethernet": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
     "format-linked": "(No IP) ",
-    "format-disconnected": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
-    "on-click-right": "$HOME/.config/hypr/scripts/nmtui-launch.sh",
+    "format-disconnected": "  0.0B/s   0.0B/s",
+    "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false,
     "interval": 1
   },
@@ -214,17 +214,17 @@
       "default": " "
     },
     "escape": true,
-    "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+    "exec": "~/.config/system_scripts/mediaplayer.py 2> /dev/null",
     "on-click": "playerctl play-pause"
   },
   "custom/launcher": {
     "format": "",
-    "on-click": "$HOME/.config/hypr/scripts/rofi-launch.sh d",
+    "on-click": "~/.config/hypr/scripts/rofi-launch.sh d",
     "on-click-right": "pkill rofi"
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "$HOME/.config/hypr/scripts/rofi-launch.sh p",
+    "on-click": "~/.config/hypr/scripts/rofi-launch.sh p",
     "on-click-right": "pkill rofi"
   },
   "custom/snip": {
