@@ -8,6 +8,7 @@
 # Import Current Theme
 source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
+hyprshot="$HOME/.config/hypr/scripts/hyprshot.sh"
 
 # Theme Elements
 prompt='Screenshot'
@@ -64,28 +65,6 @@ run_rofi() {
 	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
 }
 
-# Screenshot
-time=$(date +%Y-%m-%d-%H-%M-%S)
-geometry=$(xrandr | grep 'current' | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
-dir="$HOME/Screenshots"
-file="Screenshot_${time}_${geometry}.png"
-
-if [[ ! -d "$dir" ]]; then
-	mkdir -p "$dir"
-fi
-
-# notify and view screenshot
-notify_view() {
-	notify_cmd_shot='dunstify -u low --replace=699'
-	${notify_cmd_shot} "Copied to clipboard."
-	viewnior ${dir}/"$file"
-	if [[ -e "$dir/$file" ]]; then
-		${notify_cmd_shot} "Screenshot Saved."
-	else
-		${notify_cmd_shot} "Screenshot Deleted."
-	fi
-}
-
 # Copy screenshot to clipboard
 copy_shot() {
 	tee "$file" | xclip -selection clipboard -t image/png
@@ -101,30 +80,27 @@ countdown() {
 
 # take shots
 shotnow() {
-	cd ${dir} && sleep 0.5 && maim -u -f png | copy_shot
-	notify_view
+	sleep 1
+	$hyprshot -im output
 }
 
 shot5() {
 	countdown '5'
-	sleep 1 && cd ${dir} && maim -u -f png | copy_shot
-	notify_view
+	$hyprshot -m output
 }
 
 shot10() {
 	countdown '10'
-	sleep 1 && cd ${dir} && maim -u -f png | copy_shot
-	notify_view
+	$hyprshot -m output
 }
 
 shotwin() {
-	cd ${dir} && maim -u -f png -i $(xdotool getactivewindow) | copy_shot
-	notify_view
+	sleep 1
+	$hyprshot -m window
 }
 
 shotarea() {
-	cd ${dir} && maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l | copy_shot
-	notify_view
+	$hyprshot -m region
 }
 
 # Execute Command

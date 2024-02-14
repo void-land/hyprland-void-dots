@@ -53,9 +53,8 @@ function send_notification() {
     fi
 
     local message=$([ $CLIPBOARD -eq 1 ] &&
-        echo "Image copied to the clipboard" ||
-        echo "Image saved in <i>${1}</i> and copied to the clipboard.")
-    notify-send "Screenshot saved" \
+        echo "Image copied to the clipboard")
+    dunstify "Screenshot Saved." \
         "${message}" \
         -t "$NOTIF_TIMEOUT" -i "${1}" -a Hyprshot
 }
@@ -119,6 +118,7 @@ function save_geometry() {
         }
     else
         wl-copy < <(grim -g "${cropped_geometry}" -)
+        echo ""
     fi
 
     send_notification $output
@@ -271,8 +271,15 @@ DEBUG=0
 SILENT=0
 RAW=0
 NOTIF_TIMEOUT=5000
-CURRENT=0
-[ -z "$XDG_PICTURES_DIR" ] && type xdg-user-dir &>/dev/null && XDG_PICTURES_DIR=$(xdg-user-dir PICTURES)
+CURRENT=1
+HYPRSHOT_DIR="$HOME/Screenshots"
+
+if [[ ! -d "$HYPRSHOT_DIR" ]]; then
+    mkdir -p "$HYPRSHOT_DIR"
+fi
+
+# [ -z "$XDG_PICTURES_DIR" ] && type xdg-user-dir &>/dev/null && XDG_PICTURES_DIR=$(xdg-user-dir PICTURES)
+
 FILENAME="$(date +'%Y-%m-%d-%H%M%S_hyprshot.png')"
 [ -z "$HYPRSHOT_DIR" ] && SAVEDIR=${XDG_PICTURES_DIR:=~} || SAVEDIR=${HYPRSHOT_DIR}
 

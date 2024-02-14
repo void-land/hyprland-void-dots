@@ -53,10 +53,13 @@ The following packages are required for the proper functioning of Hyprland on Vo
   <summary><strong>User Interface Components</strong></summary>
 
   - waybar
-  - grim
   - swaybg
-  - swaylock or [swaylock-effects](https://github.com/mortie/swaylock-effects) : lock screen with effects
+  - swaylock or [swaylock-effects](https://github.com/mortie/swaylock-effects)
+  - grim
   - slurp
+  - jq
+  - wl-clipboard
+  - libnotify
   - dunst
   - swayidle
   - swappy
