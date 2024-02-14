@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-FPS=75
-DIR=$HOME/Wallpapers/
-PICS=($(ls ${DIR}))
-
-RANDOMPICS=${PICS[$RANDOM % ${#PICS[@]}]}
+source $HOME/.config/hypr/scripts/env.sh
 
 if [[ $(pidof swaybg) ]]; then
     pkill swaybg
@@ -12,4 +8,4 @@ fi
 
 swww query || swww init
 
-swww img ${DIR}/${RANDOMPICS} --transition-fps $FPS --transition-type any --transition-duration 3
+swww img $wallpapers_dir/macos.jpg --transition-fps $swww_fps --transition-type any --transition-duration $swww_duration
