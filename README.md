@@ -40,6 +40,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - seatd : service
   - elogind : service
   - polkit : service
+  - NetworkManager : service
   - polkit-kde-agent
   - [ly](https://github.com/fairyglade/ly) : service
   - mesa-dri
