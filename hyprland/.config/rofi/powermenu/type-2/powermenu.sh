@@ -15,8 +15,8 @@ dir="$HOME/.config/rofi/powermenu/type-2"
 theme='style-1'
 
 # CMDs
-uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+uptime="$(uptime -p | sed -e 's/up //g')"
+host=$(hostname)
 
 # Options
 shutdown=''
@@ -37,7 +37,7 @@ rofi_cmd() {
 
 # Confirmation CMD
 confirm_cmd() {
-	rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
+	rofi -theme-str 'window {location: center; anchor: center; fullscreen: true; width: 350px;}' \
 		-theme-str 'mainbox {children: [ "message", "listview" ];}' \
 		-theme-str 'listview {columns: 2; lines: 1;}' \
 		-theme-str 'element-text {horizontal-align: 0.5;}' \
@@ -89,23 +89,23 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    $shutdown)
-		run_cmd --shutdown
-        ;;
-    $reboot)
-		run_cmd --reboot
-        ;;
-    $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
-        ;;
-    $suspend)
-		run_cmd --suspend
-        ;;
-    $logout)
-		run_cmd --logout
-        ;;
+$shutdown)
+	run_cmd --shutdown
+	;;
+$reboot)
+	run_cmd --reboot
+	;;
+$lock)
+	if [[ -x '/usr/bin/betterlockscreen' ]]; then
+		betterlockscreen -l
+	elif [[ -x '/usr/bin/i3lock' ]]; then
+		i3lock
+	fi
+	;;
+$suspend)
+	run_cmd --suspend
+	;;
+$logout)
+	run_cmd --logout
+	;;
 esac

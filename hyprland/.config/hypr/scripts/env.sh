@@ -2,7 +2,7 @@
 
 # rofi env :
 export launcher_type="2"
-export powermenu_type="1"
+export powermenu_type="2"
 export rofi_dir="$HOME/.config/rofi"
 
 # waybar env :
