@@ -223,8 +223,8 @@
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "wlogout",
-    "on-click-right": "$HOME/.config/hypr/scripts/rofi-launch.sh p"
+    "on-click": "$HOME/.config/hypr/scripts/rofi-launch.sh p",
+    "on-click-right": "pkill rofi"
   },
   "custom/snip": {
     "format": " ",
