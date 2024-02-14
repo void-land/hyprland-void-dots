@@ -31,7 +31,6 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-
   opacity: 1;
   transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
@@ -198,7 +197,6 @@ window#waybar.hidden {
 }
 
 #idle_inhibitor.activated {
-
   border-radius: 20px 0px 0px 20px;
 }
 
