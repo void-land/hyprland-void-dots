@@ -193,7 +193,7 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "  N/A  {signalStrength}%  :  0.0.0.0",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click-right": "alacritty -e nmtui",
+    "on-click-right": "$HOME/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false
   },
   "network#network-2": {
@@ -201,7 +201,7 @@
     "format-ethernet": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
     "format-linked": "(No IP) ",
     "format-disconnected": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
-    "on-click-right": "alacritty -e nmtui",
+    "on-click-right": "$HOME/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false,
     "interval": 1
   },
