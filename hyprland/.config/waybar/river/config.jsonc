@@ -187,8 +187,8 @@
     ]
   },
   "network": {
-    "format-wifi": "  {essid}  {signalStrength}%  :  {ipaddr}",
-    "format-ethernet": "Connected  ",
+    "format-wifi": "  {essid}  :  {ipaddr}",
+    "format-ethernet": "   :  {ipaddr}",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "  N/A  {signalStrength}%  :  0.0.0.0",
