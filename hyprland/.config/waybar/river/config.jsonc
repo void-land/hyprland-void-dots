@@ -10,7 +10,7 @@
   "modules-right": [
     "hyprland/language",
     "hyprland/workspaces",
-    "custom/power"
+    "custom/power",
   ],
   "modules-left": [
     "custom/launcher",
@@ -24,8 +24,8 @@
     "backlight",
     "battery",
     "memory",
-    "network",
-    "network#network-2"
+    "network#network-2",
+    "network"
     // "pulseaudio"
     // "custom/snip"
     // "custom/updater",
@@ -34,6 +34,10 @@
     // "cpu",
     // "keyboard-state",
   ],
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "English"
+  },
   "wlr/taskbar": {
     "all-outputs": false,
     "active-first": false,
@@ -129,9 +133,6 @@
     "persistent-workspaces": {
       "*": 6
     }
-  },
-  "hyprland/language": {
-    "format": "{}"
   },
   "keyboard-state": {
     "numlock": true,

@@ -201,11 +201,6 @@ window#waybar.hidden {
   border-radius: 20px 0px 0px 20px;
 }
 
-#language {
-
-  min-width: 100px;
-}
-
 #keyboard-state {
   background: #97e1ad;
   color: #000000;
@@ -234,6 +229,10 @@ window#waybar.hidden {
 }
 
 #wireplumber {
+  min-width: 60px;
+}
+
+#language {
   min-width: 60px;
 }
 
