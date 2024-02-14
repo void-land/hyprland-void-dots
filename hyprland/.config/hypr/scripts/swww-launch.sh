@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 FPS=75
-DIR=$HOME/wallpapers/
+DIR=$HOME/Wallpapers/
 PICS=($(ls ${DIR}))
 
 RANDOMPICS=${PICS[$RANDOM % ${#PICS[@]}]}
