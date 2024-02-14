@@ -8,9 +8,8 @@
   "margin-left": 5,
   "margin-right": 5,
   "modules-right": [
-    "hyprland/language",
     "hyprland/workspaces",
-    "custom/power",
+    "custom/power"
   ],
   "modules-left": [
     "custom/launcher",
@@ -19,6 +18,7 @@
     // "wlr/taskbar"
   ],
   "modules-center": [
+    "hyprland/language",
     "clock",
     "wireplumber",
     "backlight",
@@ -125,13 +125,13 @@
       "3": "",
       "4": "",
       "5": "",
-      "6": "",
+      "6": "",
       "7": "",
       "8": "",
       "9": ""
     },
     "persistent-workspaces": {
-      "*": 6
+      "*": 7
     }
   },
   "keyboard-state": {

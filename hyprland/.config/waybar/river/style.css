@@ -68,7 +68,8 @@ window#waybar.hidden {
 #idle_inhibitor,
 #mpd,
 #workspaces,
-#wireplumber {
+#wireplumber,
+#language {
   background-color: @backgrounddark;
   padding: 0px 10px;
 }
