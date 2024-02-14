@@ -16,6 +16,7 @@ configuration {
 	normalize-match: true;
 	show-icons: true;
 	icon-theme: "Papirus";
+	no-fading-openclose: true;
 /*	cache-dir: ;*/
 	steal-focus: false;
 /*	dpi: -1;*/

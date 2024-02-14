@@ -12,7 +12,7 @@ hyprshot="$HOME/.config/hypr/scripts/hyprshot.sh"
 
 # Theme Elements
 prompt='Screenshot'
-mesg="DIR: $(xdg-user-dir PICTURES)/Screenshots"
+mesg="DIR: ~/Screenshots"
 
 if [[ "$theme" == *'type-1'* ]]; then
 	list_col='1'
@@ -50,7 +50,7 @@ fi
 
 # Rofi CMD
 rofi_cmd() {
-	rofi -theme-str "window {width: $win_width;}" \
+	rofi -n -theme-str "window {width: $win_width;}" \
 		-theme-str "listview {columns: $list_col; lines: $list_row;}" \
 		-theme-str 'textbox-prompt-colon {str: "";}' \
 		-dmenu \
@@ -63,11 +63,6 @@ rofi_cmd() {
 # Pass variables to rofi dmenu
 run_rofi() {
 	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
-}
-
-# Copy screenshot to clipboard
-copy_shot() {
-	tee "$file" | xclip -selection clipboard -t image/png
 }
 
 # countdown
