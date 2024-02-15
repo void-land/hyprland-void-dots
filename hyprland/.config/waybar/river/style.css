@@ -181,7 +181,7 @@ window#waybar.hidden {
 }
 
 #memory {
-  min-width: 85px;
+  min-width: 90px;
 }
 
 #cpu {
