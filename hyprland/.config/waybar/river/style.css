@@ -2,7 +2,7 @@
 
 * {
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: bold;
@@ -10,7 +10,6 @@
 
 window#waybar {
   background-color: transparent;
-  border-radius: 12px;
 }
 
 window#waybar.hidden {
@@ -22,26 +21,22 @@ window#waybar.hidden {
 }
 
 #workspaces {
-  padding: 0px 5px;
+  background-color: @backgrounddark;
+  padding: 0px 6px;
 }
 
 #workspaces button {
   opacity: 0.2;
   transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  font-size: 12px;
 }
 
 #workspaces button.active {
   opacity: 1;
-  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button:hover {
   opacity: 1;
-}
-
-#mode {
-  background-color: #64727d;
-  border-bottom: 3px solid #ffffff;
 }
 
 #clock,
@@ -66,15 +61,10 @@ window#waybar.hidden {
 #mode,
 #idle_inhibitor,
 #mpd,
-#workspaces,
 #wireplumber,
 #language {
   background-color: @backgrounddark;
-  padding: 0px 10px;
-}
-
-#taskbar {
-  padding: 0px 4px;
+  padding: 0px 6px;
 }
 
 #taskbar button {
@@ -83,15 +73,6 @@ window#waybar.hidden {
 
 #taskbar button.active {
   opacity: 1;
-}
-
-#tray>.passive {
-  -gtk-icon-effect: dim;
-
-}
-
-#tray>.needs-attention {
-  -gtk-icon-effect: highlight;
 }
 
 #battery.charging,
@@ -114,7 +95,6 @@ window#waybar.hidden {
 
 #network {
   min-width: 160px;
-
 }
 
 #network.network-2 {
@@ -192,28 +172,6 @@ window#waybar.hidden {
   background-color: #eb4d4b;
 }
 
-#idle_inhibitor {
-  border-radius: 20px 0px 0px 20px;
-}
-
-#idle_inhibitor.activated {
-  border-radius: 20px 0px 0px 20px;
-}
-
-#keyboard-state {
-  background: #97e1ad;
-  color: #000000;
-  min-width: 16px;
-}
-
-#keyboard-state>label {
-  padding: 0px 5px;
-}
-
-#keyboard-state>label.locked {
-  background: rgba(0, 0, 0, 0.2);
-}
-
 #pulseaudio {
   min-width: 55px;
 }
@@ -224,11 +182,10 @@ window#waybar.hidden {
 
 #memory {
   min-width: 85px;
-
 }
 
-#wireplumber {
-  min-width: 60px;
+#cpu {
+  min-width: 85px;
 }
 
 #language {
@@ -236,6 +193,10 @@ window#waybar.hidden {
 }
 
 #clock {
+  min-width: 70px;
+}
+
+#wireplumber {
   min-width: 60px;
 }
 

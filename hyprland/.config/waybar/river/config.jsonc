@@ -3,26 +3,25 @@
   "position": "top",
   "height": 30,
   "spacing": 5,
-  "margin-top": 10,
-  "margin-bottom": 5,
-  "margin-left": 5,
-  "margin-right": 5,
+  "margin-top": 8,
+  "margin-bottom": 4,
+  "margin-left": 4,
+  "margin-right": 4,
   "modules-right": [
-    "hyprland/workspaces",
+    "wireplumber",
+    "clock",
+    "hyprland/language",
     "custom/power"
   ],
   "modules-left": [
-    "custom/launcher",
-    "custom/media",
-    "tray"
+    // "custom/launcher",
+    "hyprland/workspaces",
+    "custom/media"
     // "wlr/taskbar"
   ],
   "modules-center": [
-    "hyprland/language",
-    "clock",
-    "wireplumber",
-    "backlight",
     "battery",
+    "cpu",
     "memory",
     "network#network-2",
     "network"
@@ -31,7 +30,6 @@
     // "custom/updater",
     // "custom/wallpaper",
     // "pulseaudio/slider",
-    // "cpu",
     // "keyboard-state",
   ],
   "hyprland/language": {
@@ -53,9 +51,8 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%H:%M}  ",
+    "format": "{:%H : %M}  ",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d} "
   },
   "pulseaudio": {
     "scroll-step": 5,
@@ -85,9 +82,9 @@
     "format": "{volume}%  {icon}",
     "format-bluetooth": "{volume}% {icon}",
     "format-bluetooth-muted": "{icon} {format_source}",
-    "format-muted": "{format_source}",
+    "format-muted": "",
     "format-source": "",
-    "format-source-muted": "",
+    "format-source-muted": "",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -125,13 +122,13 @@
       "3": "",
       "4": "",
       "5": "",
-      "6": "",
+      "6": "",
       "7": "",
       "8": "",
       "9": ""
     },
     "persistent-workspaces": {
-      "*": 7
+      "*": 6
     }
   },
   "keyboard-state": {
@@ -151,8 +148,8 @@
     }
   },
   "cpu": {
-    "format": "{usage}% ",
-    "tooltip": true
+    "interval": 1,
+    "format": "{load:0.1f} %  "
   },
   "memory": {
     "format": "{used:0.1f} / {total:0.1f} GB",
@@ -197,8 +194,8 @@
     "tooltip": false
   },
   "network#network-2": {
-    "format-wifi": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
-    "format-ethernet": "  {bandwidthDownBytes}    {bandwidthUpBytes}",
+    "format-wifi": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
+    "format-ethernet": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
     "format-linked": "(No IP) ",
     "format-disconnected": "  0.0B/s   0.0B/s",
     "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
