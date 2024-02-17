@@ -1,6 +1,6 @@
 # Hyprland Configuration and Setup Guide for Void Linux
 
-<!-- ![Hyprland Logo](link_to_logo) -->
+![Hyprland Logo](assets/hyprland.png)
 
 ## Overview
 
