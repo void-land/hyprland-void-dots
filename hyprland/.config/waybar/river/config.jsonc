@@ -149,7 +149,7 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "{load:0.1f} %  "
+    "format": "{usage} %  "
   },
   "memory": {
     "format": "{used:0.1f} / {total:0.1f} GB",
