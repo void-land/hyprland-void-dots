@@ -44,9 +44,8 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - polkit-kde-agent
   - [ly](https://github.com/fairyglade/ly) : service
   - mesa-dri
-  - pipewire
-  - pipewire-pulse
-  - pipewire-devel
+  - [pipewire](https://docs.voidlinux.org/config/media/pipewire.html)
+  - wireplumber
   - stow
   - inotify-tools
 </details>
