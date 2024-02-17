@@ -48,12 +48,13 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - pipewire-pulse
   - pipewire-devel
   - stow
+  - inotify-tools
 </details>
 
 <details>
   <summary><strong>User Interface Components</strong></summary>
 
-  - waybar
+  - Waybar
   - swaybg
   - animated bg [swww](https://github.com/LGFae/swww)
   - swaylock or [swaylock-effects](https://github.com/mortie/swaylock-effects)
