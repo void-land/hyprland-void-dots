@@ -184,7 +184,7 @@
     ]
   },
   "network": {
-    "format-wifi": "  {essid}  :  {ipaddr}",
+    "format-wifi": "  :  {ipaddr}",
     "format-ethernet": "   :  {ipaddr}",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
