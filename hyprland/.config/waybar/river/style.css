@@ -189,16 +189,10 @@ window#waybar.hidden {
   min-width: 85px;
 }
 
-#language {
-  min-width: 60px;
-}
-
-#clock {
-  min-width: 70px;
-}
-
+#language,
+#clock,
 #wireplumber {
-  min-width: 60px;
+  min-width: 70px;
 }
 
 #wireplumber.muted {
