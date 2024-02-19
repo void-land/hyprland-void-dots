@@ -173,6 +173,8 @@ listview {
     dynamic:                     true;
     scrollbar:                   true;
     layout:                      vertical;
+    fixed-height:                true;
+    fixed-columns:               true;
     reverse:                     false;
     spacing:                     5px;
     margin:                      0px;
@@ -184,6 +186,7 @@ listview {
     text-color:                  @foreground;
     cursor:                      "default";
 }
+
 scrollbar {
     handle-width:                5px;
     handle-color:                @handle-colour;
