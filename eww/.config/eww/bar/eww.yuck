@@ -1,0 +1,96 @@
+; variables :
+(deflisten workspace "scripts/workspace")
+(deflisten music :initial ""
+"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+(defpoll volume :interval "1s"
+"scripts/getvol")
+(defpoll time :interval "10s"
+"date '+%H:%M %b %d, %Y'")
+
+(defwidget workspaces []
+  (literal
+    :content workspace
+  :valign "center"))
+
+(defwidget bar []
+  (centerbox :orientation "w"
+    (workspaces)
+    (music)
+    (sidestuff)))
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (metric :label "🔊"
+      :value volume
+    :onchange "amixer -D pulse sset Master {}%")
+    (metric :label ""
+      :value {EWW_RAM.used_mem_perc}
+    :onchange "")
+    (metric :label "💾"
+      :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+    :onchange "")
+  time))
+
+(defwidget music []
+  (box :class "music"
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+  {music != "" ? "🎵${music}" : ""}))
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+    :class "metric"
+    :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+      :max 101
+      :active {onchange != ""}
+      :value value
+    :onchange onchange)))
+
+(defwidget left []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "end"
+    :class "left_modules"
+    (bright)
+    (volume)
+    (wifi)
+    (sep)
+    (bat)
+    (mem)
+    (sep)
+    (clock_module)))
+
+
+(defwidget right []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :class "right_modules"
+    (workspaces)))
+
+
+(defwidget center []
+  (box :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "center_modules"
+    (music)))
+
+(defwindow bar
+  :monitor 0
+  :geometry
+  (geometry
+    :anchor "top center"
+    :y "5px"
+    :width "99%"
+    :height "36px"
+  )
+  :stacking "fg"
+  :exclusive "true"
+  :focusable "false"
+  (bar)
+)

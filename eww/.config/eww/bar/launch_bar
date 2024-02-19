@@ -1,0 +1,14 @@
+#!/bin/bash
+
+EWW="eww -c $HOME/.config/eww/bar"
+
+if [[ ! $(pidof eww) ]]; then
+	eww daemon
+	sleep 1
+fi
+
+run_eww() {
+	${EWW} open bar
+}
+
+run_eww
