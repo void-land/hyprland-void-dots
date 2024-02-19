@@ -8,5 +8,5 @@ export inotify_events="-e close_write,move,create"
 
 # swww env :
 export wallpapers_dir="$HOME/Wallpapers"
-export swww_fps=75
+export swww_fps=120
 export swww_duration=2

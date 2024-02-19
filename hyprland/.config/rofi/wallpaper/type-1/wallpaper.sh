@@ -5,7 +5,7 @@ dir="$HOME/.config/rofi/wallpaper/type-1"
 theme='style-8'
 
 rofi_cmd() {
-    rofi -dmenu -theme ${dir}/${theme}.rasi
+    rofi -dmenu -theme ${dir}/${theme}.rasi -p "Chad"
 }
 
 show_image_preview() {
@@ -19,6 +19,6 @@ choice=$(
 
 wallpaper="$wallpapers_dir/$choice"
 
-swww img -t any --transition-bezier 0.0,0.0,1.0,1.0 --transition-duration 1 --transition-step 255 --transition-fps 60 "$wallpaper"
+swww img -t any --transition-bezier 0.0,0.0,1.0,1.0 --transition-duration 1 --transition-step 255 --transition-fps 120 "$wallpaper"
 
 exit 1
