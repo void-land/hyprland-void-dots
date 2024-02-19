@@ -247,7 +247,6 @@ element-icon {
     text-color:                  inherit;
     size:                        64px;
     cursor:                      inherit;
-    border-radius:               12px;
 }
 element-text {
     background-color:            transparent;
