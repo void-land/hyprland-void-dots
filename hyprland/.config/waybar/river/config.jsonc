@@ -1,20 +1,19 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 30,
+  "height": 24,
   "spacing": 5,
   "margin-top": 8,
-  "margin-bottom": 4,
+  "margin-bottom": 2,
   "margin-left": 4,
   "margin-right": 4,
   "modules-right": [
     "wireplumber",
-    "clock",
     "hyprland/language",
-    "custom/power"
+    "clock"
   ],
   "modules-left": [
-    // "custom/launcher",
+    "custom/launcher",
     "hyprland/workspaces",
     "custom/media"
     // "wlr/taskbar"
@@ -23,8 +22,8 @@
     "battery",
     "cpu",
     "memory",
-    "network#network-2",
-    "network"
+    "network#network-2"
+    // "network"
     // "pulseaudio"
     // "custom/snip"
     // "custom/updater",
@@ -51,7 +50,8 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%H : %M}  ",
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "pulseaudio": {

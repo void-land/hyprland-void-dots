@@ -1,4 +1,4 @@
-@import "../../../.config/hypr-theme/global.css";
+@import "../../../.config/hypr-theme/waybar/global.css";
 
 * {
   border: none;
@@ -56,6 +56,7 @@ window#waybar.hidden {
 #custom-updater,
 #custom-snip,
 #custom-wallpaper,
+#custom-playerlabel,
 #tags,
 #taskbar,
 #tray,
@@ -63,8 +64,10 @@ window#waybar.hidden {
 #idle_inhibitor,
 #mpd,
 #wireplumber,
-#language {
+#language,
+#workspaces {
   background-color: @backgrounddark;
+  border: #272727 1px solid;
   padding: 0px 6px;
 }
 
@@ -92,6 +95,10 @@ window#waybar.hidden {
 
 #backlight {
   background-color: #90b1b1;
+}
+
+#custom-playerlabel {
+  min-width: 170px;
 }
 
 #network {
@@ -181,13 +188,12 @@ window#waybar.hidden {
   color: red;
 }
 
-#memory {
+
+#memory,
+#cpu {
   min-width: 90px;
 }
 
-#cpu {
-  min-width: 85px;
-}
 
 #language,
 #clock,
