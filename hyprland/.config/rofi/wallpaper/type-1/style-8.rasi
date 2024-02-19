@@ -9,12 +9,13 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,run,filebrowser,window";
-    show-icons:                 false;
+	modi:                       "drun,run,filebrowser,ssh,window";
+    show-icons:                 true;
     display-drun:               " Apps";
     display-run:                " Run";
     display-filebrowser:        " Files";
     display-window:             " Windows";
+	display-ssh:                " SSH";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
 }
@@ -90,7 +91,16 @@ mainbox {
     border-radius:               0px 0px 0px 0px;
     border-color:                @border-colour;
     background-color:            transparent;
-    children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
+    children:                    [ "inputbar", "message", "custombox" ];
+}
+
+/*****----- A Custom Box -----*****/
+custombox {
+    spacing:                     10px;
+    background-color:            @background-colour;
+    text-color:                  @foreground-colour;
+    orientation:                 horizontal;
+    children:                    [ "mode-switcher", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -98,11 +108,11 @@ inputbar {
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     8px 12px;
     border:                      0px solid;
-    border-radius:               0px;
+    border-radius:               8px;
     border-color:                @border-colour;
-    background-color:            transparent;
+    background-color:            @alternate-background;
     text-color:                  @foreground-colour;
     children:                    [ "textbox-prompt-colon", "entry" ];
 }
@@ -157,8 +167,8 @@ case-indicator {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     1;
-    lines:                       8;
+    columns:                     3;
+    lines:                       4;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -166,15 +176,14 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
     spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
+    border-color:                @selected;
     background-color:            transparent;
-    text-color:                  @foreground-colour;
+    text-color:                  @foreground;
     cursor:                      "default";
 }
 scrollbar {
@@ -236,8 +245,9 @@ element alternate.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        24px;
+    size:                        64px;
     cursor:                      inherit;
+    border-radius:               12px;
 }
 element-text {
     background-color:            transparent;
@@ -247,14 +257,14 @@ element-text {
     vertical-align:              0.5;
     horizontal-align:            0.0;
 }
-
 /*****----- Mode Switcher -----*****/
 mode-switcher{
     enabled:                     true;
     expand:                      false;
+    orientation:                 vertical;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     0px 0px;
     border:                      0px solid;
     border-radius:               0px;
     border-color:                @border-colour;
@@ -262,12 +272,14 @@ mode-switcher{
     text-color:                  @foreground-colour;
 }
 button {
-    padding:                     12px;
+    padding:                     0px 20px 0px 20px;
     border:                      0px solid;
     border-radius:               8px;
     border-color:                @border-colour;
     background-color:            @alternate-background;
     text-color:                  inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
     cursor:                      pointer;
 }
 button selected {
@@ -301,7 +313,7 @@ textbox {
     markup:                      true;
 }
 error-message {
-    padding:                     0px;
+    padding:                     10px;
     border:                      2px solid;
     border-radius:               8px;
     border-color:                @border-colour;

@@ -10,7 +10,7 @@
 /*****----- Configuration -----*****/
 configuration {
 	modi:                       "drun,run,filebrowser,window";
-    show-icons:                 false;
+    show-icons:                 true;
     display-drun:               " Apps";
     display-run:                " Run";
     display-filebrowser:        " Files";
@@ -83,26 +83,26 @@ window {
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     10px;
+    spacing:                     0px;
     margin:                      0px;
     padding:                     20px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
     border-color:                @border-colour;
     background-color:            transparent;
-    children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
+    children:                    [ "inputbar", "message", "mode-switcher", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
-    padding:                     0px;
+    margin:                      0px 0px 10px 0px;
+    padding:                     5px 10px;
     border:                      0px solid;
-    border-radius:               0px;
+    border-radius:               10px;
     border-color:                @border-colour;
-    background-color:            transparent;
+    background-color:            @alternate-background;
     text-color:                  @foreground-colour;
     children:                    [ "textbox-prompt-colon", "entry" ];
 }
@@ -169,9 +169,9 @@ listview {
     
     spacing:                     5px;
     margin:                      0px;
-    padding:                     0px;
-    border:                      0px solid;
-    border-radius:               0px;
+    padding:                     10px;
+    border:                      0px 2px 2px 2px ;
+    border-radius:               0px 0px 10px 10px;
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
@@ -189,9 +189,9 @@ element {
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     10px;
+    padding:                     6px;
     border:                      0px solid;
-    border-radius:               8px;
+    border-radius:               6px;
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
@@ -252,7 +252,7 @@ element-text {
 mode-switcher{
     enabled:                     true;
     expand:                      false;
-    spacing:                     10px;
+    spacing:                     0px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
@@ -262,23 +262,26 @@ mode-switcher{
     text-color:                  @foreground-colour;
 }
 button {
-    padding:                     12px;
-    border:                      0px solid;
-    border-radius:               8px;
+    padding:                     10px;
+    border:                      0px 0px 2px 0px ;
+    border-radius:               10px 10px 0px 0px;
     border-color:                @border-colour;
-    background-color:            @alternate-background;
+    background-color:            @background-colour;
     text-color:                  inherit;
     cursor:                      pointer;
 }
 button selected {
-    background-color:            var(selected-normal-background);
-    text-color:                  var(selected-normal-foreground);
+    border:                      2px 2px 0px 2px ;
+    border-radius:               10px 10px 0px 0px;
+    border-color:                @border-colour;
+    background-color:            var(normal-background);
+    text-color:                  var(normal-foreground);
 }
 
 /*****----- Message -----*****/
 message {
     enabled:                     true;
-    margin:                      0px;
+    margin:                      0px 0px 10px 0px;
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
@@ -287,9 +290,9 @@ message {
     text-color:                  @foreground-colour;
 }
 textbox {
-    padding:                     12px;
+    padding:                     10px;
     border:                      0px solid;
-    border-radius:               8px;
+    border-radius:               10px;
     border-color:                @border-colour;
     background-color:            @alternate-background;
     text-color:                  @foreground-colour;
@@ -301,9 +304,9 @@ textbox {
     markup:                      true;
 }
 error-message {
-    padding:                     0px;
+    padding:                     10px;
     border:                      2px solid;
-    border-radius:               8px;
+    border-radius:               10px;
     border-color:                @border-colour;
     background-color:            @background-colour;
     text-color:                  @foreground-colour;

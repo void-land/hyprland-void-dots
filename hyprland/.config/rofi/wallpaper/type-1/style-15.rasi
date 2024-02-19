@@ -10,12 +10,12 @@
 /*****----- Configuration -----*****/
 configuration {
 	modi:                       "drun,run,filebrowser,window";
-    show-icons:                 false;
-    display-drun:               " Apps";
-    display-run:                " Run";
+    show-icons:                 true;
+    display-drun:               " Apps";
+    display-run:                " Run";
     display-filebrowser:        " Files";
     display-window:             " Windows";
-	drun-display-format:        "{name}";
+	drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
 	window-format:              "{w} · {c} · {t}";
 }
 
@@ -47,6 +47,25 @@ configuration {
     alternate-urgent-foreground: var(background);
     alternate-active-background: var(active);
     alternate-active-foreground: var(background);
+
+    /* For Screens with 1920x1080 resolution */
+    screen-margin:               275px 400px;
+    box-spacing:                 20px;
+    list-padding:                8px;
+    element-padding:             15px;
+    element-radius:              8px;
+    element-spacing:             15px;
+
+    /* For Screens with 1366x768 resolution */
+    /*
+    screen-margin:               180px 225px;
+    box-spacing:                 20px;
+    list-padding:                4px;
+    element-padding:             10px;
+    element-radius:              6px;
+    element-spacing:             10px;
+    */
+    /* Use this as reference and create for your screen resolution */
 }
 
 /*****----- Main Window -----*****/
@@ -55,8 +74,9 @@ window {
     transparency:                "real";
     location:                    center;
     anchor:                      center;
-    fullscreen:                  false;
-    width:                       800px;
+    fullscreen:                  true;
+    width:                       1366px;
+    height:                      768px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -65,7 +85,7 @@ window {
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               10px;
+    border-radius:               0px;
     border-color:                @border-colour;
     cursor:                      "default";
     /* Backgroud Colors */
@@ -83,24 +103,33 @@ window {
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     10px;
-    margin:                      0px;
-    padding:                     20px;
+    spacing:                     @box-spacing;
+    margin:                      @screen-margin;
+    padding:                     0px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
     border-color:                @border-colour;
     background-color:            transparent;
-    children:                    [ "inputbar", "mode-switcher", "message", "listview" ];
+    children:                    [ "inputbar", "message", "custombox" ];
+}
+
+/*****----- A Custom Box -----*****/
+custombox {
+    spacing:                     @box-spacing;
+    background-color:            @background-colour;
+    text-color:                  @foreground-colour;
+    orientation:                 horizontal;
+    children:                    [ "mode-switcher", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
-    spacing:                     10px;
+    spacing:                     0px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               0px;
+    border-radius:               @element-radius;
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
@@ -109,20 +138,25 @@ inputbar {
 
 prompt {
     enabled:                     true;
+    padding:                     @element-padding;
     background-color:            inherit;
     text-color:                  inherit;
 }
 textbox-prompt-colon {
     enabled:                     true;
-    padding:                     5px 0px;
     expand:                      false;
+    padding:                     @element-padding;
     str:                         "";
-    background-color:            inherit;
-    text-color:                  inherit;
+    border:                      0px solid;
+    border-radius:               @element-radius;
+    border-color:                @border-colour;
+    background-color:            @alternate-background;
+    text-color:                  @foreground-colour;
 }
 entry {
     enabled:                     true;
-    padding:                     5px 0px;
+    expand:                      true;
+    padding:                     @element-padding;
     background-color:            inherit;
     text-color:                  inherit;
     cursor:                      text;
@@ -158,16 +192,16 @@ case-indicator {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       8;
+    lines:                       10;
     cycle:                       true;
     dynamic:                     true;
-    scrollbar:                   false;
+    scrollbar:                   true;
     layout:                      vertical;
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     5px;
+    spacing:                     @box-spacing;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
@@ -178,20 +212,20 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                5px ;
+    handle-width:                8px ;
     handle-color:                @handle-colour;
-    border-radius:               10px;
+    border-radius:               @element-radius;
     background-color:            @alternate-background;
 }
 
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     10px;
+    spacing:                     @element-spacing;
     margin:                      0px;
-    padding:                     10px;
+    padding:                     @list-padding;
     border:                      0px solid;
-    border-radius:               8px;
+    border-radius:               @element-radius;
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
@@ -236,7 +270,7 @@ element alternate.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        24px;
+    size:                        32px;
     cursor:                      inherit;
 }
 element-text {
@@ -251,8 +285,8 @@ element-text {
 /*****----- Mode Switcher -----*****/
 mode-switcher{
     enabled:                     true;
-    expand:                      false;
-    spacing:                     10px;
+    orientation:                 vertical;
+    spacing:                     @box-spacing;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
@@ -262,9 +296,10 @@ mode-switcher{
     text-color:                  @foreground-colour;
 }
 button {
-    padding:                     12px;
+    padding:                     @element-padding;
+    width:                       125px;
     border:                      0px solid;
-    border-radius:               8px;
+    border-radius:               @element-radius;
     border-color:                @border-colour;
     background-color:            @alternate-background;
     text-color:                  inherit;
@@ -287,9 +322,9 @@ message {
     text-color:                  @foreground-colour;
 }
 textbox {
-    padding:                     12px;
+    padding:                     @element-padding;
     border:                      0px solid;
-    border-radius:               8px;
+    border-radius:               @element-radius;
     border-color:                @border-colour;
     background-color:            @alternate-background;
     text-color:                  @foreground-colour;
@@ -301,9 +336,9 @@ textbox {
     markup:                      true;
 }
 error-message {
-    padding:                     0px;
-    border:                      2px solid;
-    border-radius:               8px;
+    padding:                     @element-padding;
+    border:                      0px solid;
+    border-radius:               0px;
     border-color:                @border-colour;
     background-color:            @background-colour;
     text-color:                  @foreground-colour;
