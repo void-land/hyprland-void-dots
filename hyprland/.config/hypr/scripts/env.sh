@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# rofi env :
-export launcher_type="2"
-export powermenu_type="2"
-export rofi_dir="$HOME/.config/rofi"
-
 # waybar env :
 export waybar_theme="river"
 export waybar_dir="$HOME/.config/waybar/$waybar_theme"
