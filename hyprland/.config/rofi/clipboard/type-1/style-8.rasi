@@ -242,12 +242,6 @@ element alternate.active {
     background-color:            var(alternate-active-background);
     text-color:                  var(alternate-active-foreground);
 }
-element-icon {
-    background-color:            transparent;
-    text-color:                  inherit;
-    size:                        24px;
-    cursor:                      inherit;
-}
 element-text {
     background-color:            transparent;
     text-color:                  inherit;
@@ -258,7 +252,7 @@ element-text {
 }
 
 /*****----- Mode Switcher -----*****/
-mode-switcher{
+mode-switcher {
     enabled:                     true;
     expand:                      false;
     orientation:                 vertical;

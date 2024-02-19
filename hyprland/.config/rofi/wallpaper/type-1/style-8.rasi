@@ -168,7 +168,7 @@ case-indicator {
 listview {
     enabled:                     true;
     columns:                     4;
-    lines:                       3;
+    lines:                       2;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   true;
@@ -195,9 +195,8 @@ scrollbar {
 element {
     enabled:                     true;
     orientation:             vertical;
-    spacing:                     10px;
     margin:                      0px;
-    padding:                     5px;
+    padding:                     10px;
     border:                      0px solid;
     border-radius:               8px;
     border-color:                @border-colour;
@@ -244,7 +243,7 @@ element alternate.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        7em;
+    size:                        128px;
     cursor:                      inherit;
 }
 element-text {
@@ -254,6 +253,7 @@ element-text {
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.0;
+    padding:                     6px 12px;
 }
 /*****----- Mode Switcher -----*****/
 mode-switcher{
