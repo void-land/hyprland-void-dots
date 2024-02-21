@@ -6,6 +6,8 @@ export wallpaper_type="1"
 export powermenu_type="2"
 export rofi_dir="$HOME/.config/rofi"
 
+pkill rofi
+
 case $1 in
 d) exec $rofi_dir/launchers/type-$launcher_type/launcher.sh ;;
 c) exec $rofi_dir/clipboard/type-$clipboard_type/clipboard.sh ;;
