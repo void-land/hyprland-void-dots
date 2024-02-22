@@ -45,6 +45,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - elogind : service
   - polkit : service
   - NetworkManager : service
+  - base-devel
   - gnome-keyring
   - polkit-gnome
   - [ly](https://github.com/fairyglade/ly) : service
