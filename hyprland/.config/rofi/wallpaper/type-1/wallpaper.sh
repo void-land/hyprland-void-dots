@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-wallpapers_dir="$HOME/Wallpapers/"
+source $HOME/.config/environments/env.sh
+
 dir="$HOME/.config/rofi/wallpaper/type-1"
 theme='style-8'
 
@@ -9,16 +10,16 @@ rofi_cmd() {
 }
 
 show_image_preview() {
-    ls --escape "$wallpapers_dir" |
-        while read A; do echo -en "$A\x00icon\x1f$wallpapers_dir/$A\n"; done
+    ls --escape "$WALLPAPERS_DIR" |
+        while read A; do echo -en "$A\x00icon\x1f$WALLPAPERS_DIR/$A\n"; done
 }
 
 choice=$(
     show_image_preview | rofi_cmd
 )
 
-wallpaper="$wallpapers_dir/$choice"
+wallpaper="$WALLPAPERS_DIR/$choice"
 
-swww img -t any --transition-bezier 0.0,0.0,1.0,1.0 --transition-duration 1 --transition-step 255 --transition-fps 120 "$wallpaper"
+swww img "$wallpaper" --transition-fps $SWWW_FPS --transition-type any --transition-duration $SWWW_DURATION
 
 exit 1

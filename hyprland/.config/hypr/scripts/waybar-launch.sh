@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/hypr/scripts/env.sh
+source $HOME/.config/environments/env.sh
 
-if [[ ! -d "$waybar_dir" ]]; then
+if [[ ! -d "$WAYBAR_DIR" ]]; then
     echo "Error: Configuration directory or files missing!"
     exit 1
 fi
@@ -12,11 +12,11 @@ sleep 1
 
 while true; do
     logger -i "$0: Starting waybar in the background..."
-    exec $waybar_launcher &
+    exec $WAYBAR_LAUNCHER &
     waybar_pid=$!
 
     logger -i "$0: Started waybar PID=$waybar_pid. Waiting for modifications..."
-    inotifywait $inotify_events "$waybar_dir" 2>&1 | logger -i
+    inotifywait $WAYBAR_INOTIFY_EVENTS "$WAYBAR_DIR" 2>&1 | logger -i
 
     if [[ $? -ne 0 ]]; then
         echo "Error: inotifywait failed!"

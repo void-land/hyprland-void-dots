@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/hypr/scripts/env.sh
+source $HOME/.config/environments/env.sh
 
 WAYBAR_PID=$(pgrep -x waybar)
 
 if [ -n "$WAYBAR_PID" ]; then
     pkill waybar
 else
-    exec $waybar_launcher
+    exec $WAYBAR_LAUNCHER
 fi

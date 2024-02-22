@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/hypr/scripts/env.sh
+source $HOME/.config/environments/env.sh
 
-files=($(find "${wallpapers_dir}" -type f))
+files=($(find "${WALLPAPERS_DIR}" -type f))
 
 if [ ${#files[@]} -eq 0 ]; then
-    echo "No files found in the directory: ${wallpapers_dir}"
+    echo "No files found in the directory: ${WALLPAPERS_DIR}"
     exit 1
 fi
 
@@ -17,10 +17,10 @@ for file in "${files[@]}"; do
 done
 
 if [ ${#image_files[@]} -eq 0 ]; then
-    echo "No image files found in the directory: ${wallpapers_dir}"
+    echo "No image files found in the directory: ${WALLPAPERS_DIR}"
     exit 1
 fi
 
 random_pic=${image_files[$RANDOM % ${#image_files[@]}]}
 
-swww img "$random_pic" --transition-fps $swww_fps --transition-type any --transition-duration $swww_duration
+swww img "$random_pic" --transition-fps $SWWW_FPS --transition-type any --transition-duration $SWWW_DURATION
