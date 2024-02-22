@@ -19,12 +19,13 @@ window#waybar.hidden {
 }
 
 #workspaces * {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #workspaces {
   background-color: @backgrounddark;
-  padding: 0px 6px;
+  border: #272727 1px solid;
+  padding: 0px 4px;
 }
 
 #workspaces button {
@@ -65,8 +66,7 @@ window#waybar.hidden {
 #idle_inhibitor,
 #mpd,
 #wireplumber,
-#language,
-#workspaces {
+#language {
   background-color: @backgrounddark;
   border: #272727 1px solid;
   padding: 0px 6px;
