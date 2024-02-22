@@ -30,6 +30,7 @@ window#waybar.hidden {
 
 #workspaces button {
   opacity: 0.2;
+  padding: 0px 6px;
   transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
   font-size: 12px;
 }
