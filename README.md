@@ -80,6 +80,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - wlogout
   - font-awesome-6
   - fontmanager
+  - gnome-system-monitor
 </details>
 
 ## Installation
