@@ -15,8 +15,7 @@
   "modules-left": [
     // "custom/launcher",
     "hyprland/workspaces",
-    "custom/media"
-    // "wlr/taskbar"
+    "tray"
   ],
   "modules-center": [
     "battery",
