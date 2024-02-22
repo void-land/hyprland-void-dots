@@ -49,10 +49,14 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - polkit-gnome
   - [ly](https://github.com/fairyglade/ly) : service
   - mesa-dri
+  - qt5
+  - qt5-wayland
+  - qt6-wayland
   - [pipewire](https://docs.voidlinux.org/config/media/pipewire.html)
   - wireplumber
   - stow
   - inotify-tools
+  - [rust](https://www.rust-lang.org/learn/get-started)
 </details>
 
 <details>
