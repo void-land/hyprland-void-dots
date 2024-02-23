@@ -45,11 +45,13 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - elogind : service
   - polkit : service
   - NetworkManager : service
+  - sddm or lightdm : service
+  - [ly](https://github.com/fairyglade/ly) : service
+  - xorg
   - base-devel
   - void-repo-multilib
   - gnome-keyring
   - polkit-gnome
-  - [ly](https://github.com/fairyglade/ly) : service
   - mesa-dri
   - qt5
   - qt5-wayland
