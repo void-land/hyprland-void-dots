@@ -1,6 +1,7 @@
 @import "../../../.config/hypr-theme/waybar/global.css";
 
 * {
+  all: unset;
   border: none;
   border-radius: 6px;
   font-family: Roboto;
@@ -18,31 +19,6 @@ window#waybar.hidden {
   opacity: 0.2;
 }
 
-#workspaces * {
-  font-size: 12px;
-}
-
-#workspaces {
-  background-color: @backgrounddark;
-  border: #272727 1px solid;
-  padding: 0px 4px;
-}
-
-#workspaces button {
-  opacity: 0.2;
-  padding: 0px 6px;
-  transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-  font-size: 12px;
-}
-
-#workspaces button.active {
-  opacity: 1;
-}
-
-#workspaces button:hover {
-  opacity: 1;
-}
-
 #clock,
 #battery,
 #cpu,
@@ -56,18 +32,38 @@ window#waybar.hidden {
 #custom-media,
 #custom-launcher,
 #custom-power,
-#custom-wallpaper,
-#tags,
 #taskbar,
-#tray,
 #mode,
 #idle_inhibitor,
-#mpd,
 #wireplumber,
-#language {
+#language,
+#workspaces,
+#tray {
   background-color: @backgrounddark;
   border: #272727 1px solid;
   padding: 0px 6px;
+}
+
+#workspaces *,
+#tray * {
+  font-size: 12px;
+  padding: 0px 3px;
+}
+
+#workspaces button {
+  all: unset;
+  opacity: 0.2;
+  transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button.active {
+  opacity: 1;
+}
+
+#workspaces button:hover {
+  opacity: 1;
+  background-color: @backgrounddark;
+
 }
 
 #taskbar button {

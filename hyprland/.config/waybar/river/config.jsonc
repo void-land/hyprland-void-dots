@@ -44,10 +44,6 @@
     "on-click-middle": "close",
     "tooltip": false
   },
-  "tray": {
-    "icon-size": 14,
-    "spacing": 10
-  },
   "clock": {
     "interval": 1,
     "format": "{:%H:%M:%S}",
@@ -105,6 +101,9 @@
     "min": 0,
     "max": 100,
     "orientation": "horizontal"
+  },
+  "tray": {
+    "icon-size": 12
   },
   "hyprland/workspaces": {
     "disable-scroll": true,
