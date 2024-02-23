@@ -101,7 +101,7 @@ confirm_run() {
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-		swaylock
+		sleep 1 && swaylock
 	elif [[ "$1" == '--opt2' ]]; then
 		confirm_run 'hyprctl dispatch exit'
 	elif [[ "$1" == '--opt3' ]]; then
