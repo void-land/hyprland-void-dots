@@ -12,6 +12,7 @@ alias yo="echo '¯\_(ツ)_/¯'"
 alias hardware="inxi -b"
 alias psfind="ps -aux | grep"
 alias edit-dns="sudo nano /etc/resolv.conf"
+alias mpv='mpvpaper "*" -o "no-audio --loop-playlist shuffle" ~/Wallpapers/Live'
 
 # directories :
 alias dotfiles="cd $DOTFILES"
