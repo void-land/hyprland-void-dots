@@ -103,7 +103,8 @@
     "orientation": "horizontal"
   },
   "tray": {
-    "icon-size": 12
+    "icon-size": 14,
+    "spacing": 6
   },
   "hyprland/workspaces": {
     "disable-scroll": true,

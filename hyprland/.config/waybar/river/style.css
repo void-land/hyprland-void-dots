@@ -1,7 +1,6 @@
 @import "../../../.config/hypr-theme/waybar/global.css";
 
 * {
-  all: unset;
   border: none;
   border-radius: 6px;
   font-family: Roboto;
@@ -41,19 +40,26 @@ window#waybar.hidden {
 #tray {
   background-color: @backgrounddark;
   border: #272727 1px solid;
-  padding: 0px 6px;
+  padding: 0px 8px;
 }
 
-#workspaces *,
-#tray * {
+#workspaces * {
   font-size: 12px;
-  padding: 0px 3px;
 }
 
 #workspaces button {
   all: unset;
   opacity: 0.2;
+  padding: 0px 6px;
   transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button:first-child {
+  padding-left: 0px;
+}
+
+#workspaces button:last-child {
+  padding-right: 0px;
 }
 
 #workspaces button.active {
