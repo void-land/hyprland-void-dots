@@ -8,6 +8,8 @@
   "margin-left": 6,
   "margin-right": 6,
   "modules-right": [
+    "cpu",
+    "custom/gpu-usage",
     "wireplumber",
     "hyprland/language",
     "clock"
@@ -18,17 +20,15 @@
     "tray"
   ],
   "modules-center": [
-    "battery",
-    "cpu",
-    "memory",
-    "network#network-2"
-    // "network"
     // "pulseaudio"
     // "custom/snip"
     // "custom/updater",
     // "custom/wallpaper",
     // "pulseaudio/slider",
-    // "keyboard-state",
+    "battery",
+    "memory",
+    "network#network-2",
+    "network"
   ],
   "hyprland/language": {
     "format": "{}",
@@ -148,10 +148,15 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "{usage}% "
+    "format": "{usage}%  "
+  },
+  "custom/gpu-usage": {
+    "exec": "~/.config/waybar/scripts/gpu-usage.sh",
+    "format": "{}%  ",
+    "interval": 1
   },
   "memory": {
-    "format": "{used:0.1f}/{total:0.1f} GB",
+    "format": "{used:0.1f}/{total:0.1f}  ",
     "interval": 5
   },
   "backlight": {
@@ -196,22 +201,10 @@
     "format-wifi": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
     "format-ethernet": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
     "format-linked": "(No IP) ",
-    "format-disconnected": "  0.0B/s   0.0B/s",
+    "format-disconnected": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
     "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false,
     "interval": 1
-  },
-  "custom/media": {
-    "format": "{icon} {}",
-    "return-type": "json",
-    "max-length": 20,
-    "format-icons": {
-      "spotify": " ",
-      "default": " "
-    },
-    "escape": true,
-    "exec": "~/.config/system_scripts/mediaplayer.py 2> /dev/null",
-    "on-click": "playerctl play-pause"
   },
   "custom/launcher": {
     "format": "",
@@ -222,10 +215,6 @@
     "format": "⏻",
     "on-click": "~/.config/hypr/scripts/rofi-launch.sh p",
     "on-click-right": "pkill rofi"
-  },
-  "custom/snip": {
-    "format": " ",
-    "on-click": "grimshot --notify save area $HOME/Pictures/$(zenity --entry --text 'Set filename:' --entry-text '.png')"
   },
   "custom/wallpaper": {
     "format": " ",

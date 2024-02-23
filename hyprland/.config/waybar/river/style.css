@@ -46,6 +46,7 @@ window#waybar.hidden {
 #clock,
 #battery,
 #cpu,
+#custom-gpu-usage,
 #memory,
 #disk,
 #temperature,
@@ -55,11 +56,7 @@ window#waybar.hidden {
 #custom-media,
 #custom-launcher,
 #custom-power,
-#custom-layout,
-#custom-updater,
-#custom-snip,
 #custom-wallpaper,
-#custom-playerlabel,
 #tags,
 #taskbar,
 #tray,
@@ -137,45 +134,9 @@ window#waybar.hidden {
   font-size: 18px;
 }
 
-#custom-layout {
-  color: white;
-  font-size: 20px;
-}
-
-#custom-updater {
-  color: white;
-}
-
-#custom-snip {
-  color: skyblue;
-  font-size: 20px;
-}
-
 #custom-wallpaper {
   color: pink;
   font-size: 20px;
-}
-
-#tags {
-  font-size: 20px;
-}
-
-#tags button.occupied {
-  color: skyblue;
-  margin: 5px;
-  background-color: #272727;
-}
-
-#tags button.focused {
-  color: black;
-  margin: 5px;
-  background-color: white;
-}
-
-#tags button.urgent {
-  color: red;
-  margin: 5px;
-  background-color: white;
 }
 
 #temperature.critical {
@@ -190,17 +151,16 @@ window#waybar.hidden {
   color: red;
 }
 
-
-#memory,
-#cpu {
-  min-width: 90px;
-}
-
-
 #language,
 #clock,
-#wireplumber {
-  min-width: 70px;
+#wireplumber,
+#cpu,
+#custom-gpu-usage {
+  min-width: 65px;
+}
+
+#memory {
+  min-width: 80px;
 }
 
 #wireplumber.muted {
