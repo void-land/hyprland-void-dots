@@ -167,7 +167,7 @@ window#waybar.hidden {
 }
 
 #memory {
-  min-width: 80px;
+  min-width: 85px;
 }
 
 #wireplumber.muted {

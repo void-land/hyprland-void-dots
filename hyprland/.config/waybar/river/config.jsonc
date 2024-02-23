@@ -27,8 +27,8 @@
     // "pulseaudio/slider",
     "battery",
     "memory",
-    "network#network-2",
-    "network"
+    "network",
+    "network#network-2"
   ],
   "hyprland/language": {
     "format": "{}",
@@ -156,7 +156,7 @@
     "interval": 1
   },
   "memory": {
-    "format": "{used:0.1f}/{total:0.1f}  ",
+    "format": "{used:0.1f} / {total:0.1f}  ",
     "interval": 5
   },
   "backlight": {
