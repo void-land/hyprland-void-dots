@@ -148,10 +148,10 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "{usage} %  "
+    "format": "{usage}% "
   },
   "memory": {
-    "format": "{used:0.1f} / {total:0.1f} GB",
+    "format": "{used:0.1f}/{total:0.1f} GB",
     "interval": 5
   },
   "backlight": {
