@@ -104,7 +104,7 @@
   },
   "tray": {
     "icon-size": 14,
-    "spacing": 6
+    "spacing": 8
   },
   "hyprland/workspaces": {
     "disable-scroll": true,

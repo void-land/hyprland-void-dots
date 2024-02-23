@@ -40,7 +40,12 @@ window#waybar.hidden {
 #tray {
   background-color: @backgrounddark;
   border: #272727 1px solid;
-  padding: 0px 8px;
+  padding: 0px 6px;
+}
+
+#workspaces,
+#tray {
+  padding: 0px 12px;
 }
 
 #workspaces * {
