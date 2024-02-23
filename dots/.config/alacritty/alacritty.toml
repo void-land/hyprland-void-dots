@@ -1,0 +1,32 @@
+import = [
+    "~/.config/alacritty/themes/github.toml",
+    "~/.config/alacritty/keybinds.toml",
+]
+
+live_config_reload = true
+
+[shell]
+program = "zsh"
+
+[terminal]
+osc52 = "CopyPaste"
+
+[font]
+size = 12
+
+[window]
+dynamic_title = true
+blur = true
+opacity = 0.8
+dimensions = { columns = 90, lines = 30 }
+padding = { x = 12, y = 12 }
+startup_mode = "Windowed"
+decorations = "full"
+# dynamic_padding = true
+
+[cursor]
+style = { blinking = "Always", shape = "Block" }
+thickness = 0.8
+
+[scrolling]
+history = 100000
