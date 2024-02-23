@@ -80,9 +80,16 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - swappy
   - rofi
   - font-awesome-6
+</details>
+
+<details>
+  <summary><strong>System Apps</strong></summary>
+
   - fontmanager
   - gnome-system-monitor
+  - nwg-look
 </details>
+
 
 ## Installation
 
