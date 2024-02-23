@@ -1,4 +1,4 @@
-# Hyprland Configuration and Setup Guide for Void Linux
+# Hyprland and Dots Configuration for Void Linux
 
 ![Hyprland Logo](./.github/assets/hyprland.png)
 
@@ -8,7 +8,7 @@ This repository contains instructions and configurations for setting up Hyprland
 
 ## Table of Contents
 
-- [Hyprland Configuration and Setup Guide for Void Linux](#hyprland-configuration-and-setup-guide-for-void-linux)
+- [Hyprland and Dots Configuration for Void Linux](#hyprland-and-dots-configuration-for-void-linux)
   - [Overview](#overview)
   - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
@@ -113,10 +113,10 @@ Follow these steps to install Hyprland on your Void Linux system:
    cd ~/.dots-hyprland
    ```
 
-3. Run this command to sync hyprland configs:
+3. Run this command to sync configs:
 
    ```bash
-   stow hyprland
+   ./stow.sh
    ```
 
 ## Keybindings
