@@ -60,6 +60,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - wireplumber
   - stow
   - inotify-tools
+  - ffmpeg
   - [rust](https://www.rust-lang.org/learn/get-started)
 </details>
 
