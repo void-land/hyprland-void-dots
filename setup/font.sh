@@ -5,5 +5,5 @@ install_ttf_font() {
    sudo fc-cache -f -v
 }
 
-cd ../host/fonts
+cd ../host/ui/fonts
 install_ttf_font
