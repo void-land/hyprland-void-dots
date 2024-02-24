@@ -90,6 +90,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
 
   - alacritty
   - zellij
+  - octoxbps
   - neofetch
   - fontmanager
   - gnome-system-monitor
