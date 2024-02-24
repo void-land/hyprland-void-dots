@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# local package install : xbps-install -S --repository <pkg_path> <pkg_fullname>
+# exmaple : sudo xbps-install -S --repository hostdir/binpkgs hyprland-0.35.0_1
+
 update_pkgs=false
 
 exec 1> >(tee "../hyprland_setup_log")
