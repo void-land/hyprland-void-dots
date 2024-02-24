@@ -1,5 +1,6 @@
 # flatpak
 alias fclean="flatpak uninstall --unused --delete-data"
+alias fdir="cd $HOME/.var/app && ls"
 
 # apps
 alias z="zellij"
@@ -19,9 +20,8 @@ alias edit-dns="sudo nano /etc/resolv.conf"
 alias mpv='mpvpaper "*" -o "no-audio --loop-playlist shuffle" ~/Wallpapers/Live'
 
 # directories :
-alias dotfiles="cd $DOTFILES"
-alias library="cd $HOME/Library"
-alias projects="cd $HOME/Code"
+alias dotfiles="cd $DOTFILES && ls"
+alias projects="cd $HOME/Code && ls"
 alias grub-path="cd /etc/default"
 
 # git :

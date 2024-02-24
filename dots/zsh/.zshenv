@@ -11,7 +11,7 @@ export NEKORAY_PATH=/opt/nekoray/nekoray
 export CODE_PATH=/opt/vscode/code
 
 # dotfiles :
-export DOTFILES=$HOME/.dotfiles
+export DOTFILES=$HOME/.dots-hyprland
 
 # void packages :
 export VOID_PACKAGES_PATH=$HOME/.local/pkgs/void-packages
