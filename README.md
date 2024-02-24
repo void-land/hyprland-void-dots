@@ -95,6 +95,8 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - fontmanager
   - gnome-system-monitor
   - nwg-look
+  - telegram-desktop
+  - steam and deps : libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
 </details>
 
 
