@@ -188,12 +188,12 @@
     ]
   },
   "network": {
-    "format-wifi": "  :  {ipaddr}",
-    "format-ethernet": "   :  {ipaddr}",
+    "format-wifi": "{ifname} : {ipaddr}/{cidr}",
+    "format-ethernet": "{ifname} : {ipaddr}/{cidr}",
     "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-alt": "  : {ipaddr}/{cidr}",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "  N/A  {signalStrength}%  :  0.0.0.0",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "format-disconnected": "N/A :  0.0.0.0",
     "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false
   },
@@ -201,7 +201,7 @@
     "format-wifi": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
     "format-ethernet": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
     "format-linked": "(No IP) ",
-    "format-disconnected": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
+    "format-disconnected": " : N/A    : N/A",
     "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false,
     "interval": 1
