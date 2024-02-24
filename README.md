@@ -49,6 +49,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - xorg
   - base-devel
   - void-repo-multilib
+  - void-repo-nonfree
   - gnome-keyring
   - polkit-gnome
   - mesa-dri
