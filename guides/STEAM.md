@@ -5,7 +5,7 @@
 - Steam installed : steam
 - Steam Libs installed : libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
 - GameMode installed : gamemode
-- MangoHud installed : MangoHud
+- MangoHud installed : MangoHud MangoHud-32bit
 
 ## Run Steam games with GameMode and MangoHud
 
