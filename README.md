@@ -103,6 +103,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - spotify-adblock
   - discord
   - gimp
+  - vscode and neovim
   - [steam](./guides/STEAM.md)
 </details>
 
