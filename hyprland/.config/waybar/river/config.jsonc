@@ -153,6 +153,7 @@
   "custom/gpu-usage": {
     "exec": "~/.config/waybar/scripts/gpu-usage.sh",
     "format": "{}%  ",
+    "tooltip": false,
     "interval": 1
   },
   "memory": {
@@ -215,9 +216,5 @@
     "format": "⏻",
     "on-click": "~/.config/hypr/scripts/rofi-launch.sh p",
     "on-click-right": "pkill rofi"
-  },
-  "custom/wallpaper": {
-    "format": " ",
-    "on-click": "bash ~/.config/system_scripts/pkill_bc"
   }
 }
