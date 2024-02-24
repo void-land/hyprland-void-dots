@@ -189,12 +189,12 @@
     ]
   },
   "network": {
-    "format-wifi": "{ifname} : {ipaddr}/{cidr}",
-    "format-ethernet": "{ifname} : {ipaddr}/{cidr}",
+    "format-wifi": "  : {ipaddr}/{cidr}",
+    "format-ethernet": "  : {ipaddr}/{cidr}",
     "tooltip-format": "{ifname} via {gwaddr} ",
-    "format-alt": "  : {ipaddr}/{cidr}",
+    "format-alt": "network : {ifname}",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "N/A :  0.0.0.0",
+    "format-disconnected": "  :  0.0.0.0",
     "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
     "tooltip": false
   },
