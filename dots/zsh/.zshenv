@@ -3,18 +3,11 @@ export ZELLIJ_START=false
 export ZSH="$HOME/.oh-my-zsh"
 export OS_ID="$(grep -i -w 'ID=' /etc/os-release | awk -F= '{print $2}')"
 export OS="$(grep -i -w "ID=" /etc/os-release | grep -oP '(?<=")[^"]*')"
-
-# nekoray :
 export NEKORAY_PATH=/opt/nekoray/nekoray
-
-# vscode :
 export CODE_PATH=/opt/vscode/code
-
-# dotfiles :
 export DOTFILES=$HOME/.dots-hyprland
-
-# void packages :
 export VOID_PACKAGES_PATH=$HOME/.local/pkgs/void-packages
+export DNS_CHANGER=$HOME/.sh_custom/dns-changer.sh
 
 # adb :
 if [ -d "$HOME/platform-tools" ]; then

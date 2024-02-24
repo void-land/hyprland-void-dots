@@ -17,6 +17,7 @@ alias yo="echo '¯\_(ツ)_/¯'"
 alias hardware="inxi -b"
 alias psfind="ps -aux | grep"
 alias edit-dns="sudo nano /etc/resolv.conf"
+alias dns-changer="sudo $DNS_CHANGER"
 alias mpv='mpvpaper "*" -o "no-audio --loop-playlist shuffle" ~/Wallpapers/Live'
 
 # directories :
