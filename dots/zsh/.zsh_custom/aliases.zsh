@@ -5,6 +5,7 @@ alias fdir="cd $HOME/.var/app && ls"
 # apps
 alias z="zellij"
 alias zk="zellij kill-all-sessions -y"
+alias sp="LD_PRELOAD=/usr/lib/spotify-adblock.so spotify"
 alias nk="$NEKORAY_PATH"
 alias snk="sudo $NEKORAY_PATH"
 alias vscode="$CODE_PATH --no-sandbox"

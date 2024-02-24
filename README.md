@@ -99,6 +99,9 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - gnome-system-monitor
   - nwg-look
   - telegram-desktop
+  - spotify
+  - spotify-adblock
+  - discord
   - [steam](./guides/STEAM.md)
 </details>
 
