@@ -30,7 +30,7 @@ unstow_dotfiles() {
     stow -D $dots_dir
     stow -D -d $dots_dir -t ~/ zsh
     stow -D -d $dots_dir -t $shortcuts_target_dir shortcuts
-    # stow -D $hyprland_dir
+    stow -D $hyprland_dir
 
     echo "Dotfiles unstowed successfully!"
 }
