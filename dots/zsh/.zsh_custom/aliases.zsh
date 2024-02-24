@@ -1,3 +1,7 @@
+# flatpak
+alias fclean="flatpak uninstall --unused --delete-data"
+
+# apps
 alias z="zellij"
 alias zk="zellij kill-all-sessions -y"
 alias nk="$NEKORAY_PATH"
