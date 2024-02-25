@@ -14,3 +14,9 @@ Modify the game's launch options on Steam to use the created script. Right-click
 ```bash
 gamemoderun mangohud %command%
 ```
+
+## Disable Fps Cap on Valve Game
+
+```bash
+gamemoderun mangohud %command% +fps_max 0
+```
