@@ -46,7 +46,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - seatd : service
   - elogind : service
   - polkit : service
-  - network : wpa_supplicant wifish or NetworkManager nmtui
+  - network : wpa_supplicant wifish wpa-cute wpa_gui or NetworkManager nmtui
   - sddm or lightdm or [ly](https://github.com/fairyglade/ly) : service
   - xorg
   - Dev tools : git [rust](https://www.rust-lang.org/learn/get-started) nvm base-devel
