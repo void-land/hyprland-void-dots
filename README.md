@@ -49,25 +49,17 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - NetworkManager : service
   - sddm or lightdm or [ly](https://github.com/fairyglade/ly) : service
   - xorg
-  - base-devel
-  - void-repo-multilib
-  - void-repo-nonfree
+  - Dev tools : git [rust](https://www.rust-lang.org/learn/get-started) nvm base-devel
+  - Repos : void-repo-multilib void-repo-nonfree
   - gnome-keyring
   - polkit-gnome
   - mesa-dri
-  - vulkan-loader
-  - Vulkan-Tools
-  - mesa-vulkan-radeon
-  - amdvlk
-  - qt5
-  - qt5-wayland
-  - qt6-wayland
-  - [pipewire](https://docs.voidlinux.org/config/media/pipewire.html)
-  - wireplumber
+  - Vulkan : Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk
+  - qt : qt5 qt5-wayland qt6-wayland
+  - [Audio and Video](https://docs.voidlinux.org/config/media/pipewire.html) : pipewire wireplumber
   - stow
   - inotify-tools
   - ffmpeg
-  - [rust](https://www.rust-lang.org/learn/get-started)
 </details>
 
 <details>
