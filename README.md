@@ -56,6 +56,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - polkit-gnome
   - mesa-dri
   - vulkan-loader
+  - Vulkan-Tools
   - mesa-vulkan-radeon
   - amdvlk
   - qt5
