@@ -37,6 +37,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - xdg-desktop-portal
   - xdg-desktop-portal-wlr
   - xdg-desktop-portal-gtk
+  - xdg-utils
 </details>
 
 <details>
