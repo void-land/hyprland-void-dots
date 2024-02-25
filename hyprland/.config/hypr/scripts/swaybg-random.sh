@@ -2,10 +2,6 @@
 
 source $HOME/.config/environments/env.sh
 
-if [[ ! $(pidof swww-daemon) ]]; then
-    swww init
-fi
-
 files=($(find "${WALLPAPERS_DIR}" -type f))
 
 if [ ${#files[@]} -eq 0 ]; then
@@ -27,4 +23,8 @@ fi
 
 random_pic=${image_files[$RANDOM % ${#image_files[@]}]}
 
-swww img "$random_pic" --transition-fps $SWWW_FPS --transition-type any --transition-duration $SWWW_DURATION
+if [[ $(pidof swaybg) ]]; then
+    pkill swaybg
+fi
+
+swaybg -i "$random_pic"

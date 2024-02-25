@@ -18,7 +18,35 @@ show_image_preview() {
 set_wallpaper() {
     local wallpaper="$WALLPAPERS_DIR/$1"
     if [ -f "$wallpaper" ]; then
-        swww img "$wallpaper" --transition-fps "$SWWW_FPS" --transition-type any --transition-duration "$SWWW_DURATION"
+
+        case $WALLPAPER_DAEMON in
+        "swaybg")
+            if [[ $(pidof swww-daemon) ]]; then
+                pkill swww-daemon
+            fi
+
+            if [[ $(pidof swaybg) ]]; then
+                pkill swaybg
+            fi
+
+            swaybg -i "$wallpaper"
+            ;;
+        "swww")
+            if [[ ! $(pidof swww-daemon) ]]; then
+                swww init
+            fi
+
+            if [[ $(pidof swaybg) ]]; then
+                pkill swaybg
+            fi
+
+            swww img "$wallpaper" --transition-fps "$SWWW_FPS" --transition-type any --transition-duration "$SWWW_DURATION"
+            ;;
+        *)
+            echo "Unknown value for WALLPAPER_DAEMON: $WALLPAPER_DAEMON"
+            exit 1
+            ;;
+        esac
         echo "Wallpaper set to: $wallpaper"
     else
         echo "Error: Wallpaper file not found: $wallpaper"
