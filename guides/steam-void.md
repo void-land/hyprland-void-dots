@@ -2,10 +2,11 @@
 
 ## Prerequisites
 
-- Steam installed : steam
-- Steam Libs installed : libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
-- GameMode installed : gamemode
-- MangoHud installed : MangoHud MangoHud-32bit
+- Steam : steam
+- Steam Libs : libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
+- GameMode : gamemode
+- MangoHud : MangoHud MangoHud-32bit
+- Vulkan Libs : Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk
 
 ## Run Steam games with GameMode and MangoHud
 
