@@ -55,6 +55,9 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - gnome-keyring
   - polkit-gnome
   - mesa-dri
+  - vulkan-loader
+  - mesa-vulkan-radeon
+  - amdvlk
   - qt5
   - qt5-wayland
   - qt6-wayland
