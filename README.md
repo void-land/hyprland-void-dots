@@ -104,6 +104,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - gimp
   - vscode and neovim
   - evince
+  - corectl
   - [steam](./guides/STEAM.md)
 </details>
 
