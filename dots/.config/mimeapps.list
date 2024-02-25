@@ -11,7 +11,7 @@ application/x-extension-xhtml=userapp-Firefox-Q5DTJ2.desktop
 application/x-extension-xht=userapp-Firefox-Q5DTJ2.desktop
 video/mp4=vlc.desktop
 application/pdf=org.gnome.Evince.desktop
-inode/directory=thunar.desktop
+inode/directory=nemo.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-QKWUJ2.desktop;userapp-Firefox-Q5DTJ2.desktop;
