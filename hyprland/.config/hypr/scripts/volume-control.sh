@@ -32,6 +32,9 @@ calculate_progress() {
 }
 
 case $1 in
+t)
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    ;;
 u)
     current_volume=$(get_current_volume)
     new_volume=$((current_volume + 5))

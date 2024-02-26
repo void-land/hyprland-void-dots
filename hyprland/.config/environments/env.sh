@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # waybar env :
+export WAYBAR_DEV_MODE=false
 export WAYBAR_THEME="river"
 export WAYBAR_DIR="$HOME/.config/waybar/$WAYBAR_THEME"
 export WAYBAR_LAUNCHER="waybar -c $WAYBAR_DIR/config.jsonc -s $WAYBAR_DIR/style.css"

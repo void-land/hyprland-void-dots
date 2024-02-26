@@ -32,8 +32,6 @@ window#waybar.hidden {
 #custom-launcher,
 #custom-power,
 #taskbar,
-#mode,
-#idle_inhibitor,
 #wireplumber,
 #language,
 #workspaces,
@@ -45,7 +43,30 @@ window#waybar.hidden {
 
 #workspaces,
 #tray {
-  padding: 0px 12px;
+  padding: 0px 10px;
+}
+
+#tray menu * {
+  all: unset;
+}
+
+#tray menu {
+  background-color: @backgrounddark;
+}
+
+#tray menu menuitem {
+  border-radius: 4px;
+  padding: 6px;
+}
+
+#tray menu separator {
+  min-height: 1px;
+  margin: 6px 0px;
+  background: @workspacesbackground2;
+}
+
+#tray menu menuitem:hover {
+  background-color: #f53c3c;
 }
 
 #workspaces * {
@@ -103,8 +124,13 @@ window#waybar.hidden {
   background-color: #90b1b1;
 }
 
-#custom-playerlabel {
-  min-width: 170px;
+#custom-power {
+  font-size: 18px;
+  min-width: 20px;
+}
+
+#custom-launcher {
+  font-size: 18px;
 }
 
 #network {
@@ -120,47 +146,10 @@ window#waybar.hidden {
   color: red;
 }
 
-#custom-media {
-  color: white;
-}
-
-#custom-media.custom-spotify {
-  color: white;
-}
-
-#custom-media.custom-vlc {
-  color: white;
-}
-
-#custom-power {
-  font-size: 18px;
-  min-width: 20px;
-}
-
-#custom-launcher {
-  font-size: 18px;
-}
-
-#custom-wallpaper {
-  color: pink;
-  font-size: 20px;
-}
-
-#temperature.critical {
-  background-color: #eb4d4b;
-}
-
-#pulseaudio {
-  min-width: 55px;
-}
-
-#pulseaudio.muted {
-  color: red;
-}
-
 #language,
 #clock,
 #wireplumber,
+#pulseaudio,
 #cpu,
 #custom-gpu-usage {
   min-width: 65px;
