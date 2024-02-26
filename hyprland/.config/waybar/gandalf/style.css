@@ -16,7 +16,8 @@ window {
 }
 
 window>box {
-  padding: 4px 4px;
+  min-height: 30px;
+  padding: 5px 4px;
 }
 
 #clock,

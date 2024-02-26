@@ -2,7 +2,6 @@
   "layer": "top",
   "position": "top",
   "spacing": 5,
-  "height": 36,
   "modules-center": [
     "clock",
     "hyprland/language",

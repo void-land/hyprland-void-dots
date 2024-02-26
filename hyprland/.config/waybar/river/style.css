@@ -10,12 +10,13 @@
   min-height: 0;
 }
 
-window#waybar {
+window {
   background-color: transparent;
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
+window>box {
+  min-height: 30px;
+  padding: 5px 4px;
 }
 
 #clock,
