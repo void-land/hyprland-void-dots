@@ -89,12 +89,13 @@ The following packages are required for the proper functioning of Hyprland on Vo
 <details>
   <summary><strong>System Apps</strong></summary>
 
-  - nemo
   - alacritty
   - zellij
   - octoxbps
   - neofetch
   - fontmanager
+  - nemo
+  - pavucontrol
   - gnome-system-monitor
   - nwg-look
   - telegram-desktop

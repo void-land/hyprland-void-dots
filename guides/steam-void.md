@@ -13,7 +13,7 @@
 Modify the game's launch options on Steam to use the created script. Right-click on the game in your Steam Library, choose "Properties," and under the "General" tab, click on "Set Launch Options." Enter the following command:
 
 ```bash
-gamemoderun mangohud %command% 
+gamemoderun mangohud %command%
 ```
 or
 
