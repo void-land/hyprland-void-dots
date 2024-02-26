@@ -9,16 +9,19 @@ fi
 
 case $WALLPAPER_DAEMON in
 "swaybg")
-    if [[ $(pidof swww-daemon) ]]; then
-        pkill swww-daemon
-    fi
+    pkill -f swww-daemon
+    pkill -f mpvpaper
     exec $HOME/.config/hypr/scripts/swaybg-random.sh
     ;;
 "swww")
-    if [[ $(pidof swaybg) ]]; then
-        pkill swaybg
-    fi
+    pkill -f swaybg
+    pkill -f mpvpaper
     exec $HOME/.config/hypr/scripts/swww-random.sh
+    ;;
+"mpvpaper")
+    pkill -f swaybg
+    pkill -f swww-daemon
+    exec $HOME/.config/hypr/scripts/mpvpaper-random.sh
     ;;
 *)
     echo "Unknown value for WALLPAPER_DAEMON: $WALLPAPER_DAEMON"

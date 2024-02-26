@@ -7,8 +7,9 @@ export WAYBAR_DIR="$HOME/.config/waybar/$WAYBAR_THEME"
 export WAYBAR_LAUNCHER="waybar -c $WAYBAR_DIR/config.jsonc -s $WAYBAR_DIR/style.css"
 export WAYBAR_INOTIFY_EVENTS="-e close_write,move,create"
 
-# wallpaper configs :
+# wallpaper configs - swaybg, swww, mpvpaper :
+export WALLPAPER_DAEMON="mpvpaper"
 export WALLPAPERS_DIR="$HOME/Wallpapers"
-export WALLPAPER_DAEMON="swaybg" # swaybg or swww
+export LIVE_WALLPAPERS_DIR="$HOME/Wallpapers/Live"
 export SWWW_FPS=144
 export SWWW_DURATION=2

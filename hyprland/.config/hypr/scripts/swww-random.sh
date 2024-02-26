@@ -9,7 +9,7 @@ fi
 files=($(find "${WALLPAPERS_DIR}" -type f))
 
 if [ ${#files[@]} -eq 0 ]; then
-    echo "No files found in the directory: ${WALLPAPERS_DIR}"
+    dunstify "No files found in the directory: ${WALLPAPERS_DIR}"
     exit 1
 fi
 
@@ -21,7 +21,7 @@ for file in "${files[@]}"; do
 done
 
 if [ ${#image_files[@]} -eq 0 ]; then
-    echo "No image files found in the directory: ${WALLPAPERS_DIR}"
+    dunstify "No image files found in the directory: ${WALLPAPERS_DIR}"
     exit 1
 fi
 
