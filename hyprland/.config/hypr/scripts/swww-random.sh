@@ -2,10 +2,6 @@
 
 source $HOME/.config/environments/env.sh
 
-if [[ ! $(pidof swww-daemon) ]]; then
-    swww init
-fi
-
 files=($(find "${WALLPAPERS_DIR}" -type f))
 
 if [ ${#files[@]} -eq 0 ]; then

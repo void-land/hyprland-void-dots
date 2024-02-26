@@ -6,7 +6,7 @@ dir="$HOME/.config/rofi/wallpaper/type-1"
 theme='style-8'
 
 rofi_cmd() {
-    rofi -dmenu -theme "${dir}/${theme}.rasi" -p "Chad"
+    rofi -dmenu -theme "${dir}/${theme}.rasi"
 }
 
 show_image_preview() {
@@ -15,32 +15,51 @@ show_image_preview() {
     done
 }
 
+show_video_preview() {
+    find "$LIVE_WALLPAPERS_DIR" -maxdepth 1 -type f \( -iname \*.mp4 \) -exec basename {} \; | while read -r A; do
+        echo -en "$A\x00icon\x1f$LIVE_WALLPAPERS_DIR/$A\n"
+    done
+}
+
 set_wallpaper() {
-    local wallpaper="$WALLPAPERS_DIR/$1"
+    if [ $WALLPAPER_DAEMON == "mpvpaper" ]; then
+        local wallpaper="$LIVE_WALLPAPERS_DIR/$1"
+    else
+        local wallpaper="$WALLPAPERS_DIR/$1"
+    fi
+
     if [ -f "$wallpaper" ]; then
 
         case $WALLPAPER_DAEMON in
         "swaybg")
-            if [[ $(pidof swww-daemon) ]]; then
-                pkill swww-daemon
-            fi
+            pkill -f swww-daemon
+            pkill -f mpvpaper
 
             if [[ $(pidof swaybg) ]]; then
-                pkill swaybg
+                pkill -f swaybg
             fi
 
             swaybg -i "$wallpaper"
             ;;
         "swww")
+            pkill -f swaybg
+            pkill -f mpvpaper
+
             if [[ ! $(pidof swww-daemon) ]]; then
                 swww init
             fi
 
-            if [[ $(pidof swaybg) ]]; then
-                pkill swaybg
+            swww img "$wallpaper" --transition-fps "$SWWW_FPS" --transition-type any --transition-duration "$SWWW_DURATION"
+            ;;
+        "mpvpaper")
+            pkill -f swaybg
+            pkill -f swww-daemon
+
+            if [[ $(pidof mpvpaper) ]]; then
+                pkill -f mpvpaper
             fi
 
-            swww img "$wallpaper" --transition-fps "$SWWW_FPS" --transition-type any --transition-duration "$SWWW_DURATION"
+            mpvpaper -o "loop-file" "*" $wallpaper
             ;;
         *)
             echo "Unknown value for WALLPAPER_DAEMON: $WALLPAPER_DAEMON"
@@ -53,9 +72,14 @@ set_wallpaper() {
     fi
 }
 
-choice=$(show_image_preview | rofi_cmd)
+if [ $WALLPAPER_DAEMON == "mpvpaper" ]; then
+    choice=$(show_video_preview | rofi_cmd)
+else
+    choice=$(show_image_preview | rofi_cmd)
+fi
 
 if [ -n "$choice" ]; then
+    echo $choice
     set_wallpaper "$choice"
 else
     echo "No wallpaper selected."

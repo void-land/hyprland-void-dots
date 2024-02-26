@@ -24,7 +24,7 @@ fi
 random_video=${video_files[$RANDOM % ${#video_files[@]}]}
 
 if [[ $(pidof mpvpaper) ]]; then
-    pkill mpvpaper
+    pkill -f mpvpaper
 fi
 
 mpvpaper -o "loop-file" "*" $random_video
