@@ -1,8 +1,10 @@
-# flatpak
 alias fclean="flatpak uninstall --unused --delete-data"
 alias fdir="cd $HOME/.var/app && ls"
 
-# apps
+alias dotfiles="cd $DOTFILES && ls"
+alias projects="cd $HOME/Code && ls"
+alias grub-path="cd /etc/default"
+
 alias z="zellij"
 alias zk="zellij kill-all-sessions -y"
 alias sp="LD_PRELOAD=/usr/lib/spotify-adblock.so spotify"
@@ -19,14 +21,7 @@ alias hardware="inxi -b"
 alias psfind="ps -aux | grep"
 alias edit-dns="sudo nano /etc/resolv.conf"
 alias dns-changer="sudo $DNS_CHANGER"
-alias mpv='mpvpaper "*" -o "no-audio --loop-playlist shuffle" ~/Wallpapers/Live'
 
-# directories :
-alias dotfiles="cd $DOTFILES && ls"
-alias projects="cd $HOME/Code && ls"
-alias grub-path="cd /etc/default"
-
-# git :
 alias lg="lazygit"
 alias gst="git status"
 alias gb="git branch"

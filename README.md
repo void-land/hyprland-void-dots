@@ -86,29 +86,6 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - font-awesome-6
 </details>
 
-<details>
-  <summary><strong>System Apps</strong></summary>
-
-  - alacritty
-  - zellij
-  - octoxbps
-  - neofetch
-  - fontmanager
-  - nemo
-  - pavucontrol
-  - gnome-system-monitor
-  - nwg-look
-  - telegram-desktop
-  - spotify
-  - spotify-adblock
-  - discord
-  - gimp
-  - vscode and neovim
-  - evince
-  - corectl
-  - [steam](./guides/STEAM.md)
-</details>
-
 
 ## Installation
 
