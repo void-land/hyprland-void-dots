@@ -195,8 +195,8 @@
     ]
   },
   "network": {
-    "format-wifi": "  : {ipaddr}/{cidr}",
-    "format-ethernet": "  : {ipaddr}/{cidr}",
+    "format-wifi": "  : {ipaddr}",
+    "format-ethernet": "  : {ipaddr}",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-alt": "network : {ifname}",
     "format-linked": "{ifname} (No IP) ",
