@@ -136,12 +136,11 @@ window>box {
 }
 
 #network {
-  min-width: 160px;
+  min-width: 120px;
 }
 
 #network.network-2 {
-  min-width: 170px;
-
+  min-width: 150px;
 }
 
 #network.disconnected {
