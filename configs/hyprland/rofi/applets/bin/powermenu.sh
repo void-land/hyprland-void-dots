@@ -105,7 +105,7 @@ run_cmd() {
 	elif [[ "$1" == '--opt2' ]]; then
 		confirm_run 'hyprctl dispatch exit'
 	elif [[ "$1" == '--opt3' ]]; then
-		confirm_run 'mpc -q pause' 'amixer set Master mute' 'systemctl suspend'
+		confirm_run 'loginctl suspend'
 	elif [[ "$1" == '--opt4' ]]; then
 		confirm_run 'loginctl hibernate'
 	elif [[ "$1" == '--opt5' ]]; then
