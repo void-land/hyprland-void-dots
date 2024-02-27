@@ -8,6 +8,8 @@ Enhance your productivity on Void Linux with these curated applications:
 - **octoxbps**: Graphical package manager for XBPS.
 - **neofetch**: Visually appealing system information display.
 - **fzf**: Command-line fuzzy finder.
+- **bat**: Better cat replacement.
+- [**tldr**](https://tldr.sh/#installation): Better man replacement.
 - **dust**: Command-line tool to display sizes of disk data.
 - [**atuin**](https://docs.atuin.sh/guide/installation/): Command-line history with search.
 
@@ -30,6 +32,7 @@ Enhance your productivity on Void Linux with these curated applications:
 
 ## Development and Editors
 - **vscode and neovim**: Visual Studio Code and Neovim editors.
+- [**nvm**](https://github.com/nvm-sh/nvm): Node.js version manager.
 
 ## Virtualization and Gaming
 - **corectl**: CLI for CoreOS Container Linux clusters.
