@@ -15,7 +15,6 @@
     "tray"
   ],
   "modules-right": [
-    // "custom/launcher",
     "battery",
     "network",
     "network#network-2"
@@ -110,7 +109,7 @@
     "orientation": "horizontal"
   },
   "tray": {
-    "icon-size": 14,
+    "icon-size": 12,
     "spacing": 8
   },
   "hyprland/workspaces": {

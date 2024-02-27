@@ -15,8 +15,9 @@ window {
 }
 
 window>box {
-  min-height: 30px;
-  padding: 5px 4px;
+  min-height: 28px;
+  padding: 6px;
+  padding-bottom: 2px;
 }
 
 #clock,
@@ -39,7 +40,7 @@ window>box {
 #tray {
   background-color: @backgrounddark;
   border: #272727 1px solid;
-  padding: 0px 6px;
+  padding: 0px 4px;
 }
 
 #workspaces,
