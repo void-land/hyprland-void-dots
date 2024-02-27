@@ -19,6 +19,7 @@ alias reloadshell="omz reload"
 alias yo="echo '¯\_(ツ)_/¯'"
 alias hardware="inxi -b"
 alias psfind="ps -aux | grep"
+alias dsu="dust -d 1 -b"
 alias edit-dns="sudo nano /etc/resolv.conf"
 alias dns-changer="sudo $DNS_CHANGER"
 
