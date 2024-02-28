@@ -62,6 +62,8 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - stow
   - inotify-tools
   - ffmpeg
+  - mtpfs
+  - gvfs-mtp
 </details>
 
 <details>
