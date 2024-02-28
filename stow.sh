@@ -1,8 +1,7 @@
 #!/bin/bash
 
 configs_dir="$(pwd)/configs"
-settings_dir="$(pwd)/.settings"
-shortcuts_dir="$(pwd)/.shortcuts"
+shortcuts_dir="$(pwd)/configs/shortcuts"
 
 display_help() {
     echo "Usage: [-s | -u] [-h]"
@@ -42,7 +41,7 @@ unstow_shortcuts() {
         local target_file=~/.local/share/applications/$file_name
 
         if [ -e $target_file ]; then
-            rm $target_file
+            rm -f $target_file
             echo "Removed: $target_file"
         else
             echo "Not found: $target_file"
@@ -53,8 +52,6 @@ unstow_shortcuts() {
 stow_dotfiles() {
     create_symlinks $configs_dir/dotfiles ~/.config
     create_symlinks $configs_dir/zsh ~/
-
-    ln -sfn $settings_dir/mimeapps.list ~/.config
 
     echo "Dotfiles stowed successfully!"
 }
@@ -105,15 +102,15 @@ stow_hyprland() {
 }
 
 unstow_hyprland() {
-    for folder in $configs_dir/hyprland/*; do
-        folder_name=$(basename $folder)
-        target_folder=~/.config/$folder_name
+    for config in $configs_dir/hyprland/*; do
+        config_name=$(basename $config)
+        target_config=~/.config/$config_name
 
-        if [ -e $target_folder ]; then
-            rm -rf $target_folder
-            echo "Removed: $target_folder"
+        if [ -e $target_config ]; then
+            rm -rf $target_config
+            echo "Removed: $target_config"
         else
-            echo "Not found: $target_folder"
+            echo "Not found: $target_config"
         fi
     done
 }
