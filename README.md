@@ -39,6 +39,8 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - xdg-desktop-portal-wlr
   - xdg-desktop-portal-gtk
   - xdg-utils
+  - wayland
+  - wayland-protocols
 </details>
 
 <details>
@@ -58,6 +60,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - mesa-dri
   - Vulkan : Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk
   - qt : qt5 qt5-wayland qt6-wayland
+  - xcb : all
   - [Audio and Video](https://docs.voidlinux.org/config/media/pipewire.html) : pipewire wireplumber
   - stow
   - inotify-tools

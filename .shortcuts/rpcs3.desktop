@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Rpcs3
+Comment=PS3 Emulator - Play your favorite Playstation 3 games on your PC.
+GenericName=Emulator
+Exec=env QT_QPA_PLATFORM=xcb /home/hesam/Games/Rpcs3/rpcs3.AppImage
+Type=Application
+Categories=Game;Emulation
+Keywords=rpcs3,ps3,playstation,emulator
