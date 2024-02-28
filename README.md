@@ -81,6 +81,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - [swww](https://github.com/LGFae/swww) : path /usr/local/bin
   - playerctl
   - swaylock or [swaylock-effects](https://github.com/mortie/swaylock-effects)
+  - avizo
   - grim
   - slurp
   - jq
