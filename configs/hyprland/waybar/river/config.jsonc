@@ -39,10 +39,12 @@
     "tooltip": false
   },
   "pulseaudio#output": {
-    "format": "{icon}  {volume}%",
+    "format": "{volume}%  {icon}",
+    "format-bluetooth": "{volume}%  ",
     "format-muted": "  0%",
     "format-source": "",
     "format-icons": {
+      "headset": "",
       "default": [
         "",
         "",
@@ -54,8 +56,8 @@
     "on-click": "pavucontrol"
   },
   "pulseaudio#input": {
-    "format-source": "  {volume}%",
-    "format-source-muted": "  0%",
+    "format-source": "{volume}%  ",
+    "format-source-muted": "0%  ",
     "format": "{format_source}",
     "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
     "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
