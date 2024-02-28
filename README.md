@@ -50,6 +50,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - seatd : service
   - elogind : service
   - polkit : service
+  - bluez : service
   - network : wpa_supplicant wifish wpa-cute wpa_gui or NetworkManager nmtui
   - sddm or lightdm or [ly](https://github.com/fairyglade/ly) : service
   - xorg
@@ -67,8 +68,8 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - ffmpeg
   - mtpfs
   - gvfs-mtp
-  - gamemode
-  - MangoHud : MangoHud-32bit
+  - blueman
+  - libnotify
 </details>
 
 <details>
@@ -85,7 +86,6 @@ The following packages are required for the proper functioning of Hyprland on Vo
   - jq
   - cliphist
   - wl-clipboard
-  - libnotify
   - dunst
   - swayidle
   - swappy

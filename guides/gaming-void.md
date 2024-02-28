@@ -1,8 +1,9 @@
-# Steam Gaming Guide with GameMode and MangoHud on Void Linux
+# Gaming Guide with GameMode and MangoHud on Void Linux
 
 ## Prerequisites
 
 - Steam : steam
+- Emulation apps : rpcs3 - rpcsx2
 - Steam Libs : libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
 - GameMode : gamemode
 - MangoHud : MangoHud MangoHud-32bit
