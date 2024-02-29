@@ -3,6 +3,7 @@
 ## Prerequisites
 
 - Steam : steam
+- Lutris : lutris
 - Emulation apps : rpcs3 - rpcsx2
 - Steam Libs : libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit
 - GameMode : gamemode
