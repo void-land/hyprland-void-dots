@@ -3,7 +3,7 @@ import = [
     "~/.config/alacritty/keybinds.toml",
 ]
 
-live_config_reload = true
+live_config_reload = false
 
 [shell]
 program = "zsh"
