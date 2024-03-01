@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+ID="$(ip link | awk '/state UP/ {print $2}')"
+NAME="$(ip link | awk '/state UP/ {print $2}' | cut -c 1-6)"
+
+net_stat() {
+	if (ping -c 1 archlinux.org || ping -c 1 google.com) &>/dev/null; then
+		if [[ $ID == e* ]]; then
+			echo " "
+		fi
+	else
+		echo " "
+	fi
+}
+
+net_color() {
+	if (ping -c 1 archlinux.org || ping -c 1 google.com) &>/dev/null; then
+		echo "#A39EC4"
+	else
+		echo "#dd6777"
+	fi
+}
+
+case "$1" in
+stat)
+	net_stat | head -n1
+	;;
+icon)
+	net_stat | tail -n1
+	;;
+color)
+	net_color
+	;;
+esac

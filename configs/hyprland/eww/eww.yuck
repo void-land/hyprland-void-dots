@@ -1,0 +1,43 @@
+(include "bar/bar.yuck")
+(include "central/central.yuck")
+(include "notifications/notifications.yuck")
+(include "volume/volume.yuck")
+
+(deflisten hyprland `scripts/workspace`)
+(deflisten name `scripts/sysinfo.sh --name`)
+(deflisten kernel `scripts/sysinfo.sh --kernel`)
+(deflisten os `scripts/sysinfo.sh --os`)
+(deflisten wm `scripts/sysinfo.sh --wm`)
+(deflisten uptime `scripts/sysinfo.sh --uptime`)
+
+(defvar perfil "assets/perfil.png")
+
+
+;; Music
+(defpoll music-art :interval "1s" "scripts/mediacontrol coverloc")
+(defpoll music-title :interval "1s" "scripts/mediacontrol title")
+(defpoll music-artist :interval "1s" "scripts/mediacontrol artist")
+(defpoll music-toggle :interval "1s" "scripts/mediacontrol statusicon")
+(defpoll music-status :interval "1s" "scripts/mediacontrol status")
+(defpoll music-position :interval "1s" "scripts/mediacontrol position")
+(defpoll music-length :interval "1s" "scripts/mediacontrol length")
+(defpoll music-positions :interval "1s" "scripts/mediacontrol positions")
+(defpoll music-lengths :interval "1s" "scripts/mediacontrol lengths")
+(defpoll music-shuffle-color :interval "1s" "scripts/mediacontrol shufflecolor")
+(defpoll music-shuffle-status :interval "1s" "playerctl -p spotify shuffle")
+(defpoll music-loop-icon :interval "1s" "scripts/mediacontrol loopicon")
+(defpoll music-loop-color :interval "1s" "scripts/mediacontrol loopcolor")
+(defpoll music-loop-status :interval "1s" "playerctl -p spotify loop")
+(defvar  music-rev false)
+
+;; Volume
+(deflisten volume `scripts/volume`)
+(defvar     volume_rev      false)
+
+;; Date
+(defpoll hour :interval "1s" "date '+%H'")
+(defpoll minute :interval "1s" "date '+%M'")
+(defpoll date :interval "1h" "date '+%a, %d %B'")
+(defpoll calendar-day :interval "1h" "date '+%d'")
+(defpoll calendar-month :interval "1h" "date '+%m'")
+(defpoll calendar-year :interval "1h" "date '+%Y'")

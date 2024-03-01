@@ -1,9 +1,0 @@
-#!/bin/bash
-
-EWW="eww -c $HOME/.config/eww/bar"
-
-run_eww() {
-	${EWW} open bar
-}
-
-run_eww

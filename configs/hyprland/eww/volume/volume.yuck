@@ -1,0 +1,52 @@
+(defwidget volume []
+  (eventbox 
+    :onhover "eww update volume_rev=true" 
+    :onhoverlost "eww update volume_rev=false"
+    (box
+      :class "volume"
+      :space-evenly false
+      :orientation "v"
+      (revealer 
+        :class "volume-bar"
+        :transition "slideup" 
+        :reveal volume_rev 
+        (eventbox
+          :cursor "pointer"
+          :halign "center"
+          (scale  
+            :orientation "v"
+            :tooltip {volume == "muted" ? "Muted" : "${volume}%"}
+            :value {volume == "muted" ? "0" : volume} 
+            :min 0 
+            :max 101 
+            :onchange "pamixer -u && pamixer --set-volume {}"
+            :flipped true
+          )
+        )
+      )
+      (eventbox
+        :cursor "pointer"
+        :onscroll "echo {} | sed -e 's/up/--up/g' -e 's/down/--down/g' | xargs volume"
+        (button 
+          :class "volume icon" 
+          :style {volume == 0 || volume == "muted" ? "color: #dd6777;" : "color: #cacaca;"} 
+          :tooltip {volume == "muted" ? "Muted" : "${volume}%" } 
+          :onclick "volume --toggle"
+          {volume == 0 || volume == "muted" ? "󰝟" : 
+          volume < 30 ? "" : 
+          volume < 75 ? "" : ""}
+        )
+      )
+    )
+  )
+)
+
+(defwindow volume
+  :monitor 0
+  :geometry (geometry :x "1%"
+                      :y "0%"
+                      :height "75%"
+                      :width "25%"
+                      :anchor "center left")
+  :reserve (struts :side "top" :distance "4%")
+  (volume))

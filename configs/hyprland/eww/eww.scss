@@ -1,0 +1,34 @@
+/* Variables */
+* {
+    all: unset;
+    transition: 200ms;
+  }
+ 
+@mixin window {
+  background-color: $bg;
+  box-shadow: 0 0 0.3rem 0.3rem $shadow;
+  margin: 1rem;
+}
+
+
+$shadow: #151515;
+$bg: #121013;
+$bg-alt: #171518;
+$bg-alt2: #312f32;
+$fg: #f0f0f0;
+$fg-alt: #cacaca;
+$fg-alt2: #a0a0a0;
+$black: #262626;
+$gray: #bababa;
+$red: #FA8E89;
+$green: #9EC49F;
+$yellow: #FAF889;
+$blue: #89B4FA;
+$magenta: #E889FA;
+$cyan: #89EAFA;
+$white: #ffffff;
+
+@import "bar/bar.scss";
+@import "central/central.scss";
+@import "notifications/notifications.scss";
+@import "volume/volume.scss";
