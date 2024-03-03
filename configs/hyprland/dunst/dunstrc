@@ -29,7 +29,7 @@
     width = 300
     height = (0,300)
     origin = bottom-right
-    offset = 15x30
+    offset = 15x15
 
     # Set this to true to use X11 output on Wayland.
     # force_xwayland = true
