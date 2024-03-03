@@ -11,6 +11,7 @@ Enhance your productivity on Void Linux with these curated applications:
 - **bat**: Better cat replacement.
 - [**tldr**](https://tldr.sh/#installation): Better man replacement.
 - **dust**: Command-line tool to display sizes of disk data.
+- **aria2**: Command-line download manager.
 - [**atuin**](https://docs.atuin.sh/guide/installation/): Command-line history with search.
 
 ## Desktop Utilities
