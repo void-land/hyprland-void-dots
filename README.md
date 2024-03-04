@@ -30,68 +30,27 @@ The following packages are required for the proper functioning of Hyprland on Vo
 <details>
   <summary><strong>Core Hyprland Components</strong></summary>
 
-  - [Void-Hyprland](https://github.com/Makrennel/hyprland-void)
-  - hyprland
-  - hyprland-protocols
-  - xdg-dbus-proxy
-  - xdg-desktop-portal-hyprland
-  - xdg-desktop-portal
-  - xdg-desktop-portal-wlr
-  - xdg-desktop-portal-gtk
-  - xdg-utils
-  - wayland
-  - wayland-protocols
+  - [Void-Hyprland](https://github.com/Makrennel/hyprland-void) : ``` hyprland hyprland-protocols xdg-desktop-portal-hyprland xdg-desktop-portal xdg-utils wayland wayland-protocols xdg-desktop-portal-wlr xdg-desktop-portal-gtk ```
 </details>
 
 <details>
   <summary><strong>System Components</strong></summary>
 
-  - dbus : service
-  - seatd : service
-  - elogind : service
-  - polkit : service
-  - bluez : service
-  - network : wpa_supplicant wifish wpa-cute wpa_gui or NetworkManager nmtui
-  - sddm or lightdm or [ly](https://github.com/fairyglade/ly) : service
-  - xorg
-  - Dev tools : git [rust](https://www.rust-lang.org/learn/get-started) nvm base-devel
-  - Repos : void-repo-multilib void-repo-nonfree
-  - gnome-keyring
-  - polkit-gnome
-  - mesa-dri
-  - Vulkan : Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk
-  - qt : qt5 qt5-wayland qt6-wayland
-  - xcb : all
-  - [Audio and Video](https://docs.voidlinux.org/config/media/pipewire.html) : pipewire wireplumber
-  - stow
-  - inotify-tools
-  - ffmpeg
-  - mtpfs
-  - gvfs-mtp
-  - blueman
-  - libnotify
+  - Repos : ``` void-repo-multilib void-repo-nonfree ```
+  - Services : ``` dbus seatd elogind polkit bluez sddm ```
+  - Network : ``` wpa_supplicant wifish wpa-cute wpa_gui - NetworkManager nmtui ```
+  - Base : ``` xorg gnome-keyring polkit-gnome mtpfs inotify-tools ffmpeg libnotify ```
+  - Dev tools : ``` git base-devel ```
+  - Amd Drivers : ``` Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri ```
+  - [Audio and Video](https://docs.voidlinux.org/config/media/pipewire.html) : ``` pipewire wireplumber ```
 </details>
 
 <details>
   <summary><strong>User Interface Components</strong></summary>
 
-  - Waybar
-  - swaybg
-  - mpvpaper
-  - [swww](https://github.com/LGFae/swww) : path /usr/local/bin
-  - playerctl
-  - swaylock or [swaylock-effects](https://github.com/mortie/swaylock-effects)
-  - avizo
-  - grim
-  - slurp
-  - jq
-  - cliphist
-  - wl-clipboard
-  - dunst
-  - swayidle
-  - swappy
-  - rofi
-  - font-awesome-6
+  - Ui Components : ``` Waybar rofi avizo font-awesome-6 swaylock dunst ```
+  - Wallpaper Daemons : ``` swaybg mpvpaper ``` [swww](https:i//github.com/LGFae/swww)
+  - Utilities : ``` grim jq slurp playerctl cliphist wl-clipboard swayidle swappy ```
 </details>
 
 
@@ -102,7 +61,7 @@ Follow these steps to install Hyprland on your Void Linux system:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/hesam-init/.dotfiles.git ~/.dots-hyprland
+   git clone https://github.com/hesam-init/.dots-hyprland.git ~/.dots-hyprland
    ```
 
 2. Change into the repository directory:
@@ -114,7 +73,7 @@ Follow these steps to install Hyprland on your Void Linux system:
 3. Run this command to sync configs:
 
    ```bash
-   ./stow.sh
+   ./stow.sh -s
    ```
 
 ## Keybindings
