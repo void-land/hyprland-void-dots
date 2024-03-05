@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Pcsx2
+Comment=PS2 Emulator - Play your favorite Playstation 2 games on your PC.
+GenericName=Emulator
+Exec=env MANGOHUD=1 gamemoderun /home/hesam/Games/Pcsx2/pcsx2.AppImage
+Type=Application
+Categories=Game;Emulation
+Keywords=pcsx2,pcsx2,playstation,emulator
