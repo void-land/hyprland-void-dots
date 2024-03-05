@@ -12,9 +12,15 @@
 - MangoHud : MangoHud MangoHud-32bit
 - Vulkan Libs : Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk
 
-## Setup Ps4 Controller
+## Setup Ps4 Controller via Bluetooth
 
-Add current user to input group and install ds4drv for driver.
+The bluez and bluetoothd service need to setup.
+
+Add current user to input,bluetooth group.
+
+```bash
+sudo usermod -aG bluetooth,input hesam
+```
 
 Inside this file : /etc/bluetooth/main.conf
 edit ControllerMode to bredr
