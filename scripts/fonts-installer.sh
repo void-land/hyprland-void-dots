@@ -6,4 +6,5 @@ install_ttf_font() {
 }
 
 cd ../host/ui/fonts
+
 install_ttf_font
