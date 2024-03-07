@@ -20,4 +20,4 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh/aliases/index.zsh
 source ~/.zsh/functions/index.zsh
 
-eval "$(atuin init zsh)"
+# eval "$(atuin init zsh)"
