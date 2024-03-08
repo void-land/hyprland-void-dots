@@ -152,12 +152,9 @@ window>box {
 #wireplumber,
 #pulseaudio,
 #cpu,
-#custom-gpu-usage {
-  min-width: 65px;
-}
-
+#custom-gpu-usage,
 #memory {
-  min-width: 85px;
+  min-width: 65px;
 }
 
 #wireplumber.muted {

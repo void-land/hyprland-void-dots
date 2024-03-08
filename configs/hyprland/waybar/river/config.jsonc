@@ -6,6 +6,7 @@
     "hyprland/language",
     "clock",
     "cpu",
+    "memory",
     "custom/gpu-usage",
     "pulseaudio#input",
     "pulseaudio#output"
@@ -164,7 +165,7 @@
     "interval": 1
   },
   "memory": {
-    "format": "{used:0.1f} / {total:0.1f}  ",
+    "format": "{used:0.1f} / {total:0.0f}  ",
     "interval": 5
   },
   "backlight": {
