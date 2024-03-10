@@ -29,6 +29,7 @@ Enhance your productivity on Void Linux with these curated applications:
 ## Multimedia and Design
 - **spotify**: Music streaming client.
 - **spotify-adblock**: Blocks ads on Spotify.
+- **freetube**: Youtube Open Source YouTube app for privacy.
 - **gimp**: Open-source raster graphics editor.
 - **evince**: Document viewer for PDF and PostScript.
 
