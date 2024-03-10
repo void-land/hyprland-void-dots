@@ -17,6 +17,7 @@ Enhance your productivity on Void Linux with these curated applications:
 ## Desktop Utilities
 - **fontmanager**: Simplifies font management.
 - **nemo**: User-friendly file manager.
+- **eog**: Eye of gnome a nice image viewer.
 - **pavucontrol**: Graphical audio settings manager.
 - **gnome-system-monitor**: Graphical system resource monitor.
 - **hardinfo**: Hardware info.
