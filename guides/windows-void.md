@@ -2,7 +2,8 @@
 
 ## Prerequisites
 
-- Wine : wine wine-32bit libwine libwine-32bit winetricks wine-tools wine-common
+- Wine : wine wine-32bit winetricks wine-tools wine-common
+- Libwin : libwine libwine-32bit
 - Bottles: flatpak install flathub com.usebottles.bottles
 
 ## Run .exe Apps
