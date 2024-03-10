@@ -7,7 +7,7 @@ DISABLE_GRUB_MENU=false
 declare -A PACKAGES=(
     ["BASE_PACKAGES"]="git stow dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome mesa-dri pipewire wireplumber inotify-tools void-repo-multilib void-repo-nonfree wpa_supplicant wifish wpa-cute wpa_gui xorg gnome-keyring polkit-gnome mtpfs inotify-tools ffmpeg libnotify git base-devel"
     ["HYPRLAND_PACKAGES"]="Waybar rofi avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle"
-    ["AMD_DRIVERS"]="Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri"
+    ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri"
 )
 
 exec 1> >(tee "../hyprland_setup_log")
