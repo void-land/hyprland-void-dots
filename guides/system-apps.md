@@ -22,6 +22,7 @@ Enhance your productivity on Void Linux with these curated applications:
 - **gnome-system-monitor**: Graphical system resource monitor.
 - **hardinfo**: Hardware info.
 - **nwg-look**: Custom theme and configuration applier.
+- **waydroid**: Android emulator.
 
 ## Communication and Collaboration
 - **telegram-desktop**: Official Telegram client.
