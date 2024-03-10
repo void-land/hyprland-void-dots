@@ -19,6 +19,7 @@ Enhance your productivity on Void Linux with these curated applications:
 - **nemo**: User-friendly file manager.
 - **pavucontrol**: Graphical audio settings manager.
 - **gnome-system-monitor**: Graphical system resource monitor.
+- **hardinfo**: Hardware info.
 - **nwg-look**: Custom theme and configuration applier.
 
 ## Communication and Collaboration
