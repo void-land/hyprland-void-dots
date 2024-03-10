@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ $(pidof nekoray) ]]; then
-    pkill -f nekoray
+    pkill nekoray
+    pkill nekobox_core
 fi
 
 exec /opt/nekoray/nekoray
