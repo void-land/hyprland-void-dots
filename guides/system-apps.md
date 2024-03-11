@@ -23,7 +23,7 @@ Enhance your productivity on Void Linux with these curated applications:
 - **hardinfo**: Hardware info.
 - **nwg-look**: Custom theme and configuration applier.
 - **waydroid**: Android emulator.
-- **easyeffects**: Audio effects for PipeWire applications.
+- **easyeffects**: Audio effects for PipeWire applications - flatpak.
 
 ## Communication and Collaboration
 - **telegram-desktop**: Official Telegram client.
@@ -33,6 +33,8 @@ Enhance your productivity on Void Linux with these curated applications:
 - **spotify**: Music streaming client.
 - **spotify-adblock**: Blocks ads on Spotify.
 - **freetube**: Youtube Open Source YouTube app for privacy.
+- **obs**: Screen recorder.
+- **GPU Screen Recorder**: Screen recorder with gpu - flatpak.
 - **gimp**: Open-source raster graphics editor.
 - **evince**: Document viewer for PDF and PostScript.
 
