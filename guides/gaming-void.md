@@ -35,7 +35,13 @@ gamemoderun mangohud %command%
 or
 
 ```bash
-mangohud gamemoderun  %command%
+mangohud gamemoderun %command%
+```
+
+or
+
+```bash
+env MANGOHUD=1 gamemoderun %command%
 ```
 
 ## Disable Fps Cap on Valve Game
