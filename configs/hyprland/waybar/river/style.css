@@ -38,8 +38,8 @@ window>box {
 #language,
 #workspaces,
 #tray {
+  /* border: #272727 1px solid; */
   background-color: @backgrounddark;
-  border: #272727 1px solid;
   padding: 0px 4px;
 }
 
