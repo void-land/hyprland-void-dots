@@ -5,7 +5,6 @@ Enhance your productivity on Void Linux with these curated applications:
 ## Terminal and Shell Tools
 - **alacritty**: Modern GPU-accelerated terminal emulator.
 - **zellij**: Tmux-like terminal workspace manager.
-- **octoxbps**: Graphical package manager for XBPS.
 - **neofetch**: Visually appealing system information display.
 - **fzf**: Command-line fuzzy finder.
 - **bat**: Better cat replacement.
@@ -15,9 +14,10 @@ Enhance your productivity on Void Linux with these curated applications:
 - [**atuin**](https://docs.atuin.sh/guide/installation/): Command-line history with search.
 
 ## Desktop Utilities
-- **fontmanager**: Simplifies font management.
 - **nemo**: User-friendly file manager.
 - **eog**: Eye of gnome a nice image viewer.
+- **octoxbps**: Graphical package manager for XBPS.
+- **fontmanager**: Simplifies font management.
 - **pavucontrol**: Graphical audio settings manager.
 - **gnome-system-monitor**: Graphical system resource monitor.
 - **hardinfo**: Hardware info.
