@@ -72,6 +72,15 @@ sudo xbps-remove -O
 
 This command removes old package files from the cache.
 
+## Update Default Apps by xbps-alternative
+
+To set alternative for an app use :
+
+```bash
+sudo xbps-alternatives -C <config>
+```
+
+
 ## Conclusion
 
 XBPS provides a straightforward and efficient package management system for Void Linux. These basic commands should help you get started with installing, updating, and managing packages on your Void Linux system.
