@@ -24,6 +24,7 @@ Enhance your productivity on Void Linux with these curated applications:
 - **nwg-look**: Custom theme and configuration applier.
 - **waydroid**: Android emulator.
 - **easyeffects**: Audio effects for PipeWire applications - flatpak.
+- **rclone-RcloneBrowser**: Manage cloud storage.
 
 ## Communication and Collaboration
 - **telegram-desktop**: Official Telegram client.
