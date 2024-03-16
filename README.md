@@ -37,7 +37,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
   <summary><strong>System Components</strong></summary>
 
   - Repos : ``` void-repo-multilib void-repo-nonfree ```
-  - Services : ``` dbus seatd elogind polkit bluez sddm ```
+  - Services : ``` dbus seatd elogind polkit bluez sddm cronie ```
   - Network : ``` wpa_supplicant wifish wpa-cute wpa_gui - NetworkManager nmtui ```
   - Base : ``` xorg gnome-keyring polkit-gnome mtpfs inotify-tools ffmpeg libnotify ```
   - Dev tools : ``` git base-devel ```
