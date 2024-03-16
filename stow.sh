@@ -51,7 +51,7 @@ unstow_shortcuts() {
 
 stow_dotfiles() {
     create_symlinks $configs_dir/dotfiles ~/.config
-    create_symlinks $configs_dir/zsh ~/
+    create_symlinks $configs_dir/sh ~/
 
     echo "Dotfiles stowed successfully!"
 }
@@ -69,7 +69,7 @@ unstow_dotfiles() {
         fi
     done
 
-    for config in $configs_dir/zsh/.*; do
+    for config in $configs_dir/sh/.*; do
         if [ -f $config ]; then
             local file_name=$(basename $config)
             local target_file=~/$file_name

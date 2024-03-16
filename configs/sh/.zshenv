@@ -1,3 +1,4 @@
+export $(dbus-launch)
 export ZELLIJ_START=false
 export ZSH="$HOME/.oh-my-zsh"
 export OS_ID="$(grep -i -w 'ID=' /etc/os-release | awk -F= '{print $2}')"
