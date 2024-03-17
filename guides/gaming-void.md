@@ -31,10 +31,14 @@ Modify the game's launch options on Steam to use the created script. Right-click
 
 - Enable GameMode :
   ```gamemoderun %command%```
+
 - Enable MangoHud :
-  ```env MANGOHUD=1 %command%```
+  - ```env MANGOHUD=1 %command%```
+  - ```mangohud %command%```
+
 - Enable GameScope :
   - with fsr : ```gamescope -f -F fsr -- %command%```
+  - with gamemode : ```gamemoderun gamescope -f -F fsr -- %command%```
 
   - downscale resolution :
     - ```gamescope -f -F fsr -w 1980 -h 1080 -W 1600 -H 900 -- %command%```
@@ -43,6 +47,7 @@ Modify the game's launch options on Steam to use the created script. Right-click
   - upscale resolution : ```gamescope -f -F fsr -w 1280 -h 720 -W 1600 -H 900 -S integer -- %command%```
 
   - fps cap : ```gamescope -f -F fsr -r 30 -- %command%```
+
 
 ## Disable Fps Cap on Valve Game
 
