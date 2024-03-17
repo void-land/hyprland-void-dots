@@ -30,7 +30,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
 <details>
   <summary><strong>Core Hyprland Components</strong></summary>
 
-  - [Void-Hyprland](https://github.com/Makrennel/hyprland-void) : ``` hyprland hyprland-protocols xdg-desktop-portal-hyprland xdg-desktop-portal xdg-utils wayland wayland-protocols xdg-desktop-portal-wlr xdg-desktop-portal-gtk ```
+  - [Void-Hyprland](https://github.com/Makrennel/hyprland-void) : ``` hyprland hyprland-protocols xorg-server-xwayland xdg-desktop-portal-hyprland xdg-desktop-portal xdg-utils wayland wayland-protocols xdg-desktop-portal-wlr xdg-desktop-portal-gtk ```
 </details>
 
 <details>
