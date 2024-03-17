@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/environments/env.sh
+source $HOME/.config/scripts/env.sh
 
 dir="$HOME/.config/rofi/wallpaper/type-1"
 theme='style-8'

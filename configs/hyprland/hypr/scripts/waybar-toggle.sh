@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/environments/env.sh
+source $HOME/.config/scripts/env.sh
 
 WAYBAR_PID=$(pgrep -x waybar)
 
