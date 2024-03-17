@@ -7,7 +7,7 @@ DISABLE_GRUB_MENU=false
 declare -A PACKAGES=(
     ["BASE_PACKAGES"]="cronie git stow eza dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome mesa-dri pipewire wireplumber inotify-tools void-repo-multilib void-repo-nonfree wpa_supplicant wifish wpa-cute wpa_gui xorg gnome-keyring polkit-gnome mtpfs inotify-tools ffmpeg libnotify"
     ["DEVEL_PACKAGES"]="base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
-    ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri"
+    ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi"
     ["HYPRLAND_PACKAGES"]="Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils"
     ["SYSTEM_APPS"]="alacritty zellij bat dust aria2 fzf neofetch bat octoxbps"
 )
