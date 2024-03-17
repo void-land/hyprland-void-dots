@@ -48,7 +48,7 @@ The following packages are required for the proper functioning of Hyprland on Vo
 <details>
   <summary><strong>User Interface Components</strong></summary>
 
-  - Ui Components : ``` Waybar rofi avizo font-awesome-6 swaylock dunst ```
+  - Ui Components : ``` Waybar avizo font-awesome-6 swaylock dunst ``` [rofi](https://github.com/lbonn/rofi/blob/wayland/INSTALL.md)
   - Wallpaper Daemons : ``` swaybg mpvpaper ``` [swww](https:i//github.com/LGFae/swww)
   - Utilities : ``` grim jq slurp playerctl cliphist wl-clipboard swayidle swappy pavucontrol ```
 </details>
