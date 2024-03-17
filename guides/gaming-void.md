@@ -25,6 +25,11 @@ sudo usermod -aG bluetooth,input hesam
 Inside this file : /etc/bluetooth/main.conf
 edit ControllerMode to bredr
 
+## Run SteamDeck or SteamOs
+```bash
+STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W 1600 -H 900 -r 75 -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck
+```
+
 ## Run Steam games with GameMode and MangoHud and GameScope
 
 Modify the game's launch options on Steam to use the created script. Right-click on the game in your Steam Library, choose "Properties," and under the "General" tab, click on "Set Launch Options." Enter the following command:
@@ -47,7 +52,6 @@ Modify the game's launch options on Steam to use the created script. Right-click
   - upscale resolution : ```gamescope -e -f -F fsr -w 1280 -h 720 -W 1600 -H 900 -S integer -- %command%```
 
   - fps cap : ```gamescope -e -f -F fsr -r 30 -- %command%```
-
 
 ## Disable Fps Cap on Valve Game
 
