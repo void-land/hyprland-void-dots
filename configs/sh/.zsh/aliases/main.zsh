@@ -6,8 +6,10 @@ alias fdir="cd $HOME/.var/app && ls"
 
 alias grub-path="cd /etc/default"
 
+alias pmx="chmod +x"
+alias pmr="chmod -x"
 alias steam="steam -forcedesktopscaling=1"
-alias steamos="STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W 1600 -H 900 -r 75 -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck"
+alias steamos="$STEAM_OS"
 alias z="zellij"
 alias zk="zellij kill-all-sessions -y"
 alias sp="LD_PRELOAD=/usr/lib/spotify-adblock.so spotify"
