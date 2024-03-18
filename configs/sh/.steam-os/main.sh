@@ -12,6 +12,6 @@ run_steamos() {
     STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W $WIDTH -H $HEIGHT -r $REFRESH_RATE -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck
 }
 
-run_services
-
 run_steamos
+
+run_services
