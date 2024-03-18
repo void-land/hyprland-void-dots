@@ -9,6 +9,6 @@ check_and_start() {
     fi
 }
 
-check_and_start "pipewire" "pipewire"
+check_and_start "pipewire" "/usr/bin/pipewire"
 check_and_start "pipewire-pulse" "/usr/bin/pipewire-pulse"
 check_and_start "wireplumber" "/usr/bin/wireplumber"
