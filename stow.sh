@@ -2,11 +2,11 @@
 
 source ./scripts/utils.sh
 
-configs_dir="$(pwd)/configs"
-dotfiles_dir="$configs_dir/dotfiles"
-shell_dir="$configs_dir/shell"
-shortcuts_dir="$configs_dir/shortcuts"
-hyprland_dir="$configs_dir/hyprland"
+CONFIGS_DIR="$(pwd)/configs"
+DOTFILES_DIR="$CONFIGS_DIR/dotfiles"
+SHELL_DIR="$CONFIGS_DIR/shell"
+SHORTCUTS_DIR="$CONFIGS_DIR/shortcuts"
+HYPRLAND_DIR="$CONFIGS_DIR/hyprland"
 
 display_help() {
     echo "Usage: [-s | -u] [-h]"
@@ -57,20 +57,20 @@ create_target_dir() {
 }
 
 stow_shortcuts() {
-    create_symlinks $shortcuts_dir ~/.local/share/applications
+    create_symlinks $SHORTCUTS_DIR ~/.local/share/applications
 
     log "Shortcuts stowed successfully!"
 }
 
 stow_dotfiles() {
-    create_symlinks $dotfiles_dir ~/.config
-    create_symlinks $shell_dir ~/
+    create_symlinks $DOTFILES_DIR ~/.config
+    create_symlinks $SHELL_DIR ~/
 
     log "Dotfiles stowed successfully!"
 }
 
 stow_hyprland() {
-    create_symlinks $hyprland_dir ~/.config
+    create_symlinks $HYPRLAND_DIR ~/.config
 
     log "Hyprland stowed successfully!"
 }
@@ -83,7 +83,7 @@ stow() {
 }
 
 unstow_shell() {
-    for config in $shell_dir/.*; do
+    for config in $SHELL_DIR/.*; do
         if [ -f $config ]; then
             local file_name=$(basename $config)
             local target_file=~/$file_name
@@ -111,9 +111,9 @@ unstow_shell() {
 
 unstow() {
     unstow_shell
-    delete_symlinks $dotfiles_dir ~/.config
-    delete_symlinks $shortcuts_dir ~/.local/share/applications
-    delete_symlinks $hyprland_dir ~/.config
+    delete_symlinks $DOTFILES_DIR ~/.config
+    delete_symlinks $SHORTCUTS_DIR ~/.local/share/applications
+    delete_symlinks $HYPRLAND_DIR ~/.config
 
     log "All configs ustowed successfully !"
 }

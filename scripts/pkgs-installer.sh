@@ -26,13 +26,6 @@ declare SERVICES=(
 
 exec 1> >(tee "../hyprland_setup_log")
 
-check_sudo() {
-    if [ "$(id -u)" != 0 ]; then
-        echo "Please run the script with sudo."
-        exit 1
-    fi
-}
-
 check() {
     if [ "$1" != 0 ]; then
         echo "$2 error : $1" | tee -a ../hyprland_setup_log
