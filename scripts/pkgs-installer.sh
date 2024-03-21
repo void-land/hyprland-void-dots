@@ -12,6 +12,16 @@ declare -A PACKAGES=(
     ["SYSTEM_APPS"]="alacritty zellij bat dust aria2 fzf neofetch bat octoxbps"
 )
 
+declare SERVICES=(
+    "dbus"
+    "seatd"
+    "elogind"
+    "NetworkManager"
+    "polkitd"
+    "bluetoothd"
+    "crond"
+)
+
 exec 1> >(tee "../hyprland_setup_log")
 
 check_sudo() {
@@ -89,21 +99,15 @@ add_user_to_groups() {
 enable_services() {
     log "Enable services"
 
-    local services=(
-        "/etc/sv/dbus"
-        "/etc/sv/seatd"
-        "/etc/sv/elogind"
-        "/etc/sv/NetworkManager"
-        "/etc/sv/polkitd"
-        "/etc/sv/bluetoothd"
-        "/etc/sv/crond"
-    )
+    for service in "${SERVICES[@]}"; do
+        local target_service="/etc/sv/$service"
 
-    for service in "${services[@]}"; do
-        if [ -d "$service" ]; then
-            echo "Service $service already exists, skipping"
+        if [ -d "/var/service/$service" ]; then
+            echo "Service "$target_service" already exists, skipping"
+        elif [ ! -d "$target_service" ]; then
+            echo "Service "$target_service" is not installed"
         else
-            sudo ln -s "$service" /var/service
+            sudo ln -s "$target_service" /var/service
             check "$?" "Enable service: $service"
             echo "Service $service enabled"
         fi
@@ -127,6 +131,7 @@ disable_grub_menu() {
 }
 
 check_sudo
+
 update_system
 clear_pkgs_cache
 install_pkgs
