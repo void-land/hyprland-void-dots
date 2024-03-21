@@ -10,19 +10,27 @@ export VOID_PACKAGES_PATH=$HOME/.local/pkgs/void-packages
 export DNS_CHANGER=$HOME/.shell/dns-changer.sh
 export STEAM_OS=$HOME/.steam-os/main.sh
 
-if [ -d "$HOME/platform-tools" ]; then
+if [ -d "/home/$USER/platform-tools" ]; then
     export PATH="$HOME/platform-tools:$PATH"
 fi
 
-export DENO_INSTALL="/home/$USER/.deno"
-export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
-export PATH="$DENO_INSTALL/bin:$PATH"
+if [ -d "/home/$USER/.deno" ]; then
+    export DENO_INSTALL="/home/$USER/.deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
+fi
 
-. "$HOME/.cargo/env"
+if [ -d "/home/$USER/.cargo" ]; then
+    . "/home/$USER/.cargo/env"
+fi
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if [ -d "/home/$USER/.bun" ]; then
+    [ -s "/home/$USER/.bun/_bun" ] && source "/home/$USER/.bun/_bun"
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
 
-[ -s "/home/$USER/.bun/_bun" ] && source "/home/$USER/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+if [ -d "/home/$USER/.nvm" ]; then
+    export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+fi

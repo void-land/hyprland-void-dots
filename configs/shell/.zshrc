@@ -17,7 +17,7 @@ else
 fi
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/aliases/main.zsh
 source ~/.zsh/functions/main.zsh
+source ~/.zsh/aliases/main.zsh
 
 eval "$(atuin init zsh)"
