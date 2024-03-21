@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./utils.sh
+
 UPDATE_PKGS=false
 CLEAR_CACHE=false
 DISABLE_GRUB_MENU=false
@@ -29,14 +31,6 @@ check_sudo() {
         echo "Please run the script with sudo."
         exit 1
     fi
-}
-
-log() {
-    local message="*********** $1 ***********"
-    local timestamp=$(date +"%T")
-
-    echo -e "\n$message"
-    echo "$timestamp $1" >>../hyprland_setup_log
 }
 
 check() {

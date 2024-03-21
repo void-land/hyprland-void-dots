@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./scripts/utils.sh
+
 configs_dir="$(pwd)/configs"
 dotfiles_dir="$configs_dir/dotfiles"
 shell_dir="$configs_dir/shell"
@@ -14,8 +16,8 @@ display_help() {
 }
 
 create_symlinks() {
-    source_dir=$1
-    target_dir=$2
+    local source_dir=$1
+    local target_dir=$2
 
     if [ ! -d "$source_dir" ] || [ ! -d "$target_dir" ]; then
         echo "Source or target directory does not exist."
@@ -27,6 +29,28 @@ create_symlinks() {
     done
 }
 
+delete_symlinks() {
+    local source_dir=$1
+    local target_dir=$2
+
+    if [ ! -d "$source_dir" ] || [ ! -d "$target_dir" ]; then
+        echo "Source or target directory does not exist."
+        return 1
+    fi
+
+    for config in $source_dir/*; do
+        config_name=$(basename $config)
+        target_config=$target_dir/$config_name
+
+        if [ -e $target_config ]; then
+            rm -rf $target_config
+            echo "Removed: $target_config"
+        else
+            echo "Not found: $target_config"
+        fi
+    done
+}
+
 create_target_dir() {
     mkdir -p ~/.local/share/applications
     mkdir -p ~/.config
@@ -35,43 +59,30 @@ create_target_dir() {
 stow_shortcuts() {
     create_symlinks $shortcuts_dir ~/.local/share/applications
 
-    echo "Shortcuts stowed successfully!"
-}
-
-unstow_shortcuts() {
-    for file in $shortcuts_dir/*; do
-        local file_name=$(basename $file)
-        local target_file=~/.local/share/applications/$file_name
-
-        if [ -e $target_file ]; then
-            rm -f $target_file
-            echo "Removed: $target_file"
-        else
-            echo "Not found: $target_file"
-        fi
-    done
+    log "Shortcuts stowed successfully!"
 }
 
 stow_dotfiles() {
     create_symlinks $dotfiles_dir ~/.config
     create_symlinks $shell_dir ~/
 
-    echo "Dotfiles stowed successfully!"
+    log "Dotfiles stowed successfully!"
 }
 
-unstow_dotfiles() {
-    for folder in $dotfiles_dir/*; do
-        local folder_name=$(basename $folder)
-        local target_folder=~/.config/$folder_name
+stow_hyprland() {
+    create_symlinks $hyprland_dir ~/.config
 
-        if [ -e $target_folder ]; then
-            rm -rf $target_folder
-            echo "Removed: $target_folder"
-        else
-            echo "Not found: $target_folder"
-        fi
-    done
+    log "Hyprland stowed successfully!"
+}
 
+stow() {
+    create_target_dir
+    stow_dotfiles
+    stow_shortcuts
+    stow_hyprland
+}
+
+unstow_shell() {
     for config in $shell_dir/.*; do
         if [ -f $config ]; then
             local file_name=$(basename $config)
@@ -98,39 +109,13 @@ unstow_dotfiles() {
     done
 }
 
-stow_hyprland() {
-    create_symlinks $hyprland_dir ~/.config
-
-    echo "Hyprland stowed successfully!"
-}
-
-unstow_hyprland() {
-    for config in $hyprland_dir/*; do
-        config_name=$(basename $config)
-        target_config=~/.config/$config_name
-
-        if [ -e $target_config ]; then
-            rm -rf $target_config
-            echo "Removed: $target_config"
-        else
-            echo "Not found: $target_config"
-        fi
-    done
-}
-
-stow() {
-    create_target_dir
-    stow_dotfiles
-    stow_shortcuts
-    stow_hyprland
-}
-
 unstow() {
-    unstow_dotfiles
-    unstow_shortcuts
-    unstow_hyprland
+    unstow_shell
+    delete_symlinks $dotfiles_dir ~/.config
+    delete_symlinks $shortcuts_dir ~/.local/share/applications
+    delete_symlinks $hyprland_dir ~/.config
 
-    echo "All configs ustowed successfully !"
+    log "All configs ustowed successfully !"
 }
 
 while getopts ":suh" opt; do
