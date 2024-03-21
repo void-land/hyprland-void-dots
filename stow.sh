@@ -1,7 +1,10 @@
 #!/bin/bash
 
 configs_dir="$(pwd)/configs"
-shortcuts_dir="$(pwd)/configs/shortcuts"
+dotfiles_dir="$configs_dir/dotfiles"
+shell_dir="$configs_dir/shell"
+shortcuts_dir="$configs_dir/shortcuts"
+hyprland_dir="$configs_dir/hyprland"
 
 display_help() {
     echo "Usage: [-s | -u] [-h]"
@@ -50,14 +53,14 @@ unstow_shortcuts() {
 }
 
 stow_dotfiles() {
-    create_symlinks $configs_dir/dotfiles ~/.config
-    create_symlinks $configs_dir/sh ~/
+    create_symlinks $dotfiles_dir ~/.config
+    create_symlinks $shell_dir ~/
 
     echo "Dotfiles stowed successfully!"
 }
 
 unstow_dotfiles() {
-    for folder in $configs_dir/dotfiles/*; do
+    for folder in $dotfiles_dir/*; do
         local folder_name=$(basename $folder)
         local target_folder=~/.config/$folder_name
 
@@ -69,7 +72,7 @@ unstow_dotfiles() {
         fi
     done
 
-    for config in $configs_dir/sh/.*; do
+    for config in $shell_dir/.*; do
         if [ -f $config ]; then
             local file_name=$(basename $config)
             local target_file=~/$file_name
@@ -96,13 +99,13 @@ unstow_dotfiles() {
 }
 
 stow_hyprland() {
-    create_symlinks $configs_dir/hyprland ~/.config
+    create_symlinks $hyprland_dir ~/.config
 
     echo "Hyprland stowed successfully!"
 }
 
 unstow_hyprland() {
-    for config in $configs_dir/hyprland/*; do
+    for config in $hyprland_dir/*; do
         config_name=$(basename $config)
         target_config=~/.config/$config_name
 
@@ -115,20 +118,28 @@ unstow_hyprland() {
     done
 }
 
+stow() {
+    create_target_dir
+    stow_dotfiles
+    stow_shortcuts
+    stow_hyprland
+}
+
+unstow() {
+    unstow_dotfiles
+    unstow_shortcuts
+    unstow_hyprland
+
+    echo "All configs ustowed successfully !"
+}
+
 while getopts ":suh" opt; do
     case $opt in
     s)
-        create_target_dir
-        stow_dotfiles
-        stow_shortcuts
-        stow_hyprland
+        stow
         ;;
     u)
-        unstow_dotfiles
-        unstow_shortcuts
-        unstow_hyprland
-
-        echo "All configs stowed successfully !"
+        unstow
         ;;
     *)
         display_help
