@@ -1,5 +1,6 @@
 @import "./modules/battery.css";
 @import "./modules/network.css";
+@import "./modules/taskbar.css";
 
 * {
     border: none;
@@ -34,70 +35,14 @@
     padding: 0px 6px;
 }
 
-#workspaces,
-#tray {
-    padding: 0px 10px;
-}
-
-#tray menu * {
-    all: unset;
-}
-
-#tray menu {
-    background-color: @backgrounddark;
-}
-
-#tray menu menuitem {
-    border-radius: 4px;
-    padding: 6px;
-}
-
-#tray menu separator {
-    min-height: 1px;
-    margin: 6px 0px;
-    background: @workspacesbackground2;
-}
-
-#tray menu menuitem:hover {
-    background-color: #f53c3c;
-}
-
-#workspaces * {
-    font-size: 12px;
-}
-
-#workspaces button {
-    all: unset;
-    opacity: 0.2;
-    padding: 0px 6px;
-    transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-}
-
-#workspaces button:first-child {
-    padding-left: 0px;
-}
-
-#workspaces button:last-child {
-    padding-right: 0px;
-}
-
-#workspaces button.active {
-    opacity: 1;
-}
-
-#workspaces button:hover {
-    opacity: 1;
-    background-color: @backgrounddark;
-}
-
-
 #language,
 #clock,
 #wireplumber,
 #pulseaudio,
 #cpu,
 #custom-gpu-usage,
-#battery {
+#battery,
+#backlight {
     min-width: 65px;
 }
 
@@ -107,4 +52,13 @@
 
 #wireplumber.muted {
     color: red;
+}
+
+#custom-power {
+    font-size: 18px;
+    min-width: 20px;
+}
+
+#custom-launcher {
+    font-size: 18px;
 }

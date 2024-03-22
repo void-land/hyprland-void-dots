@@ -13,24 +13,3 @@ window>box {
   padding: 5px 4px;
   background-color: @backgrounddark;
 }
-
-#taskbar button {
-  opacity: 0.2;
-}
-
-#taskbar button.active {
-  opacity: 1;
-}
-
-#backlight {
-  background-color: #90b1b1;
-}
-
-#custom-power {
-  font-size: 18px;
-  min-width: 20px;
-}
-
-#custom-launcher {
-  font-size: 18px;
-}

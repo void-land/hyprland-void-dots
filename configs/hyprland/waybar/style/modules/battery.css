@@ -1,13 +1,24 @@
 #battery.charging,
 #battery.plugged {
-    background-color: #26a65b;
+    color: #00ff00;
+    animation: pulse 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
 }
 
 #battery.critical:not(.charging) {
     background-color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation: pulse 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

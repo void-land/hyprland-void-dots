@@ -6,6 +6,8 @@
     "clock",
     "hyprland/language",
     "battery",
+    "backlight",
+    "memory",
     "cpu",
     "custom/gpu-usage",
     "pulseaudio#input",
@@ -119,22 +121,18 @@
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      // dot style :
       // "active": "",
-      // "default": ""
-      // symbolic style :
+      "default": "",
       "1": "",
       "2": "",
       "3": "",
       "4": "",
       "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": ""
+      "6": ""
     },
     "persistent-workspaces": {
-      "*": 7
+      "eDP-1": 7,
+      "HDMI-A-1": 6
     }
   },
   "keyboard-state": {
@@ -164,7 +162,7 @@
     "interval": 1
   },
   "memory": {
-    "format": "{used:0.1f} / {total:0.1f}  ",
+    "format": "{used:0.1f} / {total:0.0f}  ",
     "interval": 5
   },
   "backlight": {
