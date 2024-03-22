@@ -5,6 +5,7 @@
   "modules-center": [
     "clock",
     "hyprland/language",
+    "battery",
     "cpu",
     "custom/gpu-usage",
     "pulseaudio#input",
@@ -16,7 +17,6 @@
   ],
   "modules-right": [
     // "custom/launcher",
-    "battery",
     "network",
     "network#network-2"
   ],

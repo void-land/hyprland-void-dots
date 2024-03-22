@@ -1,0 +1,11 @@
+#network {
+    min-width: 160px;
+}
+
+#network.network-2 {
+    min-width: 170px;
+}
+
+#network.disconnected {
+    color: red;
+}
