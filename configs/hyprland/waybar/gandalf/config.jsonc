@@ -3,7 +3,6 @@
   "position": "top",
   "spacing": 5,
   "modules-center": [
-    "clock",
     "hyprland/language",
     "battery",
     "backlight",
@@ -14,6 +13,7 @@
     "pulseaudio#output"
   ],
   "modules-left": [
+    "clock",
     "hyprland/workspaces",
     "tray"
   ],

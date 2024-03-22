@@ -1,6 +1,10 @@
 @import "../../../.config/hypr-theme/waybar/global.css";
 @import "../style/main.css";
 
+* {
+  font-size: 9px;
+}
+
 window {
   border-radius: 0;
   background-color: transparent;
