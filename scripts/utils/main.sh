@@ -21,6 +21,16 @@ check() {
     fi
 }
 
+params_required() {
+    local param_name="$1"
+    local param_value="$2"
+
+    if [ -z "$param_value" ]; then
+        log "Parameter '$param_name' is required but not provided."
+        exit 1
+    fi
+}
+
 check_command() {
     if ! command -v $1 &>/dev/null; then
         log "$1 is not installed. Please install $1 to continue."
@@ -40,35 +50,9 @@ ask_prompt() {
     done
 }
 
-opt_installer() {
-    check_command unzip
-
-    local file_path="$1"
-    local filename=$(basename "$file_path")
-    local opt_dir="/opt"
-    local target_file="$opt_dir/$filename"
-
-    if [ ! -e $file_path ]; then
-        log "File $file_path not found."
-        exit 1
-    fi
-
-    if [ ! -e $target_file ]; then
-        cp $file_path "$opt_dir/$filename"
-    fi
-
-    unzip -o $target_file -d $opt_dir
-
-    if [ $? -eq 0 ]; then
-        log "File moved to $opt_dir successfully."
-    else
-        log "Failed to move file to $opt_dir."
-        return 1
-    fi
-}
-
 download_file() {
     check_command wget
+    params_required "URL" "$1"
 
     local url="$1"
     local tmp_dir="/tmp"
@@ -92,4 +76,64 @@ download_file() {
     else
         log "Failed to download file from $url"
     fi
+}
+
+extract_file() {
+    params_required "File" "$1"
+    check_command unzip
+
+    local file_path="$1"
+    local tmp_dir="/tmp"
+    local target_destination=${2:-$tmp_dir}
+
+    if [ ! -e $file_path ]; then
+        log "File $file_path not found."
+        exit 1
+    fi
+
+    unzip -o $file_path -d $target_destination
+
+    if [ $? -eq 0 ]; then
+        log "File extracted successfully: $tmp_dir/$file_path"
+    else
+        log "Failed to extract file !"
+    fi
+
+}
+
+move_to_opt() {
+    params_required "Source" "$1"
+
+    local source_path="$1"
+
+    if [ -z "$source_path" ]; then
+        log "No source path provided."
+        exit 1
+    fi
+
+    if [ ! -e "$source_path" ]; then
+        log "Source path '$source_path' does not exist."
+        return 1
+    fi
+
+    if [ ! -d "$source_path" ] && [ ! -f "$source_path" ]; then
+        log "Source path '$source_path' is neither a directory nor a file."
+        return 1
+    fi
+
+    local filename="$(basename "$source_path")"
+    local destination="/opt/$filename"
+
+    if [ -e "$destination" ]; then
+        if ask_prompt "File or directory '$destination' already exists in /opt. Do you want to cancel ?"; then
+            log "Continuing with existing file or directory: $destination"
+            exit 1
+        else
+            log "Deleting existing file or directory: $destination"
+            sudo rm -rf "$destination"
+        fi
+    else
+        sudo mv "$source_path" "$destination"
+    fi
+
 }

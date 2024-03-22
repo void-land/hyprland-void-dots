@@ -7,10 +7,8 @@ FILE_NAME="nekoray.zip"
 
 install_nekoray() {
     download_file "$DOWNLOAD_URL" "$FILE_NAME"
-
-    opt_installer "/tmp/$FILE_NAME"
+    extract_file "/tmp/$FILE_NAME"
+    move_to_opt "/tmp/nekoray"
 }
-
-check_sudo
 
 install_nekoray
