@@ -8,6 +8,11 @@ ZSH_THEME="nebirhos"
 # zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
 plugins=(zsh-syntax-highlighting zsh-autosuggestions git themes jsontools)
 
+source $ZSH/oh-my-zsh.sh
+source ~/.zsh/functions/helpers.zsh
+source ~/.zsh/functions/main.zsh
+source ~/.zsh/aliases/main.zsh
+
 if [[ "$OS" = void ]]; then
     source ~/.zsh/os/void.zsh
 elif [[ "$OS" = debian ]]; then
@@ -15,9 +20,5 @@ elif [[ "$OS" = debian ]]; then
 else
     echo "Unsupported operating system: $OS"
 fi
-
-source $ZSH/oh-my-zsh.sh
-source ~/.zsh/functions/main.zsh
-source ~/.zsh/aliases/main.zsh
 
 eval "$(atuin init zsh)"
