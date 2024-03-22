@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./utils.sh
+source ../utils/main.sh
 
 FONTS_DIR="../configs/host/ui/fonts"
 

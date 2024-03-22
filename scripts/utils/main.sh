@@ -13,3 +13,10 @@ check_sudo() {
         exit 1
     fi
 }
+
+check() {
+    if [ "$1" != 0 ]; then
+        echo "$2 error : $1" | tee -a ../hyprland_setup_log
+        exit 1
+    fi
+}

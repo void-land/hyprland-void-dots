@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./scripts/utils.sh
+source ./scripts/utils/main.sh
 
 CONFIGS_DIR="$(pwd)/configs"
 DOTFILES_DIR="$CONFIGS_DIR/dotfiles"

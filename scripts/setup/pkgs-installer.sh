@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./utils.sh
+source ../utils/main.sh
 
 UPDATE_PKGS=false
 CLEAR_CACHE=false
@@ -23,15 +23,6 @@ declare SERVICES=(
     "bluetoothd"
     "crond"
 )
-
-exec 1> >(tee "../hyprland_setup_log")
-
-check() {
-    if [ "$1" != 0 ]; then
-        echo "$2 error : $1" | tee -a ../hyprland_setup_log
-        exit 1
-    fi
-}
 
 update_system() {
     log "Update xbps package manager"
