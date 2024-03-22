@@ -6,7 +6,11 @@ DOWNLOAD_URL="https://github.com/MatsuriDayo/nekoray/releases/download/3.26/neko
 FILE_NAME="nekoray.zip"
 
 install_nekoray() {
-    download_file $DOWNLOAD_URL $FILE_NAME
+    download_file "$DOWNLOAD_URL" "$FILE_NAME"
+
+    opt_installer "/tmp/$FILE_NAME"
 }
+
+check_sudo
 
 install_nekoray

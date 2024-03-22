@@ -40,6 +40,33 @@ ask_prompt() {
     done
 }
 
+opt_installer() {
+    check_command unzip
+
+    local file_path="$1"
+    local filename=$(basename "$file_path")
+    local opt_dir="/opt"
+    local target_file="$opt_dir/$filename"
+
+    if [ ! -e $file_path ]; then
+        log "File $file_path not found."
+        exit 1
+    fi
+
+    if [ ! -e $target_file ]; then
+        cp $file_path "$opt_dir/$filename"
+    fi
+
+    unzip -o $target_file -d $opt_dir
+
+    if [ $? -eq 0 ]; then
+        log "File moved to $opt_dir successfully."
+    else
+        log "Failed to move file to $opt_dir."
+        return 1
+    fi
+}
+
 download_file() {
     check_command wget
 
@@ -50,19 +77,19 @@ download_file() {
 
     if [ -e "$file_path" ]; then
         if ask_prompt "File $file_path already exists. Do you want to continue ?"; then
-            echo "Continuing with existing file: $file_path"
-            wget -c -O "$tmp_dir/$filename" "$url"
+            log "Continuing with existing file: $file_path"
+            wget -q --show-progress -c -O "$tmp_dir/$filename" "$url"
         else
-            echo "Deleted existing file: $file_path"
-            wget -O "$tmp_dir/$filename" "$url"
+            log "Deleted existing file: $file_path"
+            wget -q --show-progress -O "$tmp_dir/$filename" "$url"
         fi
     else
-        wget -O "$tmp_dir/$filename" "$url"
+        wget -q --show-progress -O "$tmp_dir/$filename" "$url"
     fi
 
     if [ $? -eq 0 ]; then
-        echo "File downloaded successfully: $tmp_dir/$filename"
+        log "File downloaded successfully: $tmp_dir/$filename"
     else
-        echo "Failed to download file from $url"
+        log "Failed to download file from $url"
     fi
 }
