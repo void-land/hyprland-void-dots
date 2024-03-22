@@ -12,7 +12,7 @@ window {
 
 window>box {
   min-height: 30px;
-  margin: 4px;
+  margin: 6px;
   margin-bottom: 2px;
   padding: 5px 4px;
   background-color: @backgrounddark;
