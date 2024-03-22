@@ -31,7 +31,7 @@ case $WALLPAPER_DAEMON in
     exec $HOME/.config/hypr/scripts/mpvpaper-random.sh
     ;;
 *)
-    echo "Unknown value for WALLPAPER_DAEMON: $WALLPAPER_DAEMON"
+    dunstify "Unknown value for WALLPAPER_DAEMON: $WALLPAPER_DAEMON"
     exit 1
     ;;
 esac
