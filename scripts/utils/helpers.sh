@@ -10,7 +10,10 @@ create_symlinks() {
     fi
 
     for item in "$source_dir"/* "$source_dir"/.*; do
-        [ -e "$item" ] && [ "$item" != "$source_dir/." ] && [ "$item" != "$source_dir/.." ] && ln -sfn "$item" "$target_dir/"
+        if [ -e "$item" ] && [ "$item" != "$source_dir/." ] && [ "$item" != "$source_dir/.." ]; then
+            echo "$item ===> $target_dir"
+            ln -sfn "$item" "$target_dir/"
+        fi
     done
 }
 
