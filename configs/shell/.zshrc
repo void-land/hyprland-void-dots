@@ -9,7 +9,6 @@ ZSH_THEME="nebirhos"
 plugins=(zsh-syntax-highlighting zsh-autosuggestions git themes jsontools)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/functions/helpers.zsh
 source ~/.zsh/functions/main.zsh
 source ~/.zsh/aliases/main.zsh
 

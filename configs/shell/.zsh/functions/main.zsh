@@ -1,3 +1,5 @@
+source ~/.zsh/functions/helpers.zsh
+
 convert_video_to_gif() {
     local fps=60
     local input_video="$1"
@@ -9,7 +11,7 @@ convert_video_to_gif() {
 }
 
 extract() {
-    params_required "File" "$1" "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    params_required "File" "Usage: extract [path/compressed_filename]" "$1"
 
     case $1 in
     *.tar.bz2) tar xvjf $1 ;;
@@ -29,4 +31,32 @@ extract() {
     *.exe) cabextract $1 ;;
     *) echo "extract: '$1' - unknown archive method" ;;
     esac
+
+    if [ $? -eq 0 ]; then
+        echo "File extracted successfully: $1"
+    else
+        echo "Failed to extract file: $1"
+    fi
+}
+
+compress() {
+    params_required "File" "Usage: compress [compressed_filename].<tar|tar.gz|zip> <file_or_directory>" "$1"
+
+    compressed_filename="$1"
+    file_or_dir="$2"
+
+    case $compressed_filename in
+    *.tar) tar cvf "$compressed_filename" "$file_or_dir" ;;
+    *.tar.gz) tar czvf "$compressed_filename" "$file_or_dir" ;;
+    *.tar.bz2) tar cjvf "$compressed_filename" "$file_or_dir" ;;
+    *.tar.xz) tar cJvf "$compressed_filename" "$file_or_dir" ;;
+    *.zip) zip -r "$compressed_filename" "$file_or_dir" ;;
+    *) echo "compress: '$compressed_filename' - unknown compression method" ;;
+    esac
+
+    if [ $? -eq 0 ]; then
+        echo "Compression successful: $compressed_filename"
+    else
+        echo "Compression failed: $compressed_filename"
+    fi
 }
