@@ -12,6 +12,7 @@ alias vlist="xbps-query -l"
 alias vrepos="xbps-query -L"
 alias vhold="sudo xbps-pkgdb -m hold"
 alias vunhold="sudo xbps-pkgdb -m unhold"
+alias vmirror="sudo xmirror"
 alias killall="pkill -f"
 
 alias rmhyprland="vrm hyprland hyprland-protocols hyprlang xdg-desktop-portal-hyprland"

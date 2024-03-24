@@ -5,7 +5,7 @@ source ./scripts/utils/helpers.sh
 
 CONFIGS_DIR="$(pwd)/configs"
 DOTFILES_DIR="$CONFIGS_DIR/dotfiles"
-SHELL_DIR="$CONFIGS_DIR/shell"
+SHELL_DIR="$CONFIGS_DIR/shell/zsh"
 SHORTCUTS_DIR="$CONFIGS_DIR/shortcuts"
 HYPRLAND_DIR="$CONFIGS_DIR/hyprland"
 
