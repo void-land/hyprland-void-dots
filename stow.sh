@@ -29,7 +29,7 @@ stow_shortcuts() {
 
 stow_dotfiles() {
     create_symlinks $DOTFILES_DIR ~/.config
-    create_symlinks $SHELL_DIR ~/
+    create_symlinks $SHELL_DIR ~
 
     log "Dotfiles stowed successfully!"
 }
@@ -47,35 +47,8 @@ stow() {
     stow_hyprland
 }
 
-unstow_shell() {
-    for config in $SHELL_DIR/.*; do
-        if [ -f $config ]; then
-            local file_name=$(basename $config)
-            local target_file=~/$file_name
-
-            if [ -e $target_file ]; then
-                rm $target_file
-                echo "Removed: $target_file"
-            else
-                echo "Not found: $target_file"
-            fi
-
-        elif [ -d "$config" ]; then
-            local folder_name=$(basename $config)
-            local target_folder=~/$folder_name
-
-            if [ -e $target_folder ]; then
-                rm -rf $target_folder
-                echo "Removed: $target_folder"
-            else
-                echo "Not found: $target_folder"
-            fi
-        fi
-    done
-}
-
 unstow() {
-    unstow_shell
+    delete_symlinks $SHELL_DIR ~
     delete_symlinks $DOTFILES_DIR ~/.config
     delete_symlinks $SHORTCUTS_DIR ~/.local/share/applications
     delete_symlinks $HYPRLAND_DIR ~/.config

@@ -23,11 +23,11 @@ delete_symlinks() {
         return 1
     fi
 
-    for config in $source_dir/*; do
+    for config in "$source_dir"/* "$source_dir"/.*; do
         config_name=$(basename $config)
-        target_config=$target_dir/$config_name
+        target_config="$target_dir/$config_name"
 
-        if [ -e $target_config ]; then
+        if [ -e "$target_config" ]; then
             rm -rf $target_config
             echo "Removed: $target_config"
         else
