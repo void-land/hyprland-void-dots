@@ -20,9 +20,8 @@ run_steamos() {
     local WIDTH=1920
     local HEIGHT=1080
     local REFRESH_RATE=75
-    local HUD=1
 
-    MAGOHUD=$HUD STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W $WIDTH -H $HEIGHT -r $REFRESH_RATE -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck
+    MAGOHUD=1 STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W $WIDTH -H $HEIGHT -r $REFRESH_RATE -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck
 }
 
 run_services
