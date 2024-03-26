@@ -31,7 +31,7 @@ alias svstatus="sudo sv status"
 alias svon="sudo sv up"
 alias svoff="sudo sv down"
 
-svadd() {
+svenable() {
     if [ -z "$1" ]; then
         echo "Error: Please provide the path of the service to add"
         return 1
@@ -39,7 +39,7 @@ svadd() {
     sudo ln -s $1 /var/service
 }
 
-svremove() {
+svdisable() {
     if [ -z "$1" ]; then
         echo "Error: Please provide the name of the service to remove"
         return 1
