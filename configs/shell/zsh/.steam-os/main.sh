@@ -21,7 +21,7 @@ run_steamos() {
     local HEIGHT=1080
     local REFRESH_RATE=75
 
-    MAGOHUD=1 STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W $WIDTH -H $HEIGHT -r $REFRESH_RATE -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck
+    MANGOHUD=1 STEAM_MULTIPLE_XWAYLANDS=1 gamescope -W $WIDTH -H $HEIGHT -r $REFRESH_RATE -e --xwayland-count 2 --adaptive-sync -- steam -gamepadui -steamdeck
 }
 
 run_services
