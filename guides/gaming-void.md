@@ -37,19 +37,20 @@ Modify the game's launch options on Steam to use the created script. Right-click
   - ```mangohud %command%```
 
 - Enable GameScope :
-  - with fsr : ```gamescope -e -f -F fsr -- %command%```
-  - with gamemode and manoghud : ```MANGOHUD=1 gamescope -e -f -F fsr -- gamemoderun %command%```
+  - run fullscreen : ```gamescope -f -- %command%```
+  - with fsr : ```gamescope -F fsr | nis -- %command%```
+  - with gamemode and manoghud : ```MANGOHUD=1 gamescope -- gamemoderun %command%```
 
   - downscale resolution :
-    - ```gamescope -e -f -F fsr -w 1980 -h 1080 -W 1600 -H 900 -- %command%```
-    - ```gamescope -e -f -F fsr -w 3440 -h 1440 -W 1600 -H 900 -- %command%```
+    - ```gamescope fsr -w 1980 -h 1080 -W 1600 -H 900 -- %command%```
+    - ```gamescope fsr -w 3440 -h 1440 -W 1600 -H 900 -- %command%```
 
-  - upscale resolution : ```gamescope -e -f -F fsr -w 1280 -h 720 -W 1600 -H 900 -S integer -- %command%```
+  - upscale resolution : ```gamescope -w 1280 -h 720 -W 1600 -H 900 -S integer -- %command%```
 
-  - fps cap : ```gamescope -e -f -F fsr -r 30 -- %command%```
+  - fps cap : ```gamescope -r 30 -- %command%```
 
 ## Example command
 
 ```bash
-MANGOHUD=1 gamescope -s 0.6 -e -f -F fsr -r 75 -- gamemoderun %command%
+MANGOHUD=1 gamescope -r 75 -s 0.4 -e -F fsr -- gamemoderun %command%
 ```
