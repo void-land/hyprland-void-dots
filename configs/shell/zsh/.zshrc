@@ -1,8 +1,5 @@
 # shell to zsh : chsh -s $(which zsh)
 
-source ~/.zshlogin
-source ~/.zshenv
-
 ZSH_THEME="nebirhos"
 # zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 # zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md

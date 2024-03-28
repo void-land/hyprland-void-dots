@@ -1,4 +1,4 @@
-source ~/.zsh/functions/helpers.zsh
+source ~/.zsh/functions/helpers/validate.zsh
 
 convert_video_to_gif() {
     local fps=60
