@@ -1,7 +1,3 @@
-#!/bin/bash
-
-source ~/.scripts/utils/main.sh
-
 list_wifi_networks() {
     echo "Available Wi-Fi Networks:"
     nmcli dev wifi list
@@ -17,10 +13,5 @@ connect_to_wifi() {
     sudo nmcli dev wifi connect "$ssid" password "$password"
 }
 
-list_wifi_networks
-
-if ask_prompt "Do you want to connect to a Wi-Fi network ?"; then
-    connect_to_wifi
-else
-    echo "No network connection requested. Exiting."
-fi
+alias wlist="list_wifi_networks"
+alias wconnect="connect_to_wifi"

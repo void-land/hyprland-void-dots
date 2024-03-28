@@ -1,5 +1,6 @@
 source ~/.zsh/aliases/dir.zsh
 source ~/.zsh/aliases/git.zsh
+source ~/.zsh/aliases/nmcli.zsh
 
 alias fclean="flatpak uninstall --unused --delete-data"
 alias fdir="cd $HOME/.var/app && ls"
