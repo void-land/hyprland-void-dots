@@ -52,5 +52,5 @@ Modify the game's launch options on Steam to use the created script. Right-click
 ## Example command
 
 ```bash
-MANGOHUD=1 gamescope -r 75 -s 0.4 -e -F fsr -- gamemoderun %command%
+MANGOHUD=1 gamescope -W 1980 -H 1080 -r 75 -s 0.4 -f -F fsr -- gamemoderun %command%
 ```
