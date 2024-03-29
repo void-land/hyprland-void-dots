@@ -10,6 +10,24 @@ convert_video_to_gif() {
     echo "GIF created: $output_filename"
 }
 
+set_timezone() {
+    local timezone=""
+    local timezones_path="/usr/share/zoneinfo"
+
+    echo "Select a timezone:"
+    select tz_option in $timezones_path/*; do
+        if [[ -e $tz_option ]]; then
+            timezone="${tz_option##*/}"
+            break
+        else
+            echo "Invalid option. Please select a valid timezone."
+        fi
+    done
+
+    sudo ln -sf "$tz_option" "/etc/localtime"
+    echo "Timezone set to $timezone"
+}
+
 extract() {
     params_required "File" "Usage: extract [path/compressed_filename]" "$1"
 
