@@ -6,7 +6,7 @@ alias fclean="flatpak uninstall --unused --delete-data"
 alias fdir="cd $HOME/.var/app && ls"
 
 alias grub-path="cd /etc/default"
-
+alias findbin="whereis"
 alias pmx="chmod +x"
 alias pmr="chmod -x"
 alias steam="steam -forcedesktopscaling=1"
