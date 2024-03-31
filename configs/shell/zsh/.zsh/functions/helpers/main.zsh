@@ -1,3 +1,10 @@
+log() {
+    local timestamp=$(date +"%T")
+    local message="======> $1 : $timestamp"
+
+    echo -e "\n$message\n"
+}
+
 params_required() {
     local param_name="$1"
     local error_message="$2"
@@ -27,6 +34,13 @@ validate_params() {
 
     if [ ${#missing_params[@]} -gt 0 ]; then
         echo "$error_message Missing parameters: ${missing_params[*]}" >&2
+        exit 1
+    fi
+}
+
+check_command() {
+    if ! command -v $1 &>/dev/null; then
+        log "Command $1 is not installed. Please install $1 to continue."
         exit 1
     fi
 }
