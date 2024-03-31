@@ -1,4 +1,4 @@
-alias void-packages="cd $VOID_PACKAGES_PATH"
+alias void-pkgs="cd $VOID_PACKAGES_PATH"
 alias vshutdown="sudo shutdown -h now"
 alias vreboot="sudo reboot"
 alias vrepos="xbps-query -L"
@@ -14,15 +14,6 @@ alias vhold="sudo xbps-pkgdb -m hold"
 alias vunhold="sudo xbps-pkgdb -m unhold"
 alias vmirror="sudo xmirror"
 alias killall="pkill -f"
-
-alias rmhyprland="vrm hyprland hyprland-protocols hyprlang xdg-desktop-portal-hyprland"
-installhyprland() {
-    if [ -z "$1" ]; then
-        echo "Error: Please provide the path of packages"
-        return 1
-    fi
-    sudo xbps-install -R $1 hyprland hyprland-protocols hyprlang xdg-desktop-portal-hyprland
-}
 
 alias svservices="ls /etc/sv/"
 alias svlist="ls -la /var/service/"
@@ -45,4 +36,14 @@ svdisable() {
         return 1
     fi
     sudo rm -rf "/var/service/$1"
+}
+
+alias rmhyprland="vrm hyprland hyprland-protocols hyprlang xdg-desktop-portal-hyprland"
+
+installhyprland() {
+    if [ -z "$1" ]; then
+        echo "Error: Please provide the path of packages"
+        return 1
+    fi
+    sudo xbps-install -R $1 hyprland hyprland-protocols hyprlang xdg-desktop-portal-hyprland
 }

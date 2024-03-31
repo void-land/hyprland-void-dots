@@ -1,7 +1,3 @@
-source ~/.zsh/aliases/helpers/dir.zsh
-source ~/.zsh/aliases/helpers/git.zsh
-source ~/.zsh/aliases/helpers/nmcli.zsh
-
 alias alist="alias"
 
 alias fclean="flatpak uninstall --unused --delete-data"
