@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/scripts/env.sh
+source ~/.config/scripts/env.sh
 
 if [[ ! -d "$WAYBAR_DIR" ]]; then
     echo "Error: Configuration directory or files missing!"

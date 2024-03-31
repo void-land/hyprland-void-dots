@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/scripts/env.sh
+source ~/.config/scripts/env.sh
 
 if [ -z "$WALLPAPER_DAEMON" ]; then
     echo "WALLPAPER_DAEMON is not set in the environment."

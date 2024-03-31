@@ -13,3 +13,10 @@ export WALLPAPERS_DIR="$HOME/Wallpapers"
 export LIVE_WALLPAPERS_DIR="$HOME/Wallpapers/Live"
 export SWWW_FPS=144
 export SWWW_DURATION=2
+
+# rofi launcher :
+export LAUNCHER_TYPE="2"
+export CLIPBOARD_TYPE="1"
+export WALLPAPER_TYPE="1"
+export POWERMENU_TYPE="2"
+export ROFI_DIR="$HOME/.config/rofi"

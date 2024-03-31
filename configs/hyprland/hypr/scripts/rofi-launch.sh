@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-export launcher_type="2"
-export clipboard_type="1"
-export wallpaper_type="1"
-export powermenu_type="2"
-export rofi_dir="$HOME/.config/rofi"
+source ~/.config/scripts/env.sh
 
 pkill rofi
 
 case $1 in
-d) exec $rofi_dir/launchers/type-$launcher_type/launcher.sh ;;
-c) exec $rofi_dir/clipboard/type-$clipboard_type/clipboard.sh ;;
-w) exec $rofi_dir/wallpaper/type-$wallpaper_type/wallpaper.sh ;;
-p) exec $rofi_dir/applets/bin/powermenu.sh ;;
-s) exec $rofi_dir/applets/bin/screenshot.sh ;;
+d) exec $ROFI_DIR/launchers/type-$LAUNCHER_TYPE/launcher.sh ;;
+c) exec $ROFI_DIR/clipboard/type-$CLIPBOARD_TYPE/clipboard.sh ;;
+w) exec $ROFI_DIR/wallpaper/type-$WALLPAPER_TYPE/wallpaper.sh ;;
+p) exec $ROFI_DIR/applets/bin/powermenu.sh ;;
+s) exec $ROFI_DIR/applets/bin/screenshot.sh ;;
 h)
     echo -e "rofilaunch.sh [action]\nwhere action,"
     echo "d : drun mode"

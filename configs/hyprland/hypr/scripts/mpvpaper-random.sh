@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $HOME/.config/scripts/env.sh
+source ~/.config/scripts/env.sh
 
 files=($(find "${LIVE_WALLPAPERS_DIR}" -type f))
 
