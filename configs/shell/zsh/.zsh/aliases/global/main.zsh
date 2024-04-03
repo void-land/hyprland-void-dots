@@ -1,6 +1,6 @@
 alias alist="alias"
 
-alias fetch="noefetch"
+alias fetch="neofetch"
 
 alias wget-scrape="wget -m -k -K -E"
 
