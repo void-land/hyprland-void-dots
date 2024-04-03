@@ -19,13 +19,13 @@ dynamic_title = true
 blur = true
 opacity = 0.8
 dimensions = { columns = 90, lines = 30 }
-padding = { x = 12, y = 12 }
+padding = { x = 6, y = 6 }
 startup_mode = "Windowed"
 decorations = "full"
 # dynamic_padding = true
 
 [cursor]
-style = { blinking = "Always", shape = "Block" }
+style = { blinking = "Always", shape = "Beam" }
 thickness = 0.8
 
 [scrolling]

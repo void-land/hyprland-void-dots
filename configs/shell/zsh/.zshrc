@@ -10,4 +10,4 @@ source ~/.zsh/functions/main.zsh
 source ~/.zsh/aliases/export.zsh
 source ~/.zsh/os/export.zsh
 
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
