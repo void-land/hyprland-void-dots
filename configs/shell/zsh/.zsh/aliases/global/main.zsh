@@ -1,5 +1,7 @@
 alias alist="alias"
 
+alias fetch="noefetch"
+
 alias wget-scrape="wget -m -k -K -E"
 
 alias grub-path="cd /etc/default"
