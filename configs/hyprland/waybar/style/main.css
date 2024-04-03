@@ -31,8 +31,8 @@
 #workspaces,
 #tray {
     background-color: @backgrounddark;
-    border: #272727 1px solid;
     padding: 0px 6px;
+    /* border: #272727 1px solid; */
 }
 
 #language,
