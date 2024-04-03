@@ -12,7 +12,7 @@ declare -A PACKAGES=(
     ["DEVEL_PACKAGES"]="base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
     ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi"
     ["HYPRLAND_PACKAGES"]="Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils qt5-x11extras qt5-wayland qt6-wayland"
-    ["SYSTEM_APPS"]="alacritty octoxbps blueman wifish wpa_gui"
+    ["SYSTEM_APPS"]="alacritty octoxbps blueman wifish wpa_gui glow"
 )
 
 declare SERVICES=(
