@@ -7,7 +7,7 @@ export NEKORAY_PATH=/opt/nekoray/nekoray
 export CODE_PATH=/opt/vscode/code
 export DOTFILES=$HOME/.dots-hyprland
 export VOID_PACKAGES_PATH=$HOME/.local/pkgs/void-packages
-export DNS_CHANGER=$HOME/.scripts/dns-changer.sh
+export DNS_CHANGER=$HOME/.scripts/dns-changer/main.sh
 export STEAM_OS=$HOME/.steam-os/main.sh
 
 if [ -d "/home/$USER/platform-tools" ]; then
