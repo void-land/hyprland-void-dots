@@ -1,5 +1,7 @@
 alias alist="alias"
 
+alias wget-scrape="wget -m -k -K -E"
+
 alias grub-path="cd /etc/default"
 alias findbin="whereis"
 alias pmx="chmod +x"
