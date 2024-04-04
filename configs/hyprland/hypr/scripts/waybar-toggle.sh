@@ -7,7 +7,7 @@ WAYBAR_PID=$(pgrep -x waybar)
 if [ -n "$WAYBAR_PID" ]; then
     pkill waybar
 elif [ $WAYBAR_DEV_MODE = true ]; then
-    GTK_DEBUG=interactive exec $WAYBAR_LAUNCHER
+    GTK_DEBUG=interactive exec $WATCHER -a "$WAYBAR_LAUNCHER" -d "$WAYBAR_DIR" -p "waybar"
 else
-    exec $WAYBAR_LAUNCHER
+    exec $WATCHER -a "$WAYBAR_LAUNCHER" -d "$WAYBAR_DIR" -p "waybar"
 fi

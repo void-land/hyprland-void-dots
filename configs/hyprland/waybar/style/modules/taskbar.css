@@ -21,6 +21,10 @@
     background-color: #f53c3c;
 }
 
+#workspaces {
+    font-size: 10px;
+}
+
 #workspaces * {
     font-size: 10px;
 }

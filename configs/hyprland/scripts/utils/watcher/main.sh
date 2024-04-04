@@ -26,7 +26,6 @@ fi
 start_application() {
     echo "Starting $process_name..."
     pkill $process_name
-    sleep 1
     exec $app_name
 }
 
@@ -34,7 +33,6 @@ restart_application() {
     if pgrep -x "$process_name" >/dev/null; then
         echo "Restarting $process_name..."
         pkill $process_name
-        sleep 1
         $app_name &
     else
         echo "$app_name is not currently running."

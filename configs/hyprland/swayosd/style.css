@@ -1,8 +1,8 @@
 window#osd {
     padding: 12px 20px;
-    border-radius: 120px;
+    border-radius: 12px;
     border: none;
-    background: alpha(@theme_bg_color, 0.8);
+    background: alpha(@theme_bg_color, 1);
 }
 
 window#osd #container {
