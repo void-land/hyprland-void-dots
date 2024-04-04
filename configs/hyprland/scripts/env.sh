@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# utils shell :
+export WATCHER="$HOME/.config/scripts/utils/watcher/main.sh"
+
 # waybar env :
 export WAYBAR_DEV_MODE=false
 export WAYBAR_THEME="river"
 export WAYBAR_DIR="$HOME/.config/waybar/$WAYBAR_THEME"
 export WAYBAR_LAUNCHER="waybar -c $WAYBAR_DIR/config.jsonc -s $WAYBAR_DIR/style.css"
-export WAYBAR_INOTIFY_EVENTS="-e close_write,move,create"
 
 # wallpaper configs - swaybg, swww, mpvpaper :
 export WALLPAPER_DAEMON="swaybg"
