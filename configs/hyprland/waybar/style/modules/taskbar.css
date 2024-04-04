@@ -21,12 +21,17 @@
     background-color: #f53c3c;
 }
 
+#tray {
+    min-width: 20px;
+}
+
 #workspaces {
-    font-size: 10px;
+    background-color: @backgrounddark;
+    padding: 0px 10px;
 }
 
 #workspaces * {
-    font-size: 10px;
+    font-size: 0.8rem;
 }
 
 #workspaces button {
@@ -51,12 +56,4 @@
 #workspaces button:hover {
     opacity: 1;
     background-color: @backgrounddark;
-}
-
-#taskbar button {
-    opacity: 0.2;
-}
-
-#taskbar button.active {
-    opacity: 1;
 }
