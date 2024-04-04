@@ -12,7 +12,7 @@ case $WALLPAPER_DAEMON in
     pkill -f swww-daemon
     pkill -f mpvpaper
 
-    exec $HOME/.config/hypr/scripts/swaybg-random.sh
+    exec ~/.config/hypr/scripts/wallpaper/swaybg-random.sh
     ;;
 "swww")
     pkill -f swaybg
@@ -22,13 +22,13 @@ case $WALLPAPER_DAEMON in
         swww init
     fi
 
-    exec $HOME/.config/hypr/scripts/swww-random.sh
+    exec ~/.config/hypr/scripts/wallpaper/swww-random.sh
     ;;
 "mpvpaper")
     pkill -f swaybg
     pkill -f swww-daemon
 
-    exec $HOME/.config/hypr/scripts/mpvpaper-random.sh
+    exec ~/.config/hypr/scripts/wallpaper/mpvpaper-random.sh
     ;;
 *)
     dunstify "Unknown value for WALLPAPER_DAEMON: $WALLPAPER_DAEMON"
