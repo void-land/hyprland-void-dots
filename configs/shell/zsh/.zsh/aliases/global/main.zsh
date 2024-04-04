@@ -3,6 +3,7 @@ alias alist="alias"
 alias fetch="neofetch"
 
 alias wget-scrape="wget -m -k -K -E"
+alias pcp="pwd | wl-copy && echo 'Path : $(pwd) copied to clipboard !'"
 
 alias grub-path="cd /etc/default"
 alias findbin="whereis"
