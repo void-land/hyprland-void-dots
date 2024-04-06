@@ -1,3 +1,21 @@
+wget_speed() {
+    check_command wget
+
+    log "Wget Speedtest"
+
+    wget -q --show-progress --progress=bar -O /dev/null $SPEEDTEST_DOWNLOAD_URL
+}
+
+curl_speed() {
+    check_command curl
+
+    log "Curl Speedtest"
+
+    curl $SPEEDTEST_DOWNLOAD_URL >/dev/null
+}
+
+alias wp="wget_speed"
+
 list_wifi_networks() {
     echo "Available Wi-Fi Networks:"
     nmcli dev wifi list

@@ -1,6 +1,6 @@
 export $(dbus-launch)
 export ZELLIJ_START=false
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 export OS_ID="$(grep -i -w 'ID=' /etc/os-release | awk -F= '{print $2}')"
 export OS="$(grep -i -w "ID=" /etc/os-release | grep -oP '(?<=")[^"]*')"
 export NEKORAY_PATH=/opt/nekoray/nekoray
@@ -9,6 +9,7 @@ export DOTFILES=$HOME/.dots-hyprland
 export VOID_PACKAGES_PATH=$HOME/.local/pkgs/void-packages
 export DNS_CHANGER=$HOME/.scripts/dns-changer/main.sh
 export STEAM_OS=$HOME/.steam-os/main.sh
+export SPEEDTEST_DOWNLOAD_URL="http://185.239.106.174/assets/12mb.png"
 
 if [ -d "/home/$USER/platform-tools" ]; then
     export PATH="$HOME/platform-tools:$PATH"
