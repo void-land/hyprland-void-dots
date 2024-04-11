@@ -1,0 +1,228 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 5,
+  "modules-center": [
+    "hyprland/language",
+    "clock",
+    "cpu",
+    "memory",
+    "custom/gpu-usage",
+    "pulseaudio#input",
+    "pulseaudio#output"
+  ],
+  "modules-left": [
+    "hyprland/workspaces",
+    "tray"
+  ],
+  "modules-right": [
+    "battery",
+    "network",
+    "network#network-2"
+  ],
+  "wireplumber": {
+    "scroll-step": 5,
+    "format": "{volume}%  {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "helvum",
+    "max-volume": 150,
+    "tooltip": false
+  },
+  "pulseaudio#output": {
+    "format": "{volume}%  {icon}",
+    "format-bluetooth": "{volume}%  ",
+    "format-muted": "  0%",
+    "format-source": "",
+    "format-icons": {
+      "headset": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "max-volume": 150,
+    "scroll-step": 5,
+    "on-click": "pavucontrol"
+  },
+  "pulseaudio#input": {
+    "format-source": "{volume}%  ",
+    "format-source-muted": "0%  ",
+    "format": "{format_source}",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%"
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "English"
+  },
+  "wlr/taskbar": {
+    "all-outputs": false,
+    "active-first": false,
+    "format": "{icon}",
+    "icon-size": 20,
+    "spacing": 1,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "tooltip": false
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M}  "
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 8
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      // dot style :
+      // "active": "",
+      // "default": ""
+      // symbolic style :
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": ""
+    },
+    "persistent-workspaces": {
+      "*": 7
+    }
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": " {name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "{usage}%  "
+  },
+  "custom/gpu-usage": {
+    "exec": "~/.config/waybar/scripts/gpu-usage.sh",
+    "format": "{}%  ",
+    "tooltip": false,
+    "interval": 1
+  },
+  "memory": {
+    "format": "{used:0.1f} / {total:0.0f}  ",
+    "interval": 5
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "",
+      ""
+    ]
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "",
+    // "format-full": "",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "network": {
+    "format-wifi": "  : {ipaddr}",
+    "format-ethernet": "  : {ipaddr}",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-alt": "network : {ifname}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "  :  0.0.0.0",
+    "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
+    "tooltip": false
+  },
+  "network#network-2": {
+    "format-wifi": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
+    "format-ethernet": " : {bandwidthDownBytes}    : {bandwidthUpBytes}",
+    "format-linked": "(No IP) ",
+    "format-disconnected": " : N/A    : N/A",
+    "on-click-right": "~/.config/hypr/scripts/nmtui-launch.sh",
+    "tooltip": false,
+    "interval": 1
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "~/.config/hypr/scripts/rofi-launch.sh d",
+    "on-click-right": "pkill rofi"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "~/.config/hypr/scripts/rofi-launch.sh p",
+    "on-click-right": "pkill rofi"
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../../.config/hypr-theme/waybar/global.css";
+@import "../style/main.css";
+
+* {
+  font-size: 12px;
+}
+
+window {
+  background-color: transparent;
+}
+
+window>box {
+  min-height: 36px;
+  padding: 6px;
+  padding-bottom: 2px;
+}
