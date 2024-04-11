@@ -2,7 +2,7 @@
 @import "../style/main.css";
 
 * {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 window {
@@ -10,7 +10,7 @@ window {
 }
 
 window>box {
-  min-height: 36px;
+  min-height: 32px;
   padding: 6px;
   padding-bottom: 2px;
 }
