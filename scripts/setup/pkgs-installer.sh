@@ -8,6 +8,7 @@ DISABLE_GRUB_MENU=false
 
 declare -A PACKAGES=(
     ["VOID_REPOS"]="void-repo-multilib void-repo-nonfree"
+    ["CONTAINER_PACKAGES"]="podman podman-compose catatonit"
     ["BASE_PACKAGES"]="v4l2loopback bind-utils zellij bat dust aria2 fzf neofetch bat zsh fish-shell brightnessctl bluez cronie git stow eza dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome pipewire wireplumber inotify-tools xorg gnome-keyring polkit-gnome mtpfs ffmpeg libnotify"
     ["DEVEL_PACKAGES"]="gtk+3-devel gtk-layer-shell-devel base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
     ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi"
