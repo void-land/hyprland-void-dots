@@ -1,0 +1,3 @@
+[submodule "linux-configs"]
+path = linux-configs
+url = https://github.com/Void-Land/void-dots.git
