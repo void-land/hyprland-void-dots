@@ -5,7 +5,7 @@ source ./.scripts/utils/helpers.sh
 
 DOTS_CONFIG_DIR="$(pwd)/linux-configs"
 DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
-SHELL_DIR="$DOTS_CONFIG_DIR/shell/zsh"
+SHELL_DIR="$DOTS_CONFIG_DIR/shells/zsh"
 UTILS_DIR="$DOTS_CONFIG_DIR/utils"
 
 HYPRLAND_ROOT="$(pwd)/hypr-configs"
@@ -28,6 +28,8 @@ stow() {
     create_target_dir
 
     create_symlinks $SHELL_DIR ~
+    log "Shell stowed successfully!"
+
     create_symlinks $DOTFILES_DIR ~/.config
     log "Dotfiles stowed successfully!"
 
