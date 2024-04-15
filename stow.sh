@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source ./scripts/utils/main.sh
-source ./scripts/utils/helpers.sh
+source ./.scripts/utils/main.sh
+source ./.scripts/utils/helpers.sh
 
 CONFIGS_DIR="$(pwd)/configs"
 DOTFILES_DIR="$CONFIGS_DIR/dotfiles"
