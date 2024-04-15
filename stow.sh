@@ -3,12 +3,14 @@
 source ./.scripts/utils/main.sh
 source ./.scripts/utils/helpers.sh
 
-CONFIGS_DIR="$(pwd)/configs"
-DOTFILES_DIR="$CONFIGS_DIR/dotfiles"
-SHELL_DIR="$CONFIGS_DIR/shell/zsh"
-UTILS_DIR="$CONFIGS_DIR/utils"
-HYPRLAND_DIR="$CONFIGS_DIR/hyprland"
-SHORTCUTS_DIR="$CONFIGS_DIR/shortcuts"
+DOTS_CONFIG_DIR="$(pwd)/linux-configs"
+DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
+SHELL_DIR="$DOTS_CONFIG_DIR/shell/zsh"
+UTILS_DIR="$DOTS_CONFIG_DIR/utils"
+
+HYPRLAND_ROOT="$(pwd)/hypr-configs"
+HYPRLAND_DIR="$HYPRLAND_ROOT/hyprland"
+SHORTCUTS_DIR="$HYPRLAND_ROOT/shortcuts"
 
 display_help() {
     echo "Usage: [-s | -u] [-h]"

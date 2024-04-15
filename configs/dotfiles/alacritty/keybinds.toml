@@ -1,5 +1,0 @@
-[keyboard]
-bindings = [
-    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-    { key = "0", mods = "Control|Shift", action = "ResetFontSize" },
-]
