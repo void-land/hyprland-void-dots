@@ -8,16 +8,33 @@
 # by Stephan Raabe (2023)
 # -----------------------------------------------------
 
+[urgency_low]
+    background = "#171717"
+    foreground = "#888888"
+    timeout = 6
+
+[urgency_normal]
+    background = "#171717"
+    foreground = "#ffffff"
+    timeout = 6
+
+[urgency_critical]
+    background = "#171717"
+    foreground = "#ffffff"
+    frame_color = "#ffffff"
+    timeout = 6
+
+
 [global]
     # monitor = 0
     # force_xwayland = true
-    # layer = top
+    layer = top
     follow = keyboard
-    width = 350
+    width = 320
     height = (0,300)
     origin = bottom-right
     offset = 15x15
-    transparency = 5
+    transparency = 0
     corner_radius = 10
     scale = 1
     notification_limit = 20
@@ -127,24 +144,6 @@
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
-
-[urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#000000"
-    foreground = "#888888"
-    timeout = 6
-
-[urgency_normal]
-    background = "#00000070"
-    foreground = "#ffffff"
-    timeout = 6
-
-[urgency_critical]
-    background = "#000000"
-    foreground = "#ffffff"
-    frame_color = "#ffffff"
-    timeout = 6
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
