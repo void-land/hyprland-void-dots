@@ -8,18 +8,12 @@
     "cpu",
     "memory",
     "custom/gpu-usage",
+    "backlight",
     "pulseaudio#input",
     "pulseaudio#output"
   ],
-  "modules-left": [
-    "hyprland/workspaces",
-    "tray"
-  ],
-  "modules-right": [
-    "battery",
-    "network",
-    "network#network-2"
-  ],
+  "modules-left": ["hyprland/workspaces", "tray"],
+  "modules-right": ["battery", "network", "network#network-2"],
   "wireplumber": {
     "scroll-step": 5,
     "format": "{volume}%  {icon}",
@@ -29,11 +23,7 @@
     "format-source": "",
     "format-source-muted": "",
     "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""]
     },
     "on-click": "helvum",
     "max-volume": 150,
@@ -46,11 +36,7 @@
     "format-source": "",
     "format-icons": {
       "headset": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""]
     },
     "max-volume": 150,
     "scroll-step": 5,
@@ -97,11 +83,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""]
     },
     "on-click": "pavucontrol"
   },
@@ -171,10 +153,7 @@
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
-    "format-icons": [
-      "",
-      ""
-    ]
+    "format-icons": ["", ""]
   },
   "battery": {
     "states": {
@@ -188,13 +167,7 @@
     "format-alt": "{time} {icon}",
     // "format-good": "",
     // "format-full": "",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format-icons": ["", "", "", "", ""]
   },
   "network": {
     "format-wifi": "  : {ipaddr}",
