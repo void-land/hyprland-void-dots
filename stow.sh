@@ -53,7 +53,7 @@ unstow() {
     log "All configs ustowed successfully !"
 }
 
-while getopts ":suh" opt; do
+while getopts "ps" opt; do
     case $opt in
     s)
         stow
@@ -61,8 +61,13 @@ while getopts ":suh" opt; do
     u)
         unstow
         ;;
-    *)
+    \?)
         display_help
+        exit 1
         ;;
     esac
 done
+
+if [[ $# -eq 0 ]]; then
+    display_help
+fi
