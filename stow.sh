@@ -61,6 +61,10 @@ while getopts "ps" opt; do
     u)
         unstow
         ;;
+    h)
+        display_help
+        exit 0
+        ;;
     \?)
         display_help
         exit 1
