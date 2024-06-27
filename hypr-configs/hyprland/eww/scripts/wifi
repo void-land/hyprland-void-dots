@@ -1,0 +1,35 @@
+#!/bin/bash
+
+status=$(nmcli g | grep -oE "disconnected")
+essid=$(nmcli c | grep wlp0s20f3 | awk '{print ($1)}')
+strength=$(awk 'NR==3 {printf("%.0f\n",$3*10/7)}' /proc/net/wireless)
+
+if [ $status ] ; then
+    icon="󰤭"
+    text=""
+    col="#f38ba8"
+
+else
+    if [ $strength -le 25 ]; then 
+        icon="󰤟"
+    elif [ $strength -le 50 ]; then 
+        icon="󰤢"
+    elif [ $strength -le 75 ]; then 
+        icon="󰤥"
+    else
+        icon="󰤨"
+    fi
+
+    text="${essid}"
+    col="#b4befe"
+fi
+
+
+
+if [[ "$1" == "--COL" ]]; then
+    echo $col	
+elif [[ "$1" == "--ESSID" ]]; then
+	echo $text
+elif [[ "$1" == "--ICON" ]]; then
+	echo $icon
+fi

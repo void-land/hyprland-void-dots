@@ -1,257 +1,330 @@
-(defwidget bar []
-  (box :class "bar-widget" :orientation "v" :space-evenly true :halign "center"
-    (start)
-    (center)
-    (apps)
-    (and)
+
+(defwindow bar 
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "42"
+    :height "1080"
+    :anchor "center left")
+  ;; :reserve (struts :distance "60" :side "left")
+  ;; :stacking "bg"
+  :exclusive true
+  :monitor 0
+  ;; :windowtype "dock"
+  :wm-ignore false
+  (barstruct))
+
+(defwidget barstruct []
+  (box
+    :orientation "h"
+    :space-evenly false 
+    (revealer 
+      :transition "slideright"
+      :reveal revealcontrolpanel
+      (control_widget))
+      (centerbox 
+        :class "barwidget"
+        :orientation "v"
+        :height "1080"
+        ;; :space-evenly true
+        (top)
+        (middle)
+        (bottom)
+        )))
+
+(defwidget top [] 
+  (box
+    :orientation "v"
+    :space-evenly false
+    :valign "start"
+    :class "top_modules"
+    :height "450"
+    :vexpand false
+    (home)
+    (workspaces)
+    (hiddenctl)
   ))
 
+(defwidget middle [] 
+  (box
+    :orientation "v"
+    :space-evenly false
+    :valign "center"
+    :vexpand false
+    :class "center_modules"
+    :height "180"
+    (playerctl)
+  ))
 
-(defwidget start []
-  (box :class "start" :orientation "v" :halign "center" :valign "start"
-    (launcher)
-  )
-)
-
-
-(defwidget center []
-  (box :class "center" :halign "center"  :orientation "v"
-    (workspaces)
-  )
-)
-
-(defwidget apps []
-  (box :class "apps" :spacing 10 :space-evenly false :valign "end" :halign "center" :orientation "v"
-    (volume)
-    (spotify)
-    (firefox)
-  )
-)
-
-(defwidget and []
-  (box :class "" :valign "end":orientation "v" :space-evenly false :spacing 15
-    (bell)
-    (central-icon)
+(defwidget bottom [] 
+  (box
+    :orientation "v"
+    :space-evenly false
+    :valign "end"
+    :class "bottom_modules"
+    :vexpand false
+    :hexpand false
+    (stray)
+    (sliders)
+    (battery)
     (clock)
-  )
-)
-
-(defwidget launcher []
-  (eventbox
-    :cursor "pointer"
-    :halign "center"
-    (button
-      :class "launcher"
-      :valign "start"
-      :onclick "actions --launcher"
-      :width 25
-    "" )))
-
-(defwidget spotify []
-  (eventbox
-    :cursor "pointer"
-    :halign "center"
-    (button
-      :class "launcher"
-      :valign "start"
-      :onclick "env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --uri=%U &"
-      :width 25
-    "" )))
-
-(defwidget firefox []
-  (eventbox
-    :cursor "pointer"
-    :halign "center"
-    (button
-      :class "firefox"
-      :valign "start"
-      :onclick "firefox &"
-      :width 25
-    "󰾔" )))
-
-(defwidget central-icon []
-  (eventbox
-    :cursor "pointer"
-    :halign "center"
-    (button
-      :class "central-icon"
-      :valign "start"
-      :onclick "eww open --toggle central"
-      :width 20
-    "󰙪" )))
-
-
-(defwidget bell []
-  (eventbox
-    :cursor "pointer"
-    :halign "center"
-    (button
-      :class "bell"
-      :valign "start"
-      :onclick "eww open --toggle notifications"
-      :width 20
-    "󰂚" )))
+  ))
 
 (defwidget workspaces []
-  (box
-    :class "workspaces"
-    :halign "start"
-    :spacing 10
-    :orientation "v"
-    :space-evenly false
-    (for workspace in hyprland
-      (eventbox
-        :cursor "pointer"
-        :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
-        :halign "center"
-        (button
-          :class "${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-          :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (button
-            :width 25
-            :class "icon ${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-            {workspace.current ? "" : ""}
-          )
-        )
-      )
-    )
-  )
-)
-
-(defwidget music []
   (eventbox
-    :onhover "eww update music-rev=true"
-    :onhoverlost "eww update music-rev=false"
+    :cursor "pointer"
     (box
-      :space-evenly false
-      :spacing 10
+      :class "workspaces widget"
       :orientation "v"
-      (eventbox
-        :cursor "pointer"
+      :space-evenly false
+      (for workspace in {workspacejson}
         (button
-          :class "musicbar-art"
-          :orientation "v"
-          :onclick "eww open-many --toggle player-closer player"
-          :style "background-image: url('${music-art}');"
-        )
-      )
-      (label
-        :class "musicbar-title"
-        :orientation "v"
-        :limit-height 10
-        :limit-width 35
-        :text music-title
-      )
-      (revealer
-        :transition "slideright"
-        :reveal music-rev
-        :duration "500ms"
-        (box
-          :spacing 10
-          :orientation "h"
-          (eventbox
-            :cursor "pointer"
-            (button
-              :class "musicbar-previous-icon"
-              :onclick "./scripts/mediacontrol --previous"
-              ""
-            )
-          )
-          (eventbox
-            :cursor "pointer"
-            (button
-              :class "musicbar-toggle-icon"
-              :onclick "./scripts/mediacontrol --toggle"
-              music-toggle
-            )
-          )
-          (eventbox
-            :cursor "pointer"
-            (button
-              :class "musicbar-next-icon"
-              :onclick "./scripts/mediacontrol --next"
-              ""
-            )
-          )
-        )
-      )
-    )
-  )
-)
+          :onclick "swaymsg -t command workspace number ${workspace.name}"
+          (box
+            :hexpand false
+            :width 10
+            :height { workspace.focused ? 60 : !workspace.empty ? 40 : 30}
+            :class { workspace.focused ? "workspacethingactive" : "workspacething"}))))))
 
-(defwidget volume []
-  (eventbox
-    :onhover "eww update volume_rev=true"
-    :onhoverlost "eww update volume_rev=false"
+(defwidget home []
     (box
-      :class "volume"
-      :space-evenly false
-      :orientation "v"
-      (revealer
-        :class "volume-bar"
-        :transition "slideup"
-        :reveal volume_rev
+        :class "widget"
+        :hexpand false
+        :vexpand false
         (eventbox
-          :cursor "pointer"
-          :halign "center"
-          (scale
-            :orientation "v"
-            :tooltip {volume == "muted" ? "Muted" : "${volume}%"}
-            :value {volume == "muted" ? "0" : volume}
-            :min 0
-            :max 101
-            :onchange "pamixer -u && pamixer --set-volume {}"
-            :flipped true
-          )
-        )
-      )
-      (eventbox
-        :cursor "pointer"
-        :onscroll "echo {} | sed -e 's/up/--up/g' -e 's/down/--down/g' | xargs volume"
-        (button
-          :class "volume icon"
-          :style {volume == 0 || volume == "muted" ? "color: #dd6777;" : "color: #cacaca;"}
-          :tooltip {volume == "muted" ? "Muted" : "${volume}%" }
-          :onclick "volume --toggle"
-          {volume == 0 || volume == "muted" ? "󰝟" :
-          volume < 30 ? "" :
-          volume < 75 ? "" : ""}
-        )
-      )
-    )
-  )
-)
+            ;; :onclick "~/.config/eww/meowidgets/scripts/launch"
+            ;; :onclick "~/.config/eww/meowayland/scripts/launch"
+            ;; :onclick "./scripts/pop control"
+            :onclick "${EWW_CMD} update revealcontrolpanel=${ !revealcontrolpanel }"
+            :onrightclick "${EWW_CMD} open wallpaperselect --toggle"
+            :cursor "pointer"
+            (label :text "" :halign "center" :class "launchicon" :style "padding: 2px 0px;"))))
 
-
-
-(defwidget clock []
-  (box
-    :class "clock"
-    :orientation "v"
+(defwidget stray []
+  (box 
+    :class "widget"
     :space-evenly false
-    :spacing 4
-    :halign "center"
     :valign "end"
-    (label
-      :class "clock hour"
-      :text hour
-    )
-    (box :class "timebox" :spacing 4
-    )
-    (label
-      :class "clock minute"
-    :text minute)
-  )
-)
+    :orientation "v"
+    (eventbox
+      :onclick "${EWW_CMD} update revealsystray=${!revealsystray}"
+      (label :angle {!revealsystray ? 90 : 270} :class "revealtouch" :tooltip "reveal systray" :text ""))
+    (revealer
+      :reveal revealsystray 
+      :transition "slideup"
+      (systray 
+        :icon_size 20
+        :pack-direction "down"
+        :hexpand true
+        :vexpand true))
+    ))
 
+(defwidget clock [] 
+  (eventbox
+    :cursor "pointer"
+    :onclick "${EWW_CMD} open calendar --toggle"
+    (box 
+      :orientation "v"
+      :space-evenly false 
+      :class "widget clock"
 
-(defwindow bar
+      (label :text thour)
+      (label :text tmin)
+      (label :text tpm))))
+
+(defwidget battery [] 
+  (box
+    :orientation "v"
+    :space-evenly false 
+    :class "widget"
+    (overlay
+      (scale 
+        :class "${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging': bat0 < 16 ? 'dying': 'normal'} bat_scale"
+        :value "${bat0}"
+        :orientation "v"
+        :max 100
+        :min 0
+        :active false
+        :flipped true)
+        (label 
+          :class "lightning"
+          :visible {EWW_BATTERY.BAT0.status == "Charging"}
+          :text "󱐋"))
+    (label :text "${EWW_BATTERY.BAT0.capacity}%" :limit-width 3 :show-truncated false)))
+
+(defwidget hiddenctl []
+  (eventbox 
+    :cursor "pointer"
+    :onclick {reveal3 ? "${EWW_CMD} update reveal3=false" : "${EWW_CMD} update reveal3=true"}
+    (box
+      :orientation "v"
+      :class "widget"
+      :space-evenly false
+      (revealer 
+        :reveal reveal3
+        :transition "slideup"
+        :duration "500ms"
+        (box 
+          :class "touch"
+          :orientation "v"
+          :spacing 5
+            (button :onclick "swaymsg kill" 
+              (label :class "icon" :text "󰅙"))
+            (button :onclick "wofi --show=drun -i -I"
+              (label :class "icon" :text "󰀻"))
+            (button :onclick "./scripts/touchkey.sh" 
+              (label :class "icon" :text "󰌌"))))
+      (label :angle {reveal3 ? 90 : 270} :class "revealtouch" :tooltip "touch control" :text "")
+      (revealer 
+        :reveal {!reveal3}
+        :transition "slidedown"
+        ;; (tasklist)))))
+        ))))
+
+(defwidget playerctl [] 
+  (eventbox
+    :cursor "pointer"
+    (box 
+      :class "playerctl widget"
+      :orientation "v"
+      :space-evenly true
+      :spacing 5
+      (eventbox 
+        :onclick "${EWW_CMD} open music --toggle"
+        (image :path { pcover == "" ? "./image/emptympd.png" : pcover } :image-width 20 :image-height 20))
+      (button :onclick "playerctl previous"
+        (label :class "picon" :text "󰒮"))
+      (button :onclick "playerctl play-pause" 
+        (label :class "picon" :text  { pstatus == "Playing" ? "" : "" }))
+      (button :onclick "playerctl next"
+        (label :class "picon" :text "󰒭"))
+      )))
+
+(defwidget sliders [] 
+    (box
+        :class "widget"
+        :orientation "v"
+        :space-evenly false
+        :spacing 5
+        :valign "end"
+        (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
+          (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
+        (reveal_on_hover
+            :revealval reveal1
+            :revealvalstr "reveal1"
+            (box
+                :orientation "v"
+                :space-evenly false
+                :class "sound"
+                (label :class "icon" :text {volumemute == 'false' ? "󰕾" : "󰖁"})
+                ;; {volumemute == 'no' ? volume : " Muted"})
+                )
+            (scale 
+                :class "volslide"
+                :value volume
+                :onchange "pamixer --set-volume {}"
+                :orientation "v"
+                :tooltip "${volume}%"
+                :max 100
+                :min 0
+                :flipped true))
+        (reveal_on_hover
+            :revealval reveal2
+            :revealvalstr "reveal2"
+            (box 
+                :orientation "v"
+                :space-evenly false
+                :class "bright"
+                (label :class "icon" :text "󰃞"))
+            (scale 
+                :class "brislide"
+                :value brightness
+                :onchange "brightnessctl set {}%"
+                :orientation "v"
+                :tooltip "${brightness}%"
+                :max 100
+                :min 0
+                :flipped true))
+        ))
+
+(defwidget reveal_on_hover [revealval revealvalstr ?class ?transition]
+    (box 
+        :class "reveal_on_hover ${class}"
+        :orientation "v"
+        :space-evenly false
+        :valign "end"
+        (eventbox
+            :onhover "${EWW_CMD} update ${revealvalstr}=true"
+            :onhoverlost "${EWW_CMD} update ${revealvalstr}=false"
+            (box 
+                :space-evenly false
+                :orientation "v"
+                (children :nth 0)
+                (revealer 
+                    :reveal revealval
+                    :transition {transition ?:"slidedown"}
+                    :duration "500ms"
+                    (children :nth 1))))))
+
+;; other windows
+(defwindow calendar
+    :geometry (geometry :x "0"
+       :y "0"
+       :width "100"
+       :height "35"
+       :anchor "bottom left")
+    :stacking "overlay"
+    :monitor 0
+    (box
+      :class "popup"
+      (box
+        :class "unbarwidget"
+        (calendar :day calendar_day :year calendar_year :class "cal"))))
+
+(defwindow music 
+  :geometry (geometry :x "0"
+              :y "0"
+              :width "440"
+              :height "200"
+              :anchor "center left")
+  :stacking "overlay"
   :monitor 0
-  :exclusive true
-  :geometry (geometry :x "0%"
-    :y "0%"
-    :height "99%"
-    :width "4%"
-  :anchor "center left")
-  :reserve (struts :side "top" :distance "4%")
-  (bar))
+  (box 
+    :class "popup"
+    (box
+      :orientation "h"
+      :class "unbarwidget"
+      :space-evenly false 
+      :spacing 20
+      (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./image/emptympd.png" : pcover })
+      (box
+        :orientation "v"
+        :space-evenly false 
+        :width 210
+        :height 200
+        (scroll
+          :hscroll true
+          :vscroll false
+          (label :class "mtitle" :text psong))
+        (scroll
+          :hscroll true
+          :vscroll false
+          (label :class "mauthor" :text partist))
+        (box 
+          :orientation "h"
+          :class "mpd_controls"
+          :style "margin-top: 10px;"
+          (button :onclick "playerctl previous" 
+            (label :text "󰒮"))
+          (button :style "padding-right: 3px;" :onclick "playerctl play-pause" 
+            (label :text { pstatus == "Playing" ? "" : ""} ))
+          (button :onclick "playerctl next" (label :text "󰒭")))
+        (scale 
+            :class "seektime"
+            :value { ptime.position }
+            :orientation "h"
+            ;; :onchange "playerctl position {}"
+            :min 0
+            :max { ptime.duration }
+            :tooltip { ptime.readable }))
+      )))

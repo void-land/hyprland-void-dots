@@ -1,134 +1,160 @@
-* {
-  all: unset;
+
+.barwidget {
+    background-color: $base;
+    padding: 5px;
 }
 
-.bar-widget {
-  border-radius: 2px;
-  background-color: $background;
+.icon {
+    font-size: 20px;
+    min-width: 1em;
+    min-height: 1em;
+    font-family: "Symbols Nerd Font";
+    padding: 2px 0px;
 }
 
-.apps {
-  background-color: $bg-alt;
-}
-
-.uptime {
-  font-size: 0.9rem;
-  color: $fg-alt;
-  padding: 0.2rem;
-}
-
-.launcher {
-  color: $green;
-  font-size: 1.4rem;
-  padding: 0 0.3rem 0 0;
-}
-
-.spotify {
-  color: $green;
-  font-size: 1.5rem;
-}
-
-.central-icon {
-  font-size: 1.5rem;
-}
-
-.bell {
-  font-size: 1.5rem;
-  color: $yellow;
-}
-
-.firefox {
-  color: $cyan;
-  font-size: 1.5rem;
-  padding: 0 0.2rem 0 0;
+.revealtouch {
+    font-size: 20px;
+    margin: 5px 0px;
+    color: $surface2;
 }
 
 .workspaces {
-  font-size: 1.2rem;
-  border-radius: 1rem;
-  margin: 0 0 0 -0.3rem;
-
-  .icon {
-    &.current {
-      color: $green;
-    }
-  }
-
-  button {
-    &.empty {
-      color: $black;
-    }
-
-    &.occupied {
-      color: lighten($color: $fg-alt2, $amount: 10%);
-    }
-
-    &.current {
-      color: $green;
-    }
-
-    &:hover {
-      &.empty {
-        color: lighten($color: $black, $amount: 5%);
-      }
-      &.occupied {
-        color: lighten($color: $black, $amount: 20%);
-      }
-      &.current {
-        color: darken($color: $green, $amount: 10%);
-      }
-    }
-  }
+    padding: 5px;
 }
 
-.volume {
-  font-size: 1.3rem;
-  .volume-bar scale trough {
-    all: unset;
-    background-color: $black;
-    border-radius: 1rem;
-    min-width: 0.4rem;
-    min-height: 3rem;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 0 2px 1px rgba(black, 0.3);
-  }
-
-  .volume-bar scale trough highlight {
-    all: unset;
-    background: $green;
-    border-radius: 1rem;
-  }
+.workspaces label {
+    font-size: 18;
+    padding-right: 5px;
+    padding: 2px 5px 2px 0px;
 }
 
-.clock {
-  font-family: "SF Pro";
-  font-size: 1.4rem;
+.widget {
+    padding: 5px 5px;
+    border-radius: 5px;
+    background-color: $surface0;
+    margin: 5px 2px;
+    color: $white0;
+    // border-style: solid;
+    // border-color: $white0;
+    // border-width: 2px;
+}
 
-  &.hour {
-    font-weight: bold;
-    color: $fg;
-  }
+.clock label {
+    font-size: 20px;
+}
 
-  &.minute {
-    color: $fg-alt;
-  }
-
-  &.separator {
-    color: $fg-alt;
-  }
-  .timebox {
-    font-size: 0.5rem;
-
-    &.magenta {
-      color: $magenta;
+.bat_scale trough{
+    min-height: 50px; 
+    min-width: 18px; 
+    border-radius: 5px;
+    slider {
+        all: unset;
     }
+}
 
-    &.green {
-      color: $green;
-    }
+.bat_scale trough highlight{
+    border-radius: 5px;
+    background-color: $accent;
+}
 
-    &.yellow {
-      color: $yellow;
+.charging trough highlight {
+    background-color: $green;
+}
+
+.dying trough highlight {
+   background-color: $red;
+}
+
+// .mpd label {
+//     color: $sky;
+// }
+//
+// .playerctl label {
+//     color: $sapphire;
+// }
+
+.mpd_controls label {
+    font-family: "Symbols Nerd Font";
+    min-width: 1em;
+    min-height: 1em;
+    font-size: 30px;
+    padding: 15px;
+}
+
+.seektime {
+    trough {
+        min-height: 10px; 
+        min-width: 180px;
+
+        slider {
+            background-color: $white2;
+            border-radius: 25px;
+            min-height: 20px;
+            min-width: 20px;
+            margin: -10px;
+        }
+
+        highlight {
+            background-color: $red;
+        }
     }
-  }
+}
+
+.sidempdctl {
+    margin: 5px; 
+    label {
+        font-size: 30px;
+        padding-right: 5px;
+        min-height: 1em;
+        min-width: 1em;
+    }
+}
+
+.mpdvolumeseek {
+    @extend .seektime;
+    trough {
+        min-height: 100px; 
+        min-width: 10px;
+        highlight {
+            background-color: $white0;
+        }
+    }
+}
+
+.touch label {
+    font-size: 20px;
+}
+
+.mtitle {
+    color: $white0;
+    font-size: 20px; 
+    margin-top: 30px;
+}
+
+.launchicon {
+    @extend .icon;
+    color: $accent;
+}
+
+.picon {
+    @extend .icon;
+    font-size: 18px;
+}
+
+.lightning {
+    color: $surface0
+}
+
+.workspacething, .workspacethingactive {
+    transition: 500ms;
+    border-radius: 5;
+    margin: 6px;
+}
+
+.workspacething {
+    background-color: $surface2;
+}
+
+.workspacethingactive {
+    background-color: $accent;
 }

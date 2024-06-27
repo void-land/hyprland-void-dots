@@ -1,0 +1,12 @@
+[general]
+
+framerate = 20
+bars = 30
+
+[output]
+
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+bit_format = 8bit
+ascii_max_range = 100

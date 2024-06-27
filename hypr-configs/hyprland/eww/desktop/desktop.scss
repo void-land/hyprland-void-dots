@@ -1,0 +1,11 @@
+
+.desktoptext {
+    font-size: 18px;
+    color: $white0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.desktopbox:hover {
+    border: solid 2px;
+    border-color: $surface2;
+}

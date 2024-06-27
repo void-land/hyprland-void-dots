@@ -1,0 +1,41 @@
+(defwindow desktopicons 
+  :geometry (geometry
+              :x 20
+              :y 20
+              :width 100
+              :height 600
+              :anchor "top right")
+  :stacking "bottom"
+  :monitor 0
+  (box 
+    :orientation "v"
+    :space-evenly "false"
+    :spacing 10
+
+    (eventbox 
+      :dragtype "file"
+      :class "desktopbox"
+      :onclick "thunar ${homedir}/.local/share/Trash/files"
+      :ondropped "notify-send {}"
+      (box
+        :orientation "v"
+        :space-evenly false 
+        :height 100 
+        :valign "end"
+        (image :width 100 :height 100 :image-width 80 :image-height 80 :path trashcanpath)
+        (label :class "desktoptext" :text "Trash")))
+
+    (for i in '["amogus"]'
+      (imagesicon :name i))))
+
+(defwidget imagesicon [name]
+  (eventbox
+    :onclick "feh ./image/desktop/${name}.png"
+    :class "desktopbox"
+    (box
+      :orientation "v"
+      :space-evenly false
+      :height 100
+      :valign "end"
+      (image :width 100 :height 100 :image-width 80 :image-height 80 :path "./image/desktop/${name}.png")
+      (label :class "desktoptext" :text "${name}.png"))))

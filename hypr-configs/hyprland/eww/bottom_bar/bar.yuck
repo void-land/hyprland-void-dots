@@ -1,0 +1,215 @@
+(defwindow bar
+  :geometry (geometry
+              :x "0%"
+              :y "0%"
+              :width "100%"
+              :height 40
+              :anchor "bottom center")
+  :exclusive true 
+  :monitor 0 
+  :wm-ignore false 
+  (barstruct))
+
+(defwidget barstruct []
+  ;; (box 
+  ;;   :orientation "v"
+  ;;   :space-evenly false 
+    (centerbox 
+      :class "barwidget"
+      :orientation "h"
+      :height 60
+      (left)
+      (middle)
+      (right))
+    ;; (revealer 
+    ;;   :transition "slideup"
+    ;;   :reveal revealcontrolpanel
+    ;;   (box 
+    ;;     :class "barwidget"
+    ;;     :orientation "h"
+    ;;     :space-evenly false
+    ;;     (box
+    ;;       :orientation "v"
+    ;;       :space-evenly false 
+    ;;       (user)
+    ;;       (chooser))
+    ;;     (overview)
+    ;;     (timer)
+    ;;     (touchpad)
+    ;;     )))
+    )
+
+(defwidget left [] 
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :valign "fill"
+    (home)
+    (workspaces)
+    ;; (cavapipe)
+    ))
+
+(defwidget middle [] 
+  (box
+    :orientation "h"
+    :space-evenly false 
+    :halign "center"
+    :valign "fill"
+    (tasklist :iconsize 42)
+    ))
+
+(defwidget right [] 
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    :valign "fill"
+    (button :class "widget" :onclick "./scripts/touchkey.sh && ${EWW_CMD} update revealcontrolpanel=false" 
+        (label :class "icon" :style "padding-left: 3px;" :text "󰌌"))
+    (playerctl)
+    (sysicons)
+    ;; (battery)
+    (clock)
+    ))
+
+(defwidget workspaces []
+  (eventbox
+    :cursor "pointer"
+    (box
+      :class "workspaces widget"
+      :orientation "h"
+      :space-evenly false
+      (for i in {"[0, 1, 2, 3, 4]"}
+        (button
+          :onclick "swaymsg -t command workspace number ${workspacejson[i].name}"
+          (box
+            :hexpand false
+            :height 10
+            ;; :width { workspace.focused ? 100 : !workspace.empty ? 80 : 50}
+            :class { workspacejson[i].focused ? "workspacethingactive" : "workspacething"}
+            :orientation "h"
+            :space-evenly false
+            (box 
+              :width 50)
+            (revealer 
+              :reveal { !workspacejson[i].empty || workspacejson[i].focused }
+              :transition "slideright"
+              (box 
+                :width 30))
+            (revealer 
+              :reveal { workspacejson[i].focused }
+              :transition "slideright"
+              (box 
+                :width 20))
+            ))))))
+
+(defwidget clock []
+  (box
+    :orientation "h"
+    :class "clock widget"
+    :space-evenly false
+    (button 
+      :onclick "${EWW_CMD} update reveal1=${!reveal1} reveal2=false reveal3=false"
+      (label :text "${thour}:${tmin} ${tpm}"))))
+
+(defwidget sysicons []
+  (box 
+    :class "widget"
+    :valign "fill"
+    (button 
+      :onclick "${EWW_CMD} update reveal1=false reveal2=${!reveal2} reveal3=false" 
+      :class "icon"
+      (box 
+        :orientation "h"
+        :space-evenly false 
+        :spacing 5 
+        (label :tooltip wifi_essid :class "icon" :text wifi_icon)
+        (label :tooltip "${volume}%" :class "icon" :text {volumemute == 'false' ? "󰕾" : "󰖁"})
+        (overlay
+          :tooltip "${bat0}%" 
+          (label :class "icon" :text "")
+          (scale 
+            :hexpand false
+            :orientation "h"
+            :active false
+            :min 0 
+            :max 100 
+            :value bat0
+            :class "overbat ${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging' : ''}"))
+        ))))
+
+(defwidget battery []
+  (box
+    :orientation "h"
+    :space-evenly false 
+    :class "widget"
+    (overlay
+      (scale 
+        :class "${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging': bat0 < 16 ? 'dying': 'normal'} bat_scale"
+        :value "${bat0}"
+        :orientation "h"
+        :max 100 
+        :min 0
+        :flipped true
+        :active false)
+      (label 
+        :class "lightning"
+        :visible {EWW_BATTERY.BAT0.status == "Charging"}
+        :text "󱐋"))
+    (label :text "${bat0}%")))
+
+(defwidget playerctl [] 
+  (overlay
+    (box
+      :halign "fill"
+      :width 150
+      :class { pcover != "" ? "mpdcover" : "widget"}
+      :style "background-image: url('${pcover}')")
+    (box 
+      ;; :class "widget"
+      :orientation "h"
+      :space-evenly false
+      :spacing 5
+      :halign "center"
+      :valign "center"
+      (eventbox 
+        :onclick "${EWW_CMD} update reveal1=false reveal2=false reveal3=${!reveal3}"
+        (image :path { pcover == "" ? "./image/emptympd.png" : pcover } :image-width 30 :image-height 30 :style "padding: 0px 5px;"))
+      (button :onclick "playerctl previous" 
+        (label :class "icon" :text "󰒮"))
+      (button :onclick "playerctl play-pause"
+        (label :class "icon" :text  { pstatus == "Playing" ? "" : "" }))
+      (button :onclick "playerctl next" 
+        (label :class "icon" :text "󰒭"))
+      )))
+
+(defwidget home []
+    (box
+        :class "widget"
+        :hexpand false
+        :vexpand false
+        (eventbox
+            ;; :onclick "~/.config/eww/meowidgets/scripts/launch"
+            ;; :onclick "~/.config/eww/meowayland/scripts/launch"
+            ;; :onclick "./scripts/pop control"
+            :onclick "${EWW_CMD} update revealcontrolpanel=${ !revealcontrolpanel }"
+            :onrightclick "${EWW_CMD} open wallpaperselect --toggle"
+            :cursor "pointer"
+            (label :text "" :halign "center" :class "launchicon" :style "padding: 0px 4px;"))))
+
+;; (defwidget cavapipe []
+;;   (box
+;;     :class "widget"
+;;     :orientation "h"
+;;     :space-evenly true 
+;;     (for bar in {cavajson}
+;;       (scale 
+;;         :class "cavascale"
+;;         :orientation "v"
+;;         :value bar
+;;         :min 0 
+;;         :max 100 
+;;         :flipped true))))
+
+(include "./bottom_bar/sidectl.yuck")

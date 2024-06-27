@@ -1,31 +1,139 @@
+@import './colors.scss';
+@import './bar/bar.scss';
+// @import './bottom_bar/bar.scss';
+@import './control_panel/control_panel.scss';
+@import './dashboard/dashboard.scss';
+@import './dock/dock.scss';
+@import './desktop/desktop.scss';
+@import './notification/notification.scss';
+
 * {
-  all: unset;
-  transition: 200ms;
+    all: unset;
+    color: $white0;
+    font-size: 15px;
+    font-family: "Iosevka Nerd Font";
+    // font-weight: bold;
+    // font-smooth: never;
 }
 
-@mixin window {
-  background-color: $background;
-  margin: 0.2rem;
+tooltip {
+    background-color: $surface0;
+    color: $white0;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $surface2;
 }
 
-$shadow: #151515;
-$background: #171717;
-$bg-alt: #171518;
-$bg-alt2: #312f32;
-$fg: #f0f0f0;
-$fg-alt: #cacaca;
-$fg-alt2: #a0a0a0;
-$black: #262626;
-$gray: #bababa;
-$red: #fa8e89;
-$green: #9ec49f;
-$yellow: #faf889;
-$blue: #89b4fa;
-$magenta: #e889fa;
-$cyan: #89eafa;
-$white: #ffffff;
+scale {
+    all: unset;
+    trough {
+        background-color: $surface2;
+        border-radius: 24px;
+        min-height: 80px;
+        min-width: 10px;
+        margin : 5px;
 
-@import "bar/bar.scss";
-@import "central/central.scss";
-@import "notifications/notifications.scss";
-@import "volume/volume.scss";
+        slider {
+            background-color: $white2;
+            border-radius: 25px;
+            min-height: 15px;
+            min-width: 15px;
+            margin: -10px;
+        }
+
+        highlight {
+            background-color: $white0;
+            border-radius: 24px;
+        }
+    }
+}
+
+button {
+    transition-duration: 0.5s;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: $surface2;
+}
+
+
+calendar {
+    all: unset;
+    background-color: $surface0;
+    font-size: 20;
+    color: $white0;
+}
+
+calendar:selected {
+    color: $base;
+    background-color: $accent;
+    border-radius: 25px;
+}
+
+calendar.header {
+    color: $accent;
+    font-weight: bold;
+}
+
+calendar:indeterminate {
+    color: $surface2;
+}
+
+checkbutton {
+    border-radius: 24px;
+    background-color: $surface1;
+    padding: 4px;
+    check {
+        min-height: 15px;
+        min-width: 15px;
+        color: $white0;
+    }
+}
+
+checkbutton:checked {
+    check{
+        border-radius: 24px;
+        background-color: $white0;
+    }
+}
+
+.popup {
+    background-color: $base;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: $surface2;
+    border-width: 2px;
+    margin: 10px;
+}
+
+entry {
+    // image: url('./image/screenshot.png');
+    padding: 5px;
+    margin: 5px; 
+    border-radius: 5px;
+    border-style: solid; 
+    border-color: $surface2;
+    background-color: $surface1;
+    color: $white0;
+}
+
+.mainentry {
+    background-color: $surface1;
+    padding: 5px; 
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.mainentry label {
+    font-size: 18px; 
+    color: $white0;
+}
+
+.smallentry {
+    @extend .mainentry;
+    label {
+        font-size: 15px;
+    }
+}
