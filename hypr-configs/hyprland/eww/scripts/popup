@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+open_updates() {
+	$HOME/.config/eww/scripts/updates up
+}
+
+case "$1" in
+updates)
+	open_updates
+	;;
+esac

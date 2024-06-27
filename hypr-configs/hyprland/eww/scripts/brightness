@@ -1,0 +1,30 @@
+#!/bin/bash
+
+current_brightness=1.0
+
+function set_brightness() {
+    gdbus call -e -d de.mherzberg -o /de/mherzberg/wlrbrightness -m de.mherzberg.wlrbrightness.set $1 &> /dev/null
+}
+
+echo "Ajuste o brilho com o scroll do mouse."
+echo "Gire o scroll para cima para aumentar o brilho e para baixo para diminuir."
+echo "Pressione Ctrl+C para sair."
+
+while true; do
+    read -r -n 1 scroll
+    if [[ "$scroll" == $'\x1b[A' ]]; then
+        # Scroll para cima
+        current_brightness=$(echo "$current_brightness + 0.1" | bc)
+        if (( $(echo "$current_brightness > 1.0" | bc -l) )); then
+            current_brightness=1.0
+        fi
+        sudo bash -c "set_brightness $current_brightness"
+    elif [[ "$scroll" == $'\x1b[B' ]]; then
+        # Scroll para baixo
+        current_brightness=$(echo "$current_brightness - 0.1" | bc)
+        if (( $(echo "$current_brightness < 0.0" | bc -l) )); then
+            current_brightness=0.0
+        fi
+        sudo bash -c "set_brightness $current_brightness"
+    fi
+done

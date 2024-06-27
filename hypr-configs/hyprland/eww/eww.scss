@@ -1,0 +1,31 @@
+* {
+  all: unset;
+  transition: 200ms;
+}
+
+@mixin window {
+  background-color: $background;
+  margin: 0.2rem;
+}
+
+$shadow: #151515;
+$background: #171717;
+$bg-alt: #171518;
+$bg-alt2: #312f32;
+$fg: #f0f0f0;
+$fg-alt: #cacaca;
+$fg-alt2: #a0a0a0;
+$black: #262626;
+$gray: #bababa;
+$red: #fa8e89;
+$green: #9ec49f;
+$yellow: #faf889;
+$blue: #89b4fa;
+$magenta: #e889fa;
+$cyan: #89eafa;
+$white: #ffffff;
+
+@import "bar/bar.scss";
+@import "central/central.scss";
+@import "notifications/notifications.scss";
+@import "volume/volume.scss";

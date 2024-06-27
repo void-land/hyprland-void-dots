@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+cd ~/ESA\ 2024/ && okular Edital.pdf Horário.pdf & gnome-clocks

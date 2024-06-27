@@ -1,0 +1,31 @@
+(defwidget notifications []
+  (box
+    :class "notifications"
+    (box
+      :class "title"
+      :space-evenly false
+      :valign "start"
+      :halign "center"
+      (label :text "Notifications")
+    )
+  )
+
+)
+
+
+
+
+
+
+
+
+
+(defwindow notifications
+  :monitor 0
+  :geometry (geometry :x "1%"
+                      :y "0%"
+                      :height "75%"
+                      :width "25%"
+                      :anchor "center left")
+  :reserve (struts :side "top" :distance "4%")
+  (notifications))
