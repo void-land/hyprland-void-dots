@@ -78,14 +78,24 @@
         :class "workspaces"
         :space-evenly false
         :orientation "v"
+        
         (for workspace in {workspacesjson}
           (button
             :onclick "hyprctl dispatch workspace ${workspace.id}"
             (box
-              :hexpand false
-              :height { workspace.id == current_workspace ? 50 : 30 }
+              :height 30
               :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
+              
+              (revealer
+                :reveal { workspace.id == current_workspace }
+                :transition "slidedown"
+                
+                (box
+                  :height 55
+                )
               )
+            )
+            
             )
           )
         )
@@ -190,12 +200,13 @@
 (defwidget playerctl [] 
   (eventbox
     :cursor "pointer"
-    (box 
+    (box
       :class "playerctl widget"
       :orientation "v"
       :space-evenly true
-      :spacing 5
-      (eventbox 
+      :spacing 6
+      
+      (eventbox
         :onclick "${EWW_CMD} open music --toggle"
         (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
       (button :onclick "playerctl previous"
