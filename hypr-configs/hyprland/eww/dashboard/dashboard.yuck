@@ -1,23 +1,23 @@
 
 ;; Dashboard design is made by tsukki9696
-(defwindow dashboard 
+(defwindow dashboard
   :geometry (geometry
-              :x 0
-              :y 0
-              :width 800
-              :height 420
-              :anchor "center")
+    :x 0
+    :y 0
+    :width 800
+    :height 420
+  :anchor "center")
   :stacking "overlay"
   :monitor 0
   (structure))
 
 (defwidget structure[]
-  (box 
+  (box
     :class "popup"
-    :space-evenly false 
+    :space-evenly false
     :orientation "v"
     (duser :name "Failed" :tag "failed.sh" :pfp "./image/roundpfp.png")
-    (box 
+    (box
       :space-evenly true
       :orientation "h"
       :vexpand true
@@ -35,13 +35,13 @@
             (dbutt)
             (theme))
           (dcal)
-          ))
+        ))
       (box
         :orientation "v"
         :space-evenly false
         (dnotes)
         (quote))
-      )))
+    )))
 
 (defwidget duser [name tag pfp]
   (box
@@ -56,13 +56,13 @@
     (label :text "|" :style "color: #262626; font-size: 30px;")
     (box
       :orientation "v"
-      :space-evenly true 
+      :space-evenly true
       :halign "start"
       (label :style "font-weight: bold; font-size: 18px;" :text "Hello, ${name}")
       (label :halign "start" :text tag))))
 
-(defwidget dnotes [] 
-  (box 
+(defwidget dnotes []
+  (box
     :class "notes unbarwidget"
     :space-evenly false
     :orientation "v"
@@ -81,7 +81,7 @@
     (box
       :class "mpdcover"
       :style "background-image: url('${pcover}')"
-      :height 150)
+    :height 150)
     (box
       :orientation "v"
       :space-evenly false
@@ -91,70 +91,70 @@
         :hscroll true
         :vscroll false
         (label :style "font-size: 18px;" :text psong))
-      (scroll 
+      (scroll
         :hscroll true
-        :vscroll false 
+        :vscroll false
         (label :text partist))
-      ;; (scale 
-      ;;   :hexpand false
-      ;;   :width 60
-      ;;   :class "seektime"
-      ;;   :value current
-      ;;   :orientation "h"
-      ;;   :min -5
-      ;;   :max 100 
-      ;;   :onscroll "mpc -q seek +1"
+      ;; (scale
+        ;;   :hexpand false
+        ;;   :width 60
+        ;;   :class "seektime"
+        ;;   :value current
+        ;;   :orientation "h"
+        ;;   :min -5
+        ;;   :max 100
+        ;;   :onscroll "mpc -q seek +1"
       ;;   :tooltip "${ctime}/${ttime}")
       (box
         :orientation "h"
         :space-evenly false
-        :spacing 40 
+        :spacing 40
         :halign "center"
         :class "dmpdcontrol"
         (button :onclick "./scripts/music_info --prev" (label :text "󰒮"))
         (button :onclick "./scripts/music_info --toggle" (label :text { pstatus == "Playing" ? "" : ""}))
         (button :onclick "./scripts/music_info --next" (label :text "󰒭"))))))
 
-(defwidget dcal [] 
+(defwidget dcal []
   (box
     :class "unbarwidget mincal"
     :height 190
     :hexpand true
-    (calendar 
+    (calendar
       :show-details false
       :show-heading true
       :show-day-names false
       :show-week-numbers false
-      :day calendar_day 
-      :year calendar_year)))
+      :day calendar_day
+    :year calendar_year)))
 
-(defwidget dbutt[] 
-  (box 
+(defwidget dbutt[]
+  (box
     :space-evenly true
     :orientation "h"
     :height 130
-    (box 
-      :space-evenly true 
+    (box
+      :space-evenly true
       :orientation "v"
       (button :class "dicons unbarwidget" :onclick "notify-send 'shutdown' 'but its impractical'" (label :text ""))
       (button :class "dicons unbarwidget" :onclick "notify-send 'restart' 'but its impractical'" (label :text "")))
     (box
-      :space-evenly true 
+      :space-evenly true
       :orientation "v"
       (button :class "dicons unbarwidget" :onclick "notify-send 'lock' 'but its impractical'" (label :text ""))
       (button :class "dicons unbarwidget" :onclick "notify-send 'log out' 'but its impractical'" (label :text "󰍃")))))
 
-(defwidget theme [] 
-  (button 
+(defwidget theme []
+  (button
     :class "unbarwidget"
     :vexpand true
-    :onclick "./scripts/toggletheme toggle" 
+    :onclick "./scripts/toggletheme toggle"
     (label :style "font-size: 18px;" :text "")))
 
 ;; (defwidget dquote []
-;;   (box 
-;;     :class "unbarwidget"
-;;     :height "120"
-;;     :valign "center"
-;;     (literal 
-;;       :content quoteliteral)))
+  ;;   (box
+    ;;     :class "unbarwidget"
+    ;;     :height "120"
+    ;;     :valign "center"
+    ;;     (literal
+    ;;       :content quoteliteral)))

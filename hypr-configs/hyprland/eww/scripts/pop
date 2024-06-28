@@ -77,14 +77,13 @@ elif [ "$1" = "control" ]; then
 elif [ "$1" = "dashboard" ]; then
     dashboard
 elif [ "$1" = "colourpick" ]; then
-    COLOUR=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | awk -F ' ' 'NR==2 {print $3}')
-    wl-copy "$COLOUR"
-    notify-send -a colourpicker -i ~/.config/eww/carbonmonoxide/image/eyedropper.png -t 3000 "$COLOUR" "Colour copied to clipboard"
+    hyprpicker -a
+    notify-send -a colourpicker -i ~/.config/eww/image/eyedropper.png -t 3000 "Colour copied to clipboard"
 elif [ "$1" = "scrop" ]; then
     # control
     # sleep 0.5
     grim -g "$(slurp)" - | wl-copy
-    notify-send -a screenshot -i ~/.config/eww/carbonmonoxide/image/screenshot.png -t 3000 "Screenshot Taken" "Image copied to clipboard"
+    notify-send -a screenshot -i ~/.config/eww/image/screenshot.png -t 3000 "Screenshot Taken" "Image copied to clipboard"
 elif [ "$1" = "sscreen" ]; then
     # control
     grim - | wl-copy

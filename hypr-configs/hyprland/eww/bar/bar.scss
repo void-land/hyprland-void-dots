@@ -1,68 +1,84 @@
+.widget {
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: $surface0;
+  margin: 5px 2px;
+  color: $white0;
+  // border-style: solid;
+  // border-color: $white0;
+  // border-width: 2px;
+}
 
 .barwidget {
-    background-color: $base;
-    padding: 5px;
+  background-color: $base;
+  padding: 5px;
 }
 
 .icon {
-    font-size: 20px;
-    min-width: 1em;
-    min-height: 1em;
-    font-family: "Symbols Nerd Font";
-    padding: 2px 0px;
+  font-size: 20px;
+  min-width: 1em;
+  min-height: 1em;
+  font-family: "Symbols Nerd Font";
+  padding: 2px 0px;
 }
 
 .revealtouch {
-    font-size: 20px;
-    margin: 5px 0px;
-    color: $surface2;
+  font-size: 20px;
+  margin: 5px 0px;
+  color: $surface2;
 }
 
 .workspaces {
-    padding: 5px;
-}
+  @extend .widget;
 
-.workspaces label {
-    font-size: 18;
-    padding-right: 5px;
-    padding: 2px 5px 2px 0px;
-}
+  * {
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
+  }
 
-.widget {
-    padding: 5px 5px;
-    border-radius: 5px;
-    background-color: $surface0;
-    margin: 5px 2px;
-    color: $white0;
-    // border-style: solid;
-    // border-color: $white0;
-    // border-width: 2px;
+  .workspace {
+    margin: 6px;
+    border-radius: 4px;
+  }
+
+  .workspacething {
+    background-color: $surface2;
+  }
+
+  .workspacethingactive {
+    background-color: $accent;
+  }
+
+  .label {
+    // font-size: 18;
+    // padding-right: 5px;
+    // padding: 2px 5px 2px 0px;
+  }
 }
 
 .clock label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-.bat_scale trough{
-    min-height: 50px; 
-    min-width: 18px; 
-    border-radius: 5px;
-    slider {
-        all: unset;
-    }
+.bat_scale trough {
+  min-height: 50px;
+  min-width: 18px;
+  border-radius: 5px;
+  slider {
+    all: unset;
+  }
 }
 
-.bat_scale trough highlight{
-    border-radius: 5px;
-    background-color: $accent;
+.bat_scale trough highlight {
+  border-radius: 5px;
+  background-color: $accent;
 }
 
 .charging trough highlight {
-    background-color: $green;
+  background-color: $green;
 }
 
 .dying trough highlight {
-   background-color: $red;
+  background-color: $red;
 }
 
 // .mpd label {
@@ -74,87 +90,73 @@
 // }
 
 .mpd_controls label {
-    font-family: "Symbols Nerd Font";
-    min-width: 1em;
-    min-height: 1em;
-    font-size: 30px;
-    padding: 15px;
+  font-family: "Symbols Nerd Font";
+  min-width: 1em;
+  min-height: 1em;
+  font-size: 30px;
+  padding: 15px;
 }
 
 .seektime {
-    trough {
-        min-height: 10px; 
-        min-width: 180px;
+  trough {
+    min-height: 10px;
+    min-width: 180px;
 
-        slider {
-            background-color: $white2;
-            border-radius: 25px;
-            min-height: 20px;
-            min-width: 20px;
-            margin: -10px;
-        }
-
-        highlight {
-            background-color: $red;
-        }
+    slider {
+      background-color: $white2;
+      border-radius: 25px;
+      min-height: 20px;
+      min-width: 20px;
+      margin: -10px;
     }
+
+    highlight {
+      background-color: $red;
+    }
+  }
 }
 
 .sidempdctl {
-    margin: 5px; 
-    label {
-        font-size: 30px;
-        padding-right: 5px;
-        min-height: 1em;
-        min-width: 1em;
-    }
+  margin: 5px;
+  label {
+    font-size: 30px;
+    padding-right: 5px;
+    min-height: 1em;
+    min-width: 1em;
+  }
 }
 
 .mpdvolumeseek {
-    @extend .seektime;
-    trough {
-        min-height: 100px; 
-        min-width: 10px;
-        highlight {
-            background-color: $white0;
-        }
+  @extend .seektime;
+  trough {
+    min-height: 100px;
+    min-width: 10px;
+    highlight {
+      background-color: $white0;
     }
+  }
 }
 
 .touch label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .mtitle {
-    color: $white0;
-    font-size: 20px; 
-    margin-top: 30px;
+  color: $white0;
+  font-size: 20px;
+  margin-top: 30px;
 }
 
 .launchicon {
-    @extend .icon;
-    color: $accent;
+  @extend .icon;
+  color: $accent;
 }
 
 .picon {
-    @extend .icon;
-    font-size: 18px;
+  @extend .icon;
+  font-size: 18px;
 }
 
 .lightning {
-    color: $surface0
-}
-
-.workspacething, .workspacethingactive {
-    transition: 500ms;
-    border-radius: 5;
-    margin: 6px;
-}
-
-.workspacething {
-    background-color: $surface2;
-}
-
-.workspacethingactive {
-    background-color: $accent;
+  color: $surface0;
 }

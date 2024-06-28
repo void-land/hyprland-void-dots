@@ -1,139 +1,140 @@
-@import './colors.scss';
-@import './bar/bar.scss';
-// @import './bottom_bar/bar.scss';
-@import './control_panel/control_panel.scss';
-@import './dashboard/dashboard.scss';
-@import './dock/dock.scss';
-@import './desktop/desktop.scss';
-@import './notification/notification.scss';
+@import "./colors.scss";
+@import "./bar/bar.scss";
+// @import "./bottom_bar/bar.scss";
+@import "./control_panel/control_panel.scss";
+@import "./dashboard/dashboard.scss";
+@import "./dock/dock.scss";
+@import "./desktop/desktop.scss";
+@import "./notification/notification.scss";
 
 * {
-    all: unset;
-    color: $white0;
-    font-size: 15px;
-    font-family: "Iosevka Nerd Font";
-    // font-weight: bold;
-    // font-smooth: never;
+  all: unset;
+  color: $white0;
+  font-size: 15px;
+  font-family: "Iosevka Nerd Font";
+  // font-weight: bold;
+  // font-smooth: never;
 }
 
 tooltip {
-    background-color: $surface0;
-    color: $white0;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: $surface2;
+  background-color: $surface0;
+  color: $white0;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: $surface2;
 }
 
 scale {
-    all: unset;
-    trough {
-        background-color: $surface2;
-        border-radius: 24px;
-        min-height: 80px;
-        min-width: 10px;
-        margin : 5px;
+  all: unset;
 
-        slider {
-            background-color: $white2;
-            border-radius: 25px;
-            min-height: 15px;
-            min-width: 15px;
-            margin: -10px;
-        }
+  trough {
+    background-color: $surface2;
+    border-radius: 24px;
+    min-height: 80px;
+    min-width: 10px;
+    margin: 5px;
 
-        highlight {
-            background-color: $white0;
-            border-radius: 24px;
-        }
+    slider {
+      background-color: $white2;
+      border-radius: 25px;
+      min-height: 15px;
+      min-width: 15px;
+      margin: -10px;
     }
+
+    highlight {
+      background-color: $white0;
+      border-radius: 24px;
+    }
+  }
 }
 
 button {
-    transition-duration: 0.5s;
-    border-radius: 5px;
-}
-button:hover {
-    background-color: $surface2;
+  transition-duration: 0.5s;
+  border-radius: 5px;
 }
 
+button:hover {
+  background-color: $surface2;
+}
 
 calendar {
-    all: unset;
-    background-color: $surface0;
-    font-size: 20;
-    color: $white0;
+  all: unset;
+  background-color: $surface0;
+  font-size: 20;
+  color: $white0;
 }
 
 calendar:selected {
-    color: $base;
-    background-color: $accent;
-    border-radius: 25px;
+  color: $base;
+  background-color: $accent;
+  border-radius: 25px;
 }
 
 calendar.header {
-    color: $accent;
-    font-weight: bold;
+  color: $accent;
+  font-weight: bold;
 }
 
 calendar:indeterminate {
-    color: $surface2;
+  color: $surface2;
 }
 
 checkbutton {
-    border-radius: 24px;
-    background-color: $surface1;
-    padding: 4px;
-    check {
-        min-height: 15px;
-        min-width: 15px;
-        color: $white0;
-    }
+  border-radius: 24px;
+  background-color: $surface1;
+  padding: 4px;
+  check {
+    min-height: 15px;
+    min-width: 15px;
+    color: $white0;
+  }
 }
 
 checkbutton:checked {
-    check{
-        border-radius: 24px;
-        background-color: $white0;
-    }
+  check {
+    border-radius: 24px;
+    background-color: $white0;
+  }
 }
 
 .popup {
-    background-color: $base;
-    padding: 5px;
-    border-radius: 5px;
-    border-style: solid;
-    border-color: $surface2;
-    border-width: 2px;
-    margin: 10px;
+  background-color: $base;
+  padding: 5px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: $surface2;
+  border-width: 2px;
+  margin: 10px;
 }
 
 entry {
-    // image: url('./image/screenshot.png');
-    padding: 5px;
-    margin: 5px; 
-    border-radius: 5px;
-    border-style: solid; 
-    border-color: $surface2;
-    background-color: $surface1;
-    color: $white0;
+  // image: url('./image/screenshot.png');
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: $surface2;
+  background-color: $surface1;
+  color: $white0;
 }
 
 .mainentry {
-    background-color: $surface1;
-    padding: 5px; 
-    border-radius: 5px;
-    margin: 5px;
+  background-color: $surface1;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .mainentry label {
-    font-size: 18px; 
-    color: $white0;
+  font-size: 18px;
+  color: $white0;
 }
 
 .smallentry {
-    @extend .mainentry;
-    label {
-        font-size: 15px;
-    }
+  @extend .mainentry;
+  label {
+    font-size: 15px;
+  }
 }

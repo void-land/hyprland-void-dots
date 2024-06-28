@@ -1,5 +1,5 @@
 
-(defwindow bar 
+(defwindow bar
   :geometry (geometry
     :x "0%"
     :y "0%"
@@ -13,6 +13,7 @@
   ;; :windowtype "dock"
   :wm-ignore false
   (barstruct))
+
 
 (defwidget barstruct []
   (box
@@ -32,7 +33,7 @@
         (bottom)
         )))
 
-(defwidget top [] 
+(defwidget top []
   (box
     :orientation "v"
     :space-evenly false
@@ -45,7 +46,7 @@
     (hiddenctl)
   ))
 
-(defwidget middle [] 
+(defwidget middle []
   (box
     :orientation "v"
     :space-evenly false
@@ -66,25 +67,57 @@
     :hexpand false
     (stray)
     (sliders)
-    (battery)
     (clock)
+    ; (battery)
   ))
 
+(defvar show_no_of_windows false)
+
+(deflisten workspacesdata :initial "[]" "./scripts/workspaces get-all-workspaces")
+
+(defpoll current_workspace :initial "0" :interval "50ms" "./scripts/workspaces get-active-workspace")
+
 (defwidget workspaces []
-  (eventbox
+   (eventbox
     :cursor "pointer"
+    :onscroll "./scripts/workspaces change {} ${current_workspace}"
+    :onhover "eww update show_no_of_windows=true"
+    :onhoverlost "eww update show_no_of_windows=false"
     (box
-      :class "workspaces widget"
-      :orientation "v"
-      :space-evenly false
-      (for workspace in {workspacejson}
-        (button
-          :onclick "swaymsg -t command workspace number ${workspace.name}"
-          (box
-            :hexpand false
-            :width 10
-            :height { workspace.focused ? 60 : !workspace.empty ? 40 : 30}
-            :class { workspace.focused ? "workspacethingactive" : "workspacething"}))))))
+        :class "workspaces"
+        :space-evenly false
+        :orientation "v"
+        (for workspace in {workspacesdata}
+          (button
+            :onclick "hyprctl dispatch workspace ${workspace.id}"
+            (box
+              :hexpand false
+              :width 10
+              :height { workspace.id == current_workspace ? 60 : 35 }
+              :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
+              )
+            )
+          )
+        )
+      )
+    )
+
+; (defwidget workspaces []
+;   (eventbox
+;     :cursor "pointer"
+;     (box
+;       :class "workspaces widget"
+;       :orientation "v"
+;       :space-evenly false
+;       (for workspace in {workspacejson}
+;         (button
+;           :onclick "swaymsg -t command workspace number ${workspace.name}"
+;           (box
+;             :hexpand false
+;             :width 10
+;             :height { workspace.focused ? 60 : !workspace.empty ? 40 : 30}
+;             :class { workspace.focused ? "workspacethingactive" : "workspacething"}))))))
+
 
 (defwidget home []
     (box

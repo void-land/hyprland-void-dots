@@ -1,15 +1,14 @@
-(defwindow dock 
+(defwindow dock
   :geometry (geometry
-              :x 0
-              :y 0
-              :width 10
-              :height 54
-              :anchor "bottom center")
-  :stacking "overlay"
+    :x 0
+    :y 0
+    :width 10
+    :height 54
+  :anchor "bottom center")
   :monitor 0
   (dockstruct))
 
-(defwidget dockstruct [] 
+(defwidget dockstruct []
   (eventbox
     :onhover "${EWW_CMD} update revealdock=true"
     :onhoverlost "${EWW_CMD} update revealdock=false"
@@ -18,11 +17,11 @@
       :space-evenly false
       :valign "end"
       (box
-        :height 4)
+      :height 4)
       (revealer
         :reveal revealdock
         :transition "slideup"
-        (box 
+        (box
           :class "popup"
           :height 60
           :orientation "h"
@@ -30,8 +29,8 @@
           (tasklist :iconsize 50))))))
 
 (defwidget tasklist [iconsize]
-  (box 
-    :orientation "h" 
+  (box
+    :orientation "h"
     :space-evenly true
     :spacing 10
     (for task in {tasksjson}
@@ -41,24 +40,24 @@
         (box
           :orientation "v"
           :space-evenly false
-          (image 
+          (image
             :image-width iconsize
             :image-height iconsize
-            :path {task.path})
-
+          :path {task.path})
+          
           (scroll
             :hscroll true
             :vscroll false
-            (box 
+            (box
               :orientation "h"
               :halign "center"
-              :space-evenly false 
+              :space-evenly false
               :spacing 3
               (for focus in {task.focused}
-                (box 
+                (box
                   :class "dockindicate"
                   :hexpand false
                   :width { focus ? 10 : 5 }
-                  :height 3))))
-          )))))
+                :height 3))))
+        )))))
 
