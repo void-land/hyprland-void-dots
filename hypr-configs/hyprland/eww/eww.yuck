@@ -41,4 +41,4 @@
 
 (include "./src/desktop/main.yuck")
 
-(include "./notification/notification.yuck")
+(include "./src/notification/main.yuck")
