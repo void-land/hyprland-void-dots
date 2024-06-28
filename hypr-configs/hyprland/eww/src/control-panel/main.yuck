@@ -27,7 +27,7 @@
       :height 160
       :halign "fill"
       (timer)
-      (bigslide))
+      (bigslides))
     (box
       :space-evenly false
       :orientation "v"
@@ -356,7 +356,7 @@
       (button :onclick "./scripts/timer.py toggle" (label :style "padding-right: 3px;" :text { !matches(timerdis, ":") ? "󱎫" : "󱫎"}))
       (button :onclick "./scripts/timer.py timeinc" (label :text "+")))))
 
-(defwidget bigslide []
+(defwidget bigslides []
   (box
     :valign "fill"
     :halign "fill"
@@ -364,6 +364,7 @@
     :hexpand true
     :space-evenly true
     (bigvol)
+    (bigmic)
     (bigbright)))
 
 (defwidget bigvol []
@@ -372,7 +373,7 @@
       :width 50
       :class "bigslide"
       :value volume
-      :onchange "pamixer --set-volume {}"
+      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
       :orientation "v"
       :tooltip "${volume}%"
       :max 100
@@ -382,6 +383,23 @@
       :class "slideicon"
       :valign "end"
     :text {volumemute == 'false' ? "󰕾" : "󰖁"})))
+
+(defwidget bigmic []
+  (overlay
+    (scale
+      :width 50
+      :class "bigslide"
+      :value mic_volume
+      :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
+      :orientation "v"
+      :tooltip "${mic_volume}%"
+      :max 100
+      :min 0
+    :flipped true)
+    (label
+      :class "slideicon"
+      :valign "end"
+    :text {volumemute == 'false' ? "" : "󰖁"})))
 
 (defwidget bigbright []
   (overlay

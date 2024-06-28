@@ -60,12 +60,12 @@
   "notifications": [],
   "popups": []
   }'
-  "./scripts/notifCatch"
+  "./scripts/notif.py"
 )
 
 ; Playerctl
 (defpoll pstatus :initial "" :interval "1s" "playerctl status")
-(defpoll psong :initial "0" :interval "1s" "playerctl metadata --format '{{ title }}'")
+(defpoll psong :initial "" :interval "1s" "playerctl metadata --format '{{ title }}'")
 (defpoll partist :initial "" :interval "1s" "playerctl metadata --format '{{ artist }}'")
 (deflisten pcover "./scripts/pollcover.sh")
 (deflisten ptime

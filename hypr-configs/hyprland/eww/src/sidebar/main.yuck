@@ -243,9 +243,7 @@
                       :orientation "v"
                       :space-evenly false
                       :class "sound"
-                      (label :class "icon" :text {volumemute == 'false' ? "" : "󰖁"})
-                      ;; {volumemute == 'no' ? volume : " Muted"})
-                      )
+                      (label :class "icon" :text {volumemute == 'false' ? "" : "󰖁"}))
                   (scale 
                       :class "volslide"
                       :value mic_volume
