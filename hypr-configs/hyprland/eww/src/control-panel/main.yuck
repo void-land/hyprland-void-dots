@@ -1,5 +1,3 @@
-(include "./src/control-panel/windowswitcher.yuck")
-
 (defwindow control_panel
   :geometry (geometry
     :x 10

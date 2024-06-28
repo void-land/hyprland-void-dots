@@ -3,7 +3,6 @@
 
 (include "./src/sidebar/main.yuck")
 (include "./src/control-panel/main.yuck")
-(include "./src/control-panel/windowswitcher.yuck")
 (include "./src/wallpapers/main.yuck")
 (include "./src/dashboard/main.yuck")
 (include "./src/dock/main.yuck")

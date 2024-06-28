@@ -12,21 +12,24 @@
 (defpoll calendar_day :initial "1" :interval "20h" "date '+%d'")
 (defpoll calendar_year :initial "2000" :interval "20h" "date '+%Y'")
 (defpoll bat0 :initial "0" :interval "30s" "bash ./scripts/sys_info --bat")
-(defpoll baticon :initial "" :interval "30s" "bash ./scripts/sys_info --baticon")
-(defpoll batstat :interval "30s" "cat /sys/class/power_supply/BAT0/status")
 (defpoll homedir :initial "" :interval "24h" "echo ~")
 (defpoll theme :interval "24h" "./scripts/toggletheme")
 ; (defpoll cpu :interval "1s" "bash ./scripts/sys_info --cpu")
 ; (defpoll mem :interval "1s" "bash ./scripts/sys_info --mem")
 
+; Reveals
+(defvar reveal1 false)
+(defvar reveal2 false)
+(defvar reveal3 false)
+(defvar reveal4 false)
+(defvar reveal5 false)
+(defvar reveal6 false)
 
-(defpoll trashcanpath :interval "24h" "./scripts/iconfetch.py trashcan_empty")
+; Desktop
+(defpoll trashcanPath :interval "24h" "./scripts/iconfetch.py trashcan_empty")
 
 ; Wallpaper
 (defvar wallpapers "[]")
-
-;; windows for workspace switching
-(defvar windows "[[], [], [], [], []]")
 
 ; Hyprland
 (defvar gapsouter 0)
@@ -47,7 +50,7 @@
 
 ; Workspaces
 (defvar show_no_of_windows false)
-(deflisten workspacesjson :initial "[]" "./scripts/workspaces get-all-workspaces")
+(defpoll workspacesjson :initial "[]" :interval "60s" "./scripts/workspaces get-all-workspaces")
 (defpoll current_workspace :initial "0" :interval "50ms" "./scripts/workspaces get-active-workspace")
 
 ; Notifications

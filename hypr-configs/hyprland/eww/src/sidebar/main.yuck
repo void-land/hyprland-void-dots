@@ -39,7 +39,7 @@
           :height "450"
     :vexpand false
     (home)
-       (workspaces)
+    (workspaces)
     (hiddenctl)
   ))
 
