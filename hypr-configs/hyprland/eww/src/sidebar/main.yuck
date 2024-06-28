@@ -51,7 +51,7 @@
     :vexpand false
     :class "center_modules"
     :height "180"
-    ; (playerctl)
+    (playerctl)
   ))
 
 (defwidget bottom [] 
