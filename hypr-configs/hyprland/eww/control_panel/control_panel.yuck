@@ -19,7 +19,7 @@
     :vexpand true
     (user)
     (chooser)
-    ;; (weather)
+    ; (weather)
     (coolmpd :h 150 :permashow true)
     (box
       :orientation "h"

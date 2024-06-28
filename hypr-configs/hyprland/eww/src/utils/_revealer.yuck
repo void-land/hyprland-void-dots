@@ -1,0 +1,47 @@
+(defwidget hovered-sign [var]
+  (box :space-evenly false
+    (revealer :reveal {!var}
+      :duration "100ms"
+      :transition "slideleft"
+      (children :nth 0))
+    (revealer :reveal {var}
+      :duration "100ms"
+      :transition "slideleft"
+      (children :nth 1))))
+
+(defwidget reveal_on_hover [var varname ?class ?duration ?transition]
+  (box
+    :class "reveal_on_hover ${class}"
+    :orientation "v"
+    :space-evenly false
+    :valign "end"
+    (eventbox
+      :onhover `${EWW_CMD} update ${varname}=true`
+      :onhoverlost `${EWW_CMD} update ${varname}=false`
+      (box
+        :space-evenly false
+        :orientation "v"
+        (children :nth 0)
+        (revealer
+          :reveal var
+          :transition {transition ?:"slidedown"}
+          :duration "500ms"
+          (children :nth 1))))))
+
+
+(defwidget clickbox [var varname ?class ?duration ?transition]
+  (box :class "${class} clickbox" :orientation "h" :space-evenly false
+    (button :onclick "eww update ${varname}=${ var ? false : true }"
+      (children :nth 0)
+    )
+    (revealer :reveal var
+      :transition {transition ?: "slideleft"}
+      :duration {duration ?: "500ms"}
+      (box :class "${class}"
+        :space-evenly false
+        (children :nth 1)
+        (button :onclick "eww update ${varname}=false" :class "close" (label :text "Close"))
+      )
+    )
+  )
+)

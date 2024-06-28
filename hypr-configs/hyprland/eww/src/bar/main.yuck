@@ -3,10 +3,8 @@
   :geometry (geometry
     :x "0%"
     :y "0%"
-    :width "42"
-    :height "1080"
     :anchor "center left")
-  ;; :reserve (struts :distance "60" :side "left")
+    ; :reserve (struts :distance "60" :side "left")
   ;; :stacking "bg"
   :exclusive true
   :monitor 0
@@ -65,7 +63,7 @@
     :class "bottom_modules"
     :vexpand false
     :hexpand false
-    (stray)
+    ; (stray)
     (sliders)
     (clock)
     ; (battery)
@@ -216,7 +214,7 @@
         (label :class "picon" :text "󰒭"))
       )))
 
-(defwidget sliders [] 
+(defwidget sliders []
     (box
         :class "widget"
         :orientation "v"
@@ -227,8 +225,8 @@
           (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
 
         (reveal_on_hover
-            :revealval reveal1
-            :revealvalstr "reveal1"
+            :var revealVolume
+            :varname "revealVolume"
             (box
                 :orientation "v"
                 :space-evenly false
@@ -247,8 +245,8 @@
                 :flipped true))
 
         (reveal_on_hover
-                  :revealval reveal2
-                  :revealvalstr "reveal2"
+                  :var revealMicrophone
+                  :varname "revealMicrophone"
                   (box
                       :orientation "v"
                       :space-evenly false
@@ -258,17 +256,17 @@
                       )
                   (scale 
                       :class "volslide"
-                      :value volume
+                      :value mic_volume
                       :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
                       :orientation "v"
-                      :tooltip "${volume}%"
-                      :max 100
+                      :tooltip "${mic_volume}%"
+                      :max 101
                       :min 0
                       :flipped true))
 
         (reveal_on_hover
-            :revealval reveal5
-            :revealvalstr "reveal5"
+            :var revealBrightness
+            :varname "revealBrightness"
             (box 
                 :orientation "v"
                 :space-evenly false
@@ -284,25 +282,6 @@
                 :min 0
                 :flipped true))
         ))
-
-(defwidget reveal_on_hover [revealval revealvalstr ?class ?transition]
-    (box 
-        :class "reveal_on_hover ${class}"
-        :orientation "v"
-        :space-evenly false
-        :valign "end"
-        (eventbox
-            :onhover `${EWW_CMD} update ${revealvalstr}=true`
-            :onhoverlost `${EWW_CMD} update ${revealvalstr}=false`
-            (box 
-                :space-evenly false
-                :orientation "v"
-                (children :nth 0)
-                (revealer 
-                    :reveal revealval
-                    :transition {transition ?:"slidedown"}
-                    :duration "500ms"
-                    (children :nth 1))))))
 
 ;; other windows
 (defwindow calendar

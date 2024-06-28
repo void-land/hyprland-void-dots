@@ -1,62 +1,50 @@
-(defpoll thour :initial "0" :interval "60s" "date +'%I'")
-(defpoll tmin :initial "0" :interval "60s" "date +'%M'")
-(defpoll tpm :initial "0" :interval "60s" "date +'%p'")
-(defpoll volumemute :initial "false" :interval "1s" "pamixer --get-mute")
-(defpoll volume :initial "0" :interval "1s" "pamixer --get-volume")
-(defpoll brightness :initial "0" :interval "2s" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
-(defpoll wifi_icon :initial "" :interval "30s" "./scripts/wifi --ICON")
-(defpoll wifi_essid :initial "" :interval "30s" "./scripts/wifi --ESSID")
-(defpoll wifi_radio :initial "off" :interval "2s" "nmcli radio wifi")
-(defpoll calendar_day :initial "1" :interval "20h" "date '+%d'")
-(defpoll calendar_year :initial "2000" :interval "20h" "date '+%Y'")
-(defpoll bat0 :initial "0" :interval "30s" "bash ./scripts/sys_info --bat")
-;; (defpoll baticon :initial "" :interval "30s" "bash ./scripts/sys_info --baticon")
-;; (defpoll batstat :interval "30s" "cat /sys/class/power_supply/BAT0/status")
-(defpoll homedir :initial "" :interval "24h" "echo ~")
+(include "./src/utils/_revealer.yuck")
+(include "./src/_pollers.yuck")
+(include "./src/_variables.yuck")
 
-(deflisten workspacejson 
+(deflisten workspacejson
   :initial '[{"focused": true, "empty": false, "name": 1}, {"focused": false, "empty": true, "name": 2}, {"focused": false, "empty": true, "name": 3}, {"focused": false, "empty": true, "name": 4}, {"focused": false, "empty": true, "name": 5}]'
-  "./scripts/workspace.py")
+"./scripts/workspace.py")
 
 ;; used mainly in control panel and dashboard
 (defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')
 (defpoll uptime :initial "idk" :interval "1m" "uptime -p")
-(defpoll weatherjson 
+(defpoll weatherjson
   :initial '{
-    "FeelsLikeC": "0", 
-    "FeelsLikeF": "0", 
-    "cloudcover": "0", 
-    "humidity": "0", 
-    "localObsDateTime": "2000-00-00 07:27 AM", 
-    "observation_time": "07:27 AM", 
-    "precipInches": "0.0", 
-    "precipMM": "0.0", 
-    "pressure": "0", 
-    "pressureInches": "0", 
-    "temp_C": "0", 
-    "temp_F": "0", 
-    "uvIndex": "0", 
-    "visibility": "0", 
-    "visibilityMiles": "0", 
-    "weatherCode": "727", 
-    "weatherDesc": [{"value": "Idk"}], 
-    "weatherIconUrl": [{"value": ""}], 
-    "winddir16Point": "", 
-    "winddirDegree": "0", 
-    "windspeedKmph": "0", 
-    "windspeedMiles": "0", 
-    "icon": "idk", 
-    "hourly": []
+  "FeelsLikeC": "0",
+  "FeelsLikeF": "0",
+  "cloudcover": "0",
+  "humidity": "0",
+  "localObsDateTime": "2000-00-00 07:27 AM",
+  "observation_time": "07:27 AM",
+  "precipInches": "0.0",
+  "precipMM": "0.0",
+  "pressure": "0",
+  "pressureInches": "0",
+  "temp_C": "0",
+  "temp_F": "0",
+  "uvIndex": "0",
+  "visibility": "0",
+  "visibilityMiles": "0",
+  "weatherCode": "727",
+  "weatherDesc": [{"value": "Idk"}],
+  "weatherIconUrl": [{"value": ""}],
+  "winddir16Point": "",
+  "winddirDegree": "0",
+  "windspeedKmph": "0",
+  "windspeedMiles": "0",
+  "icon": "idk",
+  "hourly": []
   }'
-  :interval "1h" 
-  :run-while revealcontrolpanel 
-  "./scripts/weather.py")
+  :interval "1h"
+  :run-while revealcontrolpanel
+"./scripts/weather.py")
 (defpoll datehour :initial "12" :interval "30m" "date +'%H'")
 (defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")
-(deflisten timerdis `./scripts/timer.py subscribe`)
 (defpoll quotejson :interval "1h" `./scripts/quote.py`)
+(deflisten timerdis `./scripts/timer.py subscribe`)
 
-;; dock 
+;; dock
 (deflisten tasksjson :initial "[]" "./scripts/tasklist.py")
 (defvar revealdock false)
 
@@ -73,12 +61,12 @@
 
 ; Notifications
 (deflisten  notifications :initial '{
-    "count": 0,
-    "dnd": false,
-    "notifications": [],
-    "popups": []
-    }'
-    "./scripts/notifCatch"
+  "count": 0,
+  "dnd": false,
+  "notifications": [],
+  "popups": []
+  }'
+  "./scripts/notifCatch"
 )
 
 ;; cava pipe ("borrowed from tail-r")
@@ -89,11 +77,11 @@
 (deflisten partist "playerctl metadata --format '{{ artist }}' -F")
 (deflisten pcover "./scripts/pollcover.sh")
 (deflisten pstatus "playerctl status -F")
-(deflisten ptime 
+(deflisten ptime
   :initial '{
-    "position": 0,
-    "duration": 0,
-    "readable": "0:00"
+  "position": 0,
+  "duration": 0,
+  "readable": "0:00"
   }'
   "playerctl -F metadata -f '{ \"position\": {{position/1000000}}, \"duration\": {{mpris:length/1000000}}, \"readable\": \"{{duration(position)}}/{{duration(mpris:length)}}\" }'")
 ;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
@@ -104,20 +92,9 @@
 ;; windows for workspace switching
 (defvar windows "[[], [], [], [], []]")
 
-(defvar reveal1 false)
-(defvar reveal2 false)
-(defvar reveal3 false)
-(defvar reveal4 false)
-(defvar reveal5 false)
-(defvar reveal6 false)
-(defvar revealweather false)
-(defvar revealsystray false)
-(defvar revealcontrolpanel false)
-
 (defpoll theme :interval "24h" "./scripts/toggletheme")
 
-
-(include "./bar/bar.yuck")
+(include "./src/bar/main.yuck")
 ;; (include "./bottom_bar/bar.yuck")
 (include "./control_panel/control_panel.yuck")
 (include "./dashboard/dashboard.yuck")
