@@ -19,7 +19,7 @@
     :space-evenly false 
     (revealer 
       :transition "slideright"
-      :reveal revealcontrolpanel
+      :reveal revealControlpanel
       (control_widget))
       (centerbox 
         :class "barwidget"
@@ -69,23 +69,17 @@
     ; (battery)
   ))
 
-(defvar show_no_of_windows false)
-
-(deflisten workspacesdata :initial "[]" "./scripts/workspaces get-all-workspaces")
-
-(defpoll current_workspace :initial "0" :interval "50ms" "./scripts/workspaces get-active-workspace")
-
 (defwidget workspaces []
    (eventbox
     :cursor "pointer"
     :onscroll "./scripts/workspaces change {} ${current_workspace}"
-    :onhover "eww update show_no_of_windows=true"
-    :onhoverlost "eww update show_no_of_windows=false"
+    :onhover "${EWW_CMD} update show_no_of_windows=true"
+    :onhoverlost "${EWW_CMD} update show_no_of_windows=false"
     (box
         :class "workspaces"
         :space-evenly false
         :orientation "v"
-        (for workspace in {workspacesdata}
+        (for workspace in {workspacesjson}
           (button
             :onclick "hyprctl dispatch workspace ${workspace.id}"
             (box
@@ -109,7 +103,7 @@
             ;; :onclick "~/.config/eww/meowidgets/scripts/launch"
             ;; :onclick "~/.config/eww/meowayland/scripts/launch"
             ;; :onclick "./scripts/pop control"
-            :onclick "${EWW_CMD} update revealcontrolpanel=${ !revealcontrolpanel }"
+            :onclick "${EWW_CMD} update revealControlpanel=${ !revealControlpanel }"
             :onrightclick "${EWW_CMD} open wallpaperselect --toggle"
             :cursor "pointer"
             (label :text "" :halign "center" :class "launchicon" :style "padding: 2px 0px;"))))
@@ -205,7 +199,7 @@
       :spacing 5
       (eventbox 
         :onclick "${EWW_CMD} open music --toggle"
-        (image :path { pcover == "" ? "./image/emptympd.png" : pcover } :image-width 20 :image-height 20))
+        (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
       (button :onclick "playerctl previous"
         (label :class "picon" :text "󰒮"))
       (button :onclick "playerctl play-pause" 
@@ -313,7 +307,7 @@
       :class "unbarwidget"
       :space-evenly false 
       :spacing 20
-      (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./image/emptympd.png" : pcover })
+      (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
       (box
         :orientation "v"
         :space-evenly false 

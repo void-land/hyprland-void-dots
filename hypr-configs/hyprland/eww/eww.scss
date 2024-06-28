@@ -1,11 +1,11 @@
 @import "./colors.scss";
-@import "./src/bar/styles.scss";
-// @import "./bottom_bar/bar.scss";
-@import "./control_panel/control_panel.scss";
-@import "./dashboard/dashboard.scss";
-@import "./dock/dock.scss";
-@import "./desktop/desktop.scss";
+@import "./src/sidebar/styles.scss";
+@import "./src/control-panel/styles.scss";
+@import "./src/dashboard/styles.scss";
+@import "./src/dock/styles.scss";
+@import "./src/desktop/styles.scss";
 @import "./notification/notification.scss";
+// @import "./src/bottom-bar/styles.scss";
 
 * {
   all: unset;
@@ -110,7 +110,7 @@ checkbutton:checked {
 }
 
 entry {
-  // image: url('./image/screenshot.png');
+  // image: url('./assets/image/screenshot.png');
   padding: 5px;
   margin: 5px;
   border-radius: 5px;

@@ -1,9 +1,9 @@
 
 ;; Credits to T0kyob0y
 
-(defwidget overview[] 
-  (box 
-    :space-evenly false 
+(defwidget overview []
+  (box
+    :space-evenly false
     :class "unbarwidget"
     :orientation "h"
     :hexpand true
@@ -11,7 +11,7 @@
       :hscroll true
       :vscroll false
       :hexpand true
-      (box 
+      (box
         :orientation "h"
         :space-evenly true
         :spacing 10
@@ -20,26 +20,26 @@
             ;; :ondropped "notify-send 'real'"
             :onclick "${EWW_CMD} update revealcontrolpanel=false && swaymsg -t command workspace number ${i+1}"
             ;; :onclick "swaymsg -t command workspace number ${i+1}"
-            (box 
+            (box
               :class "overviewworkspace"
-              :space-evenly false 
+              :space-evenly false
               ;; :height {round(1080/5.8, 0)}
               :vexpand true
               :width {round(1920/5.8, 0)}
               (for j in {windows[i]}
                 (windowapp :w j)
-                ))
-                ))))))
+              ))
+          ))))))
 
 (defwidget windowapp [w]
-  (box 
+  (box
     :style "
-      margin-left: ${round(((w.rect.x)/5.8), 0)}px;
-      margin-top: ${round(w.rect.y/5.8, 0)}px;
-      margin-right: -${round((w.rect.x + w.rect.width)/5.8, 0)}px;
-      margin-bottom: -${round(((w.rect.y + w.rect.height)/5.8), 0)}px;
+    margin-left: ${round(((w.rect.x)/5.8), 0)}px;
+    margin-top: ${round(w.rect.y/5.8, 0)}px;
+    margin-right: -${round((w.rect.x + w.rect.width)/5.8, 0)}px;
+    margin-bottom: -${round(((w.rect.y + w.rect.height)/5.8), 0)}px;
     "
-    :hexpand false 
+    :hexpand false
     :vexpand false
     :halign "start"
     :valign "start"
@@ -49,10 +49,10 @@
       :halign "center"
       :dragvalue "${w.pid}"
       :dragtype "text"
-      (image 
+      (image
         :valign "center"
         :halign "center"
         :image-height {round(w.rect.width/5.8 * 45/100, 0)}
         :image-width {round(w.rect.height/5.8 * 45/100, 0)}
         :path {w.path}
-        ))))
+      ))))

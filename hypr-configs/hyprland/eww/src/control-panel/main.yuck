@@ -1,3 +1,5 @@
+(include "./src/control-panel/windowswitcher.yuck")
+
 (defwindow control_panel
   :geometry (geometry
     :x 10
@@ -217,7 +219,7 @@
       :valign "start"
       :halign "fill"
       :hexpand true
-      (image :style "margin: 10px;" :image-width 80 :image-height 80 :path "./image/fieshidle.gif")
+      (image :style "margin: 10px;" :image-width 80 :image-height 80 :path "./assets/image/fieshidle.gif")
       (scroll
         :hscroll true
         :vscroll false
@@ -304,7 +306,7 @@
     (image
       :image-width 50
       :image-height 50
-    :path "./image/weather/${hour.icon}.svg")
+    :path "./assets/image/weather/${hour.icon}.svg")
     (box
       :orientation "v"
       :space-evenly false
@@ -325,7 +327,7 @@
       :image-width 100
       :image-height 100
       :style "margin: 10px;"
-    :path "./image/weather/${weatherjson.icon}.svg")
+    :path "./assets/image/weather/${weatherjson.icon}.svg")
     (scroll
       :hscroll true
       :vscroll false
@@ -474,7 +476,7 @@
       :halign "center"
       :valign "center"
       :spacing 10
-      (image :image-width 100 :image-height 100 :path { pcover == "" ? "./image/emptympd.png" : pcover })
+      (image :image-width 100 :image-height 100 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
       (box
         :orientation "v"
         :space-evenly false
@@ -499,5 +501,3 @@
             (label :text { pstatus == "Playing" ? "" : ""} ))
           (button :onclick "playerctl next"
             (label :text "󰒭")))))))
-
-(include "./control_panel/windowswitcher.yuck")

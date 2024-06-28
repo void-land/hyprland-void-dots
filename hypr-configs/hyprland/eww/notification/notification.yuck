@@ -1,11 +1,11 @@
 
-(defwindow notifypopup 
+(defwindow notifypopup
   :geometry (geometry
-              :x 0
-              :y 0
-              :width 480
-              :height 0
-              :anchor "top right")
+    :x 0
+    :y 0
+    :width 480
+    :height 0
+  :anchor "top right")
   :stacking "overlay"
   :monitor 0
   (revealer
@@ -13,78 +13,78 @@
     :transition "slidedown"
     (box
       :orientation "v"
-      :space-evenly false 
+      :space-evenly false
       :spacing 5
       (for noti in {notifications.popups}
         (singlenotif :noti noti :initial true)))))
 
 (defwidget singlenotif [noti initial]
-  (box 
+  (box
     :orientation "v"
     :class "${initial ? 'popup' : 'notifbox'}"
-    :space-evenly false 
-
-    (centerbox 
+    :space-evenly false
+    
+    (centerbox
       :orientation "h"
       :class "notifbar"
-      (image :halign "start" :image-width 30 :image-height 30 :path {noti.icon != "null" ? noti.icon : "./image/idk.svg"})
-      (scroll 
+      (image :halign "start" :image-width 30 :image-height 30 :path {noti.icon != "null" ? noti.icon : "./assets/image/idk.svg"})
+      (scroll
         :halign "center"
         :valign "center"
         :hexpand true
         :hscroll true
-        :vscroll false 
+        :vscroll false
         :width 200
-        (label 
+        (label
           :class "notiflabel"
-          :text {noti.app}))
-      (button 
+        :text {noti.app}))
+      (button
         :halign "end"
         :onclick "./scripts/notifManage --close ${noti.id}"
-        (label 
+        (label
           :class "notifclose"
-          :text "")))
-
-    (box 
+        :text "")))
+    
+    (box
       :orientation "h"
       :halign "fill"
       :height 80
       :space-evenly false
       :spacing 10
-      (image :image-width 80 :image-height 80 :visible {noti.image != "null"} :path {noti.image != "null" ? noti.image : "./image/idk.svg"})
-
-      (button 
+      (image :image-width 80 :image-height 80 :visible {noti.image != "null"} :path {noti.image != "null" ? noti.image : "./assets/image/idk.svg"})
+      
+      (button
         :onclick "./scripts/notifManage --dismiss ${noti.id}"
         :onrightclick "./scripts/notifManage --close ${noti.id}"
         :tooltip "${noti.time}"
         :hexpand true
         :vexpand true
-        (box 
-          :orientation "v" 
-          :space-evenly false 
+        (box
+          :orientation "v"
+          :space-evenly false
           :valign "center"
           (scroll
-            :hscroll true 
+            :hscroll true
             :vscroll false
             :hexpand true
-            (label 
-              :class "notiftitle" 
-              :text {noti.summary}))
-            (scroll
-              :hscroll true 
-              :vscroll false
-              :hexpand true
-              (label 
-                :class "notifbody"
-                :visible {noti.body != "null"}
-                :text {noti.body})))))
-
+            (label
+              :class "notiftitle"
+            :text {noti.summary}))
+          (scroll
+            :hscroll true
+            :vscroll false
+            :hexpand true
+            (label
+              :class "notifbody"
+              :visible {noti.body != "null"}
+            :text {noti.body})))))
+    
     (box
       :orientation "h"
       (for action in {noti.actions}
         (button
           :onclick "./scripts/notifManage --action ${noti.id} ${action[0]} && ./scripts/notifManage --close ${noti.id}"
-          (label 
+          (label
             :class "notifactions"
-            :text {action[1]}))
-        ))))
+          :text {action[1]}))
+      ))))

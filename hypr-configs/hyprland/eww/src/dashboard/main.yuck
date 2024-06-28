@@ -1,5 +1,4 @@
 
-;; Dashboard design is made by tsukki9696
 (defwindow dashboard
   :geometry (geometry
     :x 0
@@ -16,7 +15,7 @@
     :class "popup"
     :space-evenly false
     :orientation "v"
-    (duser :name "Failed" :tag "failed.sh" :pfp "./image/roundpfp.png")
+    (duser :name "Failed" :tag "failed.sh" :pfp "./assets/image/roundpfp.png")
     (box
       :space-evenly true
       :orientation "h"

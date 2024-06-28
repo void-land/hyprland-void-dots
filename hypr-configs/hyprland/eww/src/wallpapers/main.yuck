@@ -8,7 +8,6 @@
   :anchor "center")
   :stacking "overlay"
   :monitor 0
-  :focusable true
   (box
     :class "popup"
     (wallpaperselectwidget)))
@@ -46,7 +45,7 @@
             :style "margin: 50px 0px 5px 0px;"
             :hexpand false
             :vexpand false
-            :path "./image/fieshidle.gif"
+            :path "./assets/image/fieshidle.gif"
             :visible {arraylength(wallpapers) == 0})
           
           (label

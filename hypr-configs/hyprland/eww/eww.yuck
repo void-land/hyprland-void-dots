@@ -1,48 +1,5 @@
 (include "./src/utils/_revealer.yuck")
-(include "./src/_pollers.yuck")
-(include "./src/_variables.yuck")
-
-(deflisten workspacejson
-  :initial '[{"focused": true, "empty": false, "name": 1}, {"focused": false, "empty": true, "name": 2}, {"focused": false, "empty": true, "name": 3}, {"focused": false, "empty": true, "name": 4}, {"focused": false, "empty": true, "name": 5}]'
-"./scripts/workspace.py")
-
-;; used mainly in control panel and dashboard
-(defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')
-(defpoll uptime :initial "idk" :interval "1m" "uptime -p")
-(defpoll weatherjson
-  :initial '{
-  "FeelsLikeC": "0",
-  "FeelsLikeF": "0",
-  "cloudcover": "0",
-  "humidity": "0",
-  "localObsDateTime": "2000-00-00 07:27 AM",
-  "observation_time": "07:27 AM",
-  "precipInches": "0.0",
-  "precipMM": "0.0",
-  "pressure": "0",
-  "pressureInches": "0",
-  "temp_C": "0",
-  "temp_F": "0",
-  "uvIndex": "0",
-  "visibility": "0",
-  "visibilityMiles": "0",
-  "weatherCode": "727",
-  "weatherDesc": [{"value": "Idk"}],
-  "weatherIconUrl": [{"value": ""}],
-  "winddir16Point": "",
-  "winddirDegree": "0",
-  "windspeedKmph": "0",
-  "windspeedMiles": "0",
-  "icon": "idk",
-  "hourly": []
-  }'
-  :interval "1h"
-  :run-while revealcontrolpanel
-"./scripts/weather.py")
-(defpoll datehour :initial "12" :interval "30m" "date +'%H'")
-(defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")
-(defpoll quotejson :interval "1h" `./scripts/quote.py`)
-(deflisten timerdis `./scripts/timer.py subscribe`)
+(include "./src/_definitions.yuck")
 
 ;; dock
 (deflisten tasksjson :initial "[]" "./scripts/tasklist.py")
@@ -59,32 +16,8 @@
 (defvar borderpixel 2)
 (defvar caffeine false)
 
-; Notifications
-(deflisten  notifications :initial '{
-  "count": 0,
-  "dnd": false,
-  "notifications": [],
-  "popups": []
-  }'
-  "./scripts/notifCatch"
-)
-
 ;; cava pipe ("borrowed from tail-r")
 ;; (deflisten cavajson :initial "[]" "./scripts/cava_pipe.sh")
-
-;; playerctl
-(deflisten psong "playerctl metadata --format '{{ title }}' -F")
-(deflisten partist "playerctl metadata --format '{{ artist }}' -F")
-(deflisten pcover "./scripts/pollcover.sh")
-(deflisten pstatus "playerctl status -F")
-(deflisten ptime
-  :initial '{
-  "position": 0,
-  "duration": 0,
-  "readable": "0:00"
-  }'
-  "playerctl -F metadata -f '{ \"position\": {{position/1000000}}, \"duration\": {{mpris:length/1000000}}, \"readable\": \"{{duration(position)}}/{{duration(mpris:length)}}\" }'")
-;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
 
 ;; wallpaper thing
 (defvar wallpapers "[]")
@@ -94,11 +27,18 @@
 
 (defpoll theme :interval "24h" "./scripts/toggletheme")
 
-(include "./src/bar/main.yuck")
-;; (include "./bottom_bar/bar.yuck")
-(include "./control_panel/control_panel.yuck")
-(include "./dashboard/dashboard.yuck")
-(include "./dock/dock.yuck")
-(include "./desktop/desktop.yuck")
+;; (include "./src/bottom_bar/bar.yuck")
+(include "./src/sidebar/main.yuck")
+
+(include "./src/control-panel/main.yuck")
+(include "./src/control-panel/windowswitcher.yuck")
+
+(include "./src/wallpapers/main.yuck")
+
+(include "./src/dashboard/main.yuck")
+
+(include "./src/dock/main.yuck")
+
+(include "./src/desktop/main.yuck")
+
 (include "./notification/notification.yuck")
-(include "./wallpapers/wallpapers.yuck")

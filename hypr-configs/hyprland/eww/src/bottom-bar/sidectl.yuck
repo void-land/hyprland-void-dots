@@ -1,15 +1,15 @@
 
 (defwindow sidectl1
   :geometry (geometry
-              :x "0%"
-              :y "0%"
-              :width 320
-              :height 0
-              :anchor "bottom right")
-  :monitor 0 
+    :x "0%"
+    :y "0%"
+    :width 320
+    :height 0
+  :anchor "bottom right")
+  :monitor 0
   :stacking "overlay"
   (revealer
-    :reveal reveal1 
+    :reveal reveal1
     :transition "slideup"
     (box
       :orientation "v"
@@ -18,31 +18,31 @@
       (box
         :height 700
         :class "popup"
-          (notiweathertoggle))
-
+        (notiweathertoggle))
+      
       (box
         :class "popup"
         (box
           :class "unbarwidget"
-          (calendar 
-            :day calendar_day 
-            :year calendar_year 
-            :class "")))
-      )))
+          (calendar
+            :day calendar_day
+            :year calendar_year
+          :class "")))
+    )))
 
-(defwindow sidectl2 
-  :geometry (geometry 
-              :x 50 
-              :y 0
-              :width 200
-              :height 0
-              :anchor "bottom right")
-  :monitor 0 
+(defwindow sidectl2
+  :geometry (geometry
+    :x 50
+    :y 0
+    :width 200
+    :height 0
+  :anchor "bottom right")
+  :monitor 0
   :stacking "overlay"
-  (revealer 
-    :reveal reveal2 
+  (revealer
+    :reveal reveal2
     :transition "slideup"
-    (box 
+    (box
       :class "popup"
       :orientation "v"
       :space-evenly false
@@ -50,131 +50,131 @@
         :orientation "v"
         :class "widget"
         :spacing 20
-        :space-evenly false 
-
+        :space-evenly false
+        
         (box
           :orientation "v"
           :height 150
-          (box 
+          (box
             :orientation "h"
-            (togglebuttons 
-              :icon wifi_icon 
+            (togglebuttons
+              :icon wifi_icon
               :class {wifi_radio == "enabled" ? "icontitlesel" : "icontitle"}
               :text {wifi_radio == "enabled" ? wifi_essid == "" ? "Disconnected" : "Connected" : "Off"}
               :subtext { wifi_essid == "" ? "..." : wifi_essid}
-              :toggle {wifi_radio == "enabled" ? "nmcli radio wifi off" : "nmcli radio wifi on"})
-
-            (togglebuttons 
+            :toggle {wifi_radio == "enabled" ? "nmcli radio wifi off" : "nmcli radio wifi on"})
+            
+            (togglebuttons
               :icon ""
               :class {caffeine ? "icontitlesel" : "icontitle"}
               :text "Caffeine"
               :subtext {caffeine ? "on" : "off"}
-              :toggle {caffeine ? "swaymsg [app_id='.*'] inhibit_idle none && ${EWW_CMD} update caffeine=false" : "swaymsg [app_id='.*'] inhibit_idle open && ${EWW_CMD} update caffeine=true"}))
-
+            :toggle {caffeine ? "swaymsg [app_id='.*'] inhibit_idle none && ${EWW_CMD} update caffeine=false" : "swaymsg [app_id='.*'] inhibit_idle open && ${EWW_CMD} update caffeine=true"}))
+          
           (box
             :orientation "h"
-            (togglebuttons 
+            (togglebuttons
               :icon ""
               :class "icontitle"
               :text "Theme"
               :subtext theme
-              :toggle "${EWW_CMD} update reveal2=false && ~/.config/eww/themeswitch/scripts/pop")
-
+            :toggle "${EWW_CMD} update reveal2=false && ~/.config/eww/themeswitch/scripts/pop")
+            
             (togglebuttons
               :icon ""
               :class {notifications.dnd ? "icontitlesel" : "icontitle"}
               :text "Do not disturb"
               :subtext {notifications.dnd ? "on" : "off"}
-              :toggle "./scripts/notifManage --toggle")
-            ))
-
+            :toggle "./scripts/notifManage --toggle")
+          ))
+        
         (sliderctl :icon {volumemute == 'false' ? "󰕾" : "󰖁"} :value volume :onchange "pamixer --set-volume {}")
         (sliderctl :icon "󰃞" :value brightness :onchange "brightnessctl set {}%")
-
+        
         (box
           :orientation "h"
-          :space-evenly false 
+          :space-evenly false
           :halign "end"
           (overlay
-            (scale 
+            (scale
               :class "${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging': bat0 < 16 ? 'dying': 'normal'} bat_scale"
               :value "${bat0}"
               :orientation "h"
-              :max 100 
+              :max 100
               :min 0
-              :active false)
-            (label 
+            :active false)
+            (label
               :class "lightning"
               :visible {EWW_BATTERY.BAT0.status == "Charging"}
-              :text "󱐋"))
+            :text "󱐋"))
           (label :text "${bat0}%"))
-))))
+      ))))
 
 (defwidget togglebuttons [icon class text ?subtext toggle]
-  (button 
-    :onclick toggle 
-    (box 
+  (button
+    :onclick toggle
+    (box
       :orientation "h"
-      :class class 
+      :class class
       :space-evenly false
-      (label 
+      (label
         :class "icon"
         :halign "start"
-        :text icon)
-      (box 
+      :text icon)
+      (box
         :orientation "v"
         :hexpand true
         :halign "center"
-        (label 
-          :text text)
-        (label 
+        (label
+        :text text)
+        (label
           :limit-width 17
-          :text subtext)))))
+        :text subtext)))))
 
 (defwidget sliderctl [icon value onchange]
-  (box 
+  (box
     :orientation "h"
     :space-evenly false
     :hexpand true
     :spacing 5
-
-    (label 
+    
+    (label
       :class "icon"
       :text icon
-      :style "margin-left: 5px;")
-
-    (scale 
+    :style "margin-left: 5px;")
+    
+    (scale
       :class "sliderctl"
       :orientation "h"
       :value value
       :tooltip "${value}%"
       :min 0
       :max 100
-      :onchange onchange)))
+    :onchange onchange)))
 
 (defwindow sidectl3
   :geometry (geometry
-              :x 150
-              :y 0
-              :width 440
-              :height 0
-              :anchor "bottom right")
-  :monitor 0 
+    :x 150
+    :y 0
+    :width 440
+    :height 0
+  :anchor "bottom right")
+  :monitor 0
   :stacking "overlay"
   (revealer
     :reveal reveal3
     :transition "slideup"
-    (box 
+    (box
       :class "popup"
       (box
         :orientation "h"
         :class "unbarwidget"
-        :space-evenly false 
+        :space-evenly false
         :spacing 20
-        (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./image/emptympd.png" : pcover })
+        (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
         (box
           :orientation "v"
-          :space-evenly false 
+          :space-evenly false
           :width 210
           :height 200
           (scroll
@@ -185,88 +185,88 @@
             :hscroll true
             :vscroll false
             (label :class "mauthor" :text partist))
-          (box 
+          (box
             :orientation "h"
             :class "mpd_controls"
             :style "margin-top: 10px;"
             (button :onclick "playerctl previous" (label :text "󰒮"))
-            (button :onclick "playerctl play-pause" 
+            (button :onclick "playerctl play-pause"
               (label :text { pstatus == "Playing" ? "" : ""} ))
-            (button :onclick "playerctl next" 
+            (button :onclick "playerctl next"
               (label :text "󰒭")))
-          (scale 
+          (scale
             :class "seektime"
             :value { ptime.position }
             :orientation "h"
             :onchange "playerctl position {}"
             :min 0
             :max { ptime.duration }
-            :tooltip { ptime.readable }))
-        ;; (box 
-        ;;   :orientation "v"
-        ;;   :space-evenly false
-        ;;   :valign "center"
-        ;;   :halign "end"
-        ;;   :class "sidempdctl"
-        ;;   (scale 
-        ;;     :value { pside.volume } 
-        ;;     :orientation "v"
-        ;;     :class "mpdvolumeseek"
-        ;;     :onchange "playerctl volume {}"
-        ;;     :min 0 
-        ;;     :max 100
-        ;;     :flipped true
-        ;;     :tooltip "volume: ${pside.volume}")
-        ;;   (button 
-        ;;     :onclick "playerctl shuffle toggle"
-        ;;     (label 
-        ;;       :text {pside.shuffle == "true" ? "󰒝" : "󰒞"}))
-        ;;   (button 
-        ;;     :onclick "playerctl loop ${pside.loop == 'Track' ? 'Playlist' : 'Track'}"
-        ;;     (label 
-        ;;       :text {pside.loop == "Track" ? "󰑘" : "󰑖"}))
+          :tooltip { ptime.readable }))
+        ;; (box
+          ;;   :orientation "v"
+          ;;   :space-evenly false
+          ;;   :valign "center"
+          ;;   :halign "end"
+          ;;   :class "sidempdctl"
+          ;;   (scale
+            ;;     :value { pside.volume }
+            ;;     :orientation "v"
+            ;;     :class "mpdvolumeseek"
+            ;;     :onchange "playerctl volume {}"
+            ;;     :min 0
+            ;;     :max 100
+            ;;     :flipped true
+          ;;     :tooltip "volume: ${pside.volume}")
+          ;;   (button
+            ;;     :onclick "playerctl shuffle toggle"
+            ;;     (label
+            ;;       :text {pside.shuffle == "true" ? "󰒝" : "󰒞"}))
+          ;;   (button
+            ;;     :onclick "playerctl loop ${pside.loop == 'Track' ? 'Playlist' : 'Track'}"
+            ;;     (label
+            ;;       :text {pside.loop == "Track" ? "󰑘" : "󰑖"}))
         ;;   )
-        ))))
+      ))))
 
-(defwindow sidectl4 
+(defwindow sidectl4
   :geometry (geometry
-             :x 0
-             :y 0
-             :width 340
-             :height 0
-             :anchor "bottom left"
-             )
+    :x 0
+    :y 0
+    :width 340
+    :height 0
+    :anchor "bottom left"
+  )
   :stacking "overlay"
   :monitor 0
   (revealer
     :reveal revealcontrolpanel
     :transition "slideup"
-    (box 
+    (box
       :class "popup"
       (control_widget :short true))))
-  
+
 (defwidget touchpad []
-  (box 
+  (box
     :class "unbarwidget"
     :orientation "h"
-    :width 180 
-    (box 
+    :width 180
+    (box
       :orientation "h"
-      (box 
+      (box
         :orientation "v"
-        (button :onclick "swaymsg floating toggle" 
+        (button :onclick "swaymsg floating toggle"
           (label :class "largetouchicon" :text "󱟱"))
-        (button :onclick "foot -D ~" 
+        (button :onclick "foot -D ~"
           (label :class "largetouchicon" :text ""))
-        (button :onclick "./scripts/pop scrop" 
+        (button :onclick "./scripts/pop scrop"
           (label :class "largetouchicon" :text "󰆞"))
       )
-    (box 
-      :orientation "v"
-      (button :onclick "swaymsg kill" 
-        (label :class "largetouchicon" :text "󰅙"))
-      (button :onclick "${EWW_CMD} update revealcontrolpanel=false && (cd && wofi --show=drun -i -I)"
-        (label :class "largetouchicon" :text "󰀻"))
-      (button :onclick "./scripts/touchkey.sh && ${EWW_CMD} update revealcontrolpanel=false" 
-        (label :class "largetouchicon" :text "󰌌"))
+      (box
+        :orientation "v"
+        (button :onclick "swaymsg kill"
+          (label :class "largetouchicon" :text "󰅙"))
+        (button :onclick "${EWW_CMD} update revealcontrolpanel=false && (cd && wofi --show=drun -i -I)"
+          (label :class "largetouchicon" :text "󰀻"))
+        (button :onclick "./scripts/touchkey.sh && ${EWW_CMD} update revealcontrolpanel=false"
+          (label :class "largetouchicon" :text "󰌌"))
       ))))
