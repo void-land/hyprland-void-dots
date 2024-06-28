@@ -31,16 +31,15 @@
         (bottom)
         )))
 
-(defwidget top []
-  (box
-    :orientation "v"
-    :space-evenly false
-    :valign "start"
-    :class "top_modules"
-    :height "450"
+(defwidget top []  (box
+          :orientation "v"
+          :space-evenly false
+          :valign "start"
+          :class "top_modules"
+          :height "450"
     :vexpand false
     (home)
-    (workspaces)
+       (workspaces)
     (hiddenctl)
   ))
 
@@ -52,7 +51,7 @@
     :vexpand false
     :class "center_modules"
     :height "180"
-    (playerctl)
+    ; (playerctl)
   ))
 
 (defwidget bottom [] 
@@ -84,7 +83,6 @@
             :onclick "hyprctl dispatch workspace ${workspace.id}"
             (box
               :hexpand false
-              :width 10
               :height { workspace.id == current_workspace ? 50 : 30 }
               :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
               )
@@ -115,10 +113,10 @@
     :valign "end"
     :orientation "v"
     (eventbox
-      :onclick "${EWW_CMD} update revealsystray=${!revealsystray}"
-      (label :angle {!revealsystray ? 90 : 270} :class "revealtouch" :tooltip "reveal systray" :text ""))
+      :onclick "${EWW_CMD} update revealSystray=${!revealSystray}"
+      (label :angle {!revealSystray ? 90 : 270} :class "revealtouch" :tooltip "reveal systray" :text ""))
     (revealer
-      :reveal revealsystray 
+      :reveal revealSystray 
       :transition "slideup"
       (systray 
         :icon_size 20

@@ -71,7 +71,7 @@
         (label :class {reveal5 ? "titlesel" : "title"} :text "System"))
       (button
         :onclick "${EWW_CMD} update reveal6=${!reveal6} reveal5=false reveal4=false"
-        (label :class {reveal6 ? "titlesel" : "title"} :text "Sway")))
+        (label :class {reveal6 ? "titlesel" : "title"} :text "Hyprland")))
     
     (notes)
     (sysinfo)
@@ -244,11 +244,11 @@
     (box
       :orientation "h"
       (button
-        :onclick "${EWW_CMD} update revealweather=false"
-        (label :class {!revealweather ? "titlesel" : "title"} :text "Notifications"))
+        :onclick "${EWW_CMD} update revealWeather=false"
+        (label :class {!revealWeather ? "titlesel" : "title"} :text "Notifications"))
       (button
-        :onclick "${EWW_CMD} update revealweather=true"
-        (label :class {revealweather ? "titlesel" : "title"} :text "Weather")))
+        :onclick "${EWW_CMD} update revealWeather=true"
+        (label :class {revealWeather ? "titlesel" : "title"} :text "Weather")))
     
     (box
       :orientation "h"
@@ -256,11 +256,11 @@
       :hexpand true
       :space-evenly false
       (revealer
-        :reveal {!revealweather}
+        :reveal {!revealWeather}
         :transition "slideright"
         (notificationlog))
       (revealer
-        :reveal revealweather
+        :reveal revealWeather
         :transition "slideleft"
         (weather)))))
 
