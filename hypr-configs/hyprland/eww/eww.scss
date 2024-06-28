@@ -1,11 +1,16 @@
 @import "./assets/themes/feverblush.scss";
+
 @import "./src/sidebar/styles.scss";
+
 @import "./src/control-panel/styles.scss";
+
 @import "./src/dashboard/styles.scss";
+
 @import "./src/dock/styles.scss";
+
 @import "./src/desktop/styles.scss";
+
 @import "./src/notification/styles.scss";
-// @import "./src/bottom-bar/styles.scss";
 
 * {
   all: unset;

@@ -1,44 +1,11 @@
 (include "./src/utils/_revealer.yuck")
 (include "./src/_definitions.yuck")
 
-;; dock
-(deflisten tasksjson :initial "[]" "./scripts/tasklist.py")
-(defvar revealdock false)
-
-;; fucking desktop icons
-(defpoll trashcanpath :interval "24h" "./scripts/iconfetch.py trashcan_empty")
-
-;; sys info
-;; (defpoll cpu :interval "1s" :run-while reveal5 "bash ./scripts/sys_info --cpu")
-;; (defpoll mem :interval "1s" :run-while reveal5 "bash ./scripts/sys_info --mem")
-(defvar gapsouter 0)
-(defvar gapsinner 10)
-(defvar borderpixel 2)
-(defvar caffeine false)
-
-;; cava pipe ("borrowed from tail-r")
-;; (deflisten cavajson :initial "[]" "./scripts/cava_pipe.sh")
-
-;; wallpaper thing
-(defvar wallpapers "[]")
-
-;; windows for workspace switching
-(defvar windows "[[], [], [], [], []]")
-
-(defpoll theme :interval "24h" "./scripts/toggletheme")
-
-;; (include "./src/bottom_bar/bar.yuck")
 (include "./src/sidebar/main.yuck")
-
 (include "./src/control-panel/main.yuck")
 (include "./src/control-panel/windowswitcher.yuck")
-
 (include "./src/wallpapers/main.yuck")
-
 (include "./src/dashboard/main.yuck")
-
 (include "./src/dock/main.yuck")
-
 (include "./src/desktop/main.yuck")
-
 (include "./src/notification/main.yuck")

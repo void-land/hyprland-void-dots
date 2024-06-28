@@ -10,8 +10,8 @@
 
 (defwidget dockstruct []
   (eventbox
-    :onhover "${EWW_CMD} update revealdock=true"
-    :onhoverlost "${EWW_CMD} update revealdock=false"
+    :onhover "${EWW_CMD} update revealDock=true"
+    :onhoverlost "${EWW_CMD} update revealDock=false"
     (box
       :orientation "v"
       :space-evenly false
@@ -19,7 +19,7 @@
       (box
       :height 4)
       (revealer
-        :reveal revealdock
+        :reveal revealDock
         :transition "slideup"
         (box
           :class "popup"
