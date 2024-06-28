@@ -64,10 +64,10 @@
 )
 
 ; Playerctl
-(deflisten psong "playerctl metadata --format '{{ title }}' -F")
-(deflisten partist "playerctl metadata --format '{{ artist }}' -F")
+(defpoll pstatus :initial "" :interval "1s" "playerctl status")
+(defpoll psong :initial "0" :interval "1s" "playerctl metadata --format '{{ title }}'")
+(defpoll partist :initial "" :interval "1s" "playerctl metadata --format '{{ artist }}'")
 (deflisten pcover "./scripts/pollcover.sh")
-(deflisten pstatus "playerctl status -F")
 (deflisten ptime
   :initial '{
   "position": 0,
