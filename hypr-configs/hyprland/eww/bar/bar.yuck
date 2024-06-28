@@ -93,7 +93,7 @@
             (box
               :hexpand false
               :width 10
-              :height { workspace.id == current_workspace ? 60 : 35 }
+              :height { workspace.id == current_workspace ? 50 : 30 }
               :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
               )
             )
@@ -101,23 +101,6 @@
         )
       )
     )
-
-; (defwidget workspaces []
-;   (eventbox
-;     :cursor "pointer"
-;     (box
-;       :class "workspaces widget"
-;       :orientation "v"
-;       :space-evenly false
-;       (for workspace in {workspacejson}
-;         (button
-;           :onclick "swaymsg -t command workspace number ${workspace.name}"
-;           (box
-;             :hexpand false
-;             :width 10
-;             :height { workspace.focused ? 60 : !workspace.empty ? 40 : 30}
-;             :class { workspace.focused ? "workspacethingactive" : "workspacething"}))))))
-
 
 (defwidget home []
     (box
@@ -242,6 +225,7 @@
         :valign "end"
         (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
           (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
+
         (reveal_on_hover
             :revealval reveal1
             :revealvalstr "reveal1"
@@ -255,15 +239,36 @@
             (scale 
                 :class "volslide"
                 :value volume
-                :onchange "pamixer --set-volume {}"
+                :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
                 :orientation "v"
                 :tooltip "${volume}%"
-                :max 100
+                :max 101
                 :min 0
                 :flipped true))
+
         (reveal_on_hover
-            :revealval reveal2
-            :revealvalstr "reveal2"
+                  :revealval reveal2
+                  :revealvalstr "reveal2"
+                  (box
+                      :orientation "v"
+                      :space-evenly false
+                      :class "sound"
+                      (label :class "icon" :text {volumemute == 'false' ? "" : "󰖁"})
+                      ;; {volumemute == 'no' ? volume : " Muted"})
+                      )
+                  (scale 
+                      :class "volslide"
+                      :value volume
+                      :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
+                      :orientation "v"
+                      :tooltip "${volume}%"
+                      :max 100
+                      :min 0
+                      :flipped true))
+
+        (reveal_on_hover
+            :revealval reveal5
+            :revealvalstr "reveal5"
             (box 
                 :orientation "v"
                 :space-evenly false
@@ -271,8 +276,8 @@
                 (label :class "icon" :text "󰃞"))
             (scale 
                 :class "brislide"
-                :value brightness
                 :onchange "brightnessctl set {}%"
+                :value brightness
                 :orientation "v"
                 :tooltip "${brightness}%"
                 :max 100
@@ -287,8 +292,8 @@
         :space-evenly false
         :valign "end"
         (eventbox
-            :onhover "${EWW_CMD} update ${revealvalstr}=true"
-            :onhoverlost "${EWW_CMD} update ${revealvalstr}=false"
+            :onhover `${EWW_CMD} update ${revealvalstr}=true`
+            :onhoverlost `${EWW_CMD} update ${revealvalstr}=false`
             (box 
                 :space-evenly false
                 :orientation "v"
