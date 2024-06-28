@@ -8,9 +8,11 @@
   )
   :stacking "overlay"
   :monitor 0
-  (control_widget))
+  
+  (control_widget)
+)
 
-(defwidget control_widget[?short]
+(defwidget control_widget []
   (box
     :class "controlpanelwindow"
     :space-evenly false
@@ -20,24 +22,27 @@
     (user)
     (chooser)
     ; (weather)
-    (coolmpd :h 150 :permashow true)
+    
+    ; (coolmpd :h 150 :permashow true)
+    
     (box
       :orientation "h"
       :space-evenly false
-      :height 160
+      :height 180
       :halign "fill"
       (timer)
       (bigslides))
+    
     (box
       :space-evenly false
       :orientation "v"
       :vexpand true
-      :visible {!short}
-      (tricontrol)
-      (notiweathertoggle))
+      :visible true
+      (toolbox)
+      (notifications_weather_box))
   ))
 
-(defwidget tricontrol[]
+(defwidget toolbox []
   (eventbox
     :cursor "pointer"
     (box
@@ -231,7 +236,7 @@
           (label :halign "start" :text "${datehour < 12 ? 'Good morning' : datehour < 18 ? 'Good afternoon' : datehour < 22 ? 'Good evening' : 'Good night'} ${hostname}")
           (label :halign "start" :text uptime :style "font-size: 12px;"))))))
 
-(defwidget notiweathertoggle[]
+(defwidget notifications_weather_box []
   (box
     :orientation "v"
     :halign "fill"
@@ -239,6 +244,7 @@
     :vexpand true
     :class "unbarwidget"
     :space-evenly false
+    
     (box
       :orientation "h"
       (button
@@ -253,13 +259,19 @@
       :vexpand true
       :hexpand true
       :space-evenly false
+      
       (revealer
         :reveal {!revealWeather}
-        :transition "slideright"
+        :hexpand {!revealWeather}
+        :transition "slideleft"
+        
         (notificationlog))
+      
       (revealer
         :reveal revealWeather
-        :transition "slideleft"
+        :hexpand revealWeather
+        :transition "slideright"
+        
         (weather)))))
 
 (defwidget weather[]
@@ -268,9 +280,9 @@
       :orientation "v"
       :halign "fill"
       :valign "fill"
-      :width 320
       :vexpand true
       :space-evenly false
+      
       (weathermain)
       (scroll
         :hscroll false
@@ -419,20 +431,20 @@
     :text "󰃞")))
 
 (defwidget notificationlog []
-  (box
-    :halign "fill"
-    :valign "fill"
-    :width 320
-    :vexpand true
-    :space-evenly false
-    :orientation "v"
-    (overlay
+  (overlay
+    (box
+      :halign "fill"
+      :valign "fill"
       :vexpand true
+      :space-evenly false
+      :orientation "v"
+      
       (scroll
         :hscroll false
         :vscroll true
         :vexpand true
         :valign "fill"
+        
         (box
           :orientation "v"
           :valign "start"
@@ -445,19 +457,24 @@
         :hexpand true
         :vexpand false
         :height 80
-      :class "fadeoutbox"))
-    (box
-      :orientation "h"
-      (button
-        :onclick "./scripts/notifManage --clear"
-        (label
-          :class "title"
-        :text "Clear All"))
-      (button
-        :onclick "./scripts/notifManage --toggle"
-        (label
-          :class { notifications.dnd ? "titlesel" : "title"}
-        :text "Do Not Disturb")))))
+      :class "fadeoutbox")
+      (box
+        :orientation "h"
+        (button
+          :onclick "./scripts/notifManage --clear"
+          (label
+            :class "title"
+          :text "Clear All"))
+        (button
+          :onclick "./scripts/notifManage --toggle"
+          (label
+            :class { notifications.dnd ? "titlesel" : "title"}
+          :text "Do Not Disturb")))
+    )
+    
+  )
+  
+)
 
 (defwidget quote []
   (box
