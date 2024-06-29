@@ -78,8 +78,7 @@
               :duration 500
 
               (box
-                :height 45)))
-          )
+                :height 45))))
         )
       )
     )

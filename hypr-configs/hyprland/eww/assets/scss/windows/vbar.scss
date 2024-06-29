@@ -5,14 +5,13 @@
 
   .workspaces {
     @include widget;
-    padding: 4px;
 
     * {
       transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
     }
 
     .workspace {
-      margin: 6px 8px;
+      margin: 4px 8px;
       border-radius: 4px;
     }
 
