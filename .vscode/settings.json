@@ -1,5 +1,5 @@
 {
     "files.associations": {
-        "*.yuck": "commonlisp"
+        "*.yuck": "clojure"
     },
 }

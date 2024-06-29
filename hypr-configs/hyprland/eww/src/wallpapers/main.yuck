@@ -1,70 +1,69 @@
 
 (defwindow wallpaperselect
- :geometry (geometry
-	 :x 0
-	 :y 0
-	 :width 415
-	 :height 600
-	 :anchor "center")
- :stacking "overlay"
- :monitor 0
- (box
-  :class "popup"
-  (wallpaperselectwidget)))
+  :geometry (geometry
+  :x 0
+  :y 0
+  :width 415
+  :height 600
+  :anchor "center")
+  :stacking "overlay"
+  :monitor 0
+  (box
+    :class "popup"
+    (wallpaperselectwidget)))
 
 (defwidget wallpaperselectwidget []
- (eventbox
-  ;; :onhoverlost "${EWW_CMD} close wallpaperselect"
-  (box
-   :orientation "v"
-   :class "unbarwidget"
-   :space-evenly false
-   (box
-    :orientation "h"
-    :space-evenly false
-    (input
-     :hexpand true
-     :onaccept "./scripts/wallhaven.py search {}"
-     :timeout "20000ms")
-    (button
-     :onclick "${EWW_CMD} update wallpapers=[] && ./scripts/wallhaven.py reset"
-     ;; :style "padding: 0px 8px 0px 3px;"
-     (label
-      :class "icon"
-      :text "")))
+  (eventbox
 
-   (scroll
-    :hscroll false
-    :vscroll true
-    :vexpand true
     (box
-     :orientation "v"
-     :space-evenly false
-     :valign "start"
-     (image
-      :style "margin: 50px 0px 5px 0px;"
-      :hexpand false
-      :vexpand false
-      :path "./assets/image/fieshidle.gif"
-      :visible {arraylength(wallpapers) == 0})
+      :orientation "v"
+      :class "unbarwidget"
+      :space-evenly false
 
-     (label
-      :visible {arraylength(wallpapers) == 0}
-      :text "No wallpapers yet")
-
-     (for wall in wallpapers
       (box
-       :orientation "v"
-       :space-evenly false
-       :class "mainentry"
-       :spacing 5
-       (button
-	:onclick "./scripts/wallhaven.py select ${wall.url}"
-	(image :image-height 225 :image-width 400 :path {wall.path}))
-       (box
-	:orientation "h"
-	:space-evenly true
-	(label :text "${wall.views} 󰈈")
-	(label :text "${wall.fav} 󰣐")
-       ))))
-       ))))
+        :orientation "h"
+        :space-evenly false
+        (input
+          :hexpand true
+          :onaccept "./scripts/wallhaven.py search {}"
+          :timeout "20000ms")
+        (button
+          :onclick "${EWW_CMD} update wallpapers=[] && ./scripts/wallhaven.py reset"
+          ;; :style "padding: 0px 8px 0px 3px;"
+          (label
+            :class "icon"
+            :text "")))
+
+      (scroll
+        :hscroll false
+        :vscroll true
+        :vexpand true
+        (box
+          :orientation "v"
+          :space-evenly false
+          :valign "start"
+          (image
+            :style "margin: 50px 0px 5px 0px;"
+            :hexpand false
+            :vexpand false
+            :path "./assets/image/fieshidle.gif"
+            :visible {arraylength(wallpapers) == 0})
+
+          (label
+            :visible {arraylength(wallpapers) == 0}
+            :text "No wallpapers yet")
+
+          (for wall in wallpapers
+            (box
+              :orientation "v"
+              :space-evenly false
+              :class "mainentry"
+              :spacing 5
+              (button
+                :onclick "./scripts/wallhaven.py select ${wall.url}"
+                (image :image-height 225 :image-width 400 :path {wall.path}))
+              (box
+                :orientation "h"
+                :space-evenly true
+                (label :text "${wall.views} 󰈈")
+                (label :text "${wall.fav} 󰣐")))))))))

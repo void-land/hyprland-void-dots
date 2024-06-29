@@ -15,13 +15,7 @@ fi
 format_file() {
     local file="$1"
     echo "Formatting $file"
-    vim -E -s "$file" <<EOF
-:source /path/to/your/yuck.vim
-:filetype plugin indent on
-:set filetype=yuck
-:normal gg=G
-:wq
-EOF
+    vim -c "execute 'normal! =G' | :wq!" "$file"
 }
 
 last_run=0
@@ -30,7 +24,7 @@ inotifywait -m -r -e modify,create,delete,move --format '%w%f' "$WATCH_DIR" | wh
     if [[ "$file" == *.yuck ]]; then
         current_time=$(date +%s%N | cut -b1-13)
 
-        if ((current_time - last_run > 500)); then
+        if ((current_time - last_run > 2500)); then
             sleep 0.1
             if [ -e "$file" ]; then
                 format_file $file
