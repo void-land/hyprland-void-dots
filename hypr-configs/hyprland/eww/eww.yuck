@@ -1,4 +1,4 @@
-(include "./src/utils/_revealer.yuck")
+(include "./src/widgets/_revealer.yuck")
 (include "./src/_definitions.yuck")
 
 (include "./setups/sidebar.yuck")

@@ -1,151 +1,18 @@
-@import "./assets/scss/themes/feverblush.scss";
-
+@import "./assets/scss/themes/fullerene.scss";
 @import "./assets/scss/global.scss";
+@import "./assets/scss/native.scss";
+
+@import "./assets/scss/widgets/revealer.scss";
 
 @import "./assets/scss/windows/vbar.scss";
-
 @import "./assets/scss/windows/panel.scss";
-
 @import "./src/dashboard/styles.scss";
-
 @import "./src/dock/styles.scss";
-
 @import "./src/desktop/styles.scss";
-
 @import "./src/notification/styles.scss";
 
 * {
   all: unset;
-  color: $white0;
-  font-size: 15px;
+  color: $white;
   font-family: "Iosevka Nerd Font";
-  // font-weight: bold;
-  // font-smooth: never;
-}
-
-.border {
-  border: 2px white solid;
-}
-
-tooltip {
-  background-color: $surface0;
-  color: $white0;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: $surface2;
-}
-
-scale {
-  all: unset;
-
-  trough {
-    background-color: $surface2;
-    border-radius: 24px;
-    min-height: 80px;
-    min-width: 10px;
-    margin: 5px;
-
-    slider {
-      background-color: $white2;
-      border-radius: 25px;
-      min-height: 15px;
-      min-width: 15px;
-      margin: -10px;
-    }
-
-    highlight {
-      background-color: $white0;
-      border-radius: 24px;
-    }
-  }
-}
-
-button {
-  transition-duration: 0.5s;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: $surface2;
-}
-
-calendar {
-  all: unset;
-  background-color: $surface0;
-  font-size: 20;
-  color: $white0;
-}
-
-calendar:selected {
-  color: $base;
-  background-color: $accent;
-  border-radius: 25px;
-}
-
-calendar.header {
-  color: $accent;
-  font-weight: bold;
-}
-
-calendar:indeterminate {
-  color: $surface2;
-}
-
-checkbutton {
-  border-radius: 24px;
-  background-color: $surface1;
-  padding: 4px;
-  check {
-    min-height: 15px;
-    min-width: 15px;
-    color: $white0;
-  }
-}
-
-checkbutton:checked {
-  check {
-    border-radius: 24px;
-    background-color: $white0;
-  }
-}
-
-.popup {
-  background-color: $base;
-  padding: 5px;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: $surface2;
-  border-width: 2px;
-  margin: 10px;
-}
-
-entry {
-  // image: url('./assets/image/screenshot.png');
-  padding: 5px;
-  margin: 5px;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: $surface2;
-  background-color: $surface1;
-  color: $white0;
-}
-
-.mainentry {
-  background-color: $surface1;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 5px;
-}
-
-.mainentry label {
-  font-size: 18px;
-  color: $white0;
-}
-
-.smallentry {
-  @extend .mainentry;
-  label {
-    font-size: 15px;
-  }
 }

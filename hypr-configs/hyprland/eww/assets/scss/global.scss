@@ -1,5 +1,4 @@
 @mixin widget() {
-  color: $white0;
   padding: 6px;
   margin: 4px 2px;
   border-radius: 8px;
@@ -12,5 +11,48 @@
 
 .controlpanel-widget {
   @include widget;
+  margin: 6px;
+}
+
+.border {
+  border: 2px white solid;
+}
+
+button {
+  transition-duration: 0.4s;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: $surface2;
+}
+
+.popup {
+  background-color: $base;
+  padding: 5px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: $surface2;
+  border-width: 2px;
+  margin: 10px;
+}
+
+.mainentry {
+  background-color: $surface1;
+  padding: 5px;
+  border-radius: 5px;
   margin: 5px;
+}
+
+.mainentry label {
+  font-size: 18px;
+  color: $white0;
+}
+
+.smallentry {
+  @extend .mainentry;
+
+  label {
+    font-size: 15px;
+  }
 }
