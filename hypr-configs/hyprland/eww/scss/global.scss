@@ -1,0 +1,11 @@
+@mixin widget() {
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: $surface0;
+  margin: 5px 2px;
+  color: $white0;
+}
+
+.widget {
+  @include widget;
+}

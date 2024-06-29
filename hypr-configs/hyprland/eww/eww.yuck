@@ -1,7 +1,7 @@
 (include "./src/utils/_revealer.yuck")
 (include "./src/_definitions.yuck")
 
-(include "./src/sidebar/main.yuck")
+(include "./setups/sidebar.yuck")
 (include "./src/control-panel/main.yuck")
 (include "./src/wallpapers/main.yuck")
 (include "./src/dashboard/main.yuck")

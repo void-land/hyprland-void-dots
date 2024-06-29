@@ -1,17 +1,28 @@
-.widget {
-  padding: 5px 5px;
-  border-radius: 5px;
-  background-color: $surface0;
-  margin: 5px 2px;
-  color: $white0;
-  // border-style: solid;
-  // border-color: $white0;
-  // border-width: 2px;
-}
-
-.barwidget {
+.vbar {
+  min-width: 2.4em;
+  padding: 0.5em;
   background-color: $base;
-  padding: 5px;
+
+  .workspaces {
+    @include widget;
+
+    * {
+      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
+    }
+
+    .workspace {
+      margin: 6px;
+      border-radius: 4px;
+    }
+
+    .workspacething {
+      background-color: $surface2;
+    }
+
+    .workspacethingactive {
+      background-color: $accent;
+    }
+  }
 }
 
 .icon {
@@ -26,33 +37,6 @@
   font-size: 20px;
   margin: 5px 0px;
   color: $surface2;
-}
-
-.workspaces {
-  @extend .widget;
-
-  * {
-    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
-  }
-
-  .workspace {
-    margin: 6px;
-    border-radius: 4px;
-  }
-
-  .workspacething {
-    background-color: $surface2;
-  }
-
-  .workspacethingactive {
-    background-color: $accent;
-  }
-
-  .label {
-    // font-size: 18;
-    // padding-right: 5px;
-    // padding: 2px 5px 2px 0px;
-  }
 }
 
 .clock label {

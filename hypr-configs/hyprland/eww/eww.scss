@@ -1,6 +1,8 @@
-@import "./assets/themes/fullerene.scss";
+@import "./scss/themes/oxocarbon.scss";
 
-@import "./src/sidebar/styles.scss";
+@import "./scss/global.scss";
+
+@import "./src/widgets/vbar/styles.scss";
 
 @import "./src/control-panel/styles.scss";
 

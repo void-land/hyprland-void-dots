@@ -1,0 +1,336 @@
+(defwidget vbar []
+    (box
+      :orientation "h"
+      :space-evenly false
+      :vexpand true
+      :height "1080"
+
+      (revealer 
+        :transition "slideleft"
+        :reveal revealControlpanel
+        (control_widget))
+        (centerbox
+          :class "vbar"
+          :orientation "v"
+          
+          ;; :space-evenly true
+          (top)
+          (middle)
+          (bottom)
+          )))
+  
+  (defwidget top []  (box
+            :orientation "v"
+            :space-evenly false
+            :valign "start"
+      :vexpand false
+      (home)
+      (workspaces)
+      (hiddenctl)
+    ))
+  
+  (defwidget middle []
+    (box
+      :orientation "v"
+      :space-evenly false
+      :valign "center"
+      :vexpand false
+      :class "center_modules"
+      :height "180"
+      (playerctl)
+    ))
+  
+  (defwidget bottom [] 
+    (box
+      :orientation "v"
+      :space-evenly false
+      :valign "end"
+      :class "bottom_modules"
+      :vexpand false
+      :hexpand false
+      ; (systemtray)
+      (sliders)
+      (clock)
+      ; (battery)
+    ))
+  
+  (defwidget workspaces []
+     (eventbox
+      :cursor "pointer"
+      :onscroll "./scripts/workspace/set-active {} ${current_workspace}"
+      :onhover "${EWW_CMD} update show_no_of_windows=true"
+      :onhoverlost "${EWW_CMD} update show_no_of_windows=false"
+      (box
+          :class "workspaces"
+          :space-evenly false
+          :orientation "v"
+          
+          (for workspace in {workspacesjson}
+            (button
+              :onclick "hyprctl dispatch workspace ${workspace.id}"
+              (box
+                :height 30
+                :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
+                
+                (revealer
+                  :reveal { workspace.id == current_workspace }
+                  :transition "slideup"
+                  :duration 500
+                  
+                  (box
+                    :height 45
+                  )
+                )
+              )
+              
+              )
+            )
+          )
+        )
+      )
+  
+  (defwidget home []
+      (box
+          :class "widget"
+          :hexpand false
+          :vexpand false
+          (eventbox
+              ;; :onclick "~/.config/eww/meowidgets/scripts/launch"
+              ;; :onclick "~/.config/eww/meowayland/scripts/launch"
+              ;; :onclick "./scripts/pop control"
+              :onclick "${EWW_CMD} update revealControlpanel=${ !revealControlpanel }"
+              :onrightclick "${EWW_CMD} open wallpaperselect --toggle"
+              :cursor "pointer"
+              (label :text "" :halign "center" :class "launchicon" :style "padding: 2px 0px;"))))
+  
+  (defwidget systemtray []
+    (box 
+      :class "widget"
+      :space-evenly false
+      :valign "end"
+      :orientation "v"
+      (eventbox
+        :onclick "${EWW_CMD} update revealSystray=${!revealSystray}"
+        (label :angle {!revealSystray ? 90 : 270} :class "revealtouch" :tooltip "reveal systray" :text ""))
+  
+      (revealer
+        :reveal revealSystray
+        :transition "slideup"
+        (systray
+          :icon_size 6
+          :prepend-new true
+          ))
+      ))
+  
+  (defwidget clock [] 
+    (eventbox
+      :cursor "pointer"
+      :onclick "${EWW_CMD} open calendar --toggle"
+      (box 
+        :orientation "v"
+        :space-evenly false
+        :class "widget clock"
+  
+        (label :text thour)
+        (label :text tmin)
+        (label :text tpm))))
+  
+  (defwidget battery [] 
+    (box
+      :orientation "v"
+      :space-evenly false 
+      :class "widget"
+      (overlay
+        (scale 
+          :class "${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging': bat0 < 16 ? 'dying': 'normal'} bat_scale"
+          :value "${bat0}"
+          :orientation "v"
+          :max 100
+          :min 0
+          :active false
+          :flipped true)
+          (label 
+            :class "lightning"
+            :visible {EWW_BATTERY.BAT0.status == "Charging"}
+            :text "󱐋"))
+      (label :text "${EWW_BATTERY.BAT0.capacity}%" :limit-width 3 :show-truncated false)))
+  
+  (defwidget hiddenctl []
+    (eventbox 
+      :cursor "pointer"
+      :onclick {reveal3 ? "${EWW_CMD} update reveal3=false" : "${EWW_CMD} update reveal3=true"}
+      (box
+        :orientation "v"
+        :class "widget"
+        :space-evenly false
+        (revealer 
+          :reveal reveal3
+          :transition "slideup"
+          :duration "500ms"
+          (box 
+            :class "touch"
+            :orientation "v"
+            :spacing 5
+              (button :onclick "swaymsg kill" 
+                (label :class "icon" :text "󰅙"))
+              (button :onclick "wofi --show=drun -i -I"
+                (label :class "icon" :text "󰀻"))
+              (button :onclick "./scripts/touchkey.sh" 
+                (label :class "icon" :text "󰌌"))))
+        (label :angle {reveal3 ? 90 : 270} :class "revealtouch" :tooltip "touch control" :text "")
+        (revealer 
+          :reveal {!reveal3}
+          :transition "slidedown"
+          ;; (tasklist)))))
+          ))))
+  
+  (defwidget playerctl [] 
+    (eventbox
+      :cursor "pointer"
+      (box
+        :class "playerctl widget"
+        :orientation "v"
+        :space-evenly true
+        :spacing 6
+        
+        (eventbox
+          :onclick "${EWW_CMD} open music --toggle"
+          (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
+        (button :onclick "playerctl previous"
+          (label :class "picon" :text "󰒮"))
+        (button :onclick "playerctl play-pause" 
+          (label :class "picon" :text  { pstatus == "Playing" ? "" : "" }))
+        (button :onclick "playerctl next"
+          (label :class "picon" :text "󰒭"))
+        )))
+  
+  (defwidget sliders []
+      (box
+          :class "widget"
+          :orientation "v"
+          :space-evenly false
+          :spacing 5
+          :valign "end"
+          (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
+            (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
+  
+          (reveal_on_hover
+              :var revealVolume
+              :varname "revealVolume"
+              (box
+                  :orientation "v"
+                  :space-evenly false
+                  :class "sound"
+                  (label :class "icon" :text {volumemute == 'false' ? "󰕾" : "󰖁"})
+                  ;; {volumemute == 'no' ? volume : " Muted"})
+                  )
+              (scale 
+                  :class "volslide"
+                  :value volume
+                  :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+                  :orientation "v"
+                  :tooltip "${volume}%"
+                  :max 101
+                  :min 0
+                  :flipped true))
+  
+          (reveal_on_hover
+                    :var revealMicrophone
+                    :varname "revealMicrophone"
+                    (box
+                        :orientation "v"
+                        :space-evenly false
+                        :class "sound"
+                        (label :class "icon" :text {volumemute == 'false' ? "" : "󰖁"}))
+                    (scale 
+                        :class "volslide"
+                        :value mic_volume
+                        :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
+                        :orientation "v"
+                        :tooltip "${mic_volume}%"
+                        :max 101
+                        :min 0
+                        :flipped true))
+  
+          (reveal_on_hover
+              :var revealBrightness
+              :varname "revealBrightness"
+              (box 
+                  :orientation "v"
+                  :space-evenly false
+                  :class "bright"
+                  (label :class "icon" :text "󰃞"))
+              (scale 
+                  :class "brislide"
+                  :onchange "brightnessctl set {}%"
+                  :value brightness
+                  :orientation "v"
+                  :tooltip "${brightness}%"
+                  :max 100
+                  :min 0
+                  :flipped true))
+          ))
+  
+  ;; other windows
+  (defwindow calendar
+      :geometry (geometry :x "0"
+         :y "0"
+         :width "100"
+         :height "35"
+         :anchor "bottom left")
+      :stacking "overlay"
+      :monitor 0
+      (box
+        :class "popup"
+        (box
+          :class "unbarwidget"
+          (calendar :day calendar_day :year calendar_year :class "cal"))))
+  
+  (defwindow music 
+    :geometry (geometry :x "0"
+                :y "0"
+                :width "440"
+                :height "200"
+                :anchor "center left")
+    :stacking "overlay"
+    :monitor 0
+    (box 
+      :class "popup"
+      (box
+        :orientation "h"
+        :class "unbarwidget"
+        :space-evenly false 
+        :spacing 20
+        (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
+        (box
+          :orientation "v"
+          :space-evenly false 
+          :width 210
+          :height 200
+          (scroll
+            :hscroll true
+            :vscroll false
+            (label :class "mtitle" :text psong))
+          (scroll
+            :hscroll true
+            :vscroll false
+            (label :class "mauthor" :text partist))
+          (box 
+            :orientation "h"
+            :class "mpd_controls"
+            :style "margin-top: 10px;"
+            (button :onclick "playerctl previous" 
+              (label :text "󰒮"))
+            (button :style "padding-right: 3px;" :onclick "playerctl play-pause" 
+              (label :text { pstatus == "Playing" ? "" : ""} ))
+            (button :onclick "playerctl next" (label :text "󰒭")))
+          (scale 
+              :class "seektime"
+              :value { ptime.position }
+              :orientation "h"
+              ;; :onchange "playerctl position {}"
+              :min 0
+              :max { ptime.duration }
+              :tooltip { ptime.readable }))
+        )))
+  

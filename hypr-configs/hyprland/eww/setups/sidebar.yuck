@@ -1,0 +1,11 @@
+(include "./src/widgets/vbar/main.yuck")
+
+(defwindow bar
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+  :anchor "center left")
+  :exclusive true
+  :monitor 0
+  :wm-ignore false
+  (vbar))
