@@ -42,7 +42,7 @@
 (defvar revealMicrophone false)
 (defvar revealBrightness false)
 (defvar revealControlpanel false)
-(defvar revealSystray false)
+(defvar revealSystray true)
 
 ; Dock
 (deflisten tasksjson :initial "[]" "./scripts/tasklist.py")
@@ -50,8 +50,9 @@
 
 ; Workspaces
 (defvar show_no_of_windows false)
-(defpoll workspacesjson :initial "[]" :interval "60s" "./scripts/workspaces get-all-workspaces")
-(defpoll current_workspace :initial "0" :interval "50ms" "./scripts/workspaces get-active-workspace")
+(defpoll workspacesjson :initial "[]" :interval "60s" "./scripts/workspace/get-workspaces")
+(deflisten current_workspace :initial "1" "./scripts/workspace/get-active")
+
 
 ; Notifications
 (deflisten notifications :initial '{

@@ -62,7 +62,7 @@
     :class "bottom_modules"
     :vexpand false
     :hexpand false
-    ; (stray)
+    ; (systemtray)
     (sliders)
     (clock)
     ; (battery)
@@ -71,7 +71,7 @@
 (defwidget workspaces []
    (eventbox
     :cursor "pointer"
-    :onscroll "./scripts/workspaces change {} ${current_workspace}"
+    :onscroll "./scripts/workspace/set-active {} ${current_workspace}"
     :onhover "${EWW_CMD} update show_no_of_windows=true"
     :onhoverlost "${EWW_CMD} update show_no_of_windows=false"
     (box
@@ -88,10 +88,11 @@
               
               (revealer
                 :reveal { workspace.id == current_workspace }
-                :transition "slidedown"
+                :transition "slideup"
+                :duration 500
                 
                 (box
-                  :height 55
+                  :height 50
                 )
               )
             )
@@ -116,7 +117,7 @@
             :cursor "pointer"
             (label :text "" :halign "center" :class "launchicon" :style "padding: 2px 0px;"))))
 
-(defwidget stray []
+(defwidget systemtray []
   (box 
     :class "widget"
     :space-evenly false
@@ -125,14 +126,14 @@
     (eventbox
       :onclick "${EWW_CMD} update revealSystray=${!revealSystray}"
       (label :angle {!revealSystray ? 90 : 270} :class "revealtouch" :tooltip "reveal systray" :text ""))
+
     (revealer
-      :reveal revealSystray 
+      :reveal revealSystray
       :transition "slideup"
-      (systray 
-        :icon_size 20
-        :pack-direction "down"
-        :hexpand true
-        :vexpand true))
+      (systray
+        :icon_size 6
+        :prepend-new true
+        ))
     ))
 
 (defwidget clock [] 
@@ -141,7 +142,7 @@
     :onclick "${EWW_CMD} open calendar --toggle"
     (box 
       :orientation "v"
-      :space-evenly false 
+      :space-evenly false
       :class "widget clock"
 
       (label :text thour)
