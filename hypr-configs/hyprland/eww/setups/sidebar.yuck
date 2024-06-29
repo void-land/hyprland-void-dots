@@ -1,4 +1,4 @@
-(include "./src/widgets/vbar/main.yuck")
+(include "./src/windows/vbar/main.yuck")
 
 (defwindow bar
   :geometry (geometry
