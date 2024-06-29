@@ -1,9 +1,9 @@
 (defwindow dock
   :geometry (geometry
-    :x 0
-    :y 0
-    :width 10
-    :height 54
+  :x 0
+  :y 0
+  :width 10
+  :height 54
   :anchor "bottom center")
   :monitor 0
   (dockstruct))
@@ -17,7 +17,7 @@
       :space-evenly false
       :valign "end"
       (box
-      :height 4)
+        :height 4)
       (revealer
         :reveal revealDock
         :transition "slideup"
@@ -43,8 +43,8 @@
           (image
             :image-width iconsize
             :image-height iconsize
-          :path {task.path})
-          
+            :path {task.path})
+
           (scroll
             :hscroll true
             :vscroll false
@@ -58,6 +58,6 @@
                   :class "dockindicate"
                   :hexpand false
                   :width { focus ? 10 : 5 }
-                :height 3))))
-        )))))
+                  :height 3))))
+          )))))
 

@@ -1,18 +1,18 @@
-@import "./scss/themes/feverblush.scss";
+@import "./assets/scss/themes/feverblush.scss";
 
-@import "./scss/global.scss";
+@import "./assets/scss/global.scss";
 
-@import "./scss/windows/vbar.scss";
+@import "./assets/scss/windows/vbar.scss";
 
-@import "./src/control-panel/styles.scss";
+@import "./assets/src/control-panel/styles.scss";
 
-@import "./src/dashboard/styles.scss";
+@import "./assets/src/dashboard/styles.scss";
 
-@import "./src/dock/styles.scss";
+@import "./assets/src/dock/styles.scss";
 
-@import "./src/desktop/styles.scss";
+@import "./assets/src/desktop/styles.scss";
 
-@import "./src/notification/styles.scss";
+@import "./assets/src/notification/styles.scss";
 
 * {
   all: unset;
