@@ -1,63 +1,63 @@
 (defwindow dock
-  :geometry (geometry
-  :x 0
-  :y 0
-  :width 10
-  :height 54
-  :anchor "bottom center")
-  :monitor 0
-  (dockstruct))
+ :geometry (geometry
+	 :x 0
+	 :y 0
+	 :width 10
+	 :height 54
+	 :anchor "bottom center")
+ :monitor 0
+ (dockstruct))
 
 (defwidget dockstruct []
-  (eventbox
-    :onhover "${EWW_CMD} update revealDock=true"
-    :onhoverlost "${EWW_CMD} update revealDock=false"
-    (box
-      :orientation "v"
-      :space-evenly false
-      :valign "end"
-      (box
-        :height 4)
-      (revealer
-        :reveal revealDock
-        :transition "slideup"
-        (box
-          :class "popup"
-          :height 60
-          :orientation "h"
-          :halign "center"
-          (tasklist :iconsize 50))))))
-
-(defwidget tasklist [iconsize]
+ (eventbox
+  :onhover "${EWW_CMD} update revealDock=true"
+  :onhoverlost "${EWW_CMD} update revealDock=false"
   (box
-    :orientation "h"
-    :space-evenly true
-    :spacing 10
-    (for task in {tasksjson}
-      (button
-        :tooltip { task.name }
-        :onclick { task.pid != 'null' ? 'swaymsg "[pid=${task.pid}] focus"' : '(cd && gtk-launch ${task.app_id}) &'}
-        (box
-          :orientation "v"
-          :space-evenly false
-          (image
-            :image-width iconsize
-            :image-height iconsize
-            :path {task.path})
+   :orientation "v"
+   :space-evenly false
+   :valign "end"
+   (box
+    :height 4)
+   (revealer
+    :reveal revealDock
+    :transition "slideup"
+    (box
+     :class "popup"
+     :height 60
+     :orientation "h"
+     :halign "center"
+     (tasklist :iconsize 50))))))
 
-          (scroll
-            :hscroll true
-            :vscroll false
-            (box
-              :orientation "h"
-              :halign "center"
-              :space-evenly false
-              :spacing 3
-              (for focus in {task.focused}
-                (box
-                  :class "dockindicate"
-                  :hexpand false
-                  :width { focus ? 10 : 5 }
-                  :height 3))))
-          )))))
+	(defwidget tasklist [iconsize]
+	 (box
+	  :orientation "h"
+	  :space-evenly true
+	  :spacing 10
+	  (for task in {tasksjson}
+	   (button
+	    :tooltip { task.name }
+	    :onclick { task.pid != 'null' ? 'swaymsg "[pid=${task.pid}] focus"' : '(cd && gtk-launch ${task.app_id}) &'}
+	    (box
+	     :orientation "v"
+	     :space-evenly false
+	     (image
+	      :image-width iconsize
+	      :image-height iconsize
+	      :path {task.path})
+
+	     (scroll
+	      :hscroll true
+	      :vscroll false
+	      (box
+	       :orientation "h"
+	       :halign "center"
+	       :space-evenly false
+	       :spacing 3
+	       (for focus in {task.focused}
+		(box
+		 :class "dockindicate"
+		 :hexpand false
+		 :width { focus ? 10 : 5 }
+		 :height 3))))
+	     )))))
 

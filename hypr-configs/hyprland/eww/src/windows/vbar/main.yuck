@@ -5,7 +5,7 @@
   :vexpand true
   :height "1080"
 
-  (revealer 
+  (revealer
    :transition "slideleft"
    :reveal revealControlpanel
    (control_widget))
@@ -19,15 +19,16 @@
    (bottom)
   )))
 
-(defwidget top []  (box
-		    :orientation "v"
-		    :space-evenly false
-		    :valign "start"
-		    :vexpand false
-		    (home)
-		    (workspaces)
-		    (hiddenctl)
-		   ))
+(defwidget top [] 
+ (box
+  :orientation "v"
+  :space-evenly false
+  :valign "start"
+  :vexpand false 
+  (home)
+  (workspaces)
+  (hiddenctl)
+ ))
 
 (defwidget middle []
  (box
