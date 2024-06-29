@@ -5,7 +5,11 @@ source ./.scripts/utils/helpers.sh
 
 DOTS_CONFIG_DIR="$(pwd)/linux-configs"
 DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
+
 SHELL_DIR="$DOTS_CONFIG_DIR/shells/zsh"
+
+EDITOR_DIR="$DOTS_CONFIG_DIR/editor/vim"
+
 UTILS_DIR="$DOTS_CONFIG_DIR/utils"
 
 HYPRLAND_ROOT="$(pwd)/hypr-configs"
@@ -29,6 +33,9 @@ stow() {
 
     create_symlinks $SHELL_DIR ~
     log "Shell stowed successfully!"
+
+    create_symlinks $EDITOR_DIR ~
+    log "Editor stowed successfully!"
 
     create_symlinks $DOTFILES_DIR ~/.config
     log "Dotfiles stowed successfully!"
