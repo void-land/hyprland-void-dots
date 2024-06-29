@@ -1,0 +1,14 @@
+(include "./src/windows/panel/main.yuck")
+
+(defwindow control_panel
+  :geometry
+  (geometry
+    :x 10
+    :y 10
+    :width 340
+    :anchor "top left"
+    )
+  :stacking "overlay"
+  :monitor 0
+
+  (control_widget))

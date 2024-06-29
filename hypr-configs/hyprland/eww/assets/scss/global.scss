@@ -1,11 +1,16 @@
 @mixin widget() {
-  padding: 5px 5px;
-  border-radius: 5px;
-  background-color: $surface0;
-  margin: 5px 2px;
   color: $white0;
+  padding: 6px;
+  margin: 5px 2px;
+  border-radius: 8px;
+  background-color: $surface0;
 }
 
 .widget {
   @include widget;
+}
+
+.controlpanel-widget {
+  @include widget;
+  margin: 5px;
 }

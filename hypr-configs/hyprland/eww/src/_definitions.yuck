@@ -79,7 +79,7 @@
 ;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
 
 ; Controlpanel
-(defvar revealControlpanel false)
+(defvar revealControlpanel true)
 (defvar revealWeather false)
 (deflisten timerdis "./scripts/timer.py subscribe")
 (defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')

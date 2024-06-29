@@ -2,7 +2,7 @@
 (include "./src/_definitions.yuck")
 
 (include "./setups/sidebar.yuck")
-(include "./src/control-panel/main.yuck")
+(include "./setups/panel.yuck")
 (include "./src/wallpapers/main.yuck")
 (include "./src/dashboard/main.yuck")
 (include "./src/dock/main.yuck")

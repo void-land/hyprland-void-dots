@@ -158,11 +158,11 @@
       :orientation "v"
       :class "widget"
       :space-evenly false
-      (revealer 
+      (revealer
         :reveal reveal3
         :transition "slideup"
         :duration "500ms"
-        (box 
+        (box
           :class "touch"
           :orientation "v"
           :spacing 5
@@ -178,24 +178,27 @@
         :transition "slidedown"
         ))))
 
-(defwidget playerctl [] 
+(defwidget playerctl [?cover]
   (eventbox
     :cursor "pointer"
     (box
-      :class "playerctl widget"
+      :class "widget"
       :orientation "v"
       :space-evenly true
       :spacing 6
+
       (eventbox
         :onclick "${EWW_CMD} open music --toggle"
         (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
+
       (button :onclick "playerctl previous"
         (label :class "picon" :text "󰒮"))
       (button :onclick "playerctl play-pause" 
-        (label :class "picon" :text  { pstatus == "Playing" ? "" : "" }))
+        (label :class "picon" :text  { pstatus == "Playing" ? "" : "" }))
       (button :onclick "playerctl next"
         (label :class "picon" :text "󰒭"))
       )))
+
 (defwidget sliders []
   (box
     :class "widget"
@@ -203,8 +206,10 @@
     :space-evenly false
     :spacing 5
     :valign "end"
+
     (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
       (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
+
     (reveal_on_hover
       :var revealVolume
       :varname "revealVolume"
@@ -212,10 +217,8 @@
         :orientation "v"
         :space-evenly false
         :class "sound"
-        (label :class "icon" :text {volumemute == 'false' ? "󰕾" : "󰖁"})
-        ;; {volumemute == 'no' ? volume : " Muted"})
-        )
-      (scale 
+        (label :class "icon" :text {volumemute == 'false' ? "󰕾" : "󰖁"}))
+      (scale
         :class "volslide"
         :value volume
         :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
@@ -224,6 +227,7 @@
         :max 101
         :min 0
         :flipped true))
+
     (reveal_on_hover
       :var revealMicrophone
       :varname "revealMicrophone"
@@ -241,6 +245,7 @@
         :max 101
         :min 0
         :flipped true))
+
     (reveal_on_hover
       :var revealBrightness
       :varname "revealBrightness"
@@ -259,9 +264,10 @@
         :min 0
         :flipped true))
     ))
-;; other windows
+
 (defwindow calendar
-  :geometry (geometry :x "0"
+  :geometry (geometry 
+              :x "0"
               :y "0"
               :width "100"
               :height "35"
