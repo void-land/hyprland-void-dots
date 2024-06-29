@@ -69,7 +69,7 @@
         (button
           :onclick "hyprctl dispatch workspace ${workspace.id}"
           (box
-            :height 30
+            :height 25
             :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
 
             (revealer
@@ -78,7 +78,7 @@
               :duration 500
 
               (box
-                :height 45))))
+                :height 40))))
         )
       )
     )
