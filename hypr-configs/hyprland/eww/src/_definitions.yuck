@@ -14,6 +14,7 @@
 (defpoll bat0 :initial "0" :interval "30s" "bash ./scripts/sys_info --bat")
 (defpoll homedir :initial "" :interval "24h" "echo ~")
 (defpoll theme :interval "24h" "./scripts/toggletheme")
+(defpoll gpu :interval "1s" "./scripts/sys-info/get-gpu")
 ; (defpoll cpu :interval "1s" "bash ./scripts/sys_info --cpu")
 ; (defpoll mem :interval "1s" "bash ./scripts/sys_info --mem")
 
@@ -41,7 +42,6 @@
 (defvar revealVolume false)
 (defvar revealMicrophone false)
 (defvar revealBrightness false)
-(defvar revealControlpanel false)
 (defvar revealSystray true)
 
 ; Dock
@@ -65,9 +65,9 @@
 )
 
 ; Playerctl
-(defpoll pstatus :initial "" :interval "1s" "playerctl status")
-(defpoll psong :initial "" :interval "1s" "playerctl metadata --format '{{ title }}'")
-(defpoll partist :initial "" :interval "1s" "playerctl metadata --format '{{ artist }}'")
+(deflisten pstatus :initial "" "playerctl status -F")
+(deflisten psong :initial "" "playerctl metadata -F --format '{{ title }}'")
+(deflisten partist :initial "" "playerctl metadata -F --format '{{ artist }}'")
 (deflisten pcover "./scripts/pollcover.sh")
 (deflisten ptime
   :initial '{
@@ -79,6 +79,7 @@
 ;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
 
 ; Controlpanel
+(defvar revealControlpanel false)
 (defvar revealWeather false)
 (deflisten timerdis "./scripts/timer.py subscribe")
 (defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')
@@ -111,7 +112,7 @@
   "hourly": []
   }'
   :interval "1h"
-  :run-while revealcontrolpanel
+  :run-while revealControlpanel
 "./scripts/weather.py")
 (defpoll datehour :initial "12" :interval "30m" "date +'%H'")
 (defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")

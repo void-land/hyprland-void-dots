@@ -18,10 +18,10 @@
     :orientation "h"
     :space-evenly false 
     (revealer 
-      :transition "slideright"
+      :transition "slideleft"
       :reveal revealControlpanel
       (control_widget))
-      (centerbox 
+      (centerbox
         :class "barwidget"
         :orientation "v"
         :height "1080"
@@ -92,7 +92,7 @@
                 :duration 500
                 
                 (box
-                  :height 50
+                  :height 45
                 )
               )
             )

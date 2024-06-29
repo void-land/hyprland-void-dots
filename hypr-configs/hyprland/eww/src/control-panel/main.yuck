@@ -3,7 +3,6 @@
     :x 10
     :y 10
     :width 340
-    :height 1000
     :anchor "top left"
   )
   :stacking "overlay"
@@ -166,6 +165,7 @@
       :height 140
       (systat :icon "󰻠" :val { EWW_CPU.avg })
       (systat :icon "󰍛" :val { EWW_RAM.used_mem_perc })
+      (systat :icon "󰈐" :val { gpu })
       (systat :icon "" :val { EWW_BATTERY.BAT0.capacity })
     )))
 
@@ -270,7 +270,7 @@
       (revealer
         :reveal revealWeather
         :hexpand revealWeather
-        :transition "slideright"
+        :transition "slideleft"
         
         (weather)))))
 
