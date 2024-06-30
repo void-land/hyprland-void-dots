@@ -1,4 +1,6 @@
 ; Global
+(defvar animationDuration "500ms")
+(deflisten kbLayout :initial "en" "./scripts/kb-layout/get-active")
 (defpoll thour :initial "0" :interval "60s" "date +'%I'")
 (defpoll tmin :initial "0" :interval "60s" "date +'%M'")
 (defpoll tpm :initial "0" :interval "60s" "date +'%p'")
@@ -45,14 +47,13 @@
 (defvar revealSystray true)
 
 ; Dock
+(defvar revealDock true)
 (deflisten tasksjson :initial "[]" "./scripts/tasklist.py")
-(defvar revealDock false)
 
 ; Workspaces
-(defvar show_no_of_windows false)
-(defpoll workspacesjson :initial "[]" :interval "60s" "./scripts/workspace/get-workspaces")
-(deflisten current_workspace :initial "1" "./scripts/workspace/get-active")
-
+(defvar showNoOfWindows false)
+(defpoll workspacesJson :initial "[]" :interval "60s" "./scripts/workspace/get-workspaces")
+(deflisten currentWorkspace :initial "1" "./scripts/workspace/get-active")
 
 ; Notifications
 (deflisten notifications :initial '{

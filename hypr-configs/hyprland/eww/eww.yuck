@@ -1,5 +1,8 @@
-(include "./src/widgets/_revealer.yuck")
 (include "./src/_definitions.yuck")
+
+(include "./src/-components/_helpers.yuck")
+(include "./src/-modules/_language.yuck")
+(include "./src/-modules/_workspaces.yuck")
 
 (include "./setups/sidebar.yuck")
 (include "./setups/panel.yuck")

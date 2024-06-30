@@ -1,0 +1,11 @@
+(defwidget Clock []
+  (eventbox
+    :cursor "pointer"
+    :onclick "${EWW_CMD} open calendar --toggle"
+    (box
+      :orientation "v"
+      :space-evenly false
+      :class "widget clock"
+      (label :text thour)
+      (label :text tmin)
+      (label :text tpm))))

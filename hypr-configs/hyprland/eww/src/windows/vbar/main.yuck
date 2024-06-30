@@ -24,7 +24,7 @@
     :valign "start"
     :vexpand false
     (home)
-    (workspaces)
+    (Workspaces)
     (hiddenctl)
     ))
 
@@ -49,40 +49,11 @@
     :vexpand false
     :hexpand false
     ; (systemtray)
+    (Language)
     (sliders)
     (clock)
     ; (battery)
     ))
-
-(defwidget workspaces []
-  (eventbox
-    :cursor "pointer"
-    :onscroll "./scripts/workspace/set-active {} ${current_workspace}"
-    :onhover "${EWW_CMD} update show_no_of_windows=true"
-    :onhoverlost "${EWW_CMD} update show_no_of_windows=false"
-    (box
-      :class "workspaces"
-      :space-evenly false
-      :orientation "v"
-
-      (for workspace in {workspacesjson}
-        (button
-          :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box
-            :height 25
-            :class "workspace ${workspace.id == current_workspace ? "workspacethingactive" : "workspacething"}"
-
-            (revealer
-              :reveal { workspace.id == current_workspace }
-              :transition "slideup"
-              :duration 500
-
-              (box
-                :height 40))))
-        )
-      )
-    )
-  )
 
 (defwidget home []
   (box
@@ -209,7 +180,7 @@
     (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
       (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
 
-    (reveal_on_hover
+    (RevealOnHover
       :var revealVolume
       :varname "revealVolume"
       (box
@@ -227,7 +198,7 @@
         :min 0
         :flipped true))
 
-    (reveal_on_hover
+    (RevealOnHover
       :var revealMicrophone
       :varname "revealMicrophone"
       (box
@@ -245,7 +216,7 @@
         :min 0
         :flipped true))
 
-    (reveal_on_hover
+    (RevealOnHover
       :var revealBrightness
       :varname "revealBrightness"
       (box 

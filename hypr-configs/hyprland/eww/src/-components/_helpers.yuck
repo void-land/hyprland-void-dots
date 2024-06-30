@@ -1,4 +1,4 @@
-(defwidget hovered-sign [var]
+(defwidget HoveredSign [var]
  (box :space-evenly false
   (revealer :reveal {!var}
    :duration "100ms"
@@ -9,7 +9,7 @@
    :transition "slideleft"
    (children :nth 1))))
 
-(defwidget reveal_on_hover [var varname ?class ?duration ?transition]
+(defwidget RevealOnHover [var varname ?class ?duration ?transition]
  (box
   :class "${class}"
   :orientation "v"
@@ -33,7 +33,7 @@
 )
 
 
-(defwidget clickbox [var varname ?class ?duration ?transition]
+(defwidget ClickBox [var varname ?class ?duration ?transition]
  (box :class "${class} clickbox" :orientation "h" :space-evenly false
   (button :onclick "eww update ${varname}=${ var ? false : true }"
    (children :nth 0))

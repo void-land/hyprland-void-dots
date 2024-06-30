@@ -1,0 +1,3 @@
+(defwidget Language []
+    (button :class "widget" :onclick "./scripts/kb-layout/set-active"
+        (label :text {kbLayout})))

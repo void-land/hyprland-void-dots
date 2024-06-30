@@ -1,0 +1,6 @@
+#!/bin/bash
+
+hyprctl devices | grep -A 3 "$DEVICE$" | grep "active keymap:" | tail -n 1 | awk '{print toupper(substr($3,1,2))}'
+
+socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
+    stdbuf -o0 awk -F '>>|,' -e '/^activelayout>>/ {print toupper(substr($3, 1, 2))}'
