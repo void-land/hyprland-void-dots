@@ -2,7 +2,7 @@
   @include widget;
 
   label {
-    font-size: 20px;
+    @include font;
   }
 }
 
@@ -10,7 +10,7 @@
   @include widget;
 
   label {
-    font-size: 18px;
+    @include font("small");
   }
 }
 

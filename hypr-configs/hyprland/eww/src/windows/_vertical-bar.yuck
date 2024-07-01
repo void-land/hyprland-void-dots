@@ -26,7 +26,7 @@
 
     (Logo)
     (Workspaces)
-    ;; (hiddenctl)
+    (hiddenctl)
     ))
 
 (defwidget Middle []
@@ -91,52 +91,37 @@
     (label :text "${EWW_BATTERY.BAT0.capacity}%" :limit-width 3 :show-truncated false)))
 
 (defwidget hiddenctl []
-  (eventbox
-    :cursor "pointer"
-    :onclick {reveal3 ? "${EWW_CMD} update reveal3=false" : "${EWW_CMD} update reveal3=true"}
+  (RevealOnClick
+    :var reveal3
+    :varname "reveal3"
     (box
+      :class "touch"
       :orientation "v"
-      :class "widget"
-      :space-evenly false
-      (revealer
-        :reveal reveal3
-        :transition "slideup"
-        :duration "500ms"
-        (box
-          :class "touch"
-          :orientation "v"
-          :spacing 5
-          (button :onclick "swaymsg kill"
-            (label :class "icon" :text "󰅙"))
-          (button :onclick "wofi --show=drun -i -I"
-            (label :class "icon" :text "󰀻"))
-          (button :onclick "./scripts/touchkey.sh"
-            (label :class "icon" :text "󰌌"))))
-      (label :angle {reveal3 ? 90 : 270} :class "revealtouch" :tooltip "touch control" :text "")
-      (revealer
-        :reveal {!reveal3}
-        :transition "slidedown"
-        ))))
+      :spacing 5
+      (button :onclick "swaymsg kill"
+        (label :class "icon" :text "󰅙"))
+      (button :onclick "wofi --show=drun -i -I"
+        (label :class "icon" :text "󰀻"))
+      (button :onclick "./scripts/touchkey.sh"
+        (label :class "icon" :text "󰌌"))))
+  )
 
 (defwidget Sliders []
   (box
     :class "widget"
     :orientation "v"
     :space-evenly false
-    :spacing 8
+    :spacing defaultSpacing
     :valign "end"
 
     (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
-      (label :class "icon" :style "font-size: 18px;" :text wifi_icon))
+      (label :class "icon" :text wifi_icon))
 
     (RevealOnHover
       :var revealVolume
       :varname "revealVolume"
-      (box
-        :orientation "v"
-        :space-evenly false
-        :class "sound"
-        (label :class "icon" :text {volumemute == 'false' ? "󰕾" : "󰖁"}))
+      :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
+
       (scale
         :class "volslide"
         :value volume
@@ -150,12 +135,9 @@
     (RevealOnHover
       :var revealMicrophone
       :varname "revealMicrophone"
-      (box
-        :orientation "v"
-        :space-evenly false
-        :class "sound"
-        (label :class "icon" :text {volumemute == 'false' ? "" : "󰖁"}))
-      (scale 
+      :icon {volumemute == 'false' ? "" : "󰖁"}
+
+      (scale
         :class "volslide"
         :value mic_volume
         :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
@@ -168,12 +150,9 @@
     (RevealOnHover
       :var revealBrightness
       :varname "revealBrightness"
-      (box 
-        :orientation "v"
-        :space-evenly false
-        :class "bright"
-        (label :class "icon" :text "󰃞"))
-      (scale 
+      :icon "󰃞"
+
+      (scale
         :class "brislide"
         :onchange "brightnessctl set {}%"
         :value brightness

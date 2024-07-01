@@ -1,3 +1,23 @@
+@import "mixin";
+
+.widget {
+  @include widget;
+}
+
+.panel-widget {
+  @include widget;
+
+  margin: 6px;
+}
+
+.icon {
+  @include icon;
+}
+
+.popup {
+  @include popup;
+}
+
 .border {
   border: 2px white solid;
 }

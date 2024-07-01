@@ -4,7 +4,7 @@
     (box
       :class "widget"
       :orientation "v"
-      :spacing 6
+      :spacing defaultSpacing
 
       (eventbox
         :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"

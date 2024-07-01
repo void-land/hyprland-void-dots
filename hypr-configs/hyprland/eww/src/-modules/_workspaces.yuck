@@ -9,11 +9,12 @@
       :class "workspaces"
       :space-evenly false
       :orientation "v"
-      :spacing 6
+      :spacing largeSpacing
 
       (for workspace in {workspacesJson}
         (button
           :onclick "hyprctl dispatch workspace ${workspace.id}"
+
           (box
             :height 25
             :class "workspace ${workspace.id == currentWorkspace ? "workspacethingactive" : "workspacething"}"

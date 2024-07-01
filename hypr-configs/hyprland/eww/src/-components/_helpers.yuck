@@ -1,49 +1,47 @@
 (defwidget HoveredSign [var]
- (box :space-evenly false
-  (revealer :reveal {!var}
-   :duration "100ms"
-   :transition "slideleft"
-   (children :nth 0))
-  (revealer :reveal {var}
-   :duration "100ms"
-   :transition "slideleft"
-   (children :nth 1))))
+  (box :space-evenly false
+    (revealer :reveal {!var}
+      :duration "100ms"
+      :transition "slideleft"
+      (children :nth 0))
+    (revealer :reveal {var}
+      :duration "100ms"
+      :transition "slideleft"
+      (children :nth 1))))
 
-(defwidget RevealOnHover [var varname ?class ?duration ?transition]
- (box
-  :class "${class}"
-  :orientation "v"
-  :space-evenly false
-  :valign "end"
-
+(defwidget RevealOnHover [var varname ?class ?duration ?transition ?icon]
   (eventbox
-   :onhover `${EWW_CMD} update ${varname}=true`
-   :onhoverlost `${EWW_CMD} update ${varname}=false`
+    :onhover `${EWW_CMD} update ${varname}=true`
+    :onhoverlost `${EWW_CMD} update ${varname}=false`
 
-   (box
-    :space-evenly false
+    (box
+      :space-evenly false
+      :orientation "v"
+      (label :class "icon" :text icon)
+
+      (revealer
+        :reveal var
+        :transition {transition ?:"slidedown"}
+        :duration "500ms"
+        (box :class "reveal-on-hover" (children :nth 0))))
+    ))
+
+(defwidget RevealOnClick [var varname ?class ?duration ?transition]
+  (box
     :orientation "v"
-    (children :nth 0)
+    :class "widget"
+    :space-evenly false
 
     (revealer
-     :reveal var
-     :transition {transition ?:"slidedown"}
-     :duration "500ms"
-     (box :class "reveal-on-hover" (children :nth 1))))))
-)
+      :reveal var
+      :transition "slideup"
+      :duration "500ms"
+      (box (children :nth 0)))
 
+    (eventbox
+      :cursor "pointer"
+      :onclick `${EWW_CMD} update ${varname}=${!var}`
 
-(defwidget ClickBox [var varname ?class ?duration ?transition]
- (box :class "${class} clickbox" :orientation "h" :space-evenly false
-  (button :onclick "eww update ${varname}=${ var ? false : true }"
-   (children :nth 0))
-
-  (revealer :reveal var
-   :transition {transition ?: "slideleft"}
-   :duration {duration ?: "500ms"}
-
-   (box :class "${class}"
-    :space-evenly false
-    (children :nth 1)
-    (button :onclick "eww update ${varname}=false" :class "close" (label :text "Close")))))
-)
+      (label :angle {var ? 90 : 270} :class "reveal-on-click" :tooltip "touch control" :text "")
+      )
+    ))
