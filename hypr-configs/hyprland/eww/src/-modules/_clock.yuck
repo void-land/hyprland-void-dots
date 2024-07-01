@@ -5,7 +5,7 @@
     (box
       :orientation "v"
       :space-evenly false
-      :class "widget clock"
+      :class "clock"
       (label :text thour)
       (label :text tmin)
       (label :text tpm))))

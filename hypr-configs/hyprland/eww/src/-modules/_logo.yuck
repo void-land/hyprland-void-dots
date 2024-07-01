@@ -1,0 +1,7 @@
+(defwidget Logo []
+  (eventbox
+    :cursor "pointer"
+    :onclick "${EWW_CMD} update revealControlpanel=${ !revealControlpanel }"
+    :onrightclick "${EWW_CMD} open wallpaperselect --toggle"
+    (box :class "logo"
+      (label :text ""))))

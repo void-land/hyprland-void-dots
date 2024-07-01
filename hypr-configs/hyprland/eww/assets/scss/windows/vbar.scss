@@ -2,45 +2,12 @@
   min-width: 2.6em;
   padding: 0.4em;
   background-color: $base;
-
-  .workspaces {
-    @include widget;
-
-    * {
-      transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 500ms;
-    }
-
-    .workspace {
-      margin: 4px 8px;
-      border-radius: 4px;
-    }
-
-    .workspacething {
-      background-color: $surface2;
-    }
-
-    .workspacethingactive {
-      background-color: $accent;
-    }
-  }
-}
-
-.icon {
-  font-size: 20px;
-  min-width: 1em;
-  min-height: 1em;
-  font-family: "Symbols Nerd Font";
-  padding: 2px 0px;
 }
 
 .revealtouch {
   font-size: 20px;
   margin: 5px 0px;
   color: $surface2;
-}
-
-.clock label {
-  font-size: 20px;
 }
 
 .bat_scale trough {
@@ -129,11 +96,6 @@
   color: $white0;
   font-size: 20px;
   margin-top: 30px;
-}
-
-.launchicon {
-  @extend .icon;
-  color: $accent;
 }
 
 .picon {

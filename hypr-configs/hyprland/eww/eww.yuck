@@ -3,6 +3,8 @@
 (include "./src/-components/_helpers.yuck")
 (include "./src/-modules/_language.yuck")
 (include "./src/-modules/_workspaces.yuck")
+(include "./src/-modules/_clock.yuck")
+(include "./src/-modules/_logo.yuck")
 
 (include "./setups/sidebar.yuck")
 (include "./setups/panel.yuck")

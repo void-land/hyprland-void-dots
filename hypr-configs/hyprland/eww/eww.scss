@@ -1,6 +1,8 @@
 @import "./assets/scss/themes/fullerene.scss";
-@import "./assets/scss/global.scss";
-@import "./assets/scss/native.scss";
+@import "./assets/scss/mixin";
+@import "./assets/scss/native";
+@import "./assets/scss/global";
+@import "./assets/scss/modules";
 
 @import "./assets/scss/widgets/revealer.scss";
 
@@ -13,6 +15,5 @@
 
 * {
   all: unset;
-  color: $white;
   font-family: "Iosevka Nerd Font";
 }

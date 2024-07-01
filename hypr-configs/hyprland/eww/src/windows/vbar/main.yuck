@@ -9,6 +9,7 @@
       :transition "slideleft"
       :reveal revealControlpanel
       (control_widget))
+
     (centerbox
       :class "vbar"
       :orientation "v"
@@ -23,7 +24,7 @@
     :space-evenly false
     :valign "start"
     :vexpand false
-    (home)
+    (Logo)
     (Workspaces)
     (hiddenctl)
     ))
@@ -51,24 +52,9 @@
     ; (systemtray)
     (Language)
     (sliders)
-    (clock)
-    ; (battery)
+    (Clock)
+    ;; (battery)
     ))
-
-(defwidget home []
-  (box
-    :class "widget"
-    :hexpand false
-    :vexpand false
-    (eventbox
-      ;; :onclick "~/.config/eww/meowidgets/scripts/launch"
-      ;; :onclick "~/.config/eww/meowayland/scripts/launch"
-      ;; :onclick "./scripts/pop control"
-      :onclick "${EWW_CMD} update revealControlpanel=${ !revealControlpanel }"
-      :onrightclick "${EWW_CMD} open wallpaperselect --toggle"
-      :cursor "pointer"
-
-      (label :text "" :halign "center" :class "launchicon" :style "padding: 2px 0px;"))))
 
 (defwidget systemtray []
   (box 
@@ -87,18 +73,6 @@
         :prepend-new true
         ))
     ))
-
-(defwidget clock [] 
-  (eventbox
-    :cursor "pointer"
-    :onclick "${EWW_CMD} open calendar --toggle"
-    (box 
-      :orientation "v"
-      :space-evenly false
-      :class "widget clock"
-      (label :text thour)
-      (label :text tmin)
-      (label :text tpm))))
 
 (defwidget battery [] 
   (box

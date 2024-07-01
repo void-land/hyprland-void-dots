@@ -1,0 +1,25 @@
+@mixin widget() {
+  padding: 6px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  background-color: $surface0;
+}
+
+.widget {
+  @include widget;
+}
+
+.controlpanel-widget {
+  @include widget;
+  margin: 6px;
+}
+
+@mixin icon() {
+  font-size: 20px;
+  padding: 2px 0px;
+  font-family: "Symbols Nerd Font";
+}
+
+.icon {
+  @include icon;
+}
