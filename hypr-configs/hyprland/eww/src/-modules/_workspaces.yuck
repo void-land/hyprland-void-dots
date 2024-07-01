@@ -17,4 +17,4 @@
           :onclick "hyprctl dispatch workspace ${workspace.id}"
 
           (box
-            :class "workspace ${workspace.id == currentWorkspace ? "current" : "workspacething"}"))))))
+            :class `workspace ${workspace.id == currentWorkspace ? "current" : ""}`))))))

@@ -30,7 +30,7 @@
 
     (Logo)
     (Workspaces)
-    ;; (Shortcuts)
+    (Shortcuts)
     ))
 
 (defwidget Middle []
@@ -38,9 +38,8 @@
     :orientation "v"
     :space-evenly false
     :valign "center"
-    :height 200
 
-    ;; (PlayerCtl)
+    (PlayerCtl)
     ))
 
 (defwidget Bottom []
@@ -50,7 +49,7 @@
     :valign "end"
 
     ;; (systemtray)
-    (Language)
+    ;; (Language)
     (Sliders)
     (Clock)
     ;; (battery)

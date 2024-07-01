@@ -27,18 +27,12 @@
     transition: cubic-bezier(0.165, 0.84, 0.44, 1) 600ms;
     border-radius: get-token(border-radius);
     min-height: 16px;
+    background-color: $surface2;
 
     &.current {
       min-height: 48px;
+
       background-color: $accent;
     }
-  }
-
-  .workspacething {
-    background-color: $surface2;
-  }
-
-  .workspacethingactive {
-    background-color: $accent;
   }
 }
