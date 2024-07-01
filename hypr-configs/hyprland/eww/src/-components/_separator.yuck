@@ -1,0 +1,8 @@
+(defwidget Separator [orientation dots ?visible] (box
+    :orientation orientation
+    :class "separator"
+    :space-evenly false
+    :visible visible
+
+    (for dot in dots
+        (box :class "dot" :halign "center" :hexpand true :valign "center"))))

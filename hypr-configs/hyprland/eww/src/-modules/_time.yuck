@@ -6,9 +6,9 @@
       :orientation "v"
       :space-evenly false
       :class "clock"
+      :spacing spacing-small
       (label :text thour)
-      (label :text tmin)
-      (label :text tpm))))
+      (label :text tmin))))
 
 (defwindow CalendarPopup
   :geometry (geometry

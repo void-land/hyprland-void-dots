@@ -2,17 +2,16 @@
   (box
     :orientation "h"
     :space-evenly false
-    :vexpand true
+    :class "vbar"
 
     (revealer
       :transition "slideleft"
       :reveal revealControlpanel
-      :duration animation-duration-default
+      :duration animation-duration-fast
 
       (ControlPanel))
 
     (centerbox
-      :class "vbar"
       :orientation "v"
 
       (Top)
@@ -39,6 +38,10 @@
     :space-evenly false
     :valign "center"
 
+    (Clock)
+
+    (Separator :orientation "h" :dots "[1, 2, 3]" :visible true)
+
     (PlayerCtl)
     ))
 
@@ -48,55 +51,20 @@
     :space-evenly false
     :valign "end"
 
-    ;; (systemtray)
+  (RevealOnClick
+    :var revealSystray
+    :varname "revealSystray"
+    (Systemtray :orientation "v")
+  )
     ;; (Language)
     (Sliders)
-    (Clock)
-    ;; (battery)
+    ;; (Clock)
     ))
-
-(defwidget systemtray []
-  (box
-    :class "widget"
-    :space-evenly false
-    :valign "end"
-    :orientation "v"
-    (eventbox
-      :onclick "${EWW_CMD} update revealSystray=${!revealSystray}"
-      (label :angle {!revealSystray ? 90 : 270} :class "revealtouch" :tooltip "reveal systray" :text ""))
-    (revealer
-      :reveal revealSystray
-      :transition "slideup"
-      (systray
-        :icon_size 6
-        :prepend-new true
-        ))
-    ))
-
-(defwidget battery []
-  (box
-    :orientation "v"
-    :space-evenly false
-    :class "widget"
-    (overlay
-      (scale
-        :class "${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging': bat0 < 16 ? 'dying': 'normal'} bat_scale"
-        :value "${bat0}"
-        :orientation "v"
-        :max 100
-        :min 0
-        :active false
-        :flipped true)
-      (label
-        :class "lightning"
-        :visible {EWW_BATTERY.BAT0.status == "Charging"}
-        :text "󱐋"))
-    (label :text "${EWW_BATTERY.BAT0.capacity}%" :limit-width 3 :show-truncated false)))
 
 (defwidget Shortcuts []
   (RevealOnClick
-    :var reveal3
-    :varname "reveal3"
+    :var revealShortcuts
+    :varname "revealShortcuts"
 
     (box
       :class "touch"
@@ -128,7 +96,6 @@
       :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
 
       (scale
-        :class "volslide"
         :value volume
         :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
         :orientation "v"
@@ -143,7 +110,6 @@
       :icon {volumemute == 'false' ? "" : "󰖁"}
 
       (scale
-        :class "volslide"
         :value mic_volume
         :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
         :orientation "v"
@@ -158,7 +124,6 @@
       :icon "󰃞"
 
       (scale
-        :class "brislide"
         :onchange "brightnessctl set {}%"
         :value brightness
         :orientation "v"

@@ -6,3 +6,15 @@
   color: $surface2;
   padding: 4px 0px;
 }
+
+.separator {
+  padding: 6px;
+
+  .dot {
+    padding: 2px;
+
+    border-radius: 100;
+
+    background-color: $white;
+  }
+}

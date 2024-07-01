@@ -1,7 +1,10 @@
 (include "./src/_definitions.yuck")
 
 (include "./src/-components/_helpers.yuck")
+(include "./src/-components/_separator.yuck")
+
 (include "./src/-modules/_language.yuck")
+(include "./src/-modules/_system-tray.yuck")
 (include "./src/-modules/_workspaces.yuck")
 (include "./src/-modules/_time.yuck")
 (include "./src/-modules/_logo.yuck")

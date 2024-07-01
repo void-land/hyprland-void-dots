@@ -26,7 +26,7 @@
         (box :class "reveal-on-hover" (children :nth 0))))
     ))
 
-(defwidget RevealOnClick [var varname ?class ?duration ?transition]
+(defwidget RevealOnClick [var varname ?class ?duration ?transition ?direction]
   (box
     :orientation "v"
     :class "widget"
@@ -36,12 +36,12 @@
       :reveal var
       :transition "slideup"
       :duration animation-duration-fast
+
       (box (children :nth 0)))
 
     (eventbox
       :cursor "pointer"
       :onclick `${EWW_CMD} update ${varname}=${!var}`
 
-      (label :angle {var ? 90 : 270} :class "reveal-on-click" :tooltip "touch control" :text "")
-      )
+      (label :angle {var ? 90 : 270} :class "reveal-on-click" :tooltip "touch control" :text ""))
     ))

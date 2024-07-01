@@ -1,11 +1,15 @@
 .clock {
   @extend .widget;
 
-  font-size: get-token(font-sizes);
+  font-size: get-token(font-sizes, large);
+  font-weight: 900;
 }
 
 .language {
   @extend .widget;
+
+  font-size: get-token(font-sizes);
+  font-weight: 900;
 }
 
 .logo {
@@ -16,6 +20,10 @@
 
     color: $accent;
   }
+}
+
+.system-tray {
+  @extend .widget;
 }
 
 .workspaces {

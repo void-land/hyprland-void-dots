@@ -1,21 +1,23 @@
 (defwidget PlayerCtl [?cover]
   (eventbox
     :cursor "pointer"
+
     (box
       :class "widget"
       :orientation "v"
       :spacing spacing-default
+      :space-evenly false
 
       (eventbox
         :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"
         (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
 
       (button :onclick "playerctl previous"
-        (label :class "picon" :text "󰒮"))
+        (label :class "icon" :text "󰒮"))
       (button :onclick "playerctl play-pause"
-        (label :class "picon" :text  { pstatus == "Playing" ? "" : ""}))
+        (label :class "icon" :text  { pstatus == "Playing" ? "" : ""}))
       (button :onclick "playerctl next"
-        (label :class "picon" :text "󰒭")))))
+        (label :class "icon" :text "󰒭")))))
 
 (defwindow MusicPlayerPopup
   :geometry (geometry

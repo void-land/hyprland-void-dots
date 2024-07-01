@@ -1,0 +1,19 @@
+(defwidget Systemtray [?orientation ?class]
+  (box
+    :space-evenly false
+    :valign "center"
+    :halign "center"
+    :class "${class}"
+
+    (revealer
+      :reveal revealSystray
+      :transition "slideup"
+
+(systray
+        :orientation orientation
+        :icon-size 18
+        :spacing spacing-default
+        )
+
+      )
+    ))

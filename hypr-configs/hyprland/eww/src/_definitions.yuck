@@ -34,7 +34,6 @@
 ; Reveals
 (defvar reveal1 false)
 (defvar reveal2 false)
-(defvar reveal3 false)
 (defvar reveal4 false)
 (defvar reveal5 false)
 (defvar reveal6 false)
@@ -55,7 +54,8 @@
 (defvar revealVolume false)
 (defvar revealMicrophone false)
 (defvar revealBrightness false)
-(defvar revealSystray true)
+(defvar revealSystray false)
+(defvar revealShortcuts false)
 
 ; Dock
 (defvar revealDock true)
