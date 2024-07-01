@@ -8,7 +8,7 @@
 (include "./src/-modules/_media.yuck")
 
 (include "./src/windows/_vertical-bar.yuck")
-(include "./src/windows/panel/main.yuck")
+(include "./src/windows/_control-panel.yuck")
 
 (include "./setups.yuck")
 

@@ -9,6 +9,7 @@
       :class "workspaces"
       :space-evenly false
       :orientation "v"
+      :spacing 6
 
       (for workspace in {workspacesJson}
         (button

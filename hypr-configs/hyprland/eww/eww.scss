@@ -3,11 +3,11 @@
 @import "./assets/scss/native";
 @import "./assets/scss/global";
 @import "./assets/scss/modules";
+@import "./assets/scss/components";
 
-@import "./assets/scss/widgets/revealer.scss";
+@import "./assets/scss/windows/control-panel";
+@import "./assets/scss/windows/vertical-bar";
 
-@import "./assets/scss/windows/vbar.scss";
-@import "./assets/scss/windows/panel.scss";
 @import "./src/dashboard/styles.scss";
 @import "./src/dock/styles.scss";
 @import "./src/desktop/styles.scss";

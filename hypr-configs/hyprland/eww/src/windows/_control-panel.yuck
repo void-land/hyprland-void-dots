@@ -1,10 +1,11 @@
-(defwidget control_widget []
+(defwidget ControlPanel []
   (box
-    :class "controlpanelwindow"
+    :class "control-panel"
     :space-evenly false
     :orientation "v"
     :valign "fill"
     :vexpand true
+
     (user)
     (chooser)
     ; (weather)
@@ -46,7 +47,7 @@
     :orientation "v"
     :halign "fill"
     :height 60
-    :class "controlpanel-widget"
+    :class "panel-widget"
     :space-evenly false
     (box
       :orientation "h"
@@ -205,7 +206,7 @@
       :space-evenly false
       :height 140
       :width 320
-      :class "controlpanel-widget"
+      :class "panel-widget"
       :valign "start"
       :halign "fill"
       :hexpand true
@@ -229,7 +230,7 @@
     :halign "fill"
     :valign "fill"
     :vexpand true
-    :class "controlpanel-widget"
+    :class "panel-widget"
     :space-evenly false
 
     (box
@@ -342,7 +343,7 @@
 (defwidget timer[]
   (box
     :orientation "v"
-    :class "controlpanel-widget"
+    :class "panel-widget"
     :space-evenly false
     :width 180
     :valign "fill"
@@ -359,7 +360,7 @@
   (box
     :valign "fill"
     :halign "fill"
-    :class "controlpanel-widget"
+    :class "panel-widget"
     :hexpand true
     :space-evenly true
     (bigvol)
@@ -465,7 +466,7 @@
 
 (defwidget quote []
   (box
-    :class "quotewid controlpanel-widget"
+    :class "quotewid panel-widget"
     :halign "fill"
     :valign "fill"
     :vexpand true
@@ -487,7 +488,7 @@
       :orientation "v"
       :halign "fill"
       :height h
-      :class { pcover != "" ? "mpdcover" : "controlpanel-widget"}
+      :class { pcover != "" ? "mpdcover" : "panel-widget"}
       :style "background-image: url('${pcover}')"
       :visible {permashow ? true : pcover != "" })
     (box

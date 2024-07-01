@@ -7,7 +7,7 @@
     (revealer
       :transition "slideleft"
       :reveal revealControlpanel
-      (control_widget))
+      (ControlPanel))
 
     (centerbox
       :class "vbar"
@@ -26,7 +26,7 @@
 
     (Logo)
     (Workspaces)
-    (hiddenctl)
+    ;; (hiddenctl)
     ))
 
 (defwidget Middle []
@@ -47,7 +47,7 @@
 
     ;; (systemtray)
     (Language)
-    (sliders)
+    (Sliders)
     (Clock)
     ;; (battery)
     ))
@@ -76,7 +76,7 @@
     :space-evenly false
     :class "widget"
     (overlay
-      (scale 
+      (scale
         :class "${EWW_BATTERY.BAT0.status == 'Charging' ? 'charging': bat0 < 16 ? 'dying': 'normal'} bat_scale"
         :value "${bat0}"
         :orientation "v"
@@ -84,14 +84,14 @@
         :min 0
         :active false
         :flipped true)
-      (label 
+      (label
         :class "lightning"
         :visible {EWW_BATTERY.BAT0.status == "Charging"}
         :text "󱐋"))
     (label :text "${EWW_BATTERY.BAT0.capacity}%" :limit-width 3 :show-truncated false)))
 
 (defwidget hiddenctl []
-  (eventbox 
+  (eventbox
     :cursor "pointer"
     :onclick {reveal3 ? "${EWW_CMD} update reveal3=false" : "${EWW_CMD} update reveal3=true"}
     (box
@@ -106,11 +106,11 @@
           :class "touch"
           :orientation "v"
           :spacing 5
-          (button :onclick "swaymsg kill" 
+          (button :onclick "swaymsg kill"
             (label :class "icon" :text "󰅙"))
           (button :onclick "wofi --show=drun -i -I"
             (label :class "icon" :text "󰀻"))
-          (button :onclick "./scripts/touchkey.sh" 
+          (button :onclick "./scripts/touchkey.sh"
             (label :class "icon" :text "󰌌"))))
       (label :angle {reveal3 ? 90 : 270} :class "revealtouch" :tooltip "touch control" :text "")
       (revealer
@@ -118,12 +118,12 @@
         :transition "slidedown"
         ))))
 
-(defwidget sliders []
+(defwidget Sliders []
   (box
     :class "widget"
     :orientation "v"
     :space-evenly false
-    :spacing 5
+    :spacing 8
     :valign "end"
 
     (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 

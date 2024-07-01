@@ -9,7 +9,7 @@
   :stacking "overlay"
   :monitor 0
 
-  (control_widget))
+  (ControlPanel))
 
 (defwindow bar
   :geometry
