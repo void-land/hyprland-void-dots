@@ -21,15 +21,17 @@
 .workspaces {
   @extend .widget;
 
-  padding: 12px 6px;
-
-  * {
-    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 600ms;
-  }
+  padding: 12px;
 
   .workspace {
-    border-radius: 6px;
-    margin: 0px 6px;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1) 600ms;
+    border-radius: get-token(border-radius);
+    min-height: 16px;
+
+    &.current {
+      min-height: 48px;
+      background-color: $accent;
+    }
   }
 
   .workspacething {

@@ -10,19 +10,11 @@
       :space-evenly false
       :orientation "v"
       :spacing spacing-default
+      :vexpand true
 
       (for workspace in {workspacesJson}
         (button
           :onclick "hyprctl dispatch workspace ${workspace.id}"
 
           (box
-            :height 20
-            :class "workspace ${workspace.id == currentWorkspace ? "workspacethingactive" : "workspacething"}"
-
-            (revealer
-              :reveal { workspace.id == currentWorkspace}
-              :transition "slidedown"
-              :duration animation-duration-default
-
-              (box
-                :height 40))))))))
+            :class "workspace ${workspace.id == currentWorkspace ? "current" : "workspacething"}"))))))
