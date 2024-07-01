@@ -1,17 +1,9 @@
 .clock {
   @include widget;
-
-  label {
-    @include font;
-  }
 }
 
 .language {
   @include widget;
-
-  label {
-    @include font("small");
-  }
 }
 
 .logo {

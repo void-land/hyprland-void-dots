@@ -9,7 +9,7 @@
       :transition "slideleft"
       (children :nth 1))))
 
-(defwidget RevealOnHover [var varname ?class ?duration ?transition ?icon]
+(defwidget RevealOnHover [var varname ?icon ?class ?duration ?transition]
   (eventbox
     :onhover `${EWW_CMD} update ${varname}=true`
     :onhoverlost `${EWW_CMD} update ${varname}=false`
@@ -22,7 +22,7 @@
       (revealer
         :reveal var
         :transition {transition ?:"slidedown"}
-        :duration "500ms"
+        :duration animation-duration-default
         (box :class "reveal-on-hover" (children :nth 0))))
     ))
 
@@ -35,7 +35,7 @@
     (revealer
       :reveal var
       :transition "slideup"
-      :duration "500ms"
+      :duration animation-duration-fast
       (box (children :nth 0)))
 
     (eventbox

@@ -1,34 +1,20 @@
-@mixin font($size: "default") {
-  $sizes: (
-    "small": 16px,
-    "medium": 18px,
-    "large": 20px,
-  );
-
-  @if map-has-key($sizes, $size) {
-    font-size: map-get($sizes, $size);
-  } @else {
-    font-size: map-get($sizes, "large");
-  }
-}
+@import "tokens";
 
 @mixin widget() {
-  padding: 0.6em 0.4em;
-  margin: 4px 2px;
-  border-radius: 8px;
+  padding: get-token(padding, small);
+  margin: get-token(margin);
+  border-radius: get-token(border-radius);
   background-color: $surface0;
 }
 
 @mixin icon() {
-  @include font("medium");
-
+  font-size: get-token(font-sizes);
   font-family: "Symbols Nerd Font";
 }
 
 @mixin popup() {
-  background-color: $base;
-  padding: 8px;
-  border-radius: 12px;
-  border-style: solid;
-  margin: 10px;
+  padding: get-token(padding, small);
+  border-radius: get-token(border-radius);
+  margin: get-token(margin);
+  background-color: $surface1;
 }

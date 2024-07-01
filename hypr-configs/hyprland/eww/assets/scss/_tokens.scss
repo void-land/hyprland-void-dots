@@ -1,0 +1,46 @@
+$design-tokens: (
+  font-sizes: (
+    small: 16px,
+    default: 18px,
+    large: 20px,
+  ),
+  padding: (
+    small: 8px,
+    default: 10px,
+    large: 12px,
+  ),
+  margin: (
+    small: 2px,
+    default: 4px,
+    large: 6px,
+  ),
+  border-radius: (
+    small: 6px,
+    default: 8px,
+    large: 12px,
+  ),
+);
+
+@function get-token($category, $key: null) {
+  $tokens: map-get($design-tokens, $category);
+
+  @if $tokens == null {
+    @error "Category `#{$category}` not found in design tokens.";
+  }
+
+  @if $key == null {
+    @if map-has-key($tokens, default) {
+      $key: default;
+    } @else {
+      @error "Default key not found in category `#{$category}`.";
+    }
+  }
+
+  $value: map-get($tokens, $key);
+
+  @if $value == null {
+    @error "Token `#{$key}` not found in category `#{$category}`.";
+  }
+
+  @return $value;
+}

@@ -1,9 +1,14 @@
 ; Global Styles
-(defvar animationDuration "500ms")
-(defvar defaultSpacing 8)
-(defvar largeSpacing 6)
-(defvar mediumSpacing 4)
-(defvar smallSpacing 2)
+(defvar animation-duration-default "600ms")
+(defvar animation-duration-slow "1000ms")
+(defvar animation-duration-fast "400ms")
+(defvar animation-duration-very-fast "200ms")
+
+(defvar spacing-default 8)
+(defvar spacing-large 16)
+(defvar spacing-medium 8)
+(defvar spacing-small 4)
+(defvar spacing-tiny 2)
 
 ; Global
 (deflisten kbLayout :initial "en" "./scripts/kb-layout/get-active")

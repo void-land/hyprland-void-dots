@@ -7,6 +7,8 @@
     (revealer
       :transition "slideleft"
       :reveal revealControlpanel
+      :duration animation-duration-default
+
       (ControlPanel))
 
     (centerbox
@@ -26,7 +28,7 @@
 
     (Logo)
     (Workspaces)
-    (hiddenctl)
+    ;; (Shortcuts)
     ))
 
 (defwidget Middle []
@@ -34,7 +36,7 @@
     :orientation "v"
     :space-evenly false
     :valign "center"
-    :height 240
+    :height 200
 
     (PlayerCtl)
     ))
@@ -90,14 +92,16 @@
         :text "󱐋"))
     (label :text "${EWW_BATTERY.BAT0.capacity}%" :limit-width 3 :show-truncated false)))
 
-(defwidget hiddenctl []
+(defwidget Shortcuts []
   (RevealOnClick
     :var reveal3
     :varname "reveal3"
+
     (box
       :class "touch"
       :orientation "v"
-      :spacing 5
+      :spacing spacing-default
+
       (button :onclick "swaymsg kill"
         (label :class "icon" :text "󰅙"))
       (button :onclick "wofi --show=drun -i -I"
@@ -111,7 +115,7 @@
     :class "widget"
     :orientation "v"
     :space-evenly false
-    :spacing defaultSpacing
+    :spacing spacing-default
     :valign "end"
 
     (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
