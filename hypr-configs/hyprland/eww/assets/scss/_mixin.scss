@@ -23,3 +23,15 @@
 .icon {
   @include icon;
 }
+
+@mixin popup() {
+  background-color: $base;
+  padding: 8px;
+  border-radius: 12px;
+  border-style: solid;
+  margin: 10px;
+}
+
+.popup {
+  @include popup;
+}

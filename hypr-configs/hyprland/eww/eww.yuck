@@ -3,11 +3,15 @@
 (include "./src/-components/_helpers.yuck")
 (include "./src/-modules/_language.yuck")
 (include "./src/-modules/_workspaces.yuck")
-(include "./src/-modules/_clock.yuck")
+(include "./src/-modules/_time.yuck")
 (include "./src/-modules/_logo.yuck")
+(include "./src/-modules/_media.yuck")
 
-(include "./setups/sidebar.yuck")
-(include "./setups/panel.yuck")
+(include "./src/windows/_vertical-bar.yuck")
+(include "./src/windows/panel/main.yuck")
+
+(include "./setups.yuck")
+
 (include "./src/wallpapers/main.yuck")
 (include "./src/dashboard/main.yuck")
 (include "./src/dock/main.yuck")

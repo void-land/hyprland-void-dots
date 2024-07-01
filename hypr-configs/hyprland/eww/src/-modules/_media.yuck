@@ -1,0 +1,64 @@
+(defwidget PlayerCtl [?cover]
+  (eventbox
+    :cursor "pointer"
+    (box
+      :class "widget"
+      :orientation "v"
+      :spacing 6
+
+      (eventbox
+        :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"
+        (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
+
+      (button :onclick "playerctl previous"
+        (label :class "picon" :text "󰒮"))
+      (button :onclick "playerctl play-pause"
+        (label :class "picon" :text  { pstatus == "Playing" ? "" : ""}))
+      (button :onclick "playerctl next"
+        (label :class "picon" :text "󰒭")))))
+
+(defwindow MusicPlayerPopup
+  :geometry (geometry
+              :width "440"
+              :height "200"
+              :anchor "center left")
+  :stacking "overlay"
+  :monitor 0
+  (box
+    :class "popup"
+    (box
+      :orientation "h"
+      :class "widget"
+      :space-evenly false
+      :spacing 20
+      (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover})
+      (box
+        :orientation "v"
+        :space-evenly false
+        :width 210
+        :height 200
+        (scroll
+          :hscroll true
+          :vscroll false
+          (label :class "mtitle" :text psong))
+        (scroll
+          :hscroll true
+          :vscroll false
+          (label :class "mauthor" :text partist))
+        (box
+          :orientation "h"
+          :class "mpd_controls"
+          :style "margin-top: 10px;"
+          (button :onclick "playerctl previous"
+            (label :text "󰒮"))
+          (button :style "padding-right: 3px;" :onclick "playerctl play-pause" 
+            (label :text { pstatus == "Playing" ? "" : ""}))
+          (button :onclick "playerctl next" (label :text "󰒭")))
+        (scale 
+          :class "seektime"
+          :value { ptime.position}
+          :orientation "h"
+          ;; :onchange "playerctl position {}"
+          :min 0
+          :max { ptime.duration}
+          :tooltip { ptime.readable})))))

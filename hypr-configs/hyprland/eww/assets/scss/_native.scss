@@ -33,7 +33,6 @@ scale {
 }
 
 entry {
-  // image: url('./assets/image/screenshot.png');
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
@@ -46,23 +45,23 @@ entry {
 calendar {
   all: unset;
   background-color: $surface0;
-  font-size: 20;
+  font-size: 20px;
   color: $white0;
-}
 
-calendar:selected {
-  color: $base;
-  background-color: $accent;
-  border-radius: 25px;
-}
+  .header {
+    color: $accent;
+    font-weight: bold;
+  }
 
-calendar.header {
-  color: $accent;
-  font-weight: bold;
-}
+  &:selected {
+    color: $base;
+    background-color: $accent;
+    border-radius: 8px;
+  }
 
-calendar:indeterminate {
-  color: $surface2;
+  &:indeterminate {
+    color: $surface2;
+  }
 }
 
 checkbutton {
@@ -74,11 +73,11 @@ checkbutton {
     min-width: 15px;
     color: $white0;
   }
-}
 
-checkbutton:checked {
-  check {
-    border-radius: 24px;
-    background-color: $white0;
+  &:checked {
+    check {
+      border-radius: 24px;
+      background-color: $white0;
+    }
   }
 }

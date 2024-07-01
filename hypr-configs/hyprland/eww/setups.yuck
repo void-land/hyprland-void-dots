@@ -1,5 +1,3 @@
-(include "./src/windows/panel/main.yuck")
-
 (defwindow control_panel
   :geometry
   (geometry
@@ -12,3 +10,15 @@
   :monitor 0
 
   (control_widget))
+
+(defwindow bar
+  :geometry
+  (geometry
+  :anchor "center left"
+  :height "100%")
+
+  :monitor 0
+  :exclusive true
+  :wm-ignore false
+
+  (VerticalBar))
