@@ -32,12 +32,11 @@
 (defwidget toolbox []
   (eventbox
     :cursor "pointer"
+
     (box
-      :class "tricontrol unbarwidget"
+      :class "tricontrol panel-widget"
       :orientation "h"
-      :space-evenly true
-      :height 60
-      :halign "fill"
+
       (button :onclick "./scripts/pop colourpick" (label :text "󰈊"))
       (button :onclick "./scripts/pop scrop" (label :text "󰆞"))
       (button :onclick "~/.config/eww/themeswitch/scripts/pop" (label :text "")))))

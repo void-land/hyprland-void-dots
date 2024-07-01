@@ -1,25 +1,30 @@
-@import "mixin";
+@import "tokens";
 
 .widget {
-  @include widget;
+  padding: get-token(padding, small);
+  margin: get-token(margin, small);
+  border-radius: get-token(border-radius);
+  background-color: $surface0;
 }
 
 .panel-widget {
-  @include widget;
+  @extend .widget;
 
-  margin: 6px;
+  padding: get-token(padding);
+  margin: get-token(margin, large);
+  border-radius: get-token(border-radius);
 }
 
 .icon {
-  @include icon;
+  font-size: get-token(font-sizes);
+  font-family: "Symbols Nerd Font";
 }
 
 .popup {
-  @include popup;
-}
-
-.border {
-  border: 2px white solid;
+  padding: get-token(padding, small);
+  border-radius: get-token(border-radius);
+  margin: get-token(margin);
+  background-color: $surface1;
 }
 
 button {
