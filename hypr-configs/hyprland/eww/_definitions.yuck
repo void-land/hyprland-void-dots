@@ -87,7 +87,7 @@
 ;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
 
 ; Controlpanel
-(defvar revealControlpanel false)
+(defvar revealControlpanel true)
 (defvar revealWeather false)
 (defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')
 (defpoll uptime :initial "idk" :interval "1m" "uptime -p")

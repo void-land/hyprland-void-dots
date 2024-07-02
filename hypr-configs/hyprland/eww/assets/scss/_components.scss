@@ -42,3 +42,22 @@
     font-size: get-token(font-sizes, large);
   }
 }
+
+.big-bar-slider {
+  trough {
+    background-color: $surface1;
+    margin: 5px;
+    min-width: 60px;
+    border-radius: get-token(border-radius);
+
+    highlight {
+      background-color: $surface2;
+      border-radius: get-token(border-radius);
+    }
+  }
+
+  .icon {
+    font-size: get-token(font-sizes, extra);
+    margin-bottom: 16px;
+  }
+}

@@ -18,7 +18,7 @@
       :height 180
       
       (Timer)
-      (bigslides))
+      (BigSliders))
     
     (box
       :space-evenly false
@@ -295,7 +295,6 @@
   (box
     :halign "fill"
     :valign "fill"
-    :width 320
     :vexpand true
     :space-evenly false
     :orientation "v"
@@ -321,7 +320,7 @@
             :valign "start"
             :space-evenly false
             (for notif in {notifications.notifications}
-              (singlenotif :noti notif :initial false))))
+              (SingleNotification :noti notif :initial false))))
       )
       
       (box
@@ -404,7 +403,6 @@
     :orientation "v"
     :class "panel-widget"
     :space-evenly false
-    :valign "fill"
     :width 200
     
     (label :class "timer" :valign "center" :vexpand true :text timerdis)
@@ -416,64 +414,24 @@
       (button :onclick "./scripts/python/timer.py toggle" (label :style "padding-right: 3px;" :text { !matches(timerdis, ":") ? "󱎫" : "󱫎"}))
       (button :onclick "./scripts/python/timer.py timeinc" (label :text "+")))))
 
-(defwidget bigslides []
+(defwidget BigSliders []
   (box
     :valign "fill"
     :halign "fill"
     :class "panel-widget"
     :hexpand true
     :space-evenly true
-    (bigvol)
-    (bigmic)
-    (bigbright)))
-
-(defwidget bigvol []
-  (overlay
-    (scale
-      :class "bigslide"
-      :value volume
-      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
-      :orientation "v"
-      :tooltip "${volume}%"
-      :max 100
-      :min 0
-    :flipped true)
-    (label
-      :class "slideicon"
-      :valign "end"
-    :text {volumemute == 'false' ? "󰕾" : "󰖁"})))
-
-(defwidget bigmic []
-  (overlay
-    (scale
-      :class "bigslide"
-      :value mic_volume
-      :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
-      :orientation "v"
-      :tooltip "${mic_volume}%"
-      :max 100
-      :min 0
-    :flipped true)
-    (label
-      :class "slideicon"
-      :valign "end"
-    :text {volumemute == 'false' ? "" : "󰖁"})))
-
-(defwidget bigbright []
-  (overlay
-    (scale
-      :class "bigslide"
-      :value brightness
-      :onchange "brightnessctl set {}%"
-      :orientation "v"
-      :tooltip "${brightness}%"
-      :max 100
-      :min 0
-    :flipped true)
-    (label
-      :class "slideicon"
-      :valign "end"
-    :text "󰃞")))
+    
+    (BigBarSlider :var {volume} :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
+    :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
+    
+    (BigBarSlider :var {mic_volume} :icon {volumemute == 'false' ? "" : "󰖁"}
+    :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%")
+    
+    (BigBarSlider :var {brightness} :icon "󰃞"
+    :onchange "brightnessctl set {}%")
+    
+  ))
 
 (defwidget quote []
   (box

@@ -48,32 +48,6 @@
   font-size: 20px;
 }
 
-.bigslide trough {
-  margin: 5px;
-  min-width: 4em;
-  border-radius: 0.8em;
-  background-color: $surface1;
-
-  slider {
-    all: unset;
-    min-width: 20px;
-    min-height: 20px;
-  }
-
-  highlight {
-    background-color: $surface2;
-    border-radius: 0.8em;
-  }
-}
-
-.slideicon {
-  min-width: 1em;
-  min-height: 1em;
-  font-family: "Symbols Nerd Font";
-  font-size: 30px;
-  margin-bottom: 15px;
-}
-
 .unbarwidget {
   padding: 5px;
   border-radius: 5px;
