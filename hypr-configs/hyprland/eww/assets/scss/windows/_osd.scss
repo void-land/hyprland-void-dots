@@ -1,10 +1,24 @@
-@mixin window {
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 0 4px 2px;
-  margin: 1rem;
+.volume-osd {
+  @extend .panel-widget;
+  border-radius: get-token(border-radius, large);
+
+  min-width: 320px;
 }
 
-.volume-osd {
-  @include window;
+.volume-scale {
+  trough {
+    border-radius: get-token(border-radius, large);
+    min-height: 32px;
+    background-color: $surface1;
+
+    highlight {
+      border-radius: get-token(border-radius, large);
+      background-color: $accent;
+    }
+  }
+
+  .volume-icon {
+    font-size: get-token(font-sizes, large);
+    margin-left: 8px;
+  }
 }

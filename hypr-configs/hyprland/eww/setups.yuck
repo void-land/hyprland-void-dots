@@ -5,42 +5,42 @@
     :y 10
     :width 340
     :anchor "top left"
-    )
+  )
   :stacking "overlay"
   :monitor 0
-
+  
   (ControlPanel))
 
 (defwindow bar
   :geometry
   (geometry
-  :anchor "center left"
+    :anchor "center left"
   :height "100%")
-
+  
   :monitor 0
   :exclusive true
   :wm-ignore false
-
+  
   (VerticalBar))
 
 (defwindow dashboard
- :geometry (geometry
-	 :x 0
-	 :y 0
-	 :width 800
-	 :height 420
-	 :anchor "center")
- :stacking "overlay"
- :monitor 0
- (Dashboard))
+  :geometry (geometry
+    :x 0
+    :y 0
+    :width 800
+    :height 420
+  :anchor "center")
+  :stacking "overlay"
+  :monitor 0
+  (Dashboard))
 
 (defwindow osd
-    :monitor 0
-    :stacking "overlay"
-    :geometry (geometry
-                    :anchor "bottom center"
-                    :width "2px"
-                    :height "2px"
-                )
-    (VolumeOsd)
+  :monitor 0
+  :stacking "overlay"
+  :geometry (geometry
+    :anchor "bottom center"
+    :width "2px"
+    :height "2px"
+  )
+  (VolumeOsd)
 )

@@ -20,25 +20,25 @@
 }
 
 .vertical-bar-slider {
-  scale {
-    all: unset;
+  trough {
+    background-color: $surface2;
+    border-radius: get-token(border-radius);
+    min-height: 80px;
+    min-width: 10px;
 
-    trough {
-      background-color: $surface2;
-      border-radius: get-token(border-radius);
-      min-height: 80px;
-      min-width: 10px;
-
-      slider {
-        background-color: $white2;
-        border-radius: get-token(border-radius, large);
-        margin: -10px;
-      }
-
-      highlight {
-        background-color: $white0;
-        border-radius: get-token(border-radius);
-      }
+    slider {
+      background-color: $white2;
+      border-radius: get-token(border-radius, large);
+      margin: -10px;
     }
+
+    highlight {
+      background-color: $white0;
+      border-radius: get-token(border-radius);
+    }
+  }
+
+  .volume-icon {
+    font-size: get-token(font-sizes, large);
   }
 }

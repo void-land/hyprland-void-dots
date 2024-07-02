@@ -51,7 +51,7 @@
 (defvar caffeine false)
 
 ; Osd
-(defvar revealOsd true)
+(defvar revealOsd false)
 
 ; Sidebar
 (defvar revealVolume false)
@@ -71,13 +71,13 @@
 
 ; Notifications
 (deflisten notifications :initial '{
-                                   "count": 0,
-                                          "dnd": false,
-                                               "notifications": [],
-                                                              "popups": []
-                                                                      }'
+  "count": 0,
+  "dnd": false,
+  "notifications": [],
+  "popups": []
+  }'
   "./scripts/notif.py"
-  )
+)
 
 ; Playerctl
 (deflisten pstatus :initial "" "playerctl status -F")
@@ -86,9 +86,9 @@
 (deflisten pcover "./scripts/pollcover.sh")
 (deflisten ptime
   :initial '{
-            "position": 0,
-                      "duration": 0,
-                                "readable": "0:00"
+  "position": 0,
+  "duration": 0,
+  "readable": "0:00"
   }'
   "playerctl -F metadata -f '{ \"position\": {{position/1000000}}, \"duration\": {{mpris:length/1000000}}, \"readable\": \"{{duration(position)}}/{{duration(mpris:length)}}\" }'")
 ;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
@@ -101,34 +101,34 @@
 (defpoll uptime :initial "idk" :interval "1m" "uptime -p")
 (defpoll weatherjson
   :initial '{
-            "FeelsLikeC": "0",
-"FeelsLikeF": "0",
-"cloudcover": "0",
-"humidity": "0",
-"localObsDateTime": "2000-00-00 07:27 AM",
-"observation_time": "07:27 AM",
-"precipInches": "0.0",
-"precipMM": "0.0",
-"pressure": "0",
-"pressureInches": "0",
-"temp_C": "0",
-"temp_F": "0",
-"uvIndex": "0",
-"visibility": "0",
-"visibilityMiles": "0",
-"weatherCode": "727",
-"weatherDesc": [{"value": "Idk"}],
-"weatherIconUrl": [{"value": ""}],
-"winddir16Point": "",
-"winddirDegree": "0",
-"windspeedKmph": "0",
-"windspeedMiles": "0",
-"icon": "idk",
-"hourly": []
-}'
+  "FeelsLikeC": "0",
+  "FeelsLikeF": "0",
+  "cloudcover": "0",
+  "humidity": "0",
+  "localObsDateTime": "2000-00-00 07:27 AM",
+  "observation_time": "07:27 AM",
+  "precipInches": "0.0",
+  "precipMM": "0.0",
+  "pressure": "0",
+  "pressureInches": "0",
+  "temp_C": "0",
+  "temp_F": "0",
+  "uvIndex": "0",
+  "visibility": "0",
+  "visibilityMiles": "0",
+  "weatherCode": "727",
+  "weatherDesc": [{"value": "Idk"}],
+  "weatherIconUrl": [{"value": ""}],
+  "winddir16Point": "",
+  "winddirDegree": "0",
+  "windspeedKmph": "0",
+  "windspeedMiles": "0",
+  "icon": "idk",
+  "hourly": []
+  }'
   :interval "1h"
   :run-while revealControlpanel
-  "./scripts/weather.py")
+"./scripts/weather.py")
 (defpoll datehour :initial "12" :interval "30m" "date +'%H'")
 (defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")
 (defpoll quotejson :interval "1h" `./scripts/quote.py`)
