@@ -61,9 +61,12 @@
   }
 
   .player-controls {
+    * {
+      font-size: 64px;
+    }
+
     label {
-      font-size: get-token(font-sizes, large);
-      padding: 15px;
+      padding: 16px 0px;
     }
   }
 
