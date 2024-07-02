@@ -20,6 +20,56 @@
       (button :onclick "playerctl next"
         (label :class "icon" :text "󰒭")))))
 
+(defwidget MediaPlayer [h permashow]
+(box 
+:class "media-player"
+(overlay
+    (box
+      :orientation "v"
+      :halign "fill"
+      :height h
+      :class { pcover != "" ? "player-cover" : ""}
+      :style "background-image: url('${pcover}')"
+      :visible {permashow ? true : pcover != "" })
+    (box
+      :orientation "h"
+      :space-evenly false
+      :halign "center"
+      :valign "center"
+      :spacing 10
+      (image :image-width 100 :image-height 100 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
+      (box
+        :orientation "v"
+        :space-evenly false
+        :width 200
+        :halign "center"
+        :valign "center"
+        :class "player-info"
+
+        (scroll
+          :hscroll true
+          :vscroll false
+          (label :text psong))
+
+        (scroll
+          :hscroll true
+          :vscroll false
+          (label :text partist))
+
+        (box
+          :orientation "h"
+          :class "player-controls"
+          (button :onclick "playerctl previous"
+            (label :text "󰒮"))
+          (button :style "padding-right: 3px;" :onclick "playerctl play-pause"
+            (label :text { pstatus == "Playing" ? "" : ""} ))
+          (button :onclick "playerctl next"
+            (label :text "󰒭"))))))
+)
+
+)
+
+
 (defwindow MusicPlayerPopup
   :geometry (geometry
               :width "440"

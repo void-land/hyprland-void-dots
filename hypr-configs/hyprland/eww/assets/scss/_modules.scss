@@ -44,3 +44,32 @@
     }
   }
 }
+
+.media-player {
+  @extend .panel-widget;
+
+  padding: 0px;
+
+  .player-cover {
+    transition: 600ms ease;
+    margin: get-token(margin);
+    border-radius: get-token(border-radius);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+  }
+
+  .player-controls {
+    label {
+      font-size: get-token(font-sizes, large);
+      padding: 15px;
+    }
+  }
+
+  .player-info {
+    label {
+      font-size: get-token(font-sizes, large);
+    }
+  }
+}

@@ -12,11 +12,11 @@
 
 (include "./src/windows/_vertical-bar.yuck")
 (include "./src/windows/_control-panel.yuck")
+(include "./src/windows/_dashboard.yuck")
 
 (include "./setups.yuck")
 
 (include "./src/wallpapers/main.yuck")
-(include "./src/dashboard/main.yuck")
 (include "./src/dock/main.yuck")
 (include "./src/desktop/main.yuck")
 (include "./src/notification/main.yuck")

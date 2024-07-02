@@ -26,22 +26,6 @@
   background-color: $red;
 }
 
-// .mpd label {
-//     color: $sky;
-// }
-//
-// .playerctl label {
-//     color: $sapphire;
-// }
-
-.mpd_controls label {
-  font-family: "Symbols Nerd Font";
-  min-width: 1em;
-  min-height: 1em;
-  font-size: 30px;
-  padding: 15px;
-}
-
 .seektime {
   trough {
     min-height: 10px;

@@ -1,3 +1,9 @@
+.dashboard {
+  padding: get-token(padding);
+  border-radius: get-token(border-radius);
+  background-color: $base;
+}
+
 .heading {
   font-size: 25px;
   color: $accent;

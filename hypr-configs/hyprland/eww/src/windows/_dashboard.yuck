@@ -1,29 +1,22 @@
-
-(defwindow dashboard
- :geometry (geometry
-	 :x 0
-	 :y 0
-	 :width 800
-	 :height 420
-	 :anchor "center")
- :stacking "overlay"
- :monitor 0
- (structure))
-
-(defwidget structure []
+(defwidget Dashboard []
  (box
-  :class "popup"
+  :class "dashboard"
   :space-evenly false
   :orientation "v"
+
   (duser :name "Failed" :tag "failed.sh" :pfp "./assets/image/roundpfp.png")
+
   (box
    :space-evenly true
    :orientation "h"
    :vexpand true
+
    (box
     :space-evenly false
     :orientation "v"
-    (coolmpd :h 150 :permashow true)
+
+    (MediaPlayer :h 150 :permashow true)
+
     (box
      :space-evenly false
      :orientation "h"
@@ -35,6 +28,7 @@
       (theme))
      (dcal)
     ))
+
    (box
     :orientation "v"
     :space-evenly false

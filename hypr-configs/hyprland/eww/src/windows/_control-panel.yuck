@@ -10,7 +10,7 @@
     (chooser)
     ; (weather)
 
- (coolmpd :h 160 :permashow true)
+ (MediaPlayer :h 160 :permashow true)
 
     (box
       :orientation "h"
@@ -479,44 +479,3 @@
     (label
       :class "quoteauthor"
       :text "- ${quotejson.author}")))
-
-(defwidget coolmpd [h permashow]
-  (overlay
-    (box
-      :orientation "v"
-      :halign "fill"
-      :height h
-      :class { pcover != "" ? "mpdcover" : "panel-widget"}
-      :style "background-image: url('${pcover}')"
-      :visible {permashow ? true : pcover != "" })
-    (box
-      :orientation "h"
-      :space-evenly false
-      :halign "center"
-      :valign "center"
-      :spacing 10
-      (image :image-width 100 :image-height 100 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
-      (box
-        :orientation "v"
-        :space-evenly false
-        :width 200
-        :halign "center"
-        :valign "center"
-        :class "coolmpd"
-        (scroll
-          :hscroll true
-          :vscroll false
-          (label :style "font-size: 20px;" :text psong))
-        (scroll
-          :hscroll true
-          :vscroll false
-          (label :text partist))
-        (box
-          :orientation "h"
-          :class "mpd_controls"
-          (button :onclick "playerctl previous"
-            (label :text "󰒮"))
-          (button :style "padding-right: 3px;" :onclick "playerctl play-pause"
-            (label :text { pstatus == "Playing" ? "" : ""} ))
-          (button :onclick "playerctl next"
-            (label :text "󰒭")))))))

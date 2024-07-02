@@ -1,5 +1,5 @@
 .control-panel {
-  padding: 0.4em;
+  padding: get-token(padding, small);
   background-color: $base;
 }
 
@@ -92,21 +92,6 @@
   // color: $light_blue;
   font-size: 18px;
   margin: 5px;
-}
-
-.coolmpd label {
-  color: $white0;
-}
-
-.mpdcover {
-  transition: 500ms ease;
-  background-color: $surface0;
-  margin: 5px;
-  border-radius: 5px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
 }
 
 .circiconcontain {

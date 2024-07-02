@@ -22,3 +22,14 @@
   :wm-ignore false
 
   (VerticalBar))
+
+(defwindow dashboard
+ :geometry (geometry
+	 :x 0
+	 :y 0
+	 :width 800
+	 :height 420
+	 :anchor "center")
+ :stacking "overlay"
+ :monitor 0
+ (Dashboard))
