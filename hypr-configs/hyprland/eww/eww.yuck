@@ -3,6 +3,7 @@
 (include "./src/-components/_helpers.yuck")
 (include "./src/-components/_separator.yuck")
 (include "./src/-components/_sliders.yuck")
+(include "./src/-components/_stats.yuck")
 
 (include "./src/-modules/_language.yuck")
 (include "./src/-modules/_system-tray.yuck")

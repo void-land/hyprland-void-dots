@@ -6,8 +6,8 @@
     :valign "fill"
     :vexpand true
     
-    (User )
-    (chooser)
+    (User)
+    (SystemMonitor)
     ; (weather)
     
     ; (MediaPlayer :h 160 :permashow true)
@@ -144,18 +144,16 @@
           ))
       ))))
 
-(defwidget sysinfo []
-  (revealer
-    :reveal reveal5
-    :transition "slideup"
-    (box
-      :orientation "h"
-      :height 140
-      (systat :icon "󰻠" :val { EWW_CPU.avg })
-      (systat :icon "󰍛" :val { EWW_RAM.used_mem_perc })
-      (systat :icon "󰈐" :val { gpu })
-      (systat :icon "" :val { EWW_BATTERY.BAT0.capacity })
-    )))
+(defwidget SystemMonitor []
+  (box
+    :orientation "h"
+    :class "panel-widget"
+    :height 140
+    (SystemStatus :icon "󰻠" :val { EWW_CPU.avg })
+    (SystemStatus :icon "󰍛" :val { EWW_RAM.used_mem_perc })
+    (SystemStatus :icon "󰈐" :val { gpu })
+    (SystemStatus :icon "" :val { EWW_BATTERY.BAT0.capacity })
+  ))
 
 (defwidget wmslider [name val onchange max reset]
   (box
@@ -180,22 +178,7 @@
       :style "padding: 0px 8px 0px 3px;"
     "")))
 
-(defwidget systat [icon val]
-  (overlay
-    (circular-progress
-      :halign "center"
-      :valign "center"
-      :class "circsys"
-      :thickness 40
-    :value val)
-    
-    (box
-      :class "circiconcontain"
-      :halign "center"
-      :valign "center"
-      :height 55
-      :width 55
-      (label :text icon))))
+
 
 (defwidget User []
   (revealer

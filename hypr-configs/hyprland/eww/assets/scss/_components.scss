@@ -61,3 +61,20 @@
     margin-bottom: 16px;
   }
 }
+
+.system-status {
+  .progress {
+    color: $accent;
+    background-color: $surface1;
+  }
+
+  .icon {
+    border-radius: 100%;
+    background-color: $surface0;
+
+    label {
+      font-family: "Symbols Nerd Font";
+      font-size: get-token(font-sizes, extra);
+    }
+  }
+}

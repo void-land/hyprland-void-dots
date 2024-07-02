@@ -1,0 +1,21 @@
+(defwidget SystemStatus [icon val]
+  (box
+    :class "system-status"
+    
+    (overlay
+      (circular-progress
+        :halign "center"
+        :valign "center"
+        :class "progress"
+        :thickness 40
+      :value val)
+      
+      (box
+        :class "icon"
+        :halign "center"
+        :valign "center"
+        :height 55
+        :width 55
+        (label :text icon)))
+  )
+)
