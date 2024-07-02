@@ -26,22 +26,32 @@
         (box :class "reveal-on-hover" (children :nth 0))))
     ))
 
-(defwidget RevealOnClick [var varname ?class ?duration ?transition ?direction]
+(defwidget RevealOnClick [var varname direction ?class ?duration ?transition]
   (box
     :orientation "v"
     :class "widget"
     :space-evenly false
 
+    (eventbox
+      :cursor "pointer"
+      :visible {direction == "up"}
+      :onclick `${EWW_CMD} update ${varname}=${!var}`
+
+      (label :angle {direction == "up" ? (var ? 270 : 90) : (var ? 90 : 270)} :class "reveal-on-click" :tooltip "touch control" :text ""))
+
     (revealer
       :reveal var
-      :transition "slideup"
+      :transition {direction == "up" ? "slideup" : "slidedown"}
       :duration animation-duration-fast
 
-      (box (children :nth 0)))
+      (box :style "padding: 6px 0px" (children :nth 0)))
+
 
     (eventbox
       :cursor "pointer"
+      :visible {direction == "down"}
       :onclick `${EWW_CMD} update ${varname}=${!var}`
 
-      (label :angle {var ? 90 : 270} :class "reveal-on-click" :tooltip "touch control" :text ""))
+      (label :angle {direction == "up" ? (var ? 270 : 90) : (var ? 90 : 270)} :class "reveal-on-click" :tooltip "touch control" :text ""))
+
     ))

@@ -8,12 +8,12 @@
 }
 
 .separator {
-  padding: 6px;
+  padding: 4px 6px;
 
   .dot {
-    padding: 2px;
+    padding: 3px;
 
-    border-radius: 100;
+    border-radius: 100%;
 
     background-color: $white;
   }

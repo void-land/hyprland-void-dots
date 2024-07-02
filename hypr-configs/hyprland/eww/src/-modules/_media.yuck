@@ -3,13 +3,14 @@
     :cursor "pointer"
 
     (box
-      :class "widget"
+      :class "widget player-ctl"
       :orientation "v"
       :spacing spacing-default
       :space-evenly false
 
       (eventbox
         :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"
+        :visible cover
         (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
 
       (button :onclick "playerctl previous"

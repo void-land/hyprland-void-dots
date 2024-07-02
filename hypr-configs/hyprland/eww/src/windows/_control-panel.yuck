@@ -10,14 +10,14 @@
     (chooser)
     ; (weather)
 
-    ; (coolmpd :h 150 :permashow true)
+ (coolmpd :h 160 :permashow true)
 
     (box
       :orientation "h"
       :space-evenly false
       :height 180
-      :halign "fill"
-      (timer)
+
+      (Timer)
       (bigslides))
 
     (box
@@ -25,11 +25,12 @@
       :orientation "v"
       :vexpand true
       :visible true
-      (toolbox)
-      (notifications_weather_box))
+
+      (Toolbox)
+      (NotificationsWeatherBox))
     ))
 
-(defwidget toolbox []
+(defwidget Toolbox []
   (eventbox
     :cursor "pointer"
 
@@ -44,10 +45,10 @@
 (defwidget chooser []
   (box
     :orientation "v"
-    :halign "fill"
     :height 60
     :class "panel-widget"
     :space-evenly false
+
     (box
       :orientation "h"
 
@@ -223,7 +224,7 @@
           (label :halign "start" :text "${datehour < 12 ? 'Good morning' : datehour < 18 ? 'Good afternoon' : datehour < 22 ? 'Good evening' : 'Good night'} ${hostname}")
           (label :halign "start" :text uptime :style "font-size: 12px;"))))))
 
-(defwidget notifications_weather_box []
+(defwidget NotificationsWeatherBox []
   (box
     :orientation "v"
     :halign "fill"
@@ -339,13 +340,14 @@
         ;; (label :halign "start" :text "${weatherjson.precipMM} mm")
         ))))
 
-(defwidget timer[]
+(defwidget Timer []
   (box
     :orientation "v"
     :class "panel-widget"
     :space-evenly false
-    :width 180
     :valign "fill"
+    :width 200
+
     (label :class "timer" :valign "center" :vexpand true :text timerdis)
     (box
       :orientation "h"
@@ -369,7 +371,6 @@
 (defwidget bigvol []
   (overlay
     (scale
-      :width 50
       :class "bigslide"
       :value volume
       :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
@@ -386,7 +387,6 @@
 (defwidget bigmic []
   (overlay
     (scale
-      :width 50
       :class "bigslide"
       :value mic_volume
       :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
@@ -403,7 +403,6 @@
 (defwidget bigbright []
   (overlay
     (scale
-      :width 50
       :class "bigslide"
       :value brightness
       :onchange "brightnessctl set {}%"

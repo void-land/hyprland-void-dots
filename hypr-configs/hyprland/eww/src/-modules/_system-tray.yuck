@@ -11,7 +11,7 @@
 
 (systray
         :orientation orientation
-        :icon-size 18
+        :icon-size 20
         :spacing spacing-default
         )
 

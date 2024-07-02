@@ -14,12 +14,12 @@
     (centerbox
       :orientation "v"
 
-      (Top)
-      (Middle)
-      (Bottom)
+      (BarTop)
+      (BarMiddle)
+      (BarBottom)
       )))
 
-(defwidget Top []
+(defwidget BarTop []
   (box
     :orientation "v"
     :space-evenly false
@@ -32,7 +32,7 @@
     (Shortcuts)
     ))
 
-(defwidget Middle []
+(defwidget BarMiddle []
   (box
     :orientation "v"
     :space-evenly false
@@ -42,10 +42,10 @@
 
     (Separator :orientation "h" :dots "[1, 2, 3]" :visible true)
 
-    (PlayerCtl)
+    (PlayerCtl :cover false)
     ))
 
-(defwidget Bottom []
+(defwidget BarBottom []
   (box
     :orientation "v"
     :space-evenly false
@@ -54,6 +54,7 @@
   (RevealOnClick
     :var revealSystray
     :varname "revealSystray"
+    :direction "up"
     (Systemtray :orientation "v")
   )
     ;; (Language)
@@ -65,9 +66,9 @@
   (RevealOnClick
     :var revealShortcuts
     :varname "revealShortcuts"
+    :direction "down"
 
     (box
-      :class "touch"
       :orientation "v"
       :spacing spacing-default
 
