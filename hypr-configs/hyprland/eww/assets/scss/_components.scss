@@ -1,17 +1,23 @@
 .reveal-on-hover {
-  padding: 6px 0px;
+  padding: 12px 0px;
 }
 
 .reveal-on-click {
-  color: $surface2;
-  padding: 4px 0px;
+  @extend .widget;
+
+  label {
+    @extend .icon;
+
+    color: $surface2;
+    padding: 4px 0px;
+  }
 }
 
 .separator {
   padding: get-token(padding, small);
 
   .dot {
-    padding: 3px;
+    padding: 2px;
 
     border-radius: 100%;
 

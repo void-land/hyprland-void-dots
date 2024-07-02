@@ -48,7 +48,7 @@
     
     (Separator :orientation "h" :dots "[1, 2, 3]" :visible true)
     
-    (PlayerCtl :cover false)
+    (BarMediaPlayer :cover false)
   ))
 
 (defwidget BarBottom []
@@ -56,7 +56,6 @@
     :orientation "v"
     :space-evenly false
     :valign "end"
-    
     
     (Sliders)
     (Language)
@@ -86,7 +85,6 @@
     :orientation "v"
     :space-evenly false
     :spacing spacing-default
-    :valign "end"
     
     (RevealOnHover
       :var {revealWifiEssid}

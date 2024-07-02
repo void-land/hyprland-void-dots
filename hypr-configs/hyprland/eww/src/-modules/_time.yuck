@@ -6,20 +6,21 @@
       :orientation "v"
       :space-evenly false
       :class "clock"
-      :spacing spacing-small
+      
       (label :text thour)
       (label :text tmin))))
 
 (defwindow CalendarPopup
   :geometry (geometry
-              :width "100"
-              :height "35"
-              :anchor "bottom left")
+    :width "100"
+    :height "35"
+  :anchor "bottom left")
   :stacking "overlay"
   :monitor 0
-
+  
   (box
     :class "popup"
+    
     (box
       :class "widget"
       (calendar :day calendar_day :year calendar_year))))

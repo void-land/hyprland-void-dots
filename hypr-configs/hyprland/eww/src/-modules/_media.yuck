@@ -1,18 +1,20 @@
-(defwidget PlayerCtl [?cover]
+(defwidget BarMediaPlayer [?cover]
   (eventbox
     :cursor "pointer"
-
+    
     (box
-      :class "widget player-ctl"
+      :class "bar-media-player"
       :orientation "v"
-      :spacing spacing-default
       :space-evenly false
-
+      :spacing spacing-default
+      
+      
       (eventbox
         :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"
         :visible cover
+        
         (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
-
+      
       (button :onclick "playerctl previous"
         (label :class "icon" :text "󰒮"))
       (button :onclick "playerctl play-pause"
@@ -21,70 +23,70 @@
         (label :class "icon" :text "󰒭")))))
 
 (defwidget MediaPlayer [h permashow]
-(box 
-:class "media-player"
-(overlay
-    (box
-      :orientation "v"
-      :halign "fill"
-      :height h
-      :class { pcover != "" ? "player-cover" : ""}
-      :style "background-image: url('${pcover}')"
-      :visible {permashow ? true : pcover != "" })
-
-    (box
-      :orientation "h"
-      :space-evenly false
-      :halign "center"
-      :valign "center"
-      :spacing spacing-large
-
-      (image :image-width 100 :image-height 100 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
-
+  (box
+    :class "media-player"
+    (overlay
       (box
         :orientation "v"
+        :halign "fill"
+        :height h
+        :class { pcover != "" ? "player-cover" : ""}
+        :style "background-image: url('${pcover}')"
+      :visible {permashow ? true : pcover != "" })
+      
+      (box
+        :orientation "h"
         :space-evenly false
-        :width 200
         :halign "center"
         :valign "center"
-        :class "player-info"
-        :spacing spacing-small
-
-(box
-        :orientation "v"
-        :space-evenly false
-        :visible true
-
-        (scroll
-          :hscroll true
-          :vscroll false
-          (label :text psong))
-
-        (scroll
-          :hscroll true
-          :vscroll false
-          (label :text partist))
-)
-
+        :spacing spacing-large
+        
+        (image :image-width 100 :image-height 100 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
+        
         (box
-          :orientation "h"
-          :class "player-controls"
-          (button :onclick "playerctl previous"
-            (label :text "󰒮"))
-          (button :onclick "playerctl play-pause"
-            (label :text { pstatus == "Playing" ? "" : ""} ))
-          (button :onclick "playerctl next"
-            (label :text "󰒭"))))))
-)
-
+          :orientation "v"
+          :space-evenly false
+          :width 200
+          :halign "center"
+          :valign "center"
+          :class "player-info"
+          :spacing spacing-small
+          
+          (box
+            :orientation "v"
+            :space-evenly false
+            :visible true
+            
+            (scroll
+              :hscroll true
+              :vscroll false
+              (label :text psong))
+            
+            (scroll
+              :hscroll true
+              :vscroll false
+              (label :text partist))
+          )
+          
+          (box
+            :orientation "h"
+            :class "player-controls"
+            (button :onclick "playerctl previous"
+              (label :text "󰒮"))
+            (button :onclick "playerctl play-pause"
+              (label :text { pstatus == "Playing" ? "" : ""} ))
+            (button :onclick "playerctl next"
+              (label :text "󰒭"))))))
+  )
+  
 )
 
 
 (defwindow MusicPlayerPopup
   :geometry (geometry
-              :width "440"
-              :height "200"
-              :anchor "center left")
+    :width "440"
+    :height "200"
+  :anchor "center left")
   :stacking "overlay"
   :monitor 0
   (box
@@ -114,14 +116,14 @@
           :style "margin-top: 10px;"
           (button :onclick "playerctl previous"
             (label :text "󰒮"))
-          (button :style "padding-right: 3px;" :onclick "playerctl play-pause" 
+          (button :style "padding-right: 3px;" :onclick "playerctl play-pause"
             (label :text { pstatus == "Playing" ? "" : ""}))
           (button :onclick "playerctl next" (label :text "󰒭")))
-        (scale 
+        (scale
           :class "seektime"
           :value { ptime.position}
           :orientation "h"
           ;; :onchange "playerctl position {}"
           :min 0
           :max { ptime.duration}
-          :tooltip { ptime.readable})))))
+        :tooltip { ptime.readable})))))

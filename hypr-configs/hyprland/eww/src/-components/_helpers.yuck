@@ -32,13 +32,14 @@
     :orientation "v"
     :class "widget"
     :space-evenly false
+    :class "reveal-on-click"
     
     (eventbox
       :cursor "pointer"
       :visible {direction == "up"}
       :onclick `${EWW_CMD} update ${varname}=${!var}`
       
-      (label :angle {direction == "up" ? (var ? 270 : 90) : (var ? 90 : 270)} :class "reveal-on-click" :tooltip "touch control" :text ""))
+      (label :angle {direction == "up" ? (var ? 270 : 90) : (var ? 90 : 270)} :tooltip "touch control" :text ""))
     
     (revealer
       :reveal var
@@ -52,6 +53,6 @@
       :visible {direction == "down"}
       :onclick `${EWW_CMD} update ${varname}=${!var}`
       
-      (label :angle {direction == "up" ? (var ? 270 : 90) : (var ? 90 : 270)} :class "reveal-on-click" :tooltip "touch control" :text ""))
+      (label :angle {direction == "up" ? (var ? 270 : 90) : (var ? 90 : 270)} :tooltip "touch control" :text ""))
     
   ))

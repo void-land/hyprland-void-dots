@@ -1,15 +1,19 @@
 .clock {
   @extend .widget;
 
-  font-size: get-token(font-sizes, large);
-  font-weight: bolder;
+  label {
+    font-size: get-token(font-sizes, large);
+    font-weight: bold;
+  }
 }
 
 .language {
   @extend .widget;
 
-  font-size: get-token(font-sizes, small);
-  font-weight: bolder;
+  label {
+    font-size: get-token(font-sizes);
+    font-weight: bold;
+  }
 }
 
 .logo {
@@ -33,15 +37,23 @@
 
   .workspace {
     @extend .animation;
-    border-radius: get-token(border-radius);
     min-height: 16px;
     background-color: $surface2;
+    border-radius: get-token(border-radius);
 
     &.current {
-      min-height: 48px;
+      min-height: 42px;
 
       background-color: $accent;
     }
+  }
+}
+
+.bar-media-player {
+  @extend .widget;
+
+  label {
+    font-size: get-token(font-sizes, large);
   }
 }
 
