@@ -3,21 +3,21 @@
     :orientation "h"
     :space-evenly false
     :class "vbar"
-
+    
     (revealer
       :transition "slideleft"
       :reveal revealControlpanel
       :duration animation-duration-fast
-
+      
       (ControlPanel))
-
+    
     (centerbox
       :orientation "v"
-
+      
       (BarTop)
       (BarMiddle)
       (BarBottom)
-      )))
+    )))
 
 (defwidget BarTop []
   (box
@@ -26,59 +26,59 @@
     :valign "start"
     :height 250
     :vexpand false
-
+    
     (Logo)
     (Workspaces)
     (Shortcuts)
-    ))
+  ))
 
 (defwidget BarMiddle []
   (box
     :orientation "v"
     :space-evenly false
     :valign "center"
-
+    
     (Clock)
-
+    
     (Separator :orientation "h" :dots "[1, 2, 3]" :visible true)
-
+    
     (PlayerCtl :cover false)
-    ))
+  ))
 
 (defwidget BarBottom []
   (box
     :orientation "v"
     :space-evenly false
     :valign "end"
-
-  (RevealOnClick
-    :var revealSystray
-    :varname "revealSystray"
-    :direction "up"
-    (Systemtray :orientation "v")
-  )
+    
+    (RevealOnClick
+      :var revealSystray
+      :varname "revealSystray"
+      :direction "up"
+      (Systemtray :orientation "v")
+    )
     ;; (Language)
     (Sliders)
     ;; (Clock)
-    ))
+  ))
 
 (defwidget Shortcuts []
   (RevealOnClick
     :var revealShortcuts
     :varname "revealShortcuts"
     :direction "down"
-
+    
     (box
       :orientation "v"
       :spacing spacing-default
-
+      
       (button :onclick "swaymsg kill"
         (label :class "icon" :text "󰅙"))
       (button :onclick "wofi --show=drun -i -I"
         (label :class "icon" :text "󰀻"))
       (button :onclick "./scripts/touchkey.sh"
         (label :class "icon" :text "󰌌"))))
-  )
+)
 
 (defwidget Sliders []
   (box
@@ -87,49 +87,30 @@
     :space-evenly false
     :spacing spacing-default
     :valign "end"
-
-    (button :onclick "alacritty -e nmtui" :tooltip wifi_essid 
+    
+    (button :onclick "alacritty -e nmtui" :tooltip wifi_essid
       (label :class "icon" :text wifi_icon))
-
+    
     (RevealOnHover
       :var revealVolume
       :varname "revealVolume"
       :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
-
-      (scale
-        :value volume
-        :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
-        :orientation "v"
-        :tooltip "${volume}%"
-        :max 101
-        :min 0
-        :flipped true))
-
+      
+      (VerticalBarSlider :var volume :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
+    )
+    
     (RevealOnHover
       :var revealMicrophone
       :varname "revealMicrophone"
       :icon {volumemute == 'false' ? "" : "󰖁"}
-
-      (scale
-        :value mic_volume
-        :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
-        :orientation "v"
-        :tooltip "${mic_volume}%"
-        :max 101
-        :min 0
-        :flipped true))
-
+      
+      (VerticalBarSlider :var mic_volume :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%")
+    )
+    
     (RevealOnHover
       :var revealBrightness
       :varname "revealBrightness"
       :icon "󰃞"
-
-      (scale
-        :onchange "brightnessctl set {}%"
-        :value brightness
-        :orientation "v"
-        :tooltip "${brightness}%"
-        :max 100
-        :min 0
-        :flipped true))
-    ))
+      
+      (VerticalBarSlider :var brightness :onchange "brightnessctl set {}%"))
+  ))

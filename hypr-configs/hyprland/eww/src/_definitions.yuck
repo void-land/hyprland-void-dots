@@ -50,6 +50,9 @@
 (defvar borderpixel 2)
 (defvar caffeine false)
 
+; Osd
+(defvar revealOsd true)
+
 ; Sidebar
 (defvar revealVolume false)
 (defvar revealMicrophone false)

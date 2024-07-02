@@ -33,3 +33,14 @@
  :stacking "overlay"
  :monitor 0
  (Dashboard))
+
+(defwindow osd
+    :monitor 0
+    :stacking "overlay"
+    :geometry (geometry
+                    :anchor "bottom center"
+                    :width "2px"
+                    :height "2px"
+                )
+    (VolumeOsd)
+)

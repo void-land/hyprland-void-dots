@@ -2,6 +2,7 @@
 
 (include "./src/-components/_helpers.yuck")
 (include "./src/-components/_separator.yuck")
+(include "./src/-components/_sliders.yuck")
 
 (include "./src/-modules/_language.yuck")
 (include "./src/-modules/_system-tray.yuck")
@@ -13,6 +14,7 @@
 (include "./src/windows/_vertical-bar.yuck")
 (include "./src/windows/_control-panel.yuck")
 (include "./src/windows/_dashboard.yuck")
+(include "./src/windows/_osd.yuck")
 
 (include "./setups.yuck")
 

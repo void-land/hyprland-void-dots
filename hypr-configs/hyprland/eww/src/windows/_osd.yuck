@@ -1,0 +1,15 @@
+(defwidget VolumeOsd []
+    (revealer :transition "slideup" :reveal revealOsd :duration "500ms"
+        (box :orientation "h" :class "volume-osd" :space-evenly false
+            (VolumeScale))))
+
+(defwidget VolumeScale []
+    (overlay :hexpand true
+        (scale :min 0 :max 100 :active {volume != "muted"} :value {volume == "muted" ? 0 : volume} :onchange "pamixer --set-volume {}" :class "volume-scale")
+        (label :class 'volume-icon ${volume == "muted" ? "less" : volume < 5 ? "less" : "more"}' :halign "start" :text {volume == "muted" ? "󰸈" : volume < 33 ? "" : volume < 67 ? "" : ""})))
+
+(defwidget VolumeControlCenter []
+    (box :orientation "h" :class "volume-control-center" :space-evenly false
+        (volume_scale)
+        (button :class "volume-mute ${volume == 'muted' ? 'active' : ''}" :onclick "pamixer -t" "󰝟")
+        (button :class "volume-arrow" :onclick "scripts/toggle_control_center.sh close && pavucontrol &" "󰅂")))

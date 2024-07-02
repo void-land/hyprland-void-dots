@@ -1,0 +1,11 @@
+(defwidget VerticalBarSlider [var ?onchange]
+  (box
+    :class "vertical-bar-slider"
+    (scale
+      :value var
+      :onchange onchange
+      :orientation "v"
+      :tooltip "${var}%"
+      :max 101
+      :min 0
+    :flipped true)))
