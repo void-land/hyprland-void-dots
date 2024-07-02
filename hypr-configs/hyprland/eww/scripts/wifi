@@ -1,33 +1,25 @@
 #!/bin/bash
 
-status=$(nmcli g | grep -oE "disconnected")
-essid=$(nmcli c | grep wlp0s20f0u6 | awk '{print ($1)}')
-strength=$(awk 'NR==3 {printf("%.0f\n",$3*10/7)}' /proc/net/wireless)
+wifi_status=$(nmcli -t -f STATE g)
+wifi_essid=$(nmcli -t -f NAME c show --active | head -n1)
+wifi_strength=$(awk 'NR==3 {print int($3 * 10/7)}' /proc/net/wireless)
 
-if [ $status ]; then
-    icon="󰤭"
-    text=""
-    col="#f38ba8"
-
-else
-    if [ $strength -le 25 ]; then
-        icon="󰤟"
-    elif [ $strength -le 50 ]; then
-        icon="󰤢"
-    elif [ $strength -le 75 ]; then
-        icon="󰤥"
+get_wifi_icon() {
+    if [[ $wifi_status == "connected" ]]; then
+        case $wifi_strength in
+        [0-9] | 1[0-9] | 2[0-5]) echo "󰤟" ;;
+        2[6-9] | 3[0-9] | 4[0-9] | 50) echo "󰤢" ;;
+        5[1-9] | 6[0-9] | 7[0-5]) echo "󰤥" ;;
+        *) echo "󰤨" ;;
+        esac
     else
-        icon="󰤨"
+        echo "󰤭"
     fi
 
-    text="${essid}"
-    col="#b4befe"
-fi
+}
 
-if [[ "$1" == "--COL" ]]; then
-    echo $col
-elif [[ "$1" == "--ESSID" ]]; then
-    echo $text
-elif [[ "$1" == "--ICON" ]]; then
-    echo $icon
-fi
+case "$1" in
+--COL) echo "$color" ;;
+--ESSID) echo $wifi_essid ;;
+--ICON) get_wifi_icon ;;
+esac
