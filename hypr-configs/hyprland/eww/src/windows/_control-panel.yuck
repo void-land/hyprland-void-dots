@@ -349,7 +349,7 @@
   )
 )
 
-(defwidget weatherhour[hour]
+(defwidget weatherhour [hour]
   (box
     :class "smallentry"
     :orientation "h"
@@ -412,9 +412,9 @@
       :orientation "h"
       :class "timer_butt"
       :valign "end"
-      (button :onclick "./scripts/timer.py timedec" (label :text "-"))
-      (button :onclick "./scripts/timer.py toggle" (label :style "padding-right: 3px;" :text { !matches(timerdis, ":") ? "󱎫" : "󱫎"}))
-      (button :onclick "./scripts/timer.py timeinc" (label :text "+")))))
+      (button :onclick "./scripts/python/timer.py timedec" (label :text "-"))
+      (button :onclick "./scripts/python/timer.py toggle" (label :style "padding-right: 3px;" :text { !matches(timerdis, ":") ? "󱎫" : "󱫎"}))
+      (button :onclick "./scripts/python/timer.py timeinc" (label :text "+")))))
 
 (defwidget bigslides []
   (box

@@ -69,15 +69,6 @@
 (defpoll workspacesJson :initial "[]" :interval "60s" "./scripts/workspace/get-workspaces")
 (deflisten currentWorkspace :initial "1" "./scripts/workspace/get-active")
 
-; Notifications
-(deflisten notifications :initial '{
-  "count": 0,
-  "dnd": false,
-  "popups": []
-  }'
-  "./scripts/notification/notifs.py"
-)
-
 ; Playerctl
 (deflisten pstatus :initial "" "playerctl status -F")
 (deflisten psong :initial "" "playerctl metadata -F --format '{{ title }}'")
@@ -95,9 +86,25 @@
 ; Controlpanel
 (defvar revealControlpanel false)
 (defvar revealWeather false)
-(deflisten timerdis "./scripts/timer.py subscribe")
 (defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')
 (defpoll uptime :initial "idk" :interval "1m" "uptime -p")
+(defpoll datehour :initial "12" :interval "30m" "date +'%H'")
+(defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")
+
+; Python
+(defpoll quotejson :interval "1h" "./scripts/python/quote.py")
+
+(deflisten timerdis "./scripts/python/timer.py subscribe")
+
+(deflisten notifications :initial '{
+  "count": 0,
+  "dnd": false,
+  "notifications": [],
+  "popups": []
+  }'
+  "./scripts/python/notifications.py"
+)
+
 (defpoll weatherjson
   :initial '{
   "FeelsLikeC": "0",
@@ -127,7 +134,4 @@
   }'
   :interval "1h"
   :run-while revealControlpanel
-"./scripts/weather.py")
-(defpoll datehour :initial "12" :interval "30m" "date +'%H'")
-(defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")
-(defpoll quotejson :interval "1h" `./scripts/quote.py`)
+"./scripts/python/weather.py")

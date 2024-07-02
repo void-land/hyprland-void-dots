@@ -4,11 +4,11 @@ import requests
 import json
 import time
 
-mytime = time.localtime() 
+mytime = time.localtime()
 day = (6 < mytime.tm_hour < 20)
 
 code_icon = {
-    113: "clear", 
+    113: "clear",
     116: "few-clouds",
     119: "clouds",
     122: "clouds",
@@ -67,8 +67,10 @@ code_icon_n = {
     356: "rain",
 }
 
+city = "Rasht"
+
 try:
-    req = requests.get(r"https://wttr.in/?format=j1", timeout=15).text
+    req = requests.get(r"https://wttr.in/{city}?format=j1", timeout=15).text
     req = json.loads(req)
     res = req["current_condition"][0].copy() 
 
@@ -84,14 +86,14 @@ try:
         else: 
             res["icon"] = "idk"
 
-    # hourly 
-    
     it = 0
+
     while it < 8 and int(req["weather"][0]["hourly"][it]["time"]) < mytime.tm_hour * 100:
         it += 1
 
     res["hourly"] = []
-    for i in range(8): 
+
+    for i in range(8):
         res["hourly"].append(req["weather"][(it+i)//8]["hourly"][(it+i)%8].copy())
 
     for hour in res["hourly"]: 
@@ -121,7 +123,6 @@ try:
     print(json.dumps(res))
 
 except Exception as e:
-    # print(e)
     print(""" 
 {
     "FeelsLikeC": "0", 

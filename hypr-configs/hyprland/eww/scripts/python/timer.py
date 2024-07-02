@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import time
 import os
 import sys
@@ -15,12 +16,10 @@ def startstop():
             f.write(str(time.time()))
         os.popen("notify-send 'timer start'")
 
-        
-
 # fuck it, I'm sure we don't need the loop function
 def readtime():
     if not os.path.exists("/tmp/timer"):
-        with open("/tmp/timer", "x") as f: 
+        with open("/tmp/timer", "x") as f:
             f.write("25")
 
     while True:
