@@ -2,14 +2,14 @@
   @extend .widget;
 
   font-size: get-token(font-sizes, large);
-  font-weight: 900;
+  font-weight: bolder;
 }
 
 .language {
   @extend .widget;
 
   font-size: get-token(font-sizes);
-  font-weight: 900;
+  font-weight: bolder;
 }
 
 .logo {
@@ -32,7 +32,7 @@
   padding: 12px;
 
   .workspace {
-    transition: cubic-bezier(0.165, 0.84, 0.44, 1) 600ms;
+    @extend .animation;
     border-radius: get-token(border-radius);
     min-height: 16px;
     background-color: $surface2;

@@ -82,3 +82,28 @@ checkbutton {
     }
   }
 }
+
+menu {
+  background-color: $base;
+  border-radius: get-token(border-radius);
+  padding: get-token(padding);
+
+  menuitem {
+    padding: 2px 6px;
+    border-radius: get-token(border-radius, small);
+
+    &:disabled label {
+      color: gray;
+    }
+
+    &:hover {
+      background-color: $accent;
+    }
+  }
+
+  separator {
+    background-color: $surface0;
+    margin: 6px 2px;
+    min-height: 1px;
+  }
+}
