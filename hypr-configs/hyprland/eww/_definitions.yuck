@@ -33,13 +33,6 @@
 ; (defpoll cpu :interval "1s" "bash ./scripts/sys_info --cpu")
 ; (defpoll mem :interval "1s" "bash ./scripts/sys_info --mem")
 
-; Reveals
-(defvar reveal1 false)
-(defvar reveal2 false)
-(defvar reveal4 false)
-(defvar reveal5 false)
-(defvar reveal6 false)
-
 ; Desktop
 (defpoll trashcanPath :interval "24h" "./scripts/iconfetch.py trashcan_empty")
 
@@ -87,12 +80,12 @@
 ;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
 
 ; Controlpanel
-(defvar revealControlpanel true)
+(defvar revealControlpanel false)
 (defvar revealWeather false)
 (defpoll hostname :initial "idk" :interval "24h" 'echo "$(whoami)"')
 (defpoll uptime :initial "idk" :interval "1m" "uptime -p")
 (defpoll datehour :initial "12" :interval "30m" "date +'%H'")
-(defpoll notesc :interval "2s" :run-while reveal4 "cat -s ~/Documents/fuck.txt")
+(defpoll notesc :interval "2s" "cat -s ~/Documents/fuck.txt")
 
 ; Python
 (defpoll quotejson :interval "1h" "./scripts/python/quote.py")

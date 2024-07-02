@@ -8,7 +8,6 @@
     
     (User)
     (SystemMonitor)
-    ; (weather)
     
     ; (MediaPlayer :h 160 :permashow true)
     
@@ -42,108 +41,6 @@
       (button :onclick "./scripts/pop scrop" (label :text "󰆞"))
       (button :onclick "~/.config/eww/themeswitch/scripts/pop" (label :text "")))))
 
-(defwidget chooser []
-  (box
-    :orientation "v"
-    :height 60
-    :class "panel-widget"
-    :space-evenly false
-    
-    (box
-      :orientation "h"
-      
-      (button
-        :onclick "${EWW_CMD} update reveal4=${!reveal4} reveal5=false reveal6=false"
-        :onrightclick "foot nvim ~/Documents/fuck.txt"
-        (label :class {reveal4 ? "titlesel" : "title"} :text "Notes"))
-      (button
-        :onclick "${EWW_CMD} update reveal5=${!reveal5} reveal4=false reveal6=false"
-        (label :class {reveal5 ? "titlesel" : "title"} :text "System"))
-      (button
-        :onclick "${EWW_CMD} update reveal6=${!reveal6} reveal5=false reveal4=false"
-        (label :class {reveal6 ? "titlesel" : "title"} :text "Hyprland")))
-    
-    (notes)
-    (sysinfo)
-    (wmctrl)))
-
-
-(defwidget notes []
-  (revealer
-    :reveal reveal4
-    :transition "slideup"
-    (box
-      :height 140
-      (box
-        :orientation "h"
-        (scroll
-          :hscroll true
-          :vscroll true
-          (label :text notesc))))))
-
-(defwidget wmctrl []
-  (revealer
-    :reveal reveal6
-    :transition "slideup"
-    (scroll
-      :hscroll false
-      :vscroll true
-      :height 140
-      (box
-        :orientation "v"
-        :valign "fill"
-        :space-evenly false
-        :spacing 5
-        (wmslider
-          :name "gaps outer"
-          :val gapsouter
-          :onchange "swaymsg gaps outer all set {}"
-          :max 300
-        :reset "${EWW_CMD} update gapsouter=0 && swaymsg gaps outer all set 0")
-        (wmslider
-          :name "gaps inner"
-          :val gapsinner
-          :onchange "swaymsg gaps inner all set {}"
-          :max 150
-        :reset "${EWW_CMD} update gapsinner=15 && swaymsg gaps inner all set 15")
-        (wmslider
-          :name "border size"
-          :val borderpixel
-          :onchange "swaymsg default_border pixel {} && swaymsg '[app_id=\".*\"] border pixel {}'"
-          :max 50
-        :reset "${EWW_CMD} update borderpixel=2 && swaymsg default_border pixel 2 && swaymsg '[app_id=\".*\"] border pixel 2'")
-        (box
-          :orientation "h"
-          :space-evenly false
-          :halign "center"
-          :spacing 10
-          (label :text "natural scrolling")
-          (checkbox
-            :onchecked "swaymsg input \"type:touchpad\" natural_scroll enable"
-          :onunchecked "swaymsg input \"type:touchpad\" natural_scroll disable"))
-        (box
-          :orientation "h"
-          :space-evenly false
-          :halign "center"
-          :spacing 10
-          (label :text "disable when typing")
-          (checkbox
-            :onchecked "swaymsg input \"type:touchpad\" dwt enable"
-            :onunchecked "swaymsg input \"type:touchpad\" dwt disable"
-          ))
-        
-        (box
-          :orientation "h"
-          :space-evenly false
-          :halign "center"
-          :spacing 10
-          (label :text "caffeine")
-          (checkbox
-            :onchecked "swaymsg [app_id='.*'] inhibit_idle open && ${EWW_CMD} update caffeine=true"
-            :onunchecked "swaymsg [app_id='.*'] inhibit_idle none && ${EWW_CMD} update caffeine=false"
-          ))
-      ))))
-
 (defwidget SystemMonitor []
   (box
     :orientation "h"
@@ -155,57 +52,30 @@
     (SystemStatus :icon "" :val { EWW_BATTERY.BAT0.capacity })
   ))
 
-(defwidget wmslider [name val onchange max reset]
+(defwidget User []
+  
   (box
     :orientation "h"
     :space-evenly false
-    :halign "center"
-    :width 20
-    :vexpand false
-    :valign "center"
-    :spacing 10
-    (label
-    :text name)
-    (scale
-      :min 0
-      :max max
-      :class "wmctrlslide"
-      :tooltip val
-      :value val
-    :onchange onchange)
-    (button
-      :onclick reset
-      :style "padding: 0px 8px 0px 3px;"
-    "")))
-
-
-
-(defwidget User []
-  (revealer
-    :reveal {!reveal4 && !reveal5 && !reveal6}
-    :transition "slideup"
-    (box
-      :orientation "h"
-      :space-evenly false
-      :height 140
-      :width 320
-      :class "panel-widget"
-      :valign "start"
-      :halign "fill"
+    :height 140
+    :width 320
+    :class "panel-widget"
+    :valign "start"
+    :halign "fill"
+    :hexpand true
+    (image :style "margin: 10px;" :image-width 80 :image-height 80 :path "./assets/image/fieshidle.gif")
+    (scroll
+      :hscroll true
+      :vscroll false
       :hexpand true
-      (image :style "margin: 10px;" :image-width 80 :image-height 80 :path "./assets/image/fieshidle.gif")
-      (scroll
-        :hscroll true
-        :vscroll false
-        :hexpand true
-        (box
-          :orientation "v"
-          :class "userinfo"
-          :space-evenly false
-          :valign "center"
-          :halign "center"
-          (label :halign "start" :text "${datehour < 12 ? 'Good morning' : datehour < 18 ? 'Good afternoon' : datehour < 22 ? 'Good evening' : 'Good night'} ${hostname}")
-          (label :halign "start" :text uptime :style "font-size: 12px;"))))))
+      (box
+        :orientation "v"
+        :class "userinfo"
+        :space-evenly false
+        :valign "center"
+        :halign "center"
+        (label :halign "start" :text "${datehour < 12 ? 'Good morning' : datehour < 18 ? 'Good afternoon' : datehour < 22 ? 'Good evening' : 'Good night'} ${hostname}")
+        (label :halign "start" :text uptime :style "font-size: 12px;")))))
 
 (defwidget NotificationsWeatherBox []
   (box
