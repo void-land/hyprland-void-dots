@@ -9,10 +9,11 @@
       :transition "slideleft"
       (children :nth 1))))
 
-(defwidget RevealOnHover [var varname ?icon ?class ?duration ?transition]
+(defwidget RevealOnHover [var varname ?icon ?class ?duration ?transition ?visible]
   (eventbox
     :onhover `${EWW_CMD} update ${varname}=true`
     :onhoverlost `${EWW_CMD} update ${varname}=false`
+    :visible {visible}
     
     (box
       :space-evenly false

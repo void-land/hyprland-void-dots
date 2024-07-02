@@ -4,16 +4,16 @@
     :valign "center"
     :halign "center"
     :class "${class}"
-
+    
     (revealer
       :reveal revealSystray
       :transition "slideup"
-
-(systray
+      
+      (systray
         :orientation orientation
-        :icon-size 20
+        :icon-size 18
         :spacing spacing-default
-        )
-
       )
-    ))
+      
+    )
+  ))

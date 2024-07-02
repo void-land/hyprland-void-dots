@@ -11,6 +11,7 @@
 (include "./src/-modules/_logo.yuck")
 (include "./src/-modules/_media.yuck")
 
+(include "./src/windows/_notifications.yuck")
 (include "./src/windows/_vertical-bar.yuck")
 (include "./src/windows/_control-panel.yuck")
 (include "./src/windows/_dashboard.yuck")
@@ -20,5 +21,3 @@
 
 (include "./src/wallpapers/main.yuck")
 (include "./src/dock/main.yuck")
-(include "./src/desktop/main.yuck")
-(include "./src/notification/main.yuck")

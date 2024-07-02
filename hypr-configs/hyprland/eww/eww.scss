@@ -9,10 +9,9 @@
 @import "./assets/scss/windows/vertical-bar";
 @import "./assets/scss/windows/dashboard";
 @import "./assets/scss/windows/osd";
+@import "./assets/scss/windows/notifications";
 
 @import "./src/dock/styles.scss";
-@import "./src/desktop/styles.scss";
-@import "./src/notification/styles.scss";
 
 * {
   all: unset;

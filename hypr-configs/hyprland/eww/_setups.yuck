@@ -34,6 +34,18 @@
   :monitor 0
   (Dashboard))
 
+(defwindow notifications
+  :geometry (geometry
+    :x 0
+    :y 0
+    :width 480
+    :height 0
+  :anchor "top center")
+  :stacking "overlay"
+  :monitor 0
+  (NotficationsCenter)
+)
+
 (defwindow osd
   :monitor 0
   :stacking "overlay"

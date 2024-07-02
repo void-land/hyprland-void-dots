@@ -8,7 +8,7 @@
 }
 
 .separator {
-  padding: 4px 6px;
+  padding: get-token(padding, small);
 
   .dot {
     padding: 3px;

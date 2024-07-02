@@ -8,7 +8,7 @@
 .language {
   @extend .widget;
 
-  font-size: get-token(font-sizes);
+  font-size: get-token(font-sizes, small);
   font-weight: bolder;
 }
 

@@ -29,7 +29,13 @@
     
     (Logo)
     (Workspaces)
-    (Shortcuts)
+    ; (Shortcuts)
+    (RevealOnClick
+      :var revealSystray
+      :varname "revealSystray"
+      :direction "down"
+      (Systemtray :orientation "v")
+    )
   ))
 
 (defwidget BarMiddle []
@@ -51,15 +57,9 @@
     :space-evenly false
     :valign "end"
     
-    (RevealOnClick
-      :var revealSystray
-      :varname "revealSystray"
-      :direction "up"
-      (Systemtray :orientation "v")
-    )
-    ;; (Language)
+    
     (Sliders)
-    ;; (Clock)
+    (Language)
   ))
 
 (defwidget Shortcuts []
@@ -88,29 +88,36 @@
     :spacing spacing-default
     :valign "end"
     
-    (button :onclick "alacritty -e nmtui" :tooltip wifi_essid
-      (label :class "icon" :text wifi_icon))
+    (RevealOnHover
+      :var {revealWifiEssid}
+      :varname "revealWifiEssid"
+      :icon {wifi_icon}
+      
+      (label
+        :angle 90
+      :text wifi_essid)
+    )
     
     (RevealOnHover
-      :var revealVolume
+      :var {revealVolume}
       :varname "revealVolume"
       :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
       
-      (VerticalBarSlider :var volume :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
+      (VerticalBarSlider :var {volume} :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
     )
     
     (RevealOnHover
-      :var revealMicrophone
+      :var {revealMicrophone}
       :varname "revealMicrophone"
       :icon {volumemute == 'false' ? "" : "󰖁"}
       
-      (VerticalBarSlider :var mic_volume :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%")
+      (VerticalBarSlider :var {mic_volume} :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%")
     )
     
     (RevealOnHover
-      :var revealBrightness
+      :var {revealBrightness}
       :varname "revealBrightness"
       :icon "󰃞"
       
-      (VerticalBarSlider :var brightness :onchange "brightnessctl set {}%"))
+      (VerticalBarSlider :var {brightness} :onchange "brightnessctl set {}%"))
   ))

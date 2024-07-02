@@ -1,0 +1,35 @@
+.notifbox {
+  background-color: $surface1;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.notiftitle {
+  font-size: 18px;
+  color: $white0;
+}
+
+.notifbody {
+  font-size: 15px;
+  color: $white0;
+}
+
+.notifclose {
+  font-family: "Symbols Nerd Font";
+  font-size: 25px;
+  min-width: 1em;
+  min-height: 1em;
+  color: $red;
+}
+
+.notiflabel {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.notifactions {
+  font-size: 15px;
+  margin: 5px;
+  color: $white0;
+}

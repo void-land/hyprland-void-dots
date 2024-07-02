@@ -1,0 +1,82 @@
+(defwidget NotficationsCenter []
+  (revealer
+    :reveal { arraylength(notifications.popups) > 0 }
+    :transition "slidedown"
+    (box
+      :orientation "v"
+      :space-evenly false
+      :spacing spacing-default
+      
+      (for noti in {notifications.popups}
+        (SingleNotification :noti noti :initial true)))))
+
+(defwidget SingleNotification [noti initial]
+  (box
+    :orientation "v"
+    :class "${initial ? 'popup' : 'notifbox'}"
+    :space-evenly false
+    
+    (centerbox
+      :orientation "h"
+      :class "notifbar"
+      (image :halign "start" :image-width 30 :image-height 30 :path {noti.icon != "null" ? noti.icon : "./assets/image/idk.svg"})
+      (scroll
+        :halign "center"
+        :valign "center"
+        :hexpand true
+        :hscroll true
+        :vscroll false
+        :width 200
+        (label
+          :class "notiflabel"
+        :text {noti.app}))
+      (button
+        :halign "end"
+        :onclick "./scripts/notification/manage --close ${noti.id}"
+        (label
+          :class "notifclose"
+        :text "")))
+    
+    (box
+      :orientation "h"
+      :halign "fill"
+      :height 80
+      :space-evenly false
+      :spacing 10
+      (image :image-width 80 :image-height 80 :visible {noti.image != "null"} :path {noti.image != "null" ? noti.image : "./assets/image/idk.svg"})
+      
+      (button
+        :onclick "./scripts/notification/manage --dismiss ${noti.id}"
+        :onrightclick "./scripts/notification/manage --close ${noti.id}"
+        :tooltip "${noti.time}"
+        :hexpand true
+        :vexpand true
+        (box
+          :orientation "v"
+          :space-evenly false
+          :valign "center"
+          (scroll
+            :hscroll true
+            :vscroll false
+            :hexpand true
+            (label
+              :class "notiftitle"
+            :text {noti.summary}))
+          (scroll
+            :hscroll true
+            :vscroll false
+            :hexpand true
+            (label
+              :class "notifbody"
+              :visible {noti.body != "null"}
+            :text {noti.body})))))
+    
+    (box
+      :orientation "h"
+      (for action in {noti.actions}
+        (button
+          :onclick "./scripts/notification/manage --action ${noti.id} ${action[0]} && ./scripts/notification/manage --close ${noti.id}"
+          (label
+            :class "notifactions"
+          :text {action[1]}))
+      ))))
