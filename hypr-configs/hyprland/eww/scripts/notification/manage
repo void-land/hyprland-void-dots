@@ -1,0 +1,59 @@
+#!/usr/bin/bash
+
+DBUS_CMD="dbus-send --session --type=method_call --dest=org.freedesktop.Notifications /org/freedesktop/Notifications"
+
+dismiss() {
+    $DBUS_CMD org.freedesktop.Notifications.DismissPopup uint32:$1
+}
+
+close() {
+    $DBUS_CMD org.freedesktop.Notifications.CloseNotification uint32:$1
+}
+
+action() {
+    $DBUS_CMD org.freedesktop.Notifications.InvokeAction uint32:$1 string:$2
+}
+
+get_current() {
+    $DBUS_CMD org.freedesktop.Notifications.GetCurrent
+}
+
+clear_all() {
+    $DBUS_CMD org.freedesktop.Notifications.ClearAll
+}
+
+listen() {
+    $DBUS_CMD org.freedesktop.Notifications.Listen
+}
+
+toggle_dnd() {
+    $DBUS_CMD org.freedesktop.Notifications.ToggleDND
+}
+
+case "$1" in
+--dismiss)
+    dismiss "$2"
+    ;;
+--close)
+    close "$2"
+    ;;
+--action)
+    action "$2" "$3"
+    ;;
+--current)
+    get_current
+    ;;
+--clear)
+    clear_all
+    ;;
+--listen)
+    listen
+    ;;
+--toggle)
+    toggle_dnd
+    ;;
+*)
+    echo "Usage: $0 {--dismiss|--close|--action|--clear|--listen|--toggle} [args]"
+    exit 1
+    ;;
+esac

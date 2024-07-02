@@ -73,10 +73,9 @@
 (deflisten notifications :initial '{
   "count": 0,
   "dnd": false,
-  "notifications": [],
   "popups": []
   }'
-  "./scripts/notif.py"
+  "./scripts/notification/notifs.py"
 )
 
 ; Playerctl

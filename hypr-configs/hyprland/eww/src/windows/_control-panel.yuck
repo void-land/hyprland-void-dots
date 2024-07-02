@@ -5,39 +5,39 @@
     :orientation "v"
     :valign "fill"
     :vexpand true
-
-    (user)
+    
+    (User )
     (chooser)
     ; (weather)
-
- (MediaPlayer :h 160 :permashow true)
-
+    
+    ; (MediaPlayer :h 160 :permashow true)
+    
     (box
       :orientation "h"
       :space-evenly false
       :height 180
-
+      
       (Timer)
       (bigslides))
-
+    
     (box
       :space-evenly false
       :orientation "v"
       :vexpand true
       :visible true
-
+      
       (Toolbox)
       (NotificationsWeatherBox))
-    ))
+  ))
 
 (defwidget Toolbox []
   (eventbox
     :cursor "pointer"
-
+    
     (box
       :class "tricontrol panel-widget"
       :orientation "h"
-
+      
       (button :onclick "./scripts/pop colourpick" (label :text "󰈊"))
       (button :onclick "./scripts/pop scrop" (label :text "󰆞"))
       (button :onclick "~/.config/eww/themeswitch/scripts/pop" (label :text "")))))
@@ -48,10 +48,10 @@
     :height 60
     :class "panel-widget"
     :space-evenly false
-
+    
     (box
       :orientation "h"
-
+      
       (button
         :onclick "${EWW_CMD} update reveal4=${!reveal4} reveal5=false reveal6=false"
         :onrightclick "foot nvim ~/Documents/fuck.txt"
@@ -62,7 +62,7 @@
       (button
         :onclick "${EWW_CMD} update reveal6=${!reveal6} reveal5=false reveal4=false"
         (label :class {reveal6 ? "titlesel" : "title"} :text "Hyprland")))
-
+    
     (notes)
     (sysinfo)
     (wmctrl)))
@@ -99,19 +99,19 @@
           :val gapsouter
           :onchange "swaymsg gaps outer all set {}"
           :max 300
-          :reset "${EWW_CMD} update gapsouter=0 && swaymsg gaps outer all set 0")
+        :reset "${EWW_CMD} update gapsouter=0 && swaymsg gaps outer all set 0")
         (wmslider
           :name "gaps inner"
           :val gapsinner
           :onchange "swaymsg gaps inner all set {}"
           :max 150
-          :reset "${EWW_CMD} update gapsinner=15 && swaymsg gaps inner all set 15")
+        :reset "${EWW_CMD} update gapsinner=15 && swaymsg gaps inner all set 15")
         (wmslider
           :name "border size"
           :val borderpixel
           :onchange "swaymsg default_border pixel {} && swaymsg '[app_id=\".*\"] border pixel {}'"
           :max 50
-          :reset "${EWW_CMD} update borderpixel=2 && swaymsg default_border pixel 2 && swaymsg '[app_id=\".*\"] border pixel 2'")
+        :reset "${EWW_CMD} update borderpixel=2 && swaymsg default_border pixel 2 && swaymsg '[app_id=\".*\"] border pixel 2'")
         (box
           :orientation "h"
           :space-evenly false
@@ -120,7 +120,7 @@
           (label :text "natural scrolling")
           (checkbox
             :onchecked "swaymsg input \"type:touchpad\" natural_scroll enable"
-            :onunchecked "swaymsg input \"type:touchpad\" natural_scroll disable"))
+          :onunchecked "swaymsg input \"type:touchpad\" natural_scroll disable"))
         (box
           :orientation "h"
           :space-evenly false
@@ -130,8 +130,8 @@
           (checkbox
             :onchecked "swaymsg input \"type:touchpad\" dwt enable"
             :onunchecked "swaymsg input \"type:touchpad\" dwt disable"
-            ))
-
+          ))
+        
         (box
           :orientation "h"
           :space-evenly false
@@ -141,8 +141,8 @@
           (checkbox
             :onchecked "swaymsg [app_id='.*'] inhibit_idle open && ${EWW_CMD} update caffeine=true"
             :onunchecked "swaymsg [app_id='.*'] inhibit_idle none && ${EWW_CMD} update caffeine=false"
-            ))
-        ))))
+          ))
+      ))))
 
 (defwidget sysinfo []
   (revealer
@@ -155,7 +155,7 @@
       (systat :icon "󰍛" :val { EWW_RAM.used_mem_perc })
       (systat :icon "󰈐" :val { gpu })
       (systat :icon "" :val { EWW_BATTERY.BAT0.capacity })
-      )))
+    )))
 
 (defwidget wmslider [name val onchange max reset]
   (box
@@ -167,18 +167,18 @@
     :valign "center"
     :spacing 10
     (label
-      :text name)
+    :text name)
     (scale
       :min 0
       :max max
       :class "wmctrlslide"
       :tooltip val
       :value val
-      :onchange onchange)
+    :onchange onchange)
     (button
       :onclick reset
       :style "padding: 0px 8px 0px 3px;"
-      "")))
+    "")))
 
 (defwidget systat [icon val]
   (overlay
@@ -187,8 +187,8 @@
       :valign "center"
       :class "circsys"
       :thickness 40
-      :value val)
-
+    :value val)
+    
     (box
       :class "circiconcontain"
       :halign "center"
@@ -197,7 +197,7 @@
       :width 55
       (label :text icon))))
 
-(defwidget user[]
+(defwidget User []
   (revealer
     :reveal {!reveal4 && !reveal5 && !reveal6}
     :transition "slideup"
@@ -232,7 +232,7 @@
     :vexpand true
     :class "panel-widget"
     :space-evenly false
-
+    
     (box
       :orientation "h"
       (button
@@ -241,28 +241,28 @@
       (button
         :onclick "${EWW_CMD} update revealWeather=true"
         (label :class {revealWeather ? "titlesel" : "title"} :text "Weather")))
-
+    
     (box
       :orientation "h"
       :vexpand true
       :hexpand true
       :space-evenly false
-
+      
       (revealer
         :reveal {!revealWeather}
         :hexpand {!revealWeather}
         :transition "slideleft"
-
-        (notificationlog))
-
+        
+        (NotificationsLogs))
+      
       (revealer
         :reveal revealWeather
         :hexpand revealWeather
         :transition "slideleft"
+        
+        (Weather)))))
 
-        (weather)))))
-
-(defwidget weather[]
+(defwidget Weather []
   (overlay
     (box
       :orientation "v"
@@ -270,8 +270,9 @@
       :valign "fill"
       :vexpand true
       :space-evenly false
-
+      
       (weathermain)
+      
       (scroll
         :hscroll false
         :vscroll true
@@ -287,8 +288,66 @@
       :hexpand true
       :vexpand false
       :height 80
+    :class "fadeoutbox")
+  ))
+
+(defwidget NotificationsLogs []
+  (box
+    :halign "fill"
+    :valign "fill"
+    :width 320
+    :vexpand true
+    :space-evenly false
+    :orientation "v"
+    
+    (overlay
+      :vexpand true
+      
+      (box
+        :halign "fill"
+        :valign "fill"
+        :vexpand true
+        :space-evenly false
+        :orientation "v"
+        
+        (scroll
+          :hscroll false
+          :vscroll true
+          :vexpand true
+          :valign "fill"
+          
+          (box
+            :orientation "v"
+            :valign "start"
+            :space-evenly false
+            (for notif in {notifications.notifications}
+              (singlenotif :noti notif :initial false))))
+      )
+      
+      (box
+        :valign "end"
+        :hexpand true
+        :vexpand false
+        :height 80
       :class "fadeoutbox")
-    ))
+    )
+    
+    (box
+      :orientation "h"
+      :valign "end"
+      
+      (button
+        :onclick "./scripts/notification/manage --clear"
+        (label
+          :class "title"
+        :text "Clear All"))
+      (button
+        :onclick "./scripts/notification/manage --toggle"
+        (label
+          :class { notifications.dnd ? "titlesel" : "title"}
+        :text "Do Not Disturb")))
+  )
+)
 
 (defwidget weatherhour[hour]
   (box
@@ -304,7 +363,7 @@
     (image
       :image-width 50
       :image-height 50
-      :path "./assets/image/weather/${hour.icon}.svg")
+    :path "./assets/image/weather/${hour.icon}.svg")
     (box
       :orientation "v"
       :space-evenly false
@@ -313,7 +372,7 @@
       (label :halign "start" :text "${hour.FeelsLikeC}°C")
       (label :halign "start" :text "rain: ${hour.chanceofrain}%"))))
 
-(defwidget weathermain[]
+(defwidget weathermain []
   (box
     :class "mainentry"
     :orientation "h"
@@ -325,7 +384,7 @@
       :image-width 100
       :image-height 100
       :style "margin: 10px;"
-      :path "./assets/image/weather/${weatherjson.icon}.svg")
+    :path "./assets/image/weather/${weatherjson.icon}.svg")
     (scroll
       :hscroll true
       :vscroll false
@@ -338,7 +397,7 @@
         (label :halign "start" :text "← ${weatherjson.windspeedKmph} km/h")
         ;; (label :halign "start" :text "${weatherjson.visibility} km")
         ;; (label :halign "start" :text "${weatherjson.precipMM} mm")
-        ))))
+      ))))
 
 (defwidget Timer []
   (box
@@ -347,7 +406,7 @@
     :space-evenly false
     :valign "fill"
     :width 200
-
+    
     (label :class "timer" :valign "center" :vexpand true :text timerdis)
     (box
       :orientation "h"
@@ -378,11 +437,11 @@
       :tooltip "${volume}%"
       :max 100
       :min 0
-      :flipped true)
+    :flipped true)
     (label
       :class "slideicon"
       :valign "end"
-      :text {volumemute == 'false' ? "󰕾" : "󰖁"})))
+    :text {volumemute == 'false' ? "󰕾" : "󰖁"})))
 
 (defwidget bigmic []
   (overlay
@@ -394,11 +453,11 @@
       :tooltip "${mic_volume}%"
       :max 100
       :min 0
-      :flipped true)
+    :flipped true)
     (label
       :class "slideicon"
       :valign "end"
-      :text {volumemute == 'false' ? "" : "󰖁"})))
+    :text {volumemute == 'false' ? "" : "󰖁"})))
 
 (defwidget bigbright []
   (overlay
@@ -410,57 +469,11 @@
       :tooltip "${brightness}%"
       :max 100
       :min 0
-      :flipped true)
+    :flipped true)
     (label
       :class "slideicon"
       :valign "end"
-      :text "󰃞")))
-
-(defwidget notificationlog []
-  (overlay
-    (box
-      :halign "fill"
-      :valign "fill"
-      :vexpand true
-      :space-evenly false
-      :orientation "v"
-
-      (scroll
-        :hscroll false
-        :vscroll true
-        :vexpand true
-        :valign "fill"
-
-        (box
-          :orientation "v"
-          :valign "start"
-          :space-evenly false
-          (for noti in {notifications.notifications}
-            (singlenotif :noti noti :initial false))))
-
-      (box
-        :valign "end"
-        :hexpand true
-        :vexpand false
-        :height 80
-        :class "fadeoutbox")
-      (box
-        :orientation "h"
-        (button
-          :onclick "./scripts/notifManage --clear"
-          (label
-            :class "title"
-            :text "Clear All"))
-        (button
-          :onclick "./scripts/notifManage --toggle"
-          (label
-            :class { notifications.dnd ? "titlesel" : "title"}
-            :text "Do Not Disturb")))
-      )
-
-    )
-
-  )
+    :text "󰃞")))
 
 (defwidget quote []
   (box
@@ -475,7 +488,7 @@
         :class "quote"
         :text {quotejson.content}
         :wrap true
-        :width 300))
+      :width 300))
     (label
       :class "quoteauthor"
-      :text "- ${quotejson.author}")))
+    :text "- ${quotejson.author}")))

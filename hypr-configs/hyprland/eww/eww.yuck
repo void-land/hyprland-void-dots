@@ -1,4 +1,4 @@
-(include "./src/_definitions.yuck")
+(include "./_definitions.yuck")
 
 (include "./src/-components/_helpers.yuck")
 (include "./src/-components/_separator.yuck")
@@ -16,7 +16,7 @@
 (include "./src/windows/_dashboard.yuck")
 (include "./src/windows/_osd.yuck")
 
-(include "./setups.yuck")
+(include "./_setups.yuck")
 
 (include "./src/wallpapers/main.yuck")
 (include "./src/dock/main.yuck")
