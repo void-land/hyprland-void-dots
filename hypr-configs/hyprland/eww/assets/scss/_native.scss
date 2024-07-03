@@ -71,10 +71,6 @@ menu {
     padding: 2px 6px;
     border-radius: get-token(border-radius, small);
 
-    &:disabled label {
-      color: gray;
-    }
-
     &:hover {
       background-color: $accent;
     }

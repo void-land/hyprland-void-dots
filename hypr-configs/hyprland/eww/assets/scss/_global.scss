@@ -3,9 +3,9 @@
 }
 
 .widget {
-  padding: get-token(padding, small);
-  margin: get-token(margin, small);
-  border-radius: get-token(border-radius, small);
+  margin: get-token(margin);
+  padding: get-token(padding);
+  border-radius: get-token(border-radius);
   background-color: $surface0;
 }
 
@@ -18,8 +18,8 @@
 }
 
 .icon {
-  font-size: get-token(font-sizes);
   font-family: "Symbols Nerd Font";
+  font-size: get-token(font-sizes, small);
 }
 
 .popup {

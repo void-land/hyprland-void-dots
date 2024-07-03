@@ -2,7 +2,7 @@
   @extend .widget;
 
   label {
-    font-size: 20px;
+    font-size: get-token(font-sizes, large);
     font-weight: bold;
   }
 }
@@ -41,7 +41,7 @@
     border-radius: get-token(border-radius);
     transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 300ms;
 
-    &.current {
+    &.active {
       min-height: 42px;
 
       background-color: $accent;
@@ -49,8 +49,39 @@
   }
 }
 
+.dots-workspaces {
+  @extend .widget;
+
+  .workspace {
+    label {
+      @extend .icon;
+    }
+
+    &.empty {
+      color: transparentize($white, 0.8);
+    }
+
+    &.occupied {
+      // color: $surface2;
+      color: transparentize($white, 0.4);
+    }
+
+    &.active {
+      color: $white;
+    }
+  }
+}
+
 .bar-media-player {
   @extend .widget;
+
+  .player-controls {
+    label {
+      @extend .icon;
+
+      font-size: get-token(font-sizes, large);
+    }
+  }
 }
 
 .media-player {
@@ -69,11 +100,8 @@
   }
 
   .player-controls {
-    * {
-      font-size: 64px;
-    }
-
     label {
+      font-size: 64px;
       padding: 16px 0px;
     }
   }

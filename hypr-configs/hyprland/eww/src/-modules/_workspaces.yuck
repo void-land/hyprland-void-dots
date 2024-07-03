@@ -4,17 +4,37 @@
     :onscroll "./scripts/workspace/set-active {} ${currentWorkspace}"
     :onhover "${EWW_CMD} update showNoOfWindows=true"
     :onhoverlost "${EWW_CMD} update showNoOfWindows=false"
-
+    
     (box
       :class "workspaces"
       :space-evenly false
       :orientation "v"
       :spacing spacing-default
       :vexpand true
-
+      
       (for workspace in {workspacesJson}
         (button
           :onclick "hyprctl dispatch workspace ${workspace.id}"
-
+          
           (box
-            :class `workspace ${workspace.id == currentWorkspace ? "current" : ""}`))))))
+          :class `workspace ${workspace.id == currentWorkspace ? "active" : ""}`))))))
+
+(defwidget DotsWorkspaces []
+  (eventbox
+    :cursor "pointer"
+    :onscroll "./scripts/workspace/set-active {} ${currentWorkspace}"
+    
+    (box
+      :class "dots-workspaces"
+      :space-evenly false
+      :orientation "v"
+      :spacing spacing-small
+      
+      (for workspace in {workspacesJson}
+        (button
+          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          :class "workspace ${workspace.id == currentWorkspace ? "active" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+          
+          (label :class "icon" :text {workspace.windows > 0 ? "${workspace.id == currentWorkspace ? "" : ""}" : ""})
+        )
+      ))))

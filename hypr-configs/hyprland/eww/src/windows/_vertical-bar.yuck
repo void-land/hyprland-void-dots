@@ -27,7 +27,7 @@
     :vexpand false
     
     (Logo)
-    (Workspaces)
+    (DotsWorkspaces)
     ; (Shortcuts)
     (RevealOnClick
       :var revealSystray

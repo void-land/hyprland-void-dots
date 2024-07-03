@@ -62,7 +62,7 @@
 
 ; Workspaces
 (defvar showNoOfWindows false)
-(defpoll workspacesJson :initial "[]" :interval "60s" "./scripts/workspace/get-workspaces")
+(deflisten workspacesJson :initial "[]" "./scripts/workspace/get-workspaces")
 (deflisten currentWorkspace :initial "1" "./scripts/workspace/get-active")
 
 ; Playerctl

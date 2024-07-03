@@ -18,7 +18,8 @@
     (box
       :space-evenly false
       :orientation "v"
-      (label :class "icon" :text icon)
+      
+      (box (label :class "icon" :text icon))
       
       (revealer
         :reveal var

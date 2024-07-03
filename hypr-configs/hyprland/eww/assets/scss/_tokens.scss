@@ -6,8 +6,8 @@ $design-tokens: (
     extra: 30px,
   ),
   padding: (
-    small: 8px,
-    default: 10px,
+    small: 6px,
+    default: 8px,
     large: 12px,
   ),
   margin: (
@@ -16,9 +16,10 @@ $design-tokens: (
     large: 6px,
   ),
   border-radius: (
-    small: 8px,
+    small: 6px,
     default: 10px,
-    large: 16px,
+    large: 12px,
+    extra: 16px,
   ),
 );
 

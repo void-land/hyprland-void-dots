@@ -8,19 +8,25 @@
       :space-evenly false
       :spacing spacing-default
       
-      
       (eventbox
         :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"
         :visible cover
         
         (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
       
-      (button :onclick "playerctl previous"
-        (label :class "icon" :text "󰒮"))
-      (button :onclick "playerctl play-pause"
-        (label :class "icon" :text  { pstatus == "Playing" ? "" : ""}))
-      (button :onclick "playerctl next"
-        (label :class "icon" :text "󰒭")))))
+      (box
+        :class "player-controls"
+        :orientation "v"
+        :space-evenly false
+        :spacing spacing-default
+        
+        
+        (button :onclick "playerctl previous"
+          (label :text "󰒮"))
+        (button :onclick "playerctl play-pause"
+          (label :text  { pstatus == "Playing" ? "" : ""}))
+        (button :onclick "playerctl next"
+          (label :text "󰒭"))))))
 
 (defwidget MediaPlayer [height]
   (box
