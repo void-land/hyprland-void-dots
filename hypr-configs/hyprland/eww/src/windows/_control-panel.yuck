@@ -43,12 +43,14 @@
   (box
     :orientation "h"
     :class "panel-widget"
+    :spacing spacing-large
     :height 140
     
     (SystemStatus :icon "󰻠" :val { EWW_CPU.avg })
     (SystemStatus :icon "󰍛" :val { EWW_RAM.used_mem_perc })
     (SystemStatus :icon "󰈐" :val { gpu })
     (SystemStatus :icon "" :val { EWW_BATTERY.BAT0.capacity } :visible false)
+    (SystemStatus :icon "󰃞" :val { external_monitor_brightness })
   ))
 
 (defwidget User []
@@ -277,9 +279,8 @@
     (BigBarSlider :var { mic_volume } :icon {volumemute == 'false' ? "" : "󰖁"}
     :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%")
     
-    (BigBarSlider :visible false :var { brightness } :icon "󰃞"
-    :onchange "brightnessctl set {}%")
-    
+    (BigBarSlider :var { external_monitor_brightness } :icon "󰃞" :visible false
+    :onchange "./scripts/brightness/set-external-brightness {}")
   ))
 
 (defwidget quote []

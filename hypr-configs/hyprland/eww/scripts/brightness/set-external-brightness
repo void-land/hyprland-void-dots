@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+bright=$(printf '%.0f' $1)
+
+ddcutil --bus 3 setvcp 10 $bright | cat >/tmp/brihtness.txt

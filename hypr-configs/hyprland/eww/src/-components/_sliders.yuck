@@ -10,7 +10,7 @@
     :min 0
   :flipped true))
 
-(defwidget BigBarSlider [var ?icon ?onchange ?visible]
+(defwidget BigBarSlider [var ?icon ?onchange ?visible ?timeout]
   (box
     :class "big-bar-slider"
     :visible {visible}
@@ -19,6 +19,7 @@
       (scale
         :value var
         :onchange {onchange}
+        :visible {visible}
         :orientation "v"
         :tooltip "${var}%"
         :max 101

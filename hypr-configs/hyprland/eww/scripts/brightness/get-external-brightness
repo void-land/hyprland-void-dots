@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ddcutil --bus 3 --skip-ddc-checks --enable-dynamic-sleep getvcp 10 | grep -oP 'current value =\s*\K\d+'
