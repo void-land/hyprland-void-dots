@@ -1,19 +1,17 @@
 (defwidget ControlPanel []
   (box
-    :class "control-panel"
-    :space-evenly false
     :orientation "v"
-    :valign "fill"
-    :vexpand true
+    :space-evenly false
+    :class "control-panel"
+    :width 420
     
     (User)
     (SystemMonitor)
     
-    ; (MediaPlayer :h 160 :permashow true)
+    ; (MediaPlayer :height 140)
     
     (box
       :orientation "h"
-      :space-evenly false
       :height 180
       
       (Timer)
@@ -46,14 +44,14 @@
     :orientation "h"
     :class "panel-widget"
     :height 140
+    
     (SystemStatus :icon "󰻠" :val { EWW_CPU.avg })
     (SystemStatus :icon "󰍛" :val { EWW_RAM.used_mem_perc })
     (SystemStatus :icon "󰈐" :val { gpu })
-    (SystemStatus :icon "" :val { EWW_BATTERY.BAT0.capacity })
+    (SystemStatus :icon "" :val { EWW_BATTERY.BAT0.capacity } :visible false)
   ))
 
 (defwidget User []
-  
   (box
     :orientation "h"
     :space-evenly false
@@ -63,7 +61,8 @@
     :valign "start"
     :halign "fill"
     :hexpand true
-    (image :style "margin: 10px;" :image-width 80 :image-height 80 :path "./assets/image/fieshidle.gif")
+    
+    (image  :image-width 80 :image-height 80 :path "./assets/image/fieshidle.gif")
     (scroll
       :hscroll true
       :vscroll false
@@ -220,7 +219,8 @@
       :orientation "v"
       :space-evenly false
       :valign "center"
-      :spacing 10
+      :spacing spacing-default
+      
       (label :halign "start" :text "${hour.FeelsLikeC}°C")
       (label :halign "start" :text "rain: ${hour.chanceofrain}%"))))
 
@@ -256,7 +256,6 @@
     :orientation "v"
     :class "panel-widget"
     :space-evenly false
-    :width 200
     
     (label :class "timer" :valign "center" :vexpand true :text timerdis)
     (box
@@ -269,19 +268,16 @@
 
 (defwidget BigSliders []
   (box
-    :valign "fill"
-    :halign "fill"
     :class "panel-widget"
-    :hexpand true
-    :space-evenly true
+    :spacing spacing-small
     
-    (BigBarSlider :var {volume} :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
+    (BigBarSlider :var { volume } :icon {volumemute == 'false' ? "󰕾" : "󰖁"}
     :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
     
-    (BigBarSlider :var {mic_volume} :icon {volumemute == 'false' ? "" : "󰖁"}
+    (BigBarSlider :var { mic_volume } :icon {volumemute == 'false' ? "" : "󰖁"}
     :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%")
     
-    (BigBarSlider :var {brightness} :icon "󰃞"
+    (BigBarSlider :visible false :var { brightness } :icon "󰃞"
     :onchange "brightnessctl set {}%")
     
   ))

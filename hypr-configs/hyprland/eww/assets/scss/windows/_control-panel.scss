@@ -1,6 +1,6 @@
 .control-panel {
-  padding: get-token(padding, small);
   background-color: $base;
+  padding: get-token(padding, small);
 }
 
 .userinfo label {

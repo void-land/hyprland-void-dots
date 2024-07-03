@@ -22,17 +22,16 @@
       (button :onclick "playerctl next"
         (label :class "icon" :text "󰒭")))))
 
-(defwidget MediaPlayer [h permashow]
+(defwidget MediaPlayer [height]
   (box
     :class "media-player"
     (overlay
       (box
         :orientation "v"
         :halign "fill"
-        :height h
+        :height {height}
         :class { pcover != "" ? "player-cover" : ""}
-        :style "background-image: url('${pcover}')"
-      :visible {permashow ? true : pcover != "" })
+        :style "background-image: url('${pcover}')")
       
       (box
         :orientation "h"

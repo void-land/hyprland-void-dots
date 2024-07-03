@@ -2,7 +2,7 @@
   @extend .widget;
 
   label {
-    font-size: get-token(font-sizes, large);
+    font-size: 20px;
     font-weight: bold;
   }
 }
@@ -11,7 +11,7 @@
   @extend .widget;
 
   label {
-    font-size: get-token(font-sizes);
+    font-size: get-token(font-sizes, small);
     font-weight: bold;
   }
 }
@@ -36,10 +36,10 @@
   padding: 12px;
 
   .workspace {
-    @extend .animation;
     min-height: 16px;
     background-color: $surface2;
     border-radius: get-token(border-radius);
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 300ms;
 
     &.current {
       min-height: 42px;
@@ -51,16 +51,12 @@
 
 .bar-media-player {
   @extend .widget;
-
-  label {
-    font-size: get-token(font-sizes, large);
-  }
 }
 
 .media-player {
   @extend .panel-widget;
 
-  padding: 0px;
+  padding: 8px;
 
   .player-cover {
     transition: 600ms ease;

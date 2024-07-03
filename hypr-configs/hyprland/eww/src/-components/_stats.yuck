@@ -1,6 +1,7 @@
-(defwidget SystemStatus [icon val]
+(defwidget SystemStatus [icon val ?visible]
   (box
     :class "system-status"
+    :visible {visible}
     
     (overlay
       (circular-progress

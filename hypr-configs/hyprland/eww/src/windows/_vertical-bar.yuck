@@ -5,7 +5,7 @@
     :class "vbar"
     
     (revealer
-      :transition "slideleft"
+      :transition "slideright"
       :reveal revealControlpanel
       :duration animation-duration-fast
       
@@ -24,7 +24,6 @@
     :orientation "v"
     :space-evenly false
     :valign "start"
-    :height 250
     :vexpand false
     
     (Logo)

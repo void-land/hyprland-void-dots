@@ -6,18 +6,16 @@
   @extend .widget;
 
   label {
-    @extend .icon;
-
     color: $surface2;
     padding: 4px 0px;
   }
 }
 
 .separator {
-  padding: get-token(padding, small);
+  padding: 4px 8px;
 
   .dot {
-    padding: 2px;
+    padding: 3px;
 
     border-radius: 100%;
 
@@ -51,9 +49,9 @@
 
 .big-bar-slider {
   trough {
-    background-color: $surface1;
-    margin: 5px;
     min-width: 60px;
+    background-color: $surface1;
+    margin: get-token(margin);
     border-radius: get-token(border-radius);
 
     highlight {
