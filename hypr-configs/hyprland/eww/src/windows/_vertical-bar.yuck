@@ -39,7 +39,7 @@
     
     (Separator :orientation "h" :dots "[1, 2, 3]" :visible true)
     
-    (BarMediaPlayer :cover false)
+    (BarMediaPlayer :cover true)
   ))
 
 (defwidget BarBottom []
