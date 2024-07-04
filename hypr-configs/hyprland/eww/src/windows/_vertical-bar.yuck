@@ -29,12 +29,7 @@
     (Logo)
     (DotsWorkspaces)
     ; (Shortcuts)
-    (RevealOnClick
-      :var revealSystray
-      :varname "revealSystray"
-      :direction "down"
-      (Systemtray :orientation "v")
-    )
+    
   ))
 
 (defwidget BarMiddle []
@@ -56,31 +51,19 @@
     :space-evenly false
     :valign "end"
     
+    (RevealOnClick
+      :var revealSystray
+      :varname "revealSystray"
+      :direction "up"
+      (Systemtray :orientation "v")
+    )
     (Sliders)
     (Language)
   ))
 
-(defwidget Shortcuts []
-  (RevealOnClick
-    :var revealShortcuts
-    :varname "revealShortcuts"
-    :direction "down"
-    
-    (box
-      :orientation "v"
-      :spacing spacing-default
-      
-      (button :onclick "swaymsg kill"
-        (label :class "icon" :text "󰅙"))
-      (button :onclick "wofi --show=drun -i -I"
-        (label :class "icon" :text "󰀻"))
-      (button :onclick "./scripts/touchkey.sh"
-        (label :class "icon" :text "󰌌"))))
-)
-
 (defwidget Sliders []
   (box
-    :class "widget"
+    :class "control-box"
     :orientation "v"
     :space-evenly false
     :spacing spacing-default

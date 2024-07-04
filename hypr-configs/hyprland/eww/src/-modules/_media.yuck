@@ -12,7 +12,7 @@
         :onclick "${EWW_CMD} open MusicPlayerPopup --toggle"
         :visible cover
         
-        (image :path { pcover == "" ? "./assets/image/emptympd.png" : pcover } :image-width 20 :image-height 20))
+        (image :path { music_cover == "" ? "./assets/image/emptympd.png" : music_cover } :image-width 20 :image-height 20))
       
       (box
         :class "player-controls"
@@ -24,7 +24,7 @@
         (button :onclick "playerctl previous"
           (label :text "󰒮"))
         (button :onclick "playerctl play-pause"
-          (label :text  { pstatus == "Playing" ? "" : ""}))
+          (label :text  { music_status == "Playing" ? "" : ""}))
         (button :onclick "playerctl next"
           (label :text "󰒭"))))))
 
@@ -36,8 +36,8 @@
         :orientation "v"
         :halign "fill"
         :height {height}
-        :class { pcover != "" ? "player-cover" : ""}
-        :style "background-image: url('${pcover}')")
+        :class { music_cover != "" ? "player-cover" : ""}
+        :style "background-image: url('${music_cover}')")
       
       (box
         :orientation "h"
@@ -46,7 +46,7 @@
         :valign "center"
         :spacing spacing-large
         
-        (image :image-width 100 :image-height 100 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover })
+        (image :image-width 100 :image-height 100 :path { music_cover == "" ? "./assets/image/emptympd.png" : music_cover })
         
         (box
           :orientation "v"
@@ -65,12 +65,12 @@
             (scroll
               :hscroll true
               :vscroll false
-              (label :text psong))
+              (label :text music_title))
             
             (scroll
               :hscroll true
               :vscroll false
-              (label :text partist))
+              (label :text music_artist))
           )
           
           (box
@@ -79,11 +79,10 @@
             (button :onclick "playerctl previous"
               (label :text "󰒮"))
             (button :onclick "playerctl play-pause"
-              (label :text { pstatus == "Playing" ? "" : ""} ))
+              (label :text { music_status == "Playing" ? "" : ""} ))
             (button :onclick "playerctl next"
               (label :text "󰒭"))))))
   )
-  
 )
 
 
@@ -101,7 +100,7 @@
       :class "widget"
       :space-evenly false
       :spacing 20
-      (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { pcover == "" ? "./assets/image/emptympd.png" : pcover})
+      (image :style "margin: 5px;" :image-height 190 :image-width 190 :path { music_cover == "" ? "./assets/image/emptympd.png" : music_cover})
       (box
         :orientation "v"
         :space-evenly false
@@ -110,11 +109,11 @@
         (scroll
           :hscroll true
           :vscroll false
-          (label :class "mtitle" :text psong))
+          (label :class "mtitle" :text music_title))
         (scroll
           :hscroll true
           :vscroll false
-          (label :class "mauthor" :text partist))
+          (label :class "mauthor" :text music_artist))
         (box
           :orientation "h"
           :class "mpd_controls"
@@ -122,13 +121,13 @@
           (button :onclick "playerctl previous"
             (label :text "󰒮"))
           (button :style "padding-right: 3px;" :onclick "playerctl play-pause"
-            (label :text { pstatus == "Playing" ? "" : ""}))
+            (label :text { music_status == "Playing" ? "" : ""}))
           (button :onclick "playerctl next" (label :text "󰒭")))
         (scale
           :class "seektime"
-          :value { ptime.position}
+          :value { music_time.position}
           :orientation "h"
           ;; :onchange "playerctl position {}"
           :min 0
-          :max { ptime.duration}
-        :tooltip { ptime.readable})))))
+          :max { music_time.duration}
+        :tooltip { music_time.readable})))))

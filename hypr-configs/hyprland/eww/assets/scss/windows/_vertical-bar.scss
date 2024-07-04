@@ -1,21 +1,13 @@
 .vbar {
   min-width: 2.6em;
-  padding: 0.4em;
   background-color: $base;
-}
+  padding: get-token(padding, small);
 
-.bat_scale trough {
-  min-height: 50px;
-  min-width: 18px;
-  border-radius: 5px;
-  slider {
-    all: unset;
+  .control-box {
+    @extend .widget;
+
+    padding: 10px 6px;
   }
-}
-
-.bat_scale trough highlight {
-  border-radius: 5px;
-  background-color: $accent;
 }
 
 .charging trough highlight {
@@ -74,12 +66,4 @@
   color: $white0;
   font-size: 20px;
   margin-top: 30px;
-}
-
-.picon {
-  @extend .icon;
-}
-
-.lightning {
-  color: $surface0;
 }

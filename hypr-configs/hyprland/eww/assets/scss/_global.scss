@@ -3,7 +3,7 @@
 }
 
 .widget {
-  margin: get-token(margin);
+  margin: get-token(margin, small);
   padding: get-token(padding);
   border-radius: get-token(border-radius);
   background-color: $surface0;

@@ -73,7 +73,7 @@
   (overlay
     (box
       :class "mpdcover"
-      :style "background-image: url('${pcover}')"
+      :style "background-image: url('${music_cover}')"
     :height 150)
     (box
       :orientation "v"
@@ -83,11 +83,11 @@
       (scroll
         :hscroll true
         :vscroll false
-        (label :style "font-size: 18px;" :text psong))
+        (label :style "font-size: 18px;" :text music_title))
       (scroll
         :hscroll true
         :vscroll false
-        (label :text partist))
+        (label :text music_artist))
       ;; (scale
         ;;   :hexpand false
         ;;   :width 60
@@ -105,7 +105,7 @@
         :halign "center"
         :class "dmpdcontrol"
         (button :onclick "./scripts/music_info --prev" (label :text "󰒮"))
-        (button :onclick "./scripts/music_info --toggle" (label :text { pstatus == "Playing" ? "" : ""}))
+        (button :onclick "./scripts/music_info --toggle" (label :text { music_status == "Playing" ? "" : ""}))
         (button :onclick "./scripts/music_info --next" (label :text "󰒭"))))))
 
 (defwidget dcal []

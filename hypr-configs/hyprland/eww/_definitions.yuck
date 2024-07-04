@@ -69,18 +69,17 @@
 (deflisten currentWorkspace :initial "1" "./scripts/workspace/get-active")
 
 ; Playerctl
-(deflisten pstatus :initial "" "playerctl status -F")
-(deflisten psong :initial "" "playerctl metadata -F --format '{{ title }}'")
-(deflisten partist :initial "" "playerctl metadata -F --format '{{ artist }}'")
-(deflisten pcover "./scripts/pollcover.sh")
-(deflisten ptime
+(defpoll music_status :initial "" :interval "1s" "playerctl status")
+(deflisten music_title :initial "" "playerctl metadata -F --format '{{ title }}'")
+(deflisten music_artist :initial "" "playerctl metadata -F --format '{{ artist }}'")
+(deflisten music_cover "./scripts/pollcover.sh")
+(deflisten music_time
   :initial '{
   "position": 0,
   "duration": 0,
   "readable": "0:00"
   }'
   "playerctl -F metadata -f '{ \"position\": {{position/1000000}}, \"duration\": {{mpris:length/1000000}}, \"readable\": \"{{duration(position)}}/{{duration(mpris:length)}}\" }'")
-;; (deflisten pside "playerctl -F metadata -f '{ \"volume\": {{volume*100}}, \"shuffle\": \"{{shuffle}}\", \"loop\": \"{{loop}}\" }'")
 
 ; Controlpanel
 (defvar revealControlpanel false)
