@@ -1,3 +1,13 @@
+$rounded: 0.8em;
+
+$widget-padding: 0.75em 0.65em;
+$widget-margin: 0.2em;
+
+$panel-widget-margin: 0.4em;
+
+$icon-size: 1.25em;
+$font-size: 1.2em;
+
 $design-tokens: (
   font-sizes: (
     small: 16px,
@@ -28,11 +38,11 @@ $design-tokens: (
 @function get-token($category, $key: null) {
   $tokens: map-get($design-tokens, $category);
 
-  @if $tokens == null {
+  @if $tokens ==null {
     @error "Category `#{$category}` not found in design tokens.";
   }
 
-  @if $key == null {
+  @if $key ==null {
     @if map-has-key($tokens, default) {
       $key: default;
     } @else {
@@ -42,7 +52,7 @@ $design-tokens: (
 
   $value: map-get($tokens, $key);
 
-  @if $value == null {
+  @if $value ==null {
     @error "Token `#{$key}` not found in category `#{$category}`.";
   }
 

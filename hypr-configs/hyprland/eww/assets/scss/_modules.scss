@@ -33,8 +33,6 @@
 .workspaces {
   @extend .widget;
 
-  padding: 12px;
-
   .workspace {
     min-height: 16px;
     background-color: $surface2;
@@ -62,7 +60,6 @@
     }
 
     &.occupied {
-      // color: $surface2;
       color: transparentize($white, 0.4);
     }
 

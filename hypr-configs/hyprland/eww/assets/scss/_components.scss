@@ -52,11 +52,11 @@
     min-width: 60px;
     background-color: $surface1;
     margin: get-token(margin);
-    border-radius: get-token(border-radius);
+    border-radius: $rounded;
 
     highlight {
       background-color: $surface2;
-      border-radius: get-token(border-radius);
+      border-radius: $rounded;
     }
   }
 
