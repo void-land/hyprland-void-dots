@@ -67,6 +67,8 @@
 }
 
 .system-status {
+  margin: get-token(margin, large);
+
   .progress {
     color: $accent;
     background-color: $surface1;
