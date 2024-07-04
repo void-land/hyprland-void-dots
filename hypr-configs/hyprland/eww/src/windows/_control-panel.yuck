@@ -253,21 +253,6 @@
         ;; (label :halign "start" :text "${weatherjson.precipMM} mm")
       ))))
 
-(defwidget Timer []
-  (box
-    :orientation "v"
-    :class "panel-widget"
-    :space-evenly false
-    
-    (label :class "timer" :valign "center" :vexpand true :text timerdis)
-    (box
-      :orientation "h"
-      :class "timer_butt"
-      :valign "end"
-      (button :onclick "./scripts/python/timer.py timedec" (label :text "-"))
-      (button :onclick "./scripts/python/timer.py toggle" (label :style "padding-right: 3px;" :text { !matches(timerdis, ":") ? "󱎫" : "󱫎"}))
-      (button :onclick "./scripts/python/timer.py timeinc" (label :text "+")))))
-
 (defwidget BigSliders []
   (box
     :class "panel-widget"

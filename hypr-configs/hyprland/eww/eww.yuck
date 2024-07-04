@@ -6,6 +6,7 @@
 (include "./src/-components/_stats.yuck")
 
 (include "./src/-modules/_language.yuck")
+(include "./src/-modules/_timer.yuck")
 (include "./src/-modules/_system-tray.yuck")
 (include "./src/-modules/_workspaces.yuck")
 (include "./src/-modules/_time.yuck")

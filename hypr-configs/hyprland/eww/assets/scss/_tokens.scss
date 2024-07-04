@@ -1,12 +1,26 @@
-$rounded: 0.8em;
+$rounded: 0.8rem;
 
-$widget-padding: 0.75em 0.65em;
-$widget-margin: 0.2em;
+$widget-padding: 0.75rem 0.65rem;
+$widget-margin: 0.2rem;
 
-$panel-widget-margin: 0.4em;
+$panel-widget-margin: 0.4rem;
 
-$icon-size: 1.25em;
-$font-size: 1.2em;
+$icon-size: 1.25rem;
+
+$text-base: 1.2rem;
+$text-lg: 1.4rem;
+$text-xl: 1.8rem;
+$text-2xl: 2.6rem;
+
+$m-base: 0.4rem;
+$m-lg: 1.5rem;
+$m-xl: 2rem;
+$m-2xl: 3rem;
+
+$p-base: 1rem;
+$p-lg: 1.5rem;
+$p-xl: 2rem;
+$p-2xl: 3rem;
 
 $design-tokens: (
   font-sizes: (

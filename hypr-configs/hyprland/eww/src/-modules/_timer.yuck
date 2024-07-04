@@ -1,0 +1,15 @@
+(defwidget Timer []
+  (box
+    :orientation "v"
+    :class "timer"
+    :space-evenly false
+    
+    (label :valign "center" :vexpand true :text timerdis)
+    
+    (box
+      :orientation "h"
+      :class "timer-controls"
+      
+      (button :onclick "./scripts/python/timer.py timedec" (label :text "-"))
+      (button :onclick "./scripts/python/timer.py toggle" (label  :text { !matches(timerdis, ":") ? "󱎫" : "󱫎"}))
+      (button :onclick "./scripts/python/timer.py timeinc" (label :text "+")))))

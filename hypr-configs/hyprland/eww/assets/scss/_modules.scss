@@ -109,3 +109,27 @@
     }
   }
 }
+
+.timer {
+  @extend .panel-widget;
+
+  font-size: $text-2xl;
+
+  .timer-controls {
+    button {
+      padding: $p-base;
+      margin: $m-base;
+      border-radius: $rounded;
+
+      background-color: $accent;
+
+      &:hover {
+        background-color: $surface2;
+      }
+    }
+
+    label {
+      @extend .icon;
+    }
+  }
+}
