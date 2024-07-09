@@ -35,7 +35,7 @@
       :class "tricontrol panel-widget"
       :orientation "h"
       
-      (button :onclick "./scripts/pop colourpick" (label :text "󰈊"))
+      (button :onclick "hyprpicker -a" (label :text "󰈊"))
       (button :onclick "./scripts/pop scrop" (label :text "󰆞"))
       (button :onclick "~/.config/eww/themeswitch/scripts/pop" (label :text "")))))
 
