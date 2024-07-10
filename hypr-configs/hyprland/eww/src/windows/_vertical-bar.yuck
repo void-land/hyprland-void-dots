@@ -33,7 +33,7 @@
     :orientation "v"
     :space-evenly false
     :valign "center"
-    :height 280
+    :height 300
     
     (Clock)
     
