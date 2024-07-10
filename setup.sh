@@ -1,10 +1,17 @@
 #!/bin/bash
 
-source ../utils/main.sh
+source ./.scripts/utils/init.sh
 
 UPDATE_PKGS=false
 CLEAR_CACHE=false
 DISABLE_GRUB_MENU=false
+TTF_FONTS_DIR="./host/ui/fonts/TTF"
+
+display_help() {
+    echo "Usage: [-i | -f] [-h]"
+    echo "  -i   Full install"
+    echo "  -f   Install host fonts"
+}
 
 declare -A PACKAGES=(
     ["VOID_REPOS"]="void-repo-multilib void-repo-nonfree"
@@ -110,13 +117,39 @@ disable_grub_menu() {
     fi
 }
 
-check_sudo
+install_ttf_fonts() {
+    sudo cp $TTF_FONTS_DIR/* /usr/share/fonts/TTF
+    sudo fc-cache -f -v
 
-update_system
-clear_pkgs_cache
-install_pkgs
-add_user_to_groups
-enable_services
-disable_grub_menu
+    log "Fonts installed successfully!"
+}
 
-log "Setup is done, please log out and log in"
+while getopts "sfh" opt; do
+    case $opt in
+    s)
+        check_sudo
+
+        update_system
+        clear_pkgs_cache
+        install_pkgs
+        add_user_to_groups
+        enable_services
+        disable_grub_menu
+
+        log "Setup is done, please log out and log in"
+        ;;
+    f)
+        check_sudo
+
+        install_ttf_fonts
+        ;;
+    h)
+        display_help
+        exit 0
+        ;;
+    esac
+done
+
+if [[ $# -eq 0 ]]; then
+    display_help
+fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-create_symlinks() {
+create_links() {
     local source_dir=$1
     local target_dir=$2
 
@@ -17,7 +17,7 @@ create_symlinks() {
     done
 }
 
-delete_symlinks() {
+delete_links() {
     local source_dir=$1
     local target_dir=$2
 

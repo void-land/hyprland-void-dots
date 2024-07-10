@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source ./.scripts/utils/main.sh
-source ./.scripts/utils/helpers.sh
+source ./.scripts/utils/init.sh
+source ./.scripts/utils/_links.sh
 
 DOTS_CONFIG_DIR="$(pwd)/linux-configs"
 DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
@@ -31,36 +31,36 @@ create_target_dir() {
 stow() {
     create_target_dir
 
-    create_symlinks $SHELL_DIR ~
+    create_links $SHELL_DIR ~
     log "Shell stowed successfully!"
 
-    create_symlinks $EDITOR_DIR ~
+    create_links $EDITOR_DIR ~
     log "Editor stowed successfully!"
 
-    create_symlinks $DOTFILES_DIR ~/.config
+    create_links $DOTFILES_DIR ~/.config
     log "Dotfiles stowed successfully!"
 
-    create_symlinks $HYPRLAND_DIR ~/.config
+    create_links $HYPRLAND_DIR ~/.config
     log "Hyprland stowed successfully!"
 
-    create_symlinks $SHORTCUTS_DIR ~/.local/share/applications
+    create_links $SHORTCUTS_DIR ~/.local/share/applications
     log "Shortcuts stowed successfully!"
 
-    create_symlinks $UTILS_DIR ~
+    create_links $UTILS_DIR ~
     log "Utilities stowed successfully!"
 }
 
 unstow() {
-    delete_symlinks $SHELL_DIR ~
-    delete_symlinks $DOTFILES_DIR ~/.config
-    delete_symlinks $HYPRLAND_DIR ~/.config
-    delete_symlinks $SHORTCUTS_DIR ~/.local/share/applications
-    delete_symlinks $UTILS_DIR ~
+    delete_links $SHELL_DIR ~
+    delete_links $DOTFILES_DIR ~/.config
+    delete_links $HYPRLAND_DIR ~/.config
+    delete_links $SHORTCUTS_DIR ~/.local/share/applications
+    delete_links $UTILS_DIR ~
 
     log "All configs ustowed successfully !"
 }
 
-while getopts "ps" opt; do
+while getopts "ush" opt; do
     case $opt in
     s)
         stow
@@ -71,10 +71,6 @@ while getopts "ps" opt; do
     h)
         display_help
         exit 0
-        ;;
-    \?)
-        display_help
-        exit 1
         ;;
     esac
 done
