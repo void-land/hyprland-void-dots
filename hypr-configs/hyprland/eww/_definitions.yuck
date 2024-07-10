@@ -69,7 +69,7 @@
 (deflisten currentWorkspace :initial "1" "./scripts/workspace/get-active")
 
 ; Playerctl
-(defpoll music_status :initial "" :interval "1s" "playerctl status")
+(deflisten music_status :initial "" "playerctl status -F")
 (deflisten music_title :initial "" "playerctl metadata -F --format '{{ title }}'")
 (deflisten music_artist :initial "" "playerctl metadata -F --format '{{ artist }}'")
 (deflisten music_cover "./scripts/pollcover.sh")
