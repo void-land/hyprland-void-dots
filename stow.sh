@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source .scripts/utils/init.sh
-source .scripts/utils/_links.sh
+source .scripts/utils/_symlinks.sh
 
 DOTS_CONFIG_DIR="$(pwd)/linux-configs"
 DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
