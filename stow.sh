@@ -35,7 +35,7 @@ stow() {
     create_links $SHELL_DIR ~
     log "Shell stowed successfully!"
 
-    create_links $FISH_DIR ~/.config/fish
+    ln -s $FISH_DIR ~/.config/fish
     log "Fish Shell stowed successfully!"
 
     create_links $EDITOR_DIR ~
