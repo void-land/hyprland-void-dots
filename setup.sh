@@ -1,15 +1,15 @@
 #!/bin/bash
 
-source ./.scripts/utils/init.sh
+source .scripts/utils/init.sh
 
 UPDATE_PKGS=false
 CLEAR_CACHE=false
 DISABLE_GRUB_MENU=false
-TTF_FONTS_DIR="./host/ui/fonts/TTF"
+TTF_FONTS_DIR="host/ui/fonts/TTF"
 
 display_help() {
-    echo "Usage: [-i | -f] [-h]"
-    echo "  -i   Full install"
+    echo "Usage: [-s | -f] [-h]"
+    echo "  -s   Full install"
     echo "  -f   Install host fonts"
 }
 
