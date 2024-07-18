@@ -4,9 +4,13 @@ create_links() {
     local source_dir=$1
     local target_dir=$2
 
-    if [ ! -d "$source_dir" ] || [ ! -d "$target_dir" ]; then
-        echo "Source or target directory does not exist."
+    if [ ! -d $source_dir ]; then
+        echo "Source directory does not exist."
         return 1
+    fi
+
+    if [ ! -d $target_dir ]; then
+        mkdir -p $target_dir
     fi
 
     for item in "$source_dir"/* "$source_dir"/.*; do
@@ -21,7 +25,7 @@ delete_links() {
     local source_dir=$1
     local target_dir=$2
 
-    if [ ! -d "$source_dir" ] || [ ! -d "$target_dir" ]; then
+    if [ ! -d $source_dir ] || [ ! -d $target_dir ]; then
         echo "Source or target directory does not exist."
         return 1
     fi

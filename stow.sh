@@ -7,6 +7,7 @@ DOTS_CONFIG_DIR="$(pwd)/linux-configs"
 DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
 
 SHELL_DIR="$DOTS_CONFIG_DIR/shells/zsh"
+FISH_DIR="$DOTS_CONFIG_DIR/shells/fish"
 
 EDITOR_DIR="$DOTS_CONFIG_DIR/editor/vim"
 
@@ -33,6 +34,9 @@ stow() {
 
     create_links $SHELL_DIR ~
     log "Shell stowed successfully!"
+
+    create_links $FISH_DIR ~/.config/fish
+    log "Fish Shell stowed successfully!"
 
     create_links $EDITOR_DIR ~
     log "Editor stowed successfully!"
