@@ -103,6 +103,18 @@ enable_services() {
     log "Services enabled"
 }
 
+enable_pipewire() {
+    log "Enable Pipewire"
+
+    sudo ln -s /usr/share/applications/pipewire.desktop /etc/xdg/autostart
+
+    sudo ln -s /usr/share/applications/pipewire-pulse.desktop /etc/xdg/autostart
+
+    sudo ln -s /usr/share/applications/wireplumber.desktop /etc/xdg/autostart
+
+    log "pipewire enabled"
+}
+
 disable_grub_menu() {
     if [ $DISABLE_GRUB_MENU = true ]; then
         log "Disable grub menu"
@@ -134,6 +146,7 @@ while getopts "sfh" opt; do
         install_pkgs
         add_user_to_groups
         enable_services
+        enable_pipewire
         disable_grub_menu
 
         log "Setup is done, please log out and log in"
