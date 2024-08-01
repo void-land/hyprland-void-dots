@@ -7,12 +7,6 @@ CLEAR_CACHE=false
 DISABLE_GRUB_MENU=false
 TTF_FONTS_DIR="host/ui/fonts/TTF"
 
-display_help() {
-    echo "Usage: [-s | -f] [-h]"
-    echo "  -s   Full install"
-    echo "  -f   Install host fonts"
-}
-
 declare -A PACKAGES=(
     ["VOID_REPOS"]="void-repo-multilib void-repo-nonfree"
     ["CONTAINER_PACKAGES"]="podman podman-compose catatonit"
@@ -32,6 +26,12 @@ declare SERVICES=(
     "bluetoothd"
     "crond"
 )
+
+display_help() {
+    echo "Usage: [-s | -f] [-h]"
+    echo "  -s   Full install"
+    echo "  -f   Install host fonts"
+}
 
 update_system() {
     log "Update xbps package manager"
