@@ -3,15 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
+	"hyprland-setup/utils"
 	"log"
 	"os"
-	"os/exec"
 	"path/filepath"
-	"strings"
-	"time"
 )
 
 var (
+	updateXbps      bool
 	updatePkgs      bool
 	clearCache      bool
 	disableGrubMenu bool
@@ -46,17 +45,18 @@ func main() {
 
 	if *showHelp || (!*fullInstall && !*installFonts) {
 		displayHelp()
+
 		os.Exit(0)
 	}
 
 	if *fullInstall {
-		checkSudo()
+		utils.CheckSudo()
 
 		updateSystem()
 
 		clearPkgsCache()
 
-		installPkgs()
+		installPackages()
 
 		addUserToGroups()
 
@@ -70,7 +70,8 @@ func main() {
 	}
 
 	if *installFonts {
-		checkSudo()
+		utils.CheckSudo()
+
 		installTtfFonts()
 	}
 }
@@ -82,139 +83,119 @@ func displayHelp() {
 	fmt.Println("  -h   Show help")
 }
 
-func checkSudo() {
-	if os.Geteuid() != 0 {
-		log.Fatalf("This script must be run as root")
-	}
-}
-
-func logMessage(message string) {
-	fmt.Println(time.Now().Format(time.Kitchen), ":", message)
-}
-
-func check(err error, message string) {
-	if err != nil {
-		log.Fatalf("Error during %s: %v", message, err)
-	}
-}
-
-func runCommand(cmd string, args ...string) {
-	logMessage(fmt.Sprintf("Running command: %s %s", cmd, strings.Join(args, " ")))
-
-	out, err := exec.Command(cmd, args...).CombinedOutput()
-
-	check(err, fmt.Sprintf("%s %s", cmd, strings.Join(args, " ")))
-
-	logMessage(string(out))
-}
-
 func updateSystem() {
-	logMessage("Update xbps package manager")
+	if updateXbps {
+		utils.RunCommand("sudo", "xbps-install", "-u", "xbps")
 
-	runCommand("sudo", "xbps-install", "-u", "xbps")
+		utils.LogColoredMessage("xbps updated \n", utils.ColorGreen)
+	} else {
+		utils.LogColoredMessage("Skipping xbps update \n", utils.ColorRed)
+	}
 
 	if updatePkgs {
-		runCommand("sudo", "xbps-install", "-Syu")
+		utils.RunCommand("sudo", "xbps-install", "-Syu")
 
-		logMessage("xbps/system updated")
+		utils.LogColoredMessage("xbps/system updated", utils.ColorGreen)
 	} else {
-		logMessage("Skipping full system update")
+		utils.LogColoredMessage("Skipping full system update \n", utils.ColorRed)
 	}
 }
 
 func clearPkgsCache() {
 	if clearCache {
-		logMessage("Clear package manager cache")
-		runCommand("sudo", "xbps-remove", "-yO")
-		runCommand("sudo", "xbps-remove", "-yo")
-		runCommand("sudo", "vkpurge", "rm", "all")
-		logMessage("Package manager cache cleared")
+		utils.LogMessage("Clear package manager cache \n")
+
+		utils.RunCommand("sudo", "xbps-remove", "-yO")
+		utils.RunCommand("sudo", "xbps-remove", "-yo")
+		utils.RunCommand("sudo", "vkpurge", "rm", "all")
+
+		utils.LogMessage("Package manager cache cleared")
 	} else {
-		logMessage("Skipping package manager cache clearance")
+		utils.LogColoredMessage("Skipping package manager cache clearance \n", utils.ColorRed)
 	}
 }
 
-func pkgsInstaller(logMsg string, packageList []string) {
-	logMessage(logMsg)
+func packagesInstaller(packageList []string) {
+	utils.LogColoredMessage(fmt.Sprintf("Installing %s \n", packageList), utils.ColorGreen)
 
 	args := append([]string{"xbps-install", "-Sy"}, packageList...)
 
-	runCommand("sudo", args...)
+	utils.RunCommand("sudo", args...)
+
+	// utils.LogColoredMessage(fmt.Sprintf("%s packages installed", setName), utils.ColorGreen)
 }
 
-func installPkgs() {
-	logMessage("Installing required packages")
+func installPackages() {
+	utils.LogColoredMessage("Installing required packages \n")
 
 	for _, packageSet := range packages {
-		pkgsInstaller(fmt.Sprintf("Installing %s", packageSet), packageSet)
-
-		logMessage(fmt.Sprintf("%s installed", packageSet))
+		packagesInstaller(packageSet)
 	}
 }
 
 func addUserToGroups() {
-	logMessage("Add user to needed groups")
-	runCommand("sudo", "usermod", "-a", os.Getenv("USER"), "-G", "_seatd")
-	runCommand("sudo", "usermod", "-a", os.Getenv("USER"), "-G", "bluetooth")
-	logMessage("User added to needed groups")
+	utils.LogMessage("Add user to needed groups")
+	utils.RunCommand("sudo", "usermod", "-a", os.Getenv("USER"), "-G", "_seatd")
+	utils.RunCommand("sudo", "usermod", "-a", os.Getenv("USER"), "-G", "bluetooth")
+	utils.LogMessage("User added to needed groups")
 }
 
 func enableServices() {
-	logMessage("Enable services")
+	utils.LogMessage("Enable services")
 
 	for _, service := range services {
 		targetService := filepath.Join("/etc/sv", service)
 		if _, err := os.Stat(filepath.Join("/var/service", service)); err == nil {
-			logMessage(fmt.Sprintf("Service %s already exists, skipping", targetService))
+			utils.LogMessage(fmt.Sprintf("Service %s already exists, skipping", targetService))
 		} else if _, err := os.Stat(targetService); os.IsNotExist(err) {
-			logMessage(fmt.Sprintf("Service %s is not installed", targetService))
+			utils.LogMessage(fmt.Sprintf("Service %s is not installed", targetService))
 		} else {
-			runCommand("sudo", "ln", "-s", targetService, "/var/service")
-			logMessage(fmt.Sprintf("Service %s enabled", service))
+			utils.RunCommand("sudo", "ln", "-s", targetService, "/var/service")
+			utils.LogMessage(fmt.Sprintf("Service %s enabled", service))
 		}
 	}
-	logMessage("Services enabled")
+	utils.LogMessage("Services enabled")
 }
 
 func enablePipewire() {
-	logMessage("Enable Pipewire")
-	runCommand("sudo", "ln", "-s", "/usr/share/applications/pipewire.desktop", "/etc/xdg/autostart")
-	runCommand("sudo", "ln", "-s", "/usr/share/applications/pipewire-pulse.desktop", "/etc/xdg/autostart")
-	runCommand("sudo", "ln", "-s", "/usr/share/applications/wireplumber.desktop", "/etc/xdg/autostart")
-	logMessage("Pipewire enabled")
+	utils.LogMessage("Enable Pipewire")
+	utils.RunCommand("sudo", "ln", "-s", "/usr/share/applications/pipewire.desktop", "/etc/xdg/autostart")
+	utils.RunCommand("sudo", "ln", "-s", "/usr/share/applications/pipewire-pulse.desktop", "/etc/xdg/autostart")
+	utils.RunCommand("sudo", "ln", "-s", "/usr/share/applications/wireplumber.desktop", "/etc/xdg/autostart")
+	utils.LogMessage("Pipewire enabled")
 }
 
 func disableGrubMenuFunc() {
 	if disableGrubMenu {
-		logMessage("Disable grub menu")
+		utils.LogMessage("Disable grub menu")
 		appendToFile("/etc/default/grub", "GRUB_TIMEOUT=0")
 		appendToFile("/etc/default/grub", "GRUB_TIMEOUT_STYLE=hidden")
 		appendToFile("/etc/default/grub", `GRUB_CMDLINE_LINUX_DEFAULT="loglevel=1 quiet splash"`)
-		runCommand("sudo", "update-grub")
-		logMessage("Grub menu disabled")
+		utils.RunCommand("sudo", "update-grub")
+		utils.LogMessage("Grub menu disabled")
 	} else {
-		logMessage("Skipping grub menu disable")
+		utils.LogMessage("Skipping grub menu disable")
 	}
 }
 
 func appendToFile(filename, text string) {
 	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY, 0644)
-	check(err, fmt.Sprintf("open file %s", filename))
+	utils.Check(err, fmt.Sprintf("open file %s", filename))
 	defer f.Close()
 	_, err = f.WriteString(text + "\n")
-	check(err, fmt.Sprintf("write to file %s", filename))
+	utils.Check(err, fmt.Sprintf("write to file %s", filename))
 }
 
 func installTtfFonts() {
 	files, err := filepath.Glob(filepath.Join(ttfFontsDir, "*"))
 
-	check(err, fmt.Sprintf("glob %s", ttfFontsDir))
+	utils.Check(err, fmt.Sprintf("glob %s", ttfFontsDir))
 
 	for _, file := range files {
-		runCommand("sudo", "cp", file, "/usr/share/fonts/TTF")
+		utils.RunCommand("sudo", "cp", file, "/usr/share/fonts/TTF")
 	}
 
-	runCommand("sudo", "fc-cache", "-f", "-v")
+	utils.RunCommand("sudo", "fc-cache", "-f", "-v")
 
-	logMessage("Fonts installed successfully!")
+	utils.LogMessage("Fonts installed successfully!")
 }
