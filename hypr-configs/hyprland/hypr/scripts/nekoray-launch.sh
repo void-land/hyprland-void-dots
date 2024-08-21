@@ -5,4 +5,5 @@ if [[ $(pidof nekoray) ]]; then
     pkill nekobox_core
 fi
 
-exec /opt/nekoray/nekoray
+# exec /opt/nekoray/nekoray
+exec nekoray
