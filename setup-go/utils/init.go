@@ -49,11 +49,49 @@ func Check(err error, message string) {
 }
 
 func RunCommand(cmd string, args ...string) {
-	LogMessage(fmt.Sprintf("Running command: %s %s", cmd, strings.Join(args, " ")))
+	LogColoredMessage(fmt.Sprintf("Running command: %s %s", cmd, strings.Join(args, " ")), ColorPurple)
 
 	out, err := exec.Command(cmd, args...).CombinedOutput()
 
-	Check(err, fmt.Sprintf("%s %s", cmd, strings.Join(args, " ")))
+	if err != nil {
+		// LogMessage(fmt.Sprintf("Command failed: %s %s\nError: %v", cmd, strings.Join(args, " "), err))
 
-	LogMessage(string(out))
+		LogColoredMessage(fmt.Sprintf("Error Output: %s", string(out)), ColorRed)
+
+		return
+	}
+
+	if len(out) > 0 {
+		LogColoredMessage(string(out), ColorCyan)
+	}
+}
+
+func WriteToFile(filePath, content string) error {
+	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+
+	if err != nil {
+		return fmt.Errorf("failed to open file: %w", err)
+	}
+
+	defer file.Close()
+
+	_, err = file.WriteString(content)
+
+	if err != nil {
+		return fmt.Errorf("failed to write to file: %w", err)
+	}
+
+	return nil
+}
+
+func AppendToFile(filename, text string) {
+	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY, 0644)
+
+	Check(err, fmt.Sprintf("open file %s", filename))
+
+	defer f.Close()
+
+	_, err = f.WriteString(text + "\n")
+
+	Check(err, fmt.Sprintf("write to file %s", filename))
 }
