@@ -14,7 +14,7 @@ EDITOR_DIR="$DOTS_CONFIG_DIR/editor/vim"
 UTILS_DIR="$DOTS_CONFIG_DIR/utils"
 
 HYPRLAND_ROOT="$(pwd)/hypr-configs"
-HYPRLAND_DIR="$HYPRLAND_ROOT/hyprland"
+HYPRLAND_DIR="$HYPRLAND_ROOT/dotfiles"
 SHORTCUTS_DIR="$HYPRLAND_ROOT/shortcuts"
 
 display_help() {

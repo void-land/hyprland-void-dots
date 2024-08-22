@@ -16,6 +16,7 @@ create_links() {
     for item in "$source_dir"/* "$source_dir"/.*; do
         if [ -e "$item" ] && [ "$item" != "$source_dir/." ] && [ "$item" != "$source_dir/.." ]; then
             echo "$item ===> $target_dir"
+
             ln -sfn "$item" "$target_dir/"
         fi
     done
