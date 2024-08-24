@@ -3,15 +3,14 @@
 source .scripts/utils/init.sh
 source .scripts/utils/_symlinks.sh
 
-DOTS_CONFIG_DIR="$(pwd)/linux-configs"
-DOTFILES_DIR="$DOTS_CONFIG_DIR/dotfiles"
+LINUX_CONFIGS_DIR="$(pwd)/linux-configs"
+LINUX_DOTFILES_DIR="$LINUX_CONFIGS_DIR/dotfiles"
 
-SHELL_DIR="$DOTS_CONFIG_DIR/shells/zsh"
-FISH_DIR="$DOTS_CONFIG_DIR/shells/fish"
-
-EDITOR_DIR="$DOTS_CONFIG_DIR/editor/vim"
-
-UTILS_DIR="$DOTS_CONFIG_DIR/utils"
+NIX_DIR="$LINUX_CONFIGS_DIR/nix"
+ZSH_DIR="$LINUX_CONFIGS_DIR/shells/zsh"
+FISH_DIR="$LINUX_CONFIGS_DIR/shells/fish"
+VIM_DIR="$LINUX_CONFIGS_DIR/editor/vim"
+UTILS_DIR="$LINUX_CONFIGS_DIR/utils"
 
 HYPRLAND_ROOT="$(pwd)/hypr-configs"
 HYPRLAND_DIR="$HYPRLAND_ROOT/dotfiles"
@@ -32,16 +31,19 @@ create_target_dir() {
 stow() {
     create_target_dir
 
-    create_links $SHELL_DIR ~
+    create_links $ZSH_DIR ~
     log "Shell stowed successfully!"
 
     ln -sfn $FISH_DIR ~/.config/fish
     log "Fish Shell stowed successfully!"
 
-    create_links $EDITOR_DIR ~
+    create_links $NIX_DIR ~/.config
+    log "Nix stowed successfully!"
+
+    create_links $VIM_DIR ~
     log "Editor stowed successfully!"
 
-    create_links $DOTFILES_DIR ~/.config
+    create_links $LINUX_DOTFILES_DIR ~/.config
     log "Dotfiles stowed successfully!"
 
     create_links $HYPRLAND_DIR ~/.config
@@ -55,8 +57,8 @@ stow() {
 }
 
 unstow() {
-    delete_links $SHELL_DIR ~
-    delete_links $DOTFILES_DIR ~/.config
+    delete_links $ZSH_DIR ~
+    delete_links $LINUX_DOTFILES_DIR ~/.config
     delete_links $HYPRLAND_DIR ~/.config
     delete_links $SHORTCUTS_DIR ~/.local/share/applications
     delete_links $UTILS_DIR ~
