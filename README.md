@@ -1,6 +1,6 @@
 # Hyprland and Dots Configuration for Void Linux
 
-![Hyprland Logo](./.github/assets/hyprland.png)
+![Hyprland Logo](./.github/assets/hyprland-v2.png)
 
 ## Overview
 
