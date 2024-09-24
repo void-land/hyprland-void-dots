@@ -9,7 +9,8 @@ LINUX_DOTFILES_DIR="$LINUX_CONFIGS_DIR/dotfiles"
 NIX_DIR="$LINUX_CONFIGS_DIR/nix"
 ZSH_DIR="$LINUX_CONFIGS_DIR/shells/zsh"
 FISH_DIR="$LINUX_CONFIGS_DIR/shells/fish"
-VIM_DIR="$LINUX_CONFIGS_DIR/editor/vim"
+VIM_DIR="$LINUX_CONFIGS_DIR/editors/vim"
+ZED_DIR="$LINUX_CONFIGS_DIR/editors/zed"
 UTILS_DIR="$LINUX_CONFIGS_DIR/utils"
 
 HYPRLAND_ROOT="$(pwd)/hypr-configs"
@@ -41,7 +42,10 @@ stow() {
     log "Nix stowed successfully!"
 
     create_links $VIM_DIR ~
-    log "Editor stowed successfully!"
+    log "Vim Editor stowed successfully!"
+
+    ln -sfn $ZED_DIR ~/.config/zed
+    log "Zed Editor stowed successfully!"
 
     create_links $LINUX_DOTFILES_DIR ~/.config
     log "Dotfiles stowed successfully!"
