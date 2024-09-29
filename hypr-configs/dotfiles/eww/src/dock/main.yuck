@@ -8,7 +8,7 @@
  :monitor 0
  (dockstruct))
 
-(defwidget dockstruct []
+   (defwidget dockstruct []
  (eventbox
   :onhover "${EWW_CMD} update revealDock=true"
   :onhoverlost "${EWW_CMD} update revealDock=false"
