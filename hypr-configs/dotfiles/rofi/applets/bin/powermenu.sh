@@ -98,14 +98,24 @@ confirm_run() {
 	fi
 }
 
+confirm_run_suspend() {
+	selected="$(confirm_exit)"
+	if [[ "$selected" == "$yes" ]]; then
+		hyprlock &
+		disown && loginctl suspend
+	else
+		exit
+	fi
+}
+
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-		sleep 1 && swaylock
+		sleep 1 && hyprlock
 	elif [[ "$1" == '--opt2' ]]; then
 		confirm_run 'hyprctl dispatch exit'
 	elif [[ "$1" == '--opt3' ]]; then
-		confirm_run 'loginctl suspend'
+		confirm_run_suspend
 	elif [[ "$1" == '--opt4' ]]; then
 		confirm_run 'loginctl hibernate'
 	elif [[ "$1" == '--opt5' ]]; then
