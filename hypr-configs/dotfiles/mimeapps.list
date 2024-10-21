@@ -16,6 +16,8 @@ inode/directory=nemo.desktop
 x-scheme-handler/about=thorium-portable.desktop
 x-scheme-handler/unknown=thorium-portable.desktop
 x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/fleet=jetbrains-fleet.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-QKWUJ2.desktop;userapp-Firefox-Q5DTJ2.desktop;
