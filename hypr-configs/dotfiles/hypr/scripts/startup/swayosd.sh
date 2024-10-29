@@ -2,4 +2,4 @@
 
 source ~/.config/scripts/env.sh
 
-exec $WATCHER -a "$SWAYOSD_DAEMON" -d "$SWAYOSD_DIR" -p "swayosd-server"
+$WATCHER -a "$SWAYOSD_DAEMON" -d "$SWAYOSD_DIR" -p "swayosd-server"
