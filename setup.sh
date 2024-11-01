@@ -10,7 +10,7 @@ TTF_FONTS_DIR="host/ui/fonts/TTF"
 declare -A PACKAGES=(
     ["VOID_REPOS"]="void-repo-multilib void-repo-nonfree"
     ["CONTAINER_PACKAGES"]="podman podman-compose catatonit"
-    ["BASE_PACKAGES"]="inetutils v4l2loopback bind-utils zellij bat dust aria2 fzf neofetch bat zsh fish-shell brightnessctl bluez cronie git stow eza dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome pipewire wireplumber inotify-tools xorg gnome-keyring polkit-gnome mtpfs ffmpeg libnotify"
+    ["BASE_PACKAGES"]="inetutils v4l2loopback bind-utils zellij bat dust aria2 fzf neofetch bat zsh fish-shell brightnessctl bluez cronie git stow eza dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome pipewire wireplumber libspa-bluetooth inotify-tools xorg gnome-keyring polkit-gnome mtpfs ffmpeg libnotify"
     ["DEVEL_PACKAGES"]="glib pango-devel gdk-pixbuf-devel libdbusmenu-gtk3-devel glib-devel gtk+3-devel gtk-layer-shell-devel base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
     ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi"
     ["HYPRLAND_PACKAGES"]="noto-fonts-emoji ddcutil socat eww nerd-fonts-symbols-ttf Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils xdg-user-dirs xdg-user-dirs-gtk qt5-x11extras qt5-wayland qt6-wayland"
@@ -106,11 +106,16 @@ enable_services() {
 enable_pipewire() {
     log "Enable Pipewire"
 
-    sudo ln -s /usr/share/applications/pipewire.desktop /etc/xdg/autostart
+    # sudo ln -s /usr/share/applications/pipewire.desktop /etc/xdg/autostart
 
-    sudo ln -s /usr/share/applications/pipewire-pulse.desktop /etc/xdg/autostart
+    # sudo ln -s /usr/share/applications/pipewire-pulse.desktop /etc/xdg/autostart
 
-    sudo ln -s /usr/share/applications/wireplumber.desktop /etc/xdg/autostart
+    # sudo ln -s /usr/share/applications/wireplumber.desktop /etc/xdg/autostart
+
+    sudo mkdir -p /etc/pipewire/pipewire.conf.d
+
+    sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+    sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
 
     log "pipewire enabled"
 }
