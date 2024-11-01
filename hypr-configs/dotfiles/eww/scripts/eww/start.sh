@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-if ! pgrep -x "eww" >/dev/null; then
-    eww daemon &
-    sleep 1
-fi
-
+eww daemon
+sleep 1
 eww open bar
-eww open notifications
+
+# eww open notifications
