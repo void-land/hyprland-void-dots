@@ -10,45 +10,40 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-declare -a ORDER=("VOID_REPOS" "CONTAINER_PACKAGES" "BASE_PACKAGES" "DEVEL_PACKAGES" "AMD_DRIVERS" "HYPRLAND_PACKAGES" "SYSTEM_APPS")
+declare -a ORDERS_LIST=("CONTAINER_PACKAGES" "BASE_PACKAGES" "DEVEL_PACKAGES" "AMD_DRIVERS" "HYPRLAND_PACKAGES" "SYSTEM_APPS")
 
-declare -A PACKAGES=(
-    ["VOID_REPOS"]="void-repo-multilib void-repo-nonfree"
+declare -A PACKAGES_LIST=(
     ["CONTAINER_PACKAGES"]="podman podman-compose catatonit"
     ["BASE_PACKAGES"]="inetutils v4l2loopback bind-utils zellij bat dust aria2 fzf neofetch bat zsh fish-shell brightnessctl bluez cronie git stow eza dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome pipewire wireplumber libspa-bluetooth inotify-tools xorg gnome-keyring polkit-gnome mtpfs ffmpeg libnotify"
     ["DEVEL_PACKAGES"]="glib pango-devel gdk-pixbuf-devel libdbusmenu-gtk3-devel glib-devel gtk+3-devel gtk-layer-shell-devel base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
     ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi"
-    ["HYPRLAND_PACKAGES"]="noto-fonts-emoji ddcutil socat eww nerd-fonts-symbols-ttf Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils xdg-user-dirs xdg-user-dirs-gtk qt5-x11extras qt5-wayland qt6-wayland"
+    ["HYPRLAND_PACKAGES"]="noto-fonts-emoji socat eww nerd-fonts-symbols-ttf Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils xdg-user-dirs xdg-user-dirs-gtk qt5-x11extras qt5-wayland qt6-wayland"
     ["SYSTEM_APPS"]="alacritty octoxbps blueman wifish wpa_gui glow"
 )
 
-declare -a SERVICES=(
+declare -a SERVICES_LIST=(
     "dbus"
+    "crond"
     "seatd"
     "elogind"
-    "NetworkManager"
     "polkitd"
     "bluetoothd"
-    "crond"
+    "NetworkManager"
 )
 
-trap cleanup SIGINT SIGTERM
+declare -a GROUPS_LIST=(
+    "_seatd"
+    "bluetooth"
+)
 
-cleanup() {
+trap exit_trap SIGINT SIGTERM
+
+exit_trap() {
     echo -e "\n\n${RED}[!]${NC} Installation interrupted. Cleaning up..."
-    exit 0
-}
 
-log() {
-    echo -e "${GREEN}[+]${NC} $1"
-}
+    # pkill -P $$ 2>/dev/null
 
-error() {
-    echo -e "${RED}[!]${NC} $1"
-}
-
-new_line() {
-    echo -e "\n"
+    exit 1
 }
 
 try() {
@@ -57,9 +52,20 @@ try() {
     if ! eval "$@" &>"$log_file"; then
         echo -e "${RED}[!]${NC} Failed: $*"
         cat "$log_file"
+        rm -f "$log_file"
+
+        exit 1
     fi
 
     rm -f "$log_file"
+}
+
+log() {
+    echo -e "\n${GREEN}[+]${NC} $1"
+}
+
+error() {
+    echo -e "${RED}[!]${NC} $1"
 }
 
 params_required() {
@@ -112,8 +118,7 @@ update_xbps() {
     log "Update xbps package manager ..."
 
     if ! ask_prompt "Do you want to update the package manager (xbps)?"; then
-        error "Update cancelled..."
-        new_line
+        error "Action cancelled..."
 
         return 0
     fi
@@ -125,8 +130,7 @@ update_packages() {
     log "Update all packages ..."
 
     if ! ask_prompt "Do you want to perform a full system update?"; then
-        error "System update cancelled..."
-        new_line
+        error "Action cancelled..."
 
         return 0
     fi
@@ -134,114 +138,145 @@ update_packages() {
     sudo xbps-install -Syu
 }
 
-install_packages() {
+setup_packages() {
     local packages_list=""
 
-    for key in "${ORDER[@]}"; do
-        packages_list+="${PACKAGES["$key"]}"
+    for order in "${ORDERS_LIST[@]}"; do
+        packages_list+="${PACKAGES_LIST["$order"]} "
     done
 
     log "Following package groups will be installed:"
-    echo "$packages_list"
+    echo -e "$packages_list \n"
 
     if ! ask_prompt "Do you want to continue with installation?"; then
-        echo "Installation cancelled."
+        error "Action cancelled..."
 
         return 0
     fi
 
-    for key in "${ORDER[@]}"; do
-        new_line
-        log "Installing $key packages..."
+    log "Installing packages..."
 
-        if ! sudo xbps-install -Sy ${PACKAGES["$key"]}; then
-            echo "Failed to install $key packages. Exiting..."
-        fi
-    done
-}
+    if ! sudo xbps-install -Sy void-repo-multilib void-repo-nonfree; then
+        exit_trap
+    fi
 
-assign_groups() {
-    log "Add user to needed groups"
-    sudo usermod -a $USER -G _seatd
-    sudo usermod -a $USER -G bluetooth
-    check "$?" "Add user to needed groups"
-    log "User added to needed groups"
-}
-
-enable_services() {
-    log "Enable services"
-
-    for service in "${SERVICES[@]}"; do
-        local target_service="/etc/sv/$service"
-
-        if [ -d "/var/service/$service" ]; then
-            echo "Service "$target_service" already exists, skipping"
-        elif [ ! -d "$target_service" ]; then
-            echo "Service "$target_service" is not installed"
-        else
-            sudo ln -s "$target_service" /var/service
-            echo "Service $service enabled"
-        fi
-    done
-
-    log "Services enabled"
-}
-
-disable_grub_menu() {
-    if [ $DISABLE_GRUB_MENU = true ]; then
-        log "Disable grub menu"
-        echo 'GRUB_TIMEOUT=0' | sudo tee -a /etc/default/grub
-        echo 'GRUB_TIMEOUT_STYLE=hidden' | sudo tee -a /etc/default/grub
-        echo 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=1 quiet splash"' | sudo tee -a /etc/default/grub
-        sudo update-grub
-        check "$?" "Disable grub menu"
-        log "Grub menu disabled"
-    else
-        log "Skipping grub menu disable"
+    if ! sudo xbps-install -Sy ${packages_list}; then
+        exit_trap
     fi
 }
 
-install_ttf_fonts() {
-    sudo cp $TTF_FONTS_DIR/* /usr/share/fonts/TTF
-    sudo fc-cache -f -v
+setup_groups() {
+    log "Add user to needed groups"
 
-    log "Fonts installed successfully!"
+    if ! ask_prompt "Do you want to add user to groups"; then
+        error "Action cancelled..."
+
+        return 0
+    fi
+
+    for group in "${GROUPS_LIST[@]}"; do
+        sudo usermod -a "$USER" -G "$group"
+
+        echo "$group"
+    done
 }
+
+setup_services() {
+    log "Enable services"
+
+    if ! ask_prompt "Do you want to enable required services?"; then
+        error "Action cancelled..."
+
+        return 0
+    fi
+
+    for service in "${SERVICES_LIST[@]}"; do
+        local target_service="/etc/sv/$service"
+
+        if [ -d "/var/service/$service" ]; then
+            echo "Service $service is already enabled, skipping..."
+
+        elif [ ! -d "$target_service" ]; then
+            error "Service $service is not installed, skipping..."
+        else
+            try "sudo ln -s $target_service /var/service"
+            echo "Service $service enabled"
+        fi
+    done
+}
+
+setup_fonts() {
+    log "Install TTF fonts"
+
+    if ! ask_prompt "Do you want to install TTF fonts?"; then
+        error "Action cancelled..."
+
+        return 0
+    fi
+
+    if [ -d "$TTF_FONTS_DIR" ]; then
+        sudo cp "$TTF_FONTS_DIR"/* /usr/share/fonts/TTF
+        sudo fc-cache -f -v
+    else
+        error "Font directory $TTF_FONTS_DIR is either empty or does not exist."
+
+        return 0
+    fi
+}
+
+# setup_grub() {
+#     if [ $DISABLE_GRUB_MENU = true ]; then
+#         log "Disable grub menu"
+#         echo 'GRUB_TIMEOUT=0' | sudo tee -a /etc/default/grub
+#         echo 'GRUB_TIMEOUT_STYLE=hidden' | sudo tee -a /etc/default/grub
+#         echo 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=1 quiet splash"' | sudo tee -a /etc/default/grub
+#         sudo update-grub
+#         check "$?" "Disable grub menu"
+#         log "Grub menu disabled"
+#     else
+#         log "Skipping grub menu disable"
+#     fi
+# }
 
 while getopts "sfh" opt; do
     case $opt in
     s)
         if [ "$(id -u)" != 0 ]; then
             echo "Please run the script with sudo."
+
             exit 1
         fi
 
+        clear
         update_xbps
         update_packages
-        install_packages
-
-        echo "continue"
-
-        # clear_pkgs_cache
-        # add_user_to_groups
-        # enable_services
-        # enable_pipewire
-        # disable_grub_menu
+        setup_packages
+        setup_groups
+        setup_services
+        setup_fonts
 
         log "Setup is done, reboot your system"
         ;;
     f)
-        check_sudo
+        if [ "$(id -u)" != 0 ]; then
+            echo "Please run the script with sudo."
 
-        install_ttf_fonts
+            exit 1
+        fi
+
+        clear
+        setup_fonts
+
+        log "Fonts installed"
         ;;
     h)
         display_help
-        exit 0
+
+        exit 1
         ;;
     esac
 done
 
-# if [[ $# -eq 0 ]]; then
-#     display_help
-# fi
+if [[ $# -eq 0 ]]; then
+    display_help
+fi
