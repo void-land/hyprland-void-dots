@@ -1,11 +1,16 @@
 #!/bin/bash
 
-source .scripts/utils/init.sh
-
 UPDATE_PKGS=false
 CLEAR_CACHE=false
 DISABLE_GRUB_MENU=false
 TTF_FONTS_DIR="host/ui/fonts/TTF"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+declare -a ORDER=("VOID_REPOS" "CONTAINER_PACKAGES" "BASE_PACKAGES" "DEVEL_PACKAGES" "AMD_DRIVERS" "HYPRLAND_PACKAGES" "SYSTEM_APPS")
 
 declare -A PACKAGES=(
     ["VOID_REPOS"]="void-repo-multilib void-repo-nonfree"
@@ -17,7 +22,7 @@ declare -A PACKAGES=(
     ["SYSTEM_APPS"]="alacritty octoxbps blueman wifish wpa_gui glow"
 )
 
-declare SERVICES=(
+declare -a SERVICES=(
     "dbus"
     "seatd"
     "elogind"
@@ -27,26 +32,71 @@ declare SERVICES=(
     "crond"
 )
 
+trap cleanup SIGINT SIGTERM
+
+cleanup() {
+    echo -e "\n\n${RED}[!]${NC} Installation interrupted. Cleaning up..."
+    exit 0
+}
+
+log() {
+    echo -e "${GREEN}[+]${NC} $1"
+}
+
+error() {
+    echo -e "${RED}[!]${NC} $1"
+}
+
+new_line() {
+    echo -e "\n"
+}
+
+try() {
+    local log_file=$(mktemp)
+
+    if ! eval "$@" &>"$log_file"; then
+        echo -e "${RED}[!]${NC} Failed: $*"
+        cat "$log_file"
+    fi
+
+    rm -f "$log_file"
+}
+
+params_required() {
+    local param_name="$1"
+    local param_value="$2"
+    local error_message="$3"
+
+    if [ -z "$error_message" ]; then
+        error_message="Parameter '$param_name' is required but not provided."
+    fi
+
+    if [ -z "$param_value" ]; then
+        echo "$error_message" >&2
+        exit 1
+    fi
+}
+
+ask_prompt() {
+    local question="$1"
+
+    while true; do
+        read -p "$question (Y/N): " choice
+        case "$choice" in
+        [Yy]) return 0 ;;
+        [Nn]) return 1 ;;
+        *) echo "Please enter Y or N." ;;
+        esac
+    done
+}
+
 display_help() {
     echo "Usage: [-s | -f] [-h]"
     echo "  -s   Full install"
     echo "  -f   Install host fonts"
 }
 
-update_system() {
-    log "Update xbps package manager"
-    sudo xbps-install -u xbps
-
-    if [ $UPDATE_PKGS = true ]; then
-        sudo xbps-install -Syu
-        check "$?" "Update xbps/system"
-        log "xbps/system updated"
-    else
-        log "Skipping full system update"
-    fi
-}
-
-clear_pkgs_cache() {
+clear_cache() {
     if [ $CLEAR_CACHE = true ]; then
         log "Clear package manager cache"
         sudo xbps-remove -yO
@@ -58,24 +108,59 @@ clear_pkgs_cache() {
     fi
 }
 
-pkgs_installer() {
-    local log_message=$1
-    shift
-    local -a package_list=("$@")
+update_xbps() {
+    log "Update xbps package manager ..."
 
-    log "$log_message"
-    sudo xbps-install -Sy "${package_list[@]}"
-    check "$?" "$log_message"
+    if ! ask_prompt "Do you want to update the package manager (xbps)?"; then
+        error "Update cancelled..."
+        new_line
+
+        return 0
+    fi
+
+    sudo xbps-install -u xbps
 }
 
-install_pkgs() {
-    for package_set in $(echo "${!PACKAGES[@]}" | tr ' ' '\n' | sort); do
-        pkgs_installer "Install $package_set" ${PACKAGES["$package_set"]}
-        log "$package_set installed"
+update_packages() {
+    log "Update all packages ..."
+
+    if ! ask_prompt "Do you want to perform a full system update?"; then
+        error "System update cancelled..."
+        new_line
+
+        return 0
+    fi
+
+    sudo xbps-install -Syu
+}
+
+install_packages() {
+    local packages_list=""
+
+    for key in "${ORDER[@]}"; do
+        packages_list+="${PACKAGES["$key"]}"
+    done
+
+    log "Following package groups will be installed:"
+    echo "$packages_list"
+
+    if ! ask_prompt "Do you want to continue with installation?"; then
+        echo "Installation cancelled."
+
+        return 0
+    fi
+
+    for key in "${ORDER[@]}"; do
+        new_line
+        log "Installing $key packages..."
+
+        if ! sudo xbps-install -Sy ${PACKAGES["$key"]}; then
+            echo "Failed to install $key packages. Exiting..."
+        fi
     done
 }
 
-add_user_to_groups() {
+assign_groups() {
     log "Add user to needed groups"
     sudo usermod -a $USER -G _seatd
     sudo usermod -a $USER -G bluetooth
@@ -95,29 +180,11 @@ enable_services() {
             echo "Service "$target_service" is not installed"
         else
             sudo ln -s "$target_service" /var/service
-            check "$?" "Enable service: $service"
             echo "Service $service enabled"
         fi
     done
 
     log "Services enabled"
-}
-
-enable_pipewire() {
-    log "Enable Pipewire"
-
-    # sudo ln -s /usr/share/applications/pipewire.desktop /etc/xdg/autostart
-
-    # sudo ln -s /usr/share/applications/pipewire-pulse.desktop /etc/xdg/autostart
-
-    # sudo ln -s /usr/share/applications/wireplumber.desktop /etc/xdg/autostart
-
-    sudo mkdir -p /etc/pipewire/pipewire.conf.d
-
-    sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
-    sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
-
-    log "pipewire enabled"
 }
 
 disable_grub_menu() {
@@ -144,17 +211,24 @@ install_ttf_fonts() {
 while getopts "sfh" opt; do
     case $opt in
     s)
-        check_sudo
+        if [ "$(id -u)" != 0 ]; then
+            echo "Please run the script with sudo."
+            exit 1
+        fi
 
-        update_system
-        clear_pkgs_cache
-        install_pkgs
-        add_user_to_groups
-        enable_services
-        enable_pipewire
-        disable_grub_menu
+        update_xbps
+        update_packages
+        install_packages
 
-        log "Setup is done, please log out and log in"
+        echo "continue"
+
+        # clear_pkgs_cache
+        # add_user_to_groups
+        # enable_services
+        # enable_pipewire
+        # disable_grub_menu
+
+        log "Setup is done, reboot your system"
         ;;
     f)
         check_sudo
@@ -168,6 +242,6 @@ while getopts "sfh" opt; do
     esac
 done
 
-if [[ $# -eq 0 ]]; then
-    display_help
-fi
+# if [[ $# -eq 0 ]]; then
+#     display_help
+# fi
