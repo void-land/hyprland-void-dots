@@ -1,8 +1,5 @@
 #!/bin/bash
 
-source .scripts/utils/init.sh
-source .scripts/utils/_symlinks.sh
-
 LINUX_CONFIGS_DIR="$(pwd)/linux-configs"
 LINUX_DOTFILES_DIR="$LINUX_CONFIGS_DIR/dotfiles"
 
@@ -25,6 +22,78 @@ display_help() {
     echo "  -h   Display this help message"
 }
 
+log() {
+    local timestamp=$(date +"%T")
+    local message="======> $1 : $timestamp"
+
+    echo -e "\n$message\n"
+}
+
+create_link() {
+    local source=$1
+    local target=$2
+
+    if [ ! -e "$source" ]; then
+        echo "Source does not exist: $source"
+        return 1
+    fi
+
+    if [ ! -d "$(dirname "$target")" ]; then
+        mkdir -p "$(dirname "$target")"
+    fi
+
+    if [ -e "$target" ]; then
+        rm -rf "$target"
+    fi
+
+    ln -sfn "$source" "$target"
+    echo "Created symlink: $source ===> $target"
+}
+
+create_links() {
+    local source_dir=$1
+    local target_dir=$2
+
+    if [ ! -d $source_dir ]; then
+        echo "Source directory does not exist."
+        return 1
+    fi
+
+    if [ ! -d $target_dir ]; then
+        mkdir -p $target_dir
+    fi
+
+    for item in "$source_dir"/* "$source_dir"/.*; do
+        if [ -e "$item" ] && [ "$item" != "$source_dir/." ] && [ "$item" != "$source_dir/.." ]; then
+            echo "$item ===> $target_dir"
+
+            ln -sfn "$item" "$target_dir/"
+        fi
+    done
+}
+
+delete_links() {
+    local source_dir=$1
+    local target_dir=$2
+
+    if [ ! -d $source_dir ] || [ ! -d $target_dir ]; then
+        echo "Source or target directory does not exist."
+        return 1
+    fi
+
+    for config in "$source_dir"/* "$source_dir"/.*; do
+        config_name=$(basename $config)
+        target_config="$target_dir/$config_name"
+
+        if [ -e "$target_config" ]; then
+            rm -rf $target_config
+            echo "Removed: $target_config"
+        else
+            echo "Not found: $target_config"
+        fi
+    done
+}
+
 create_target_dir() {
     mkdir -p ~/.local/share/applications
     mkdir -p ~/.config
@@ -33,23 +102,8 @@ create_target_dir() {
 stow() {
     create_target_dir
 
-    create_links $ZSH_DIR ~
-    log "Shell stowed successfully!"
-
-    ln -sfn $FISH_DIR ~/.config/fish
+    create_link $FISH_DIR ~/.config/fish
     log "Fish Shell stowed successfully!"
-
-    create_links $NIX_DIR ~/.config
-    log "Nix stowed successfully!"
-
-    create_links $VIM_DIR ~
-    log "Vim Editor stowed successfully!"
-
-    ln -sfn $NVIM_DIR ~/.config/nvim
-    log "Nvim Editor stowed successfully!"
-
-    ln -sfn $ZED_DIR ~/.config/zed
-    log "Zed Editor stowed successfully!"
 
     create_links $LINUX_DOTFILES_DIR ~/.config
     log "Dotfiles stowed successfully!"
@@ -65,7 +119,6 @@ stow() {
 }
 
 unstow() {
-    delete_links $ZSH_DIR ~
     delete_links $LINUX_DOTFILES_DIR ~/.config
     delete_links $HYPRLAND_DIR ~/.config
     delete_links $SHORTCUTS_DIR ~/.local/share/applications
