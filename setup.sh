@@ -1,7 +1,6 @@
 #!/bin/bash
 
 UPDATE_PKGS=false
-CLEAR_CACHE=false
 DISABLE_GRUB_MENU=false
 TTF_FONTS_DIR="host/ui/fonts/TTF"
 
@@ -10,15 +9,22 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-declare -a ORDERS_LIST=("CONTAINER_PACKAGES" "BASE_PACKAGES" "DEVEL_PACKAGES" "AMD_DRIVERS" "HYPRLAND_PACKAGES" "SYSTEM_APPS")
+declare -a ORDERS_LIST=(
+    # "CONTAINER_PACKAGES"
+    "BASE_PACKAGES"
+    "AMD_DRIVERS"
+    "HYPRLAND_PACKAGES"
+    "DEVEL_PACKAGES"
+    "SYSTEM_APPS"
+)
 
 declare -A PACKAGES_LIST=(
     ["CONTAINER_PACKAGES"]="podman podman-compose catatonit"
-    ["BASE_PACKAGES"]="inetutils v4l2loopback bind-utils zellij bat dust aria2 fzf neofetch bat zsh fish-shell brightnessctl bluez cronie git stow eza dbus seatd elogind polkit NetworkManager gnome-keyring polkit-gnome pipewire wireplumber libspa-bluetooth inotify-tools xorg gnome-keyring polkit-gnome mtpfs ffmpeg libnotify"
-    ["DEVEL_PACKAGES"]="glib pango-devel gdk-pixbuf-devel libdbusmenu-gtk3-devel glib-devel gtk+3-devel gtk-layer-shell-devel base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
     ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi"
-    ["HYPRLAND_PACKAGES"]="noto-fonts-emoji socat eww nerd-fonts-symbols-ttf Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils xdg-user-dirs xdg-user-dirs-gtk qt5-x11extras qt5-wayland qt6-wayland"
-    ["SYSTEM_APPS"]="alacritty octoxbps blueman wifish wpa_gui glow"
+    ["DEVEL_PACKAGES"]="glib pango-devel gdk-pixbuf-devel libdbusmenu-gtk3-devel glib-devel gtk+3-devel gtk-layer-shell-devel base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
+    ["BASE_PACKAGES"]="curl wget inetutils v4l2loopback bind-utils zellij bat dust aria2 fzf neofetch bat fish-shell brightnessctl bluez cronie git stow eza dbus seatd elogind polkit NetworkManager polkit-gnome rtkit pipewire wireplumber libspa-bluetooth inotify-tools xorg gnome-keyring polkit-gnome mtpfs ffmpeg libnotify fontconfig-32bit fontconfig"
+    ["SYSTEM_APPS"]="alacritty octoxbps blueman glow"
+    ["HYPRLAND_PACKAGES"]="noto-fonts-emoji socat eww nerd-fonts-symbols-ttf Waybar dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils xdg-user-dirs xdg-user-dirs-gtk qt5-x11extras qt5-wayland qt6-wayland qt6ct nwg-look"
 )
 
 declare -a SERVICES_LIST=(
@@ -32,8 +38,15 @@ declare -a SERVICES_LIST=(
 )
 
 declare -a GROUPS_LIST=(
-    "_seatd"
+    "wheel"
+    "audio"
+    "video"
+    "network"
+    "input"
     "bluetooth"
+    "rtkit"
+    "_pipewire"
+    "_seatd"
 )
 
 trap exit_trap SIGINT SIGTERM
@@ -100,18 +113,6 @@ display_help() {
     echo "Usage: [-s | -f] [-h]"
     echo "  -s   Full install"
     echo "  -f   Install host fonts"
-}
-
-clear_cache() {
-    if [ $CLEAR_CACHE = true ]; then
-        log "Clear package manager cache"
-        sudo xbps-remove -yO
-        sudo xbps-remove -yo
-        sudo vkpurge rm all
-        log "Package manager cache cleared"
-    else
-        log "Skipping package manager cache clearance"
-    fi
 }
 
 update_xbps() {
