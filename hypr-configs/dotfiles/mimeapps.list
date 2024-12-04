@@ -1,8 +1,8 @@
 [Default Applications]
-x-scheme-handler/http=thorium-portable.desktop
-x-scheme-handler/https=thorium-portable.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
 x-scheme-handler/chrome=userapp-Firefox-Q5DTJ2.desktop
-text/html=thorium-portable.desktop
+text/html=google-chrome.desktop
 application/x-extension-htm=userapp-Firefox-Q5DTJ2.desktop
 application/x-extension-html=userapp-Firefox-Q5DTJ2.desktop
 application/x-extension-shtml=userapp-Firefox-Q5DTJ2.desktop
@@ -13,8 +13,8 @@ video/mp4=vlc.desktop
 application/pdf=org.gnome.Evince.desktop
 image/png=org.gnome.eog.desktop
 inode/directory=nemo.desktop
-x-scheme-handler/about=thorium-portable.desktop
-x-scheme-handler/unknown=thorium-portable.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/fleet=jetbrains-fleet.desktop
