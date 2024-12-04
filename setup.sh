@@ -166,20 +166,19 @@ setup_packages() {
     fi
 }
 
-setup_groups() {
-    log "Add user to needed groups..."
+setup_hyprland() {
+    log "Preparing to install Hyprland and related packages..."
 
-    if ! ask_prompt "Do you want to add user to groups"; then
-        error "Action cancelled..."
-
+    if ! ask_prompt "Would you like to proceed with installing Hyprland and related packages?"; then
+        error "Hyprland installation cancelled."
         return 0
     fi
 
-    for group in "${GROUPS_LIST[@]}"; do
-        sudo usermod -a "$USER" -G "$group"
+    log "Adding the Hyprland repository to the package manager..."
+    echo 'repository=https://github.com/void-land/hyprland-void-packages/releases/latest/download/' | sudo tee /etc/xbps.d/hyprland-packages.conf
 
-        echo "$group"
-    done
+    log "Updating package manager (xbps) and installing Hyprland packages..."
+    sudo xbps-install -Sy hyprland hyprland-devel aquamarine hyprcursor hypridle hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner xdg-desktop-portal-hyprland
 }
 
 setup_services() {
@@ -206,19 +205,20 @@ setup_services() {
     done
 }
 
-setup_hyprland() {
-    log "Preparing to install Hyprland and related packages..."
+setup_groups() {
+    log "Add user to needed groups..."
 
-    if ! ask_prompt "Would you like to proceed with installing Hyprland and related packages? (y/n)"; then
-        error "Hyprland installation cancelled."
+    if ! ask_prompt "Do you want to add user to groups"; then
+        error "Action cancelled..."
+
         return 0
     fi
 
-    log "Adding the Hyprland repository to the package manager..."
-    echo 'repository=https://github.com/void-land/hyprland-void-packages/releases/latest/download/' | sudo tee /etc/xbps.d/hyprland-packages.conf
+    for group in "${GROUPS_LIST[@]}"; do
+        sudo usermod -a "$USER" -G "$group"
 
-    log "Updating package manager (xbps) and installing Hyprland packages..."
-    sudo xbps-install -Sy hyprland hyprland-devel aquamarine hyprcursor hypridle hyprland-protocols hyprlang hyprlock hyprpaper hyprutils hyprwayland-scanner xdg-desktop-portal-hyprland
+        echo "$group"
+    done
 }
 
 setup_fonts() {
@@ -267,9 +267,9 @@ while getopts "sfh" opt; do
         update_xbps
         update_packages
         setup_packages
-        setup_groups
-        setup_services
         setup_hyprland
+        setup_services
+        setup_groups
         setup_fonts
 
         log "Setup is done, reboot your system"
