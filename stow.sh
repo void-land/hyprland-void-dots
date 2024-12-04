@@ -47,7 +47,7 @@ create_link() {
     fi
 
     ln -sfn "$source" "$target"
-    echo "Created symlink: $source ===> $target"
+    echo "$source ===> $target"
 }
 
 create_links() {
@@ -103,16 +103,13 @@ stow() {
     create_target_dir
 
     create_link $FISH_DIR ~/.config/fish
-    log "Fish Shell stowed successfully!"
+    log "Fish dotfiles stowed successfully!"
 
     create_links $LINUX_DOTFILES_DIR ~/.config
-    log "Dotfiles stowed successfully!"
+    log "Base dotfiles stowed successfully!"
 
     create_links $HYPRLAND_DIR ~/.config
-    log "Hyprland stowed successfully!"
-
-    create_links $SHORTCUTS_DIR ~/.local/share/applications
-    log "Shortcuts stowed successfully!"
+    log "Hyprland dotfiles stowed successfully!"
 
     create_links $UTILS_DIR ~
     log "Utilities stowed successfully!"
@@ -130,6 +127,7 @@ unstow() {
 while getopts "ush" opt; do
     case $opt in
     s)
+        clear
         stow
         ;;
     u)
