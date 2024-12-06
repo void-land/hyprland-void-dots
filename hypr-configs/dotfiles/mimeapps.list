@@ -18,6 +18,7 @@ x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/fleet=jetbrains-fleet.desktop
+x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-QKWUJ2.desktop;userapp-Firefox-Q5DTJ2.desktop;
