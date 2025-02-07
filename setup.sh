@@ -1,8 +1,12 @@
 #!/bin/bash
 
-UPDATE_PKGS=false
-DISABLE_GRUB_MENU=false
 TTF_FONTS_DIR="host/ui/fonts/TTF"
+MOUSE_CURSORS_DIR="host/ui/cursors"
+ICONS_CURSORS_DIR="host/ui/icons"
+ICONS_CURSORS_DIR="host/ui/themes"
+
+THEMES_DESTINATION_DIR="$HOME/.themes"
+ICONS_DESTINATION_DIR="$HOME/.icons"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -241,19 +245,30 @@ setup_fonts() {
     fi
 }
 
-# setup_grub() {
-#     if [ $DISABLE_GRUB_MENU = true ]; then
-#         log "Disable grub menu"
-#         echo 'GRUB_TIMEOUT=0' | sudo tee -a /etc/default/grub
-#         echo 'GRUB_TIMEOUT_STYLE=hidden' | sudo tee -a /etc/default/grub
-#         echo 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=1 quiet splash"' | sudo tee -a /etc/default/grub
-#         sudo update-grub
-#         check "$?" "Disable grub menu"
-#         log "Grub menu disabled"
-#     else
-#         log "Skipping grub menu disable"
-#     fi
-# }
+setup_bibata_cursor() {
+    log "Install Bibata-Modern-Ice cursor..."
+
+    if ! ask_prompt "Do you want to install Bibata-Modern-Ice cursor?"; then
+        error "Action cancelled..."
+
+        return 1
+    fi
+
+    if [ -f "$MOUSE_CURSORS_DIR/Bibata-Modern-Ice.tar.xz" ]; then
+        tar -xf "$MOUSE_CURSORS_DIR/Bibata-Modern-Ice.tar.xz" -C /usr/share/icons/
+
+        if [ $? -eq 0 ]; then
+            log "Bibata-Modern-Ice cursor installed successfully."
+            return 0
+        else
+            error "Failed to uncompress and install Bibata-Modern-Ice cursor."
+            return 1
+        fi
+    else
+        error "Bibata-Modern-Ice.tar.xz file does not exist."
+        return 1
+    fi
+}
 
 while getopts "sfh" opt; do
     case $opt in
@@ -272,6 +287,7 @@ while getopts "sfh" opt; do
         setup_services
         setup_groups
         setup_fonts
+        setup_bibata_cursor
 
         log "Setup is done, reboot your system"
         ;;
