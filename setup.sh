@@ -29,7 +29,7 @@ declare -A PACKAGES_LIST=(
     ["DEVEL_PACKAGES"]="glib pango-devel gdk-pixbuf-devel libdbusmenu-gtk3-devel glib-devel gtk+3-devel gtk-layer-shell-devel base-devel startup-notification-devel cairo-devel xcb-util-devel xcb-util-cursor-devel xcb-util-xrm-devel xcb-util-wm-devel"
     ["AMD_DRIVERS"]="opencv Vulkan-Headers Vulkan-Tools Vulkan-ValidationLayers-32bit mesa-vulkan-radeon mesa-vulkan-radeon-32bit vulkan-loader vulkan-loader-32bit libspa-vulkan libspa-vulkan-32bit amdvlk mesa-dri mesa-vaapi opencl2-headers mesa-32bit mesa-dri-32bit mesa-vaapi-32bit libglvnd libglapi libglvnd-32bit libglapi-32bit"
     ["HYPRLAND_PACKAGES"]="noto-fonts-emoji socat eww nerd-fonts-symbols-ttf Waybar avizo dunst swaybg mpvpaper grim jq slurp cliphist wl-clipboard swayidle pavucontrol nemo eog pavucontrol evince xorg-server-xwayland xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils xdg-user-dirs xdg-user-dirs-gtk qt5-x11extras qt5-wayland qt6-wayland qt6ct nwg-look"
-    ["CONTAINER_PACKAGES"]="podman podman-compose catatonit"
+    ["CONTAINER_PACKAGES"]="docker docker-compose podman podman-compose catatonit"
 )
 
 declare -a SERVICES_LIST=(
