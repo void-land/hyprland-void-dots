@@ -7,6 +7,7 @@ NIX_DIR="$LINUX_CONFIGS_DIR/nix"
 ZSH_DIR="$LINUX_CONFIGS_DIR/shells/zsh"
 FISH_DIR="$LINUX_CONFIGS_DIR/shells/fish"
 UTILS_DIR="$LINUX_CONFIGS_DIR/utils"
+EDITORS_DIR="$LINUX_CONFIGS_DIR/editors"
 ZED_DIR="$LINUX_CONFIGS_DIR/editors/zed"
 VIM_DIR="$LINUX_CONFIGS_DIR/editors/vim"
 NVIM_DIR="$LINUX_CONFIGS_DIR/editors/nvim"
@@ -110,6 +111,9 @@ stow() {
 
     create_links $HYPRLAND_DIR ~/.config
     log "Hyprland dotfiles stowed successfully!"
+
+    create_link $ZED_DIR ~/.config/zed
+    log "Editors dotfiles stowed successfully!"
 
     create_links $UTILS_DIR ~
     log "Utilities stowed successfully!"
