@@ -64,6 +64,10 @@ Follow these steps to install Hyprland on your Void Linux system:
 
    ```bash
    git clone https://github.com/void-land/hyprland-void-dots.git ~/.dots --recursive
+
+   cd ~/.dots
+   
+   git submodule foreach --recursive "git checkout main"
    ```
 2. Change into the repository directory:
 
