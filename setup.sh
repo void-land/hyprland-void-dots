@@ -118,7 +118,7 @@ ask_prompt() {
 display_help() {
     echo "Usage: [-s | -f] [-h]"
     echo "  -s   Full install"
-    echo "  -f   Install host fonts"
+    echo "  -f   Install host fonts/files/icons/themes"
 }
 
 update_xbps() {
@@ -236,8 +236,10 @@ setup_fonts() {
         return 0
     fi
 
+    sudo mkdir -p /usr/share/fonts/TTF
+
     if [ -d "$TTF_FONTS_DIR" ]; then
-        sudo cp "$TTF_FONTS_DIR"/* /usr/share/fonts/TTF
+        sudo cp -v "$TTF_FONTS_DIR"/* /usr/share/fonts/TTF
         sudo fc-cache -f -v
     else
         error "Font directory $TTF_FONTS_DIR is either empty or does not exist."
@@ -255,8 +257,10 @@ setup_bibata_cursor() {
         return 1
     fi
 
+    sudo mkdir -p /usr/share/icons/
+
     if [ -f "$MOUSE_CURSORS_DIR/Bibata-Modern-Ice.tar.xz" ]; then
-        tar -xf "$MOUSE_CURSORS_DIR/Bibata-Modern-Ice.tar.xz" -C /usr/share/icons/
+        tar xfv "$MOUSE_CURSORS_DIR/Bibata-Modern-Ice.tar.xz" -C /usr/share/icons/
 
         if [ $? -eq 0 ]; then
             log "Bibata-Modern-Ice cursor installed successfully."
@@ -301,6 +305,7 @@ while getopts "sfh" opt; do
 
         clear
         setup_fonts
+        setup_bibata_cursor
 
         log "Fonts installed"
         ;;
