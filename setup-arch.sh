@@ -179,12 +179,11 @@ setup_user_services() {
 
 setup_aur_packages() {
     log "Installing AUR packages..."
-    if ! ask_prompt "Do you want to install AUR packages (vazirmatn-fonts, swayosd-git)?"; then
+    if ! ask_prompt "Do you want to install AUR packages ?"; then
         error "Action cancelled..."
         return 0
     fi
 
-    # Check if yay is installed, if not install it
     if ! command -v yay &>/dev/null; then
         log "Installing yay AUR helper..."
         cd /tmp
@@ -202,15 +201,15 @@ setup_aur_packages() {
 
 setup_locales() {
     log "Setting up Persian locale..."
-    if ! ask_prompt "Do you want to enable Persian locale (fa_IR.UTF-8)?"; then
+    if ! ask_prompt "Do you want to enable Persian locale (fa_IR UTF-8)?"; then
         error "Action cancelled..."
         return 0
     fi
 
-    if grep -q "^fa_IR.UTF-8 UTF-8" /etc/locale.gen; then
+    if grep -q "^fa_IR UTF-8" /etc/locale.gen; then
         echo "Persian locale is already uncommented."
     else
-        sudo sed -i 's/#fa_IR.UTF-8 UTF-8/fa_IR.UTF-8 UTF-8/' /etc/locale.gen
+        sudo sed -i 's/#fa_IR UTF-8/fa_IR UTF-8/' /etc/locale.gen
     fi
 
     sudo locale-gen
