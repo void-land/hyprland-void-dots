@@ -27,7 +27,7 @@ declare -a ORDERS_LIST=(
 
 declare -A PACKAGES_LIST=(
     ["BASE_PACKAGES"]="base-devel git curl xz zstd fzf networkmanager bluez bluez-utils xdg-utils"
-    ["HYPRLAND_PACKAGES"]="hyprland hyprpolkitagent xdg-desktop-portal-hyprland hyprpaper hypridle hyprlock hyprsunset orchis-theme swayosd waybar wofi rofi-wayland alacritty mako grim slurp jq wl-clipboard cliphist"
+    ["HYPRLAND_PACKAGES"]="hyprland hyprpolkitagent xdg-desktop-portal-hyprland hyprpaper hypridle hyprlock hyprsunset orchis-theme swayosd waybar wofi rofi-wayland alacritty grim slurp jq wl-clipboard cliphist"
     ["AUDIO_PACKAGES"]="pipewire wireplumber pipewire-pulse pipewire-alsa pipewire-jack pavucontrol"
     ["GPU_DRIVERS"]="mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader vulkan-mesa-layers vulkan-extra-layers vulkan-tools xf86-video-amdgpu amdvlk"
     ["GAMING_PACKAGES"]="gamescope mangohud gamemode lib32-mangohud lib32-gamemode"
