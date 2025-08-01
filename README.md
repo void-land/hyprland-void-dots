@@ -1,10 +1,10 @@
-# Hyprland and Dots Configuration for Void Linux
+# Hyprland and Dots Configuration for Arch/Void Linux
 
 ![Hyprland Logo](./.github/assets/hyprland-v2.png)
 
 ## Overview
 
-This repository contains instructions and configurations for setting up Hyprland on Void Linux. Hyprland is a powerful Tiling compositor.
+This repository contains instructions and configurations for setting up Hyprland on Arch/Void Linux. Hyprland is a powerful Tiling compositor.
 
 ## Table of Contents
 
@@ -69,6 +69,7 @@ Follow these steps to install Hyprland on your Void Linux system:
    
    git submodule foreach --recursive "git checkout main"
    ```
+
 2. Change into the repository directory:
 
    ```bash
@@ -86,7 +87,6 @@ Follow these steps to install Hyprland on your Void Linux system:
 ## Keybindings
 
 ### Hyprland
-
 
 |                                  Keys | Action                          |
 | ------------------------------------: | :------------------------------ |
@@ -109,7 +109,6 @@ Follow these steps to install Hyprland on your Void Linux system:
 
 ### Rofi
 
-
 |                 Keys | Action            |
 | -------------------: | :---------------- |
 | <kbd>SUPER + R</kbd> | App launcher      |
@@ -119,7 +118,6 @@ Follow these steps to install Hyprland on your Void Linux system:
 | <kbd>SUPER + X</kbd> | Screenshot applet |
 
 ### Apps
-
 
 |                 Keys | Action               |
 | -------------------: | :------------------- |
