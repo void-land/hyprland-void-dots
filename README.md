@@ -1,5 +1,8 @@
 # Hyprland and Dots Configuration for Arch/Void Linux
 
+> [!WARNING]
+> **This project is archived because Hyprland has moved to Lua configurations.**
+
 ![Hyprland Logo](./.github/assets/hyprland-v2.png)
 
 ## Overview

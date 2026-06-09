@@ -1,5 +1,5 @@
 [Added Associations]
-application/json=dev.zed.Zed.desktop;
+application/json=org.kde.kate.desktop;dev.zed.Zed.desktop;
 application/octet-stream=codium.desktop;dev.zed.Zed.desktop;
 application/pdf=google-chrome.desktop;firefox.desktop;libreoffice-draw.desktop;org.gnome.Evince.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
@@ -25,7 +25,7 @@ x-scheme-handler/http=google-chrome.desktop;chromium.desktop;userapp-Firefox-QKW
 x-scheme-handler/https=google-chrome.desktop;chromium.desktop;userapp-Firefox-QKWUJ2.desktop;userapp-Firefox-Q5DTJ2.desktop;
 
 [Default Applications]
-application/json=dev.zed.Zed.desktop;
+application/json=org.kde.kate.desktop;
 application/octet-stream=codium.desktop;
 application/pdf=google-chrome.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
